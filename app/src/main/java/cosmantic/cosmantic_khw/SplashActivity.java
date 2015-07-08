@@ -22,8 +22,8 @@ public class SplashActivity extends AppCompatActivity
 			e.printStackTrace();
 		}
 
-		// 메인 액티비티로 넘어간다.
-		startActivity(new Intent(this, MainActivity.class));
+		// 메인 액티비티로 넘어간다.>fragment 액티비티로 넘어가게!!!!
+		startActivity(new Intent(this, MainFragment.class));
 		finish();
 	}
 }

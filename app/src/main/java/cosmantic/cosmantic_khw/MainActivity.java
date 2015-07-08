@@ -13,15 +13,15 @@ public class MainActivity extends Activity {
 
         Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_SHORT).show();
 
-        boolean isRunIntro = getIntent().getBooleanExtra("intro", true);
+       /* boolean isRunIntro = getIntent().getBooleanExtra("intro", true);
         if(isRunIntro) {
             beforeIntro();
         }
         else {
             afterIntro(savedInstanceState);
-        }
+        }*/
     }
-
+/*
     // 인트로 화면
     private void beforeIntro() {
         // 약 2초간 인트로 화면을 출력.
@@ -43,4 +43,5 @@ public class MainActivity extends Activity {
         // 기본 테마를 지정한다.
         setContentView(R.layout.activity_main);
     }
+    */
 }
