@@ -5,19 +5,20 @@ public class Product {
 	private String objectId;	
 	private String productName;		// 제품명
 	private int price;				// 가격
-	private String brand;				// 브랜드
-	private byte[] thumnail;			// 썸네일
-	private double size;				// 용량
-	private String[] effects;			// 효능/태그
-	private String skintype;			// 피부 타입
-	private String type;				// 종류
-	private String curatingInfo;		// 큐레이팅 정보
+	private String brand;			// 브랜드
+	private byte[] thumnail;		// 썸네일
+	private double size;			// 용량
+	private String[] effects;		// 효능/태그
+	private String skintype;		// 피부 타입
+	private String type;			// 종류
+	private String curatingInfo;	// 큐레이팅 정보
 	
 	// 기본 생성자
 	Product(){}
 	
 	// 모든 정보를 다 받아오는 생성자
-	Product(String productName, int price, String brand, double size, String[] effects, String skintype, String type, String curatingInfo){
+	Product(String objectId, String productName, int price, String brand, double size, String[] effects, String skintype, String type, String curatingInfo){
+		this.objectId = objectId;
 		this.productName = productName;
 		this.price = price;
 		this.brand = brand;
@@ -29,6 +30,8 @@ public class Product {
 	}
 	
 	// getter, setter
+	public String getObjectId() { return objectId; }
+
 	public String getProductName() {
 		return productName;
 	}
@@ -100,6 +103,4 @@ public class Product {
 	public void setCuratingInfo(String curatingInfo) {
 		this.curatingInfo = curatingInfo;
 	}
-	
-	
 }
