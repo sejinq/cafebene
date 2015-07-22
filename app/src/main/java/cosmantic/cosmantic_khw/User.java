@@ -17,7 +17,7 @@ public class User {
 	public static final int INEREST_WHITE = 6;				// 미백
 	public static final int INEREST_REPAIR = 7;				// 피부 재생
 	public static final int INEREST_SCRUB = 8;				// 각질 제거
-		
+  
 	// 멤버 변수
 	private String objectId;
 	private String username;			// 아이디
@@ -25,8 +25,8 @@ public class User {
 	private String displayedName;		// 닉네임
 	private boolean gender;				// 성별
 	private int age;					// 나이
-    private byte[] image;		        // 썸네일
-    private String skinType;			// 피부 타입
+  private byte[] image;		        // 썸네일
+  private String skinType;			// 피부 타입
 	private String[] skinProblem;		// 피부 문제
 	private String[] review;			// 리뷰(사용자 찜 목록)
 	
@@ -41,76 +41,76 @@ public class User {
 		this.displayedName = displayedName;
 		this.gender = gender;
 		this.age = age;
-        this.image = image;
-		this.skinType = skinType;
-		this.skinProblem = skinProblem;
-		this.review = review;
-	}
-	
+    this.image = image;
+    this.skinType = skinType;
+    this.skinProblem = skinProblem;
+    this.review = review;
+  }
+  
 	// getter, setter
-	public String getObjectId() { return objectId; }
+  public String getObjectId() { return objectId; }
 
-	public String getUsername() { return username; }
+  public String getUsername() { return username; }
 
-    public void setUsername(String username) { this.username = username; }
+  public void setUsername(String username) { this.username = username; }
 
-    public String getPassword() {
-		return password;
-	}
+  public String getPassword() {
+    return password;
+  }
 
-    public void setPassword(String password) {
-		this.password = password;
-	}
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-    public String getDisplayedName() {
-		return displayedName;
-	}
+  public String getDisplayedName() {
+    return displayedName;
+  }
 
-    public void setDisplayedName(String displayedName) {
-		this.displayedName = displayedName;
-	}
+  public void setDisplayedName(String displayedName) {
+    this.displayedName = displayedName;
+  }
 
-    public boolean isGender() {
-		return gender;
-	}
+  public boolean isGender() {
+    return gender;
+  }
 
-    public void setGender(boolean gender) {
-		this.gender = gender;
-	}
+  public void setGender(boolean gender) {
+    this.gender = gender;
+  }
 
-    public int getAge() {
-		return age;
-	}
+  public int getAge() {
+    return age;
+  }
 
-    public void setAge(int age) {
-		this.age = age;
-	}
+  public void setAge(int age) {
+    this.age = age;
+  }
 
-    public byte[] getImage() { return image; }
+  public byte[] getImage() { return image; }
 
-    public void setImage(byte[] image) { this.image = image; }
+  public void setImage(byte[] image) { this.image = image; }
 
-    public String getSkinType() {
-		return skinType;
-	}
+  public String getSkinType() {
+    return skinType;
+  }
 
-    public void setSkinType(String skinType) {
-		this.skinType = skinType;
-	}
+  public void setSkinType(String skinType) {
+    this.skinType = skinType;
+  }
 
-    public String[] getSkinProblem() {
-		return skinProblem;
-	}
+  public String[] getSkinProblem() {
+    return skinProblem;
+  }
 
-    public void setSkinProblem(String[] skinProblem) {
-		this.skinProblem = skinProblem;
-	}
+  public void setSkinProblem(String[] skinProblem) {
+    this.skinProblem = skinProblem;
+  }
 
-    public String[] getReview() {
-		return review;
-	}
+  public String[] getReview() {
+    return review;
+  }
 
-    public void setReview(String[] review) {
-		this.review = review;
-	}
+  public void setReview(String[] review) {
+    this.review = review;
+  }
 }
