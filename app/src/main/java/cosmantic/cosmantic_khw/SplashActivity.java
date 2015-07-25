@@ -1,11 +1,11 @@
 package cosmantic.cosmantic_khw;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 /** 스플래시 (로딩화면) 액티비티 */
-public class SplashActivity extends AppCompatActivity{
+public class SplashActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);

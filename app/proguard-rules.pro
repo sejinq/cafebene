@@ -22,3 +22,4 @@
   public *;
 }
 -dontwarn android.support.v4.**,com.ning.http.client.**,org.slf4j.**, com.fasterxml.jackson.databind.**, com.google.android.gms.**
+-dontwarn java.lang.invoke.*
