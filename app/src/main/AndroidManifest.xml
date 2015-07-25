@@ -20,10 +20,6 @@
             android:name = ".SplashActivity"
             android:theme = "@style/SplashTheme"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name = "android.intent.action.MAIN"/>
-                <category android:name = "android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
 
         <!-- 메인 액티비티 -->
@@ -41,6 +37,18 @@
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
+
+        <!-- RecommendDetail 액티비티 -->
+        <activity
+            android:name=".RecommendDetailActivity"
+            android:theme="@style/android:Theme.Holo">
+            <intent-filter>
+                <action android:name = "android.intent.action.MAIN"/>
+                <category android:name = "android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+
     </application>
 
 </manifest>
