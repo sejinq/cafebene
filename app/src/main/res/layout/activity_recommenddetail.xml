@@ -4,10 +4,77 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- 분류 배경바 -->
     <ImageView
-        android:id="@+id/subjectbar"
+        android:id="@+id/subjectbar1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="19dp"
-        android:src="@drawable/subjectbar1"/>
+        android:src="@drawable/subjectbar"/>
+
+    <!-- 제품들을 담는 레이아웃 -->
+    <RelativeLayout
+        android:id="@+id/productLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp">
+
+        <ImageView
+            android:id="@+id/product1_1"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_alignParentLeft="true"/>
+
+        <ImageView
+            android:id="@+id/product1_2"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_centerHorizontal="true"
+            />
+
+        <ImageView
+            android:id="@+id/product1_3"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+
+    <!-- 분류 배경바 -->
+    <ImageView
+        android:id="@+id/subjectbar2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:src="@drawable/subjectbar"/>
+
+    <!-- 제품들을 담는 레이아웃 -->
+    <RelativeLayout
+        android:id="@+id/productLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp">
+
+        <ImageView
+            android:id="@+id/product2_1"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_alignParentLeft="true"/>
+
+        <ImageView
+            android:id="@+id/product2_2"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_centerHorizontal="true"
+            />
+
+        <ImageView
+            android:id="@+id/product2_3"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
 </LinearLayout>
