@@ -10,7 +10,7 @@
     </style>
 
     <!-- RecommendDetailActivity 테마 -->
-    <style name="RecoomendDetailTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+    <style name="RecommendDetailTheme" parent="@style/Theme.AppCompat.Light">
 
     </style>
 </resources>

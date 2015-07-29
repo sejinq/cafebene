@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include layout="@layout/actionbar"/>
+
     <!-- 첫 번째 분류를 담는 레이아웃 -->
     <RelativeLayout
         android:layout_width="wrap_content"
