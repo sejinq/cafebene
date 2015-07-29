@@ -13,17 +13,13 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <meta-data android:name="com.facebook.sdk.ApplicationId"
-                   android:value="@string/app_id"/>
+            android:value="@string/app_id"/>
 
         <!-- 스플래시 액티비티 -->
         <activity
             android:name = ".SplashActivity"
             android:theme = "@style/SplashTheme"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name = "android.intent.action.MAIN"/>
-                <category android:name = "android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
 
         <!-- 메인 액티비티 -->
@@ -33,14 +29,24 @@
         </activity>
 
         <activity android:name="com.facebook.FacebookActivity"
-                  android:configChanges=
-                      "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-                  android:theme="@android:style/Theme.Translucent.NoTitleBar"
-                  android:label="@string/app_name" />
+            android:configChanges=
+                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:label="@string/app_name" />
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
+
+        <!-- RecommendDetail 액티비티 -->
+        <activity
+            android:name=".RecommendDetailActivity"
+            android:theme="@style/RecoomendDetailTheme">
+            <intent-filter>
+                <action android:name = "android.intent.action.MAIN"/>
+                <category android:name = "android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

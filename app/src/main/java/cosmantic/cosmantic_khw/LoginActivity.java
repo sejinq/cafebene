@@ -58,7 +58,7 @@ public class LoginActivity extends AppCompatActivity{
 			// 프로그레스바 종료
 
 			// 세션 오픈후 보일 페이지로 이동
-			final Intent intent = new Intent(LoginActivity.this, SignActivity.class);
+			final Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
 			startActivity(intent);
 			finish();
 		}
