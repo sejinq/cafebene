@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="77dp">
+    android:layout_height="77dp"
+    android:background="#0d1f37">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/titleText"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#0d1f37">
-        <TextView
-            android:id="@+id/titletext"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:textSize="22sp"
-            android:textColor="#ffffff"/>
-    </LinearLayout>
+        android:gravity="center"
+        android:text="ActionBar Title"
+        android:textSize="22sp"
+        android:textColor="#ffffff"/>
 
     <ImageButton
         android:id="@+id/backButton"
@@ -22,7 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="18dp"
         android:background="@null"
-        android:src="@drawable/backbutton" />
+        android:src="@drawable/backbutton"
+        android:onClick="mClickListener"/>
 </RelativeLayout>

@@ -41,7 +41,7 @@
         <!-- RecommendDetail 액티비티 -->
         <activity
             android:name=".RecommendDetailActivity"
-            android:theme="@style/RecoomendDetailTheme">
+            android:theme="@style/RecommendDetailTheme">
             <intent-filter>
                 <action android:name = "android.intent.action.MAIN"/>
                 <category android:name = "android.intent.category.LAUNCHER"/>
