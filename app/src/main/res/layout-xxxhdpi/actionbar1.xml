@@ -14,6 +14,7 @@
             android:gravity="center"
             android:textSize="22sp"
             android:textColor="#ffffff"/>
+
     </LinearLayout>
 
     <ImageButton
@@ -25,4 +26,13 @@
         android:layout_marginLeft="8dp"
         android:background="@null"
         android:src="@drawable/backbutton" />
+    <ImageButton
+        android:id="@+id/searchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="8dp"
+        android:background="@null"
+        android:src="@drawable/searchbutton" />
 </RelativeLayout>
