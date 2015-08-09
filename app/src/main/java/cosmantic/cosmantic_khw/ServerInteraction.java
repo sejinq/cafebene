@@ -66,7 +66,7 @@ public class ServerInteraction {
 	 * @param skin_type
 	 * @return
 	 */
-	public Product[] getRecommendList(int skin_type){
+	public static Product[] getRecommendList(int skin_type){
 		return null;
 	}
 

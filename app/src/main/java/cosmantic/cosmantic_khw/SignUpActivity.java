@@ -21,6 +21,19 @@ public class SignUpActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
+       /* ActionBar actionBar = getActionBar();
+        actionBar.setTitle("회원가입");
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.show();*/
+        /*회원가입 방법 선택에 따라 보여주거나 안보여줄 행.인텐트 값 받아서 설정해 주기.
+        passRow.setVisibility(View.GONE); passRow가 사라지고 동작하지 않음
+        INVISIBLE : passRow가 사라지지만 투명하게 보이게함(공간은 남겨둠)
+        VISIBLE : 보여진다. 디폴트 값.
+        */
+//        TableRow passRow = (TableRow)findViewById(R.id.passRow);
+//        TableRow repassRow = (TableRow)findViewById(R.id.repassRow);
+
+        //회원가입시 유저 정보. 아이디, 닉네임, 비밀번호, 성별, 나이
         etID = (EditText)findViewById(R.id.editText1);
         etNick = (EditText)findViewById(R.id.editText2);
         etPass = (EditText)findViewById(R.id.editText3);
@@ -43,6 +56,7 @@ public class SignUpActivity extends Activity {
         btAge_40 = (Button)findViewById(R.id.button7);
         btAge_40.setOnClickListener(new onbtAge_40());
 
+        //유저의 피부타입 정보. 지성, 건성, 민감성, 모름
         btSk_Oily = (Button)findViewById(R.id.button8);
         btSk_Oily.setOnClickListener(new onbtSk_Oily());
         btSk_Dry = (Button)findViewById(R.id.button9);
@@ -51,7 +65,7 @@ public class SignUpActivity extends Activity {
         btSk_Complex.setOnClickListener(new onbtSk_Complex());
         btSk_Unknown = (Button)findViewById(R.id.button11);
         btSk_Unknown.setOnClickListener(new onbtSk_Unknown());
-
+        //유저의 관심효능 보습, 여드름개선, 주름개선, 모공관리, 자외선차단, 미백, 피부재생, 각질제거
         btEf_Share = (Button)findViewById(R.id.button12);
         btEf_Share.setOnClickListener(new onbtEf_Share());
         btEf_Trouble = (Button)findViewById(R.id.button13);
