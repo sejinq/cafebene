@@ -5,7 +5,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -83,75 +82,65 @@ public class RecommendDetailActivity extends Activity{
 
         // 제품 클릭시 리스너를 나타내주기 위한 코드
         LinearLayout productLayout = (LinearLayout)findViewById(R.id.product1_left);
-        productLayout.setOnTouchListener(TouchListener);
+        productLayout.setOnClickListener(ClickListener);
         productLayout = (LinearLayout)findViewById(R.id.product1_center);
-        productLayout.setOnTouchListener(TouchListener);
+        productLayout.setOnClickListener(ClickListener);
         productLayout = (LinearLayout)findViewById(R.id.product1_right);
-        productLayout.setOnTouchListener(TouchListener);
+        productLayout.setOnClickListener(ClickListener);
         productLayout = (LinearLayout)findViewById(R.id.product2_left);
-        productLayout.setOnTouchListener(TouchListener);
+        productLayout.setOnClickListener(ClickListener);
         productLayout = (LinearLayout)findViewById(R.id.product2_center);
-        productLayout.setOnTouchListener(TouchListener);
+        productLayout.setOnClickListener(ClickListener);
         productLayout = (LinearLayout)findViewById(R.id.product2_right);
-        productLayout.setOnTouchListener(TouchListener);
+        productLayout.setOnClickListener(ClickListener);
         productLayout = (LinearLayout)findViewById(R.id.product3_left);
-        productLayout.setOnTouchListener(TouchListener);
+        productLayout.setOnClickListener(ClickListener);
         productLayout = (LinearLayout)findViewById(R.id.product3_center);
-        productLayout.setOnTouchListener(TouchListener);
+        productLayout.setOnClickListener(ClickListener);
         productLayout = (LinearLayout)findViewById(R.id.product3_right);
-        productLayout.setOnTouchListener(TouchListener);
+        productLayout.setOnClickListener(ClickListener);
 
         // 액션바 뒤로가기 버튼 리스너 달아주는 코드
         ImageButton backButton = (ImageButton)findViewById(R.id.backButton);
-        backButton.setOnTouchListener(TouchListener);
+        backButton.setOnClickListener(ClickListener);
 
     }
 
     // 제품 클릭 시 동작하는 리스너
-    View.OnTouchListener TouchListener = new View.OnTouchListener() {
-        public boolean onTouch(View v, MotionEvent event) {
-            // 터치할 때
-            if (event.getAction() == MotionEvent.ACTION_DOWN){
-                switch(v.getId()){
-                    case R.id.backButton:
-                        Toast.makeText(RecommendDetailActivity.this, "Back Button", Toast.LENGTH_SHORT).show();
-                        return true;
-                    case R.id.product1_left:
-                        Toast.makeText(RecommendDetailActivity.this, "product1_left", Toast.LENGTH_SHORT).show();
-                        return true;
-                    case R.id.product1_center:
-                        Toast.makeText(RecommendDetailActivity.this, "product1_center", Toast.LENGTH_SHORT).show();
-                        return true;
-                    case R.id.product1_right:
-                        Toast.makeText(RecommendDetailActivity.this, "product1_right", Toast.LENGTH_SHORT).show();
-                        return true;
-                    case R.id.product2_left:
-                        Toast.makeText(RecommendDetailActivity.this, "product2_left", Toast.LENGTH_SHORT).show();
-                        return true;
-                    case R.id.product2_center:
-                        Toast.makeText(RecommendDetailActivity.this, "product2_center", Toast.LENGTH_SHORT).show();
-                        return true;
-                    case R.id.product2_right:
-                        Toast.makeText(RecommendDetailActivity.this, "product2_right", Toast.LENGTH_SHORT).show();
-                        return true;
-                    case R.id.product3_left:
-                        Toast.makeText(RecommendDetailActivity.this, "product3_left", Toast.LENGTH_SHORT).show();
-                        return true;
-                    case R.id.product3_center:
-                        Toast.makeText(RecommendDetailActivity.this, "product3_center", Toast.LENGTH_SHORT).show();
-                        return true;
-                    case R.id.product3_right:
-                        Toast.makeText(RecommendDetailActivity.this, "product3_right", Toast.LENGTH_SHORT).show();
-                        return true;
-                }
+    View.OnClickListener ClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.backButton:
+                    Toast.makeText(RecommendDetailActivity.this, "Back Button", Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.product1_left:
+                    Toast.makeText(RecommendDetailActivity.this, "product1_left", Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.product1_center:
+                    Toast.makeText(RecommendDetailActivity.this, "product1_center", Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.product1_right:
+                    Toast.makeText(RecommendDetailActivity.this, "product1_right", Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.product2_left:
+                    Toast.makeText(RecommendDetailActivity.this, "product2_left", Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.product2_center:
+                    Toast.makeText(RecommendDetailActivity.this, "product2_center", Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.product2_right:
+                    Toast.makeText(RecommendDetailActivity.this, "product2_right", Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.product3_left:
+                    Toast.makeText(RecommendDetailActivity.this, "product3_left", Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.product3_center:
+                    Toast.makeText(RecommendDetailActivity.this, "product3_center", Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.product3_right:
+                    Toast.makeText(RecommendDetailActivity.this, "product3_right", Toast.LENGTH_SHORT).show();
+                    break;
             }
-
-            // 터치하고 뗄 때
-            if (event.getAction() == MotionEvent.ACTION_UP) {
-                switch (v.getId()){
-                }
-            }
-            return false;
         }
     };
 

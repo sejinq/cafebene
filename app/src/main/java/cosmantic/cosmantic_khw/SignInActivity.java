@@ -2,7 +2,7 @@ package cosmantic.cosmantic_khw;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.MotionEvent;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -39,34 +39,34 @@ public class SignInActivity extends Activity {
 
         // 버튼들 리스너 달아주기
         imgButton = (ImageButton)findViewById(R.id.signInLoginButton);
-        imgButton.setOnTouchListener(TouchListener);
+        imgButton.setOnClickListener(ClickListener);
         imgButton = (ImageButton)findViewById(R.id.signInPwFindButton);
-        imgButton.setOnTouchListener(TouchListener);
+        imgButton.setOnClickListener(ClickListener);
         imgButton = (ImageButton)findViewById(R.id.backButton);
-        imgButton.setOnTouchListener(TouchListener);
+        imgButton.setOnClickListener(ClickListener);
     }
 
     // 액션바 뒤로가기 버튼, 로그인 버튼과 비밀번호 찾기 리스너
-    View.OnTouchListener TouchListener = new View.OnTouchListener() {
-        public boolean onTouch(View v, MotionEvent event) {
-            // 터치할 때
-            if (event.getAction() == MotionEvent.ACTION_DOWN){
-                switch(v.getId()){
-                    case R.id.backButton:
-                        Toast.makeText(SignInActivity.this, "Back Button", Toast.LENGTH_SHORT).show();
-                        return true;
-                    case R.id.signInLoginButton:
-                        Toast.makeText(SignInActivity.this, "signInLoginButton", Toast.LENGTH_SHORT).show();
-                        return true;
-                    case R.id.signInPwFindButton:
-                        Toast.makeText(SignInActivity.this, "signInPwFindButton", Toast.LENGTH_SHORT).show();
-                        return true;
-                }
-            }
+    View.OnClickListener ClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            switch(v.getId()){
+                case R.id.backButton:
+                    Toast.makeText(SignInActivity.this, "Back Button", Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.signInLoginButton:
+                    Toast.makeText(SignInActivity.this, "signInLoginButton", Toast.LENGTH_SHORT).show();
+                    break;
 
-            // 터치하고 뗄 때
-//            if (event.getAction() == MotionEvent.ACTION_UP) {}
-            return false;
+                // 버튼 눌린 걸 처리해주기 위해 타이머 달아줌.
+                case R.id.signInPwFindButton:
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(SignInActivity.this, "Button이 눌리고 0.2초 후에 나타나는 토스트", Toast.LENGTH_SHORT).show();
+                        }
+                    }, 200);
+                    break;
+            }
         }
     };
 
