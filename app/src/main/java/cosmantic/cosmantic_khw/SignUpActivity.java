@@ -1,6 +1,5 @@
 package cosmantic.cosmantic_khw;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,7 +14,8 @@ public class SignUpActivity extends Activity {
 
     EditText etID, etPass, etR_Pass, etNick;
     Button btNick, btMale, btFemale, btAge_10, btAge_20, btAge_30, btAge_40;
-    Button btSk_Oily, btSk_Dry, btSk_Complex, btSk_Unknown, btEf_Share, btEf_Trouble, btEf_Wrinkle, btEf_Pore, btEf_Sun, btEf_White, btEf_Repair, btEf_Scrub;
+    Button[] btSkinType= new Button[4];
+    Button[] btEffect = new Button[8];
     CheckBox ckAgree;
     Button btSignup;
 
@@ -23,10 +23,6 @@ public class SignUpActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-       /* ActionBar actionBar = getActionBar();
-        actionBar.setTitle("회원가입");
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.show();*/
         /*회원가입 방법 선택에 따라 보여주거나 안보여줄 행.인텐트 값 받아서 설정해 주기.
         passRow.setVisibility(View.GONE); passRow가 사라지고 동작하지 않음
         INVISIBLE : passRow가 사라지지만 투명하게 보이게함(공간은 남겨둠)
@@ -58,32 +54,32 @@ public class SignUpActivity extends Activity {
         btAge_40 = (Button)findViewById(R.id.button7);
         btAge_40.setOnClickListener(new onbtAge_40());
 
-        //유저의 피부타입 정보. 지성, 건성, 민감성, 모름
-        btSk_Oily = (Button)findViewById(R.id.button8);
-        btSk_Oily.setOnClickListener(new onbtSk_Oily());
-        btSk_Dry = (Button)findViewById(R.id.button9);
-        btSk_Dry.setOnClickListener(new onbtSk_Dry());
-        btSk_Complex = (Button)findViewById(R.id.button10);
-        btSk_Complex.setOnClickListener(new onbtSk_Complex());
-        btSk_Unknown = (Button)findViewById(R.id.button11);
-        btSk_Unknown.setOnClickListener(new onbtSk_Unknown());
-        //유저의 관심효능 보습, 여드름개선, 주름개선, 모공관리, 자외선차단, 미백, 피부재생, 각질제거
-        btEf_Share = (Button)findViewById(R.id.button12);
-        btEf_Share.setOnClickListener(new onbtEf_Share());
-        btEf_Trouble = (Button)findViewById(R.id.button13);
-        btEf_Trouble.setOnClickListener(new onbtEf_Trouble());
-        btEf_Wrinkle = (Button)findViewById(R.id.button14);
-        btEf_Wrinkle.setOnClickListener(new onbtEf_Wrinkle());
-        btEf_Pore = (Button)findViewById(R.id.button15);
-        btEf_Pore.setOnClickListener(new onbtEf_Pore());
-        btEf_Sun = (Button)findViewById(R.id.button16);
-        btEf_Sun.setOnClickListener(new onbtEf_Sun());
-        btEf_White = (Button)findViewById(R.id.button17);
-        btEf_White.setOnClickListener(new onEf_White());
-        btEf_Repair = (Button)findViewById(R.id.button18);
-        btEf_Repair.setOnClickListener(new onbtEf_Repair());
-        btEf_Scrub = (Button)findViewById(R.id.button19);
-        btEf_Scrub.setOnClickListener(new onbtEf_Scrub());
+        //유저의 피부타입 정보. 0.지성, 1.건성, 2.민감성, 3.모름
+        btSkinType[0] = (Button)findViewById(R.id.button8);
+        btSkinType[0].setOnClickListener(new onbtSk_Oily());
+        btSkinType[1] = (Button)findViewById(R.id.button9);
+        btSkinType[1].setOnClickListener(new onbtSk_Dry());
+        btSkinType[2] = (Button)findViewById(R.id.button10);
+        btSkinType[2].setOnClickListener(new onbtSk_Complex());
+        btSkinType[3] = (Button)findViewById(R.id.button11);
+        btSkinType[3].setOnClickListener(new onbtSk_Unknown());
+        //유저의 관심효능 0.보습, 1.여드름개선, 2.주름개선, 3.모공관리, 4.자외선차단, 5.미백, 6.피부재생, 7.각질제거
+        btEffect[0] = (Button)findViewById(R.id.button12);
+        btEffect[0].setOnClickListener(new onbtEf_Share());
+        btEffect[1] = (Button)findViewById(R.id.button13);
+        btEffect[1].setOnClickListener(new onbtEf_Trouble());
+        btEffect[2] = (Button)findViewById(R.id.button14);
+        btEffect[2].setOnClickListener(new onbtEf_Wrinkle());
+        btEffect[3] = (Button)findViewById(R.id.button15);
+        btEffect[3].setOnClickListener(new onbtEf_Pore());
+        btEffect[4] = (Button)findViewById(R.id.button16);
+        btEffect[4].setOnClickListener(new onbtEf_Sun());
+        btEffect[5] = (Button)findViewById(R.id.button17);
+        btEffect[5].setOnClickListener(new onEf_White());
+        btEffect[6] = (Button)findViewById(R.id.button18);
+        btEffect[6].setOnClickListener(new onbtEf_Repair());
+        btEffect[7] = (Button)findViewById(R.id.button19);
+        btEffect[7].setOnClickListener(new onbtEf_Scrub());
 
         btSignup = (Button)findViewById(R.id.button20);
         btSignup.setOnClickListener(new onbtSignup());
@@ -212,20 +208,5 @@ public class SignUpActivity extends Activity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }
