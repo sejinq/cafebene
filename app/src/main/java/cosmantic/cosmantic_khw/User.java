@@ -34,7 +34,7 @@ public class User {
 	User(){}
 	
 	// 모든 정보를 다 받는 생성자
-	User(String objectId, String username, String password, String displayedName, boolean gender, int age, byte[] image, String skinType, String[] skinProblem, String[] review){
+	User(String objectId, String username, String password, String displayedName, boolean gender, int age, byte[] image, String skinType, String[] skinProblem){
 		this.objectId = objectId;
 		this.username = username;
 		this.password = password;
@@ -44,7 +44,6 @@ public class User {
     this.image = image;
     this.skinType = skinType;
     this.skinProblem = skinProblem;
-    this.review = review;
   }
   
 	// getter, setter

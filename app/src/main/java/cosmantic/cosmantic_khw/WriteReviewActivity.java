@@ -2,13 +2,11 @@ package cosmantic.cosmantic_khw;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import static android.widget.Toast.makeText;
 
@@ -66,18 +64,36 @@ public class WriteReviewActivity extends Activity {
         btStar[4].setOnClickListener(listener);
 
         title.setText("평가하기");
-        btShare.setImageResource(R.drawable.shareButton);
+        btShare.setImageResource(R.drawable.sharebutton);
     }
     View.OnClickListener listener = new View.OnClickListener() {
+        int i;
         public void onClick(View v)
         {
+            //별 클릭 이벤트. i번째를 클릭하면 0~i번째 까지의 별이 onstar이미지로 바뀐다.
+            i=0;
             switch(v.getId())
             {
-                case R.id.mystar1: break;
-                case R.id.mystar2:break;
-                case R.id.mystar3:break;
-                case R.id.mystar4:break;
-                case R.id.mystar5:break;
+                case R.id.mystar5:
+                    ++i;
+                    btStar[4].setImageResource(R.drawable.onstar);
+                case R.id.mystar4:
+                    ++i;
+                    btStar[3].setImageResource(R.drawable.onstar);
+                case R.id.mystar3:
+                    ++i;
+                    btStar[2].setImageResource(R.drawable.onstar);
+                case R.id.mystar2:
+                    ++i;
+                    btStar[1].setImageResource(R.drawable.onstar);
+                case R.id.mystar1:
+                    ++i;
+                    btStar[0].setImageResource(R.drawable.onstar);
+            }
+            //0~i 번째를 제외한 나머지 별들은 다시 unstar로 바꿔주기.
+            for(;i<5;++i)
+            {
+                btStar[i].setImageResource(R.drawable.unstar);
             }
         }
     };

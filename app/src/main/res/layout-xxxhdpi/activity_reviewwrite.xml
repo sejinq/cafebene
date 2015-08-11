@@ -212,7 +212,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/mystar1"
         android:background="@android:color/transparent"
-        android:src="@drawable/myunStar" />
+        android:src="@drawable/unstar" />
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -220,7 +220,7 @@
         android:background="@android:color/transparent"
         android:layout_toRightOf="@+id/mystar1"
         android:layout_toEndOf="@+id/mystar1"
-        android:src="@drawable/myunStar" />
+        android:src="@drawable/unstar" />
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -228,7 +228,7 @@
         android:background="@android:color/transparent"
         android:layout_toRightOf="@+id/mystar2"
         android:layout_toEndOf="@+id/mystar2"
-        android:src="@drawable/myunStar" />
+        android:src="@drawable/unstar" />
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -236,7 +236,7 @@
         android:background="@android:color/transparent"
         android:layout_toRightOf="@+id/mystar3"
         android:layout_toEndOf="@+id/mystar3"
-        android:src="@drawable/myunStar" />
+        android:src="@drawable/unstar" />
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -244,7 +244,7 @@
         android:background="@android:color/transparent"
         android:layout_toRightOf="@+id/mystar4"
         android:layout_toEndOf="@+id/mystar4"
-        android:src="@drawable/myunStar" />
+        android:src="@drawable/unstar" />
 
         <TextView
             android:id="@+id/textScore"
@@ -271,13 +271,14 @@
             android:layout_width="310dp"
             android:layout_height="59dp"
             android:id="@+id/writebox"
-            android:src="@drawable/reviewBox"
+            android:src="@drawable/reviewbox"
              />
 
         <EditText
             android:layout_width="310dp"
             android:layout_height="59dp"
             android:id="@+id/editText"
+            android:inputType="text"
             android:background="@android:color/transparent"
             android:layout_alignTop="@+id/writebox"
             android:layout_alignLeft="@+id/writebox"
@@ -291,7 +292,7 @@
             android:layout_alignParentBottom="true"
             android:background="@android:color/transparent"
             android:layout_below="@+id/writebox"
-            android:src="@drawable/writtenButton" />
+            android:src="@drawable/writtenbutton" />
 
     </RelativeLayout>
 </RelativeLayout>
