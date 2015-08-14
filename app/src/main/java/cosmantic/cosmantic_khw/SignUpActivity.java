@@ -160,13 +160,13 @@ public class SignUpActivity extends Activity {
     private void initSelect(Button button)
     {
         button.setTextColor(0x9fa6ad);
-        button.setBackground(R.drawable.);
+        //button.setBackground(R.drawable.);
         //btAge_50.setTextColor(0x9fa6ad);
     }
     private void initSelect2(Button button)
     {
         button.setTextColor(0x9fa6ad);
-        button.setBackground(R.drawable.);
+        //button.setBackground(R.drawable.);
         //btAge_50.setTextColor(0x9fa6ad);
     }
     //피부타입 선택
@@ -219,14 +219,14 @@ public class SignUpActivity extends Activity {
         {
             skinProblem[index] = true;
             button.setTextColor(0xf28314);
-            button.setBackground(R.drawable.);
+           // button.setBackground(R.drawable.);
         }
         //선택 되어있을 때
         else
         {
             skinProblem[index] = false;
             button.setTextColor(0x9fa6ad);
-            button.setBackground(R.drawable.);
+            //button.setBackground(R.drawable.);
         }
     }
     /*이용약관 동의 체크박스

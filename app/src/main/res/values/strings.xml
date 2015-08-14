@@ -44,11 +44,10 @@
     <string name="agree_message">이용약관/개인취급정보방침동의</string>
     <string name="signup">가입완료</string>
 
-    <string name="reviewtitle">평가하기</string>
     <string name="myreview">마이리뷰</string>
     <string name="mystar">내별점</string>
     <string name="scoredefault">0.0</string>
-
+    <string name="reviewwrite">작성 완료</string>
 
 
 </resources>

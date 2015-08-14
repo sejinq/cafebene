@@ -10,7 +10,17 @@
     </style>
 
     <!-- RecommendDetailActivity 테마 -->
-    <style name="RecoomendDetailTheme" parent="android:Theme.Holo.NoActionBar">
+    <style name="RecommendDetailTheme" parent="@style/Theme.AppCompat.Light">
+
+    </style>
+
+    <!-- SignInActivity 테마 -->
+    <style name="SignInTheme" parent="@style/Theme.AppCompat.Light">
+
+    </style>
+
+    <!-- SearchActivity 테마 -->
+    <style name="SearchTheme" parent="@style/Theme.AppCompat.Light">
 
     </style>
 </resources>

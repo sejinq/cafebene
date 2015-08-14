@@ -31,21 +31,21 @@
             android:text="@string/myreview"
             android:id="@+id/myreview"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="33dp"
             android:textSize="14dp"
             android:textColor="#ff0190c9" />
         <View
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8.5dp"
             android:id="@+id/line"
             android:layout_below="@+id/myreview"
             android:layout_width="match_parent"
             android:layout_height="0.25dp"
             android:background="#ff0190c9" />
         <View
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5.5dp"
             android:layout_below="@+id/myreview"
             android:layout_width="55dp"
-            android:layout_height="5dp"
+            android:layout_height="3dp"
             android:layout_centerHorizontal="true"
             android:background="#ff0190c9" />
       </RelativeLayout>
@@ -101,7 +101,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/mystar1"
             android:background="@android:color/transparent"
-            android:src="@drawable/unstar" />
+            android:src="@drawable/my_unstar" />
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -109,7 +109,7 @@
             android:background="@android:color/transparent"
             android:layout_toRightOf="@+id/mystar1"
             android:layout_toEndOf="@+id/mystar1"
-            android:src="@drawable/unstar" />
+            android:src="@drawable/my_unstar" />
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
             android:background="@android:color/transparent"
             android:layout_toRightOf="@+id/mystar2"
             android:layout_toEndOf="@+id/mystar2"
-            android:src="@drawable/unstar" />
+            android:src="@drawable/my_unstar" />
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
             android:background="@android:color/transparent"
             android:layout_toRightOf="@+id/mystar3"
             android:layout_toEndOf="@+id/mystar3"
-            android:src="@drawable/unstar" />
+            android:src="@drawable/my_unstar" />
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -133,7 +133,7 @@
             android:background="@android:color/transparent"
             android:layout_toRightOf="@+id/mystar4"
             android:layout_toEndOf="@+id/mystar4"
-            android:src="@drawable/unstar" />
+            android:src="@drawable/my_unstar" />
 
             <TextView
             android:id="@+id/textScore"
@@ -158,33 +158,46 @@
 
         <ImageView
             android:layout_width="310dp"
-            android:layout_height="59dp"
+            android:layout_height="60dp"
             android:id="@+id/writebox"
             android:src="@drawable/reviewbox"
              />
 
         <EditText
             android:layout_width="310dp"
-            android:layout_height="59dp"
+            android:layout_height="60dp"
             android:id="@+id/editText"
-            android:inputType="text"
+            android:textSize="15dp"
+            android:inputType="textMultiLine"
+            android:ems="20"
             android:background="@android:color/transparent"
+            android:maxLength="60"
             android:layout_alignTop="@+id/writebox"
             android:layout_alignLeft="@+id/writebox"
             android:layout_alignStart="@+id/writebox" />
 
-        <ImageButton
-            android:layout_width="310dp"
-            android:layout_height="45dp"
-            android:id="@+id/imageButton8"
-            android:layout_marginBottom="10dp"
-            android:layout_alignParentBottom="true"
-            android:background="@android:color/transparent"
-            android:layout_below="@+id/writebox"
-            android:src="@drawable/writtenbutton" />
+    </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="27dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        >
+    <ImageButton
+        android:layout_width="310dp"
+        android:layout_height="45dp"
+        android:id="@+id/imageButton8"
+        android:background="@android:color/transparent"
+        android:src="@drawable/writtenbutton"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textSize="17dp"
+        android:text="@string/reviewwrite"
+        android:textColor="#ffffff"/>
     </RelativeLayout>
 </RelativeLayout>
-
-
-

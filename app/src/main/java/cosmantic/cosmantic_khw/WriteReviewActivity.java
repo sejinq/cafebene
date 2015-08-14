@@ -74,6 +74,7 @@ public class WriteReviewActivity extends Activity {
         image.setImageBitmap(bitmap);
         bitmap = BitmapFactory.decodeByteArray(((MyApplication)getApplicationContext()).getUser().getImage(), 0, ((MyApplication)getApplicationContext()).getUser().getImage().length);
         myImage.setImageBitmap(bitmap);
+        etContent.setMovementMethod(null);
     }
     View.OnClickListener listener = new View.OnClickListener() {
         public void onClick(View v)
@@ -84,24 +85,24 @@ public class WriteReviewActivity extends Activity {
             {
                 case R.id.mystar5:
                     ++star_on;
-                    btStar[4].setImageResource(R.drawable.onstar);
+                    btStar[4].setImageResource(R.drawable.my_onstar);
                 case R.id.mystar4:
                     ++star_on;
-                    btStar[3].setImageResource(R.drawable.onstar);
+                    btStar[3].setImageResource(R.drawable.my_onstar);
                 case R.id.mystar3:
                     ++star_on;
-                    btStar[2].setImageResource(R.drawable.onstar);
+                    btStar[2].setImageResource(R.drawable.my_onstar);
                 case R.id.mystar2:
                     ++star_on;
-                    btStar[1].setImageResource(R.drawable.onstar);
+                    btStar[1].setImageResource(R.drawable.my_onstar);
                 case R.id.mystar1:
                     ++star_on;
-                    btStar[0].setImageResource(R.drawable.onstar);
+                    btStar[0].setImageResource(R.drawable.my_onstar);
             }
             myave.setText(star_on+".0");
             for(;star_on<5;++star_on)
             {
-                btStar[star_on].setImageResource(R.drawable.unstar);
+                btStar[star_on].setImageResource(R.drawable.my_unstar);
             }
         }
     };
@@ -123,7 +124,7 @@ public class WriteReviewActivity extends Activity {
                     btLike.setImageResource(R.drawable.onlove); love_on=1;
                     break;
                 case 1:
-                    btLike.setImageResource(R.drawable.empty_love); love_on=0; break;
+                    btLike.setImageResource(R.drawable.unlove); love_on=0; break;
             }
         }
     };
