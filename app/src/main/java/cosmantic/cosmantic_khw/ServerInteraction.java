@@ -74,7 +74,7 @@ public class ServerInteraction {
 
 	}
 
-	public boolean onReviewUpload(){ //인자는 좀 더 고민해보고 채워넣을 예정
+	public static boolean onReviewUpload(Review review){ //인자는 좀 더 고민해보고 채워넣을 예정
 		return false;
 	}
 }

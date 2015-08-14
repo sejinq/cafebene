@@ -1,5 +1,10 @@
 package cosmantic.cosmantic_khw;
 
+
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Set;
+
 public class User {
 	// 플래그
 	// 피부 타입
@@ -25,16 +30,17 @@ public class User {
 	private String displayedName;		// 닉네임
 	private boolean gender;				// 성별
 	private int age;					// 나이
-  private byte[] image;		        // 썸네일
-  private String skinType;			// 피부 타입
-	private String[] skinProblem;		// 피부 문제
-	private String[] review;			// 리뷰(사용자 찜 목록)
-	
-	// 기본 생성자
+    private byte[] image;		        // 썸네일
+    private int skinType;			// 피부 타입
+	private int[] skinProblem;		// 피부 문제
+	private String[] review;			// 리뷰
+    private Hashtable<String,Boolean> likeProducts;//사용자 찜 목록
+
+  // 기본 생성자
 	User(){}
 	
 	// 모든 정보를 다 받는 생성자
-	User(String objectId, String username, String password, String displayedName, boolean gender, int age, byte[] image, String skinType, String[] skinProblem){
+	User(String objectId, String username, String password, String displayedName, boolean gender, int age, byte[] image, int skinType, int[] skinProblem){
 		this.objectId = objectId;
 		this.username = username;
 		this.password = password;
@@ -47,6 +53,20 @@ public class User {
   }
   
 	// getter, setter
+
+  public ArrayList<String> getLikeProducts() {
+      Set<String> keys = likeProducts.keySet();
+     return null;
+    }
+
+  public void setLikeProducts(String likeProducts) {
+    if(this.likeProducts.get(likeProducts)!=null){
+      this.likeProducts.remove(likeProducts);
+    }
+    else{
+      this.likeProducts.put(likeProducts,true);
+    }
+  }
   public String getObjectId() { return objectId; }
 
   public String getUsername() { return username; }
@@ -89,19 +109,19 @@ public class User {
 
   public void setImage(byte[] image) { this.image = image; }
 
-  public String getSkinType() {
+  public int getSkinType() {
     return skinType;
   }
 
-  public void setSkinType(String skinType) {
+  public void setSkinType(int skinType) {
     this.skinType = skinType;
   }
 
-  public String[] getSkinProblem() {
+  public int[] getSkinProblem() {
     return skinProblem;
   }
 
-  public void setSkinProblem(String[] skinProblem) {
+  public void setSkinProblem(int[] skinProblem) {
     this.skinProblem = skinProblem;
   }
 

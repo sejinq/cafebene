@@ -171,7 +171,7 @@
             android:id="@+id/imageView5"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:src="@drawable/boyImage" />
+            android:src="@drawable/boyimage" />
         <TextView
             android:layout_toRightOf="@+id/imageView5"
             android:layout_toEndOf="@+id/imageView5"
@@ -252,6 +252,7 @@
             android:layout_height="wrap_content"
             android:textColor="#ff0c1e36"
             android:textSize="11dp"
+            android:text="@string/scoredefault"
             android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
             android:layout_toRightOf="@+id/mystar5"

@@ -47,6 +47,8 @@
     <string name="reviewtitle">평가하기</string>
     <string name="myreview">마이리뷰</string>
     <string name="mystar">내별점</string>
+    <string name="scoredefault">0.0</string>
+
 
 
 </resources>

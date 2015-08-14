@@ -19,6 +19,12 @@ public class SignUpActivity extends Activity {
     CheckBox ckAgree;
     Button btSignup;
 
+    String objectId, username, password, displayedName;
+    boolean gender;
+    int age;
+    String skinType;
+    String[] skinProblem;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
@@ -38,171 +44,142 @@ public class SignUpActivity extends Activity {
         etR_Pass = (EditText)findViewById(R.id.editText4);
 
         btNick = (Button)findViewById(R.id.button1);
-        btNick.setOnClickListener(new onbtNick());
+        btNick.setOnClickListener(onNick);
 
         btMale = (Button)findViewById(R.id.button2);
-        btMale.setOnClickListener(new onbtMale());
+        btMale.setOnClickListener(listener);
         btFemale = (Button)findViewById(R.id.button3);
-        btFemale.setOnClickListener(new onbtFemale());
+        btFemale.setOnClickListener(listener);
 
         btAge_10 = (Button)findViewById(R.id.button4);
-        btAge_10.setOnClickListener(new onbtAge_10());
+        btAge_10.setOnClickListener(listener2);
         btAge_20 = (Button)findViewById(R.id.button5);
-        btAge_20.setOnClickListener(new onbtAge_20());
+        btAge_20.setOnClickListener(listener2);
         btAge_30 = (Button)findViewById(R.id.button6);
-        btAge_30.setOnClickListener(new onbtAge_30());
+        btAge_30.setOnClickListener(listener2);
         btAge_40 = (Button)findViewById(R.id.button7);
-        btAge_40.setOnClickListener(new onbtAge_40());
+        btAge_40.setOnClickListener(listener2);
 
         //유저의 피부타입 정보. 0.지성, 1.건성, 2.민감성, 3.모름
         btSkinType[0] = (Button)findViewById(R.id.button8);
-        btSkinType[0].setOnClickListener(new onbtSk_Oily());
+        btSkinType[0].setOnClickListener(listener3);
         btSkinType[1] = (Button)findViewById(R.id.button9);
-        btSkinType[1].setOnClickListener(new onbtSk_Dry());
+        btSkinType[1].setOnClickListener(listener3);
         btSkinType[2] = (Button)findViewById(R.id.button10);
-        btSkinType[2].setOnClickListener(new onbtSk_Complex());
+        btSkinType[2].setOnClickListener(listener3);
         btSkinType[3] = (Button)findViewById(R.id.button11);
-        btSkinType[3].setOnClickListener(new onbtSk_Unknown());
+        btSkinType[3].setOnClickListener(listener3);
         //유저의 관심효능 0.보습, 1.여드름개선, 2.주름개선, 3.모공관리, 4.자외선차단, 5.미백, 6.피부재생, 7.각질제거
         btEffect[0] = (Button)findViewById(R.id.button12);
-        btEffect[0].setOnClickListener(new onbtEf_Share());
+        btEffect[0].setOnClickListener(listener4);
         btEffect[1] = (Button)findViewById(R.id.button13);
-        btEffect[1].setOnClickListener(new onbtEf_Trouble());
+        btEffect[1].setOnClickListener(listener4);
         btEffect[2] = (Button)findViewById(R.id.button14);
-        btEffect[2].setOnClickListener(new onbtEf_Wrinkle());
+        btEffect[2].setOnClickListener(listener4);
         btEffect[3] = (Button)findViewById(R.id.button15);
-        btEffect[3].setOnClickListener(new onbtEf_Pore());
+        btEffect[3].setOnClickListener(listener4);
         btEffect[4] = (Button)findViewById(R.id.button16);
-        btEffect[4].setOnClickListener(new onbtEf_Sun());
+        btEffect[4].setOnClickListener(listener4);
         btEffect[5] = (Button)findViewById(R.id.button17);
-        btEffect[5].setOnClickListener(new onEf_White());
+        btEffect[5].setOnClickListener(listener4);
         btEffect[6] = (Button)findViewById(R.id.button18);
-        btEffect[6].setOnClickListener(new onbtEf_Repair());
+        btEffect[6].setOnClickListener(listener4);
         btEffect[7] = (Button)findViewById(R.id.button19);
-        btEffect[7].setOnClickListener(new onbtEf_Scrub());
+        btEffect[7].setOnClickListener(listener4);
 
         btSignup = (Button)findViewById(R.id.button20);
-        btSignup.setOnClickListener(new onbtSignup());
+        btSignup.setOnClickListener(onSignup);
 
         ckAgree = (CheckBox)findViewById(R.id.checkbox);
-        ckAgree.setOnClickListener(new onckAgree());
+        ckAgree.setOnClickListener(onAgree);
 
     }
 
     //닉네임 중복확인
-    public class onbtNick implements View.OnClickListener {
+    View.OnClickListener onNick = new View.OnClickListener() {
         public void onClick(View v) {
+            String text = etNick.getText().toString();
+          //  if(compareNickName(text)==true)
 
-            String nick = etNick.getText().toString();
-
-        }
-    }
-    //성별 버튼 남자, 여자
-    public class onbtMale implements View.OnClickListener {
+            }
+    };
+    //성별 선택
+    View.OnClickListener listener = new View.OnClickListener() {
         public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.button2:
+                    gender = false; break;
+                case R.id.button3:
+                    gender = true; break;
+            }
         }
-
-    }
-    public class onbtFemale implements View.OnClickListener {
+    };
+    //나이 선택 + 50대 추가해야됨.
+    View.OnClickListener listener2 = new View.OnClickListener() {
         public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.button4:
+                    age = 10; break;
+                case R.id.button5:
+                    age = 20; break;
+                case R.id.button6:
+                    age = 30; break;
+                case R.id.button7:
+                    age = 40; break;
+               /* case R.id.button7:
+                    age = 50; break;*/
+            }
         }
-
-    }
-    //나이 버튼 10대, 20대, 30대, 40대
-    public class onbtAge_10 implements View.OnClickListener {
+    };
+    //피부타입 선택
+    View.OnClickListener listener3 = new View.OnClickListener() {
         public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.button8:
+                    break;
+                case R.id.button9:
+                    break;
+                case R.id.button10:
+                    break;
+                case R.id.button11:
+                    break;
+            }
         }
-
-    }
-    public class onbtAge_20 implements View.OnClickListener {
+    };
+    //관심효능 선택
+    View.OnClickListener listener4 = new View.OnClickListener() {
         public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.button12:
+                    break;
+                case R.id.button13:
+                    break;
+                case R.id.button14:
+                    break;
+                case R.id.button15:
+                    break;
+                case R.id.button16:
+                    break;
+                case R.id.button17:
+                    break;
+                case R.id.button18:
+                    break;
+                case R.id.button19:
+                    break;
+            }
         }
-
-    }
-    public class onbtAge_30 implements View.OnClickListener {
-        public void onClick(View v) {
-        }
-
-    }
-    public class onbtAge_40 implements View.OnClickListener {
-        public void onClick(View v) {
-        }
-
-    }
-    //피부타입 버튼 지성, 건성, 복합성, 모름
-    public class onbtSk_Oily implements View.OnClickListener {
-        public void onClick(View v) {
-        }
-
-    }
-    public class onbtSk_Dry implements View.OnClickListener {
-        public void onClick(View v) {
-        }
-
-    }
-    public class onbtSk_Complex implements View.OnClickListener {
-        public void onClick(View v) {
-        }
-
-    }
-    public class onbtSk_Unknown implements View.OnClickListener {
-        public void onClick(View v) {
-        }
-
-    }
-    //관심효과 보습, 여드름, 주름, 모공, 자외선, 미백, 재생, 각질제거
-    public class onbtEf_Share implements View.OnClickListener {
-        public void onClick(View v) {
-        }
-
-    }
-    public class onbtEf_Trouble implements View.OnClickListener {
-        public void onClick(View v) {
-        }
-
-    }
-    public class onbtEf_Wrinkle implements View.OnClickListener {
-        public void onClick(View v) {
-        }
-
-    }
-    public class onbtEf_Pore implements View.OnClickListener {
-        public void onClick(View v) {
-        }
-
-    }
-    public class onbtEf_Sun implements View.OnClickListener {
-        public void onClick(View v) {
-        }
-
-    }
-    public class onEf_White implements View.OnClickListener {
-        public void onClick(View v) {
-        }
-
-    }
-    public class onbtEf_Repair implements View.OnClickListener {
-        public void onClick(View v) {
-        }
-
-    }
-    public class onbtEf_Scrub implements View.OnClickListener {
-        public void onClick(View v) {
-        }
-
-    }
+    };
     //이용약관 동의 체크박스
-    public class onckAgree implements View.OnClickListener {
+    View.OnClickListener onAgree = new View.OnClickListener() {
         public void onClick(View v) {
         }
-
-    }
+    };
     //가입완료 버튼
-    public class onbtSignup implements View.OnClickListener {
+    View.OnClickListener onSignup = new View.OnClickListener() {
         public void onClick(View v) {
+            /*User user = new User();*/
         }
-
-    }
+    };
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

@@ -1,6 +1,8 @@
 package cosmantic.cosmantic_khw;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -8,21 +10,23 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import static android.widget.Toast.makeText;
-
 public class WriteReviewActivity extends Activity {
 
-    // Á¦Ç° ÀÌ¹ÌÁö, ÀÌ¹ÌÁö ±×¸²ÀÚ, ÇÁ·ÎÇÊ »çÁø
+    // ì œí’ˆ ì´ë¯¸ì§€, ì´ë¯¸ì§€ ê·¸ë¦¼ì, í”„ë¡œí•„ ì‚¬ì§„
+    /*ì‚¬ìš©ìê°€ ì„ íƒí•œ ì œí’ˆ ID ë¶ˆëŸ¬ì˜¤ê¸°...? ì´ë¯¸ì§€, ë¸Œëœë“œ, ê°€ê²© ë“± ì •ë³´ ë„ìš°ê¸°. intentë¡œ Productíƒ€ì… ë°›ê¸°.*/
     ImageView image, imageShade, myImage;
-    //ÀÌ¹ÌÁö À§ÀÇ ÂòÇÏ±â ¹öÆ°, Æò°¡¿Ï·á ¹öÆ°, ¾×¼Ç¹Ù °øÀ¯¹öÆ°
+    //ì´ë¯¸ì§€ ìœ„ì˜ ì°œí•˜ê¸° ë²„íŠ¼, í‰ê°€ì™„ë£Œ ë²„íŠ¼, ì•¡ì…˜ë°” ê³µìœ ë²„íŠ¼
     ImageButton btLike, btSave, btShare;
-    //¾×¼Ç¹Ù Å¸ÀÌÆ², Á¦Ç°¸í, ºê·£µå¸í, º°Á¡ ¼öÄ¡È­(ÆòÁ¡), ³» º°Á¡ ¼öÄ¡
+    //ì•¡ì…˜ë°” íƒ€ì´í‹€, ì œí’ˆëª…, ë¸Œëœë“œëª…, ë³„ì  ìˆ˜ì¹˜í™”(í‰ì ), ë‚´ ë³„ì  ìˆ˜ì¹˜
     TextView title, product, brand, average, myave;
-    //Æò±Õ º°Á¡, ³»°¡ ÁÖ´Â º°Á¡
+    //í‰ê·  ë³„ì , ë‚´ê°€ ì£¼ëŠ” ë³„ì 
     ImageView[] star = new ImageView[5];
     ImageButton[] btStar = new ImageButton[5];
-    //»ç¿ëÀÚ°¡ ¾´ ¸®ºä
-    EditText review;
+    //ì‚¬ìš©ìê°€ ì“´ ë¦¬ë·°
+    EditText etContent;
+    //ë³„ ë²„íŠ¼ ì´ë²¤íŠ¸ ë³€ìˆ˜, ì°œí•˜ê¸° ë²„íŠ¼ ì´ë²¤íŠ¸ ë³€ìˆ˜
+    int star_on, love_on=0;
+
 
     @Override
     protected void onCreate(Bundle savedInstance) {
@@ -37,14 +41,14 @@ public class WriteReviewActivity extends Activity {
         brand = (TextView) findViewById(R.id.textView2);
         average = (TextView) findViewById(R.id.average);
         myave = (TextView) findViewById(R.id.textScore);
-        review = (EditText) findViewById(R.id.editText);
+        etContent = (EditText) findViewById(R.id.editText);
 
         btShare = (ImageButton) findViewById(R.id.sideButton);
-        btShare.setOnClickListener(new onbtShare());
+        btShare.setOnClickListener(onShare);
         btSave = (ImageButton) findViewById(R.id.imageButton8);
-        btSave.setOnClickListener(new onbtSave());
+        btSave.setOnClickListener(onSave);
         btLike = (ImageButton) findViewById(R.id.likebutton);
-        btLike.setOnClickListener(new onbtLike());
+        btLike.setOnClickListener(onLike);
 
         star[0] = (ImageView) findViewById(R.id.star1);
         star[1] = (ImageView) findViewById(R.id.star2);
@@ -63,57 +67,84 @@ public class WriteReviewActivity extends Activity {
         btStar[4] = (ImageButton) findViewById(R.id.mystar5);
         btStar[4].setOnClickListener(listener);
 
-        title.setText("Æò°¡ÇÏ±â");
+        title.setText("í‰ê°€í•˜ê¸°");
         btShare.setImageResource(R.drawable.sharebutton);
+        /*myImage.setImageResource(); byteë¡œ ì €ì¥ë˜ì–´ìˆìŒ*/
+        Bitmap bitmap = BitmapFactory.decodeByteArray(((MyApplication)getApplicationContext()).getProduct().getThumnail(), 0, ((MyApplication)getApplicationContext()).getProduct().getThumnail().length);
+        image.setImageBitmap(bitmap);
+        bitmap = BitmapFactory.decodeByteArray(((MyApplication)getApplicationContext()).getUser().getImage(), 0, ((MyApplication)getApplicationContext()).getUser().getImage().length);
+        myImage.setImageBitmap(bitmap);
     }
     View.OnClickListener listener = new View.OnClickListener() {
-        int i;
         public void onClick(View v)
         {
-            //º° Å¬¸¯ ÀÌº¥Æ®. i¹øÂ°¸¦ Å¬¸¯ÇÏ¸é 0~i¹øÂ° ±îÁöÀÇ º°ÀÌ onstarÀÌ¹ÌÁö·Î ¹Ù²ï´Ù.
-            i=0;
+            //ë³„ í´ë¦­ ì´ë²¤íŠ¸. ië²ˆì§¸ë¥¼ í´ë¦­í•˜ë©´ 0~ië²ˆì§¸ ê¹Œì§€ì˜ ë³„ì´ onstarì´ë¯¸ì§€ë¡œ ë°”ë€ë‹¤.
+            star_on=0;
             switch(v.getId())
             {
                 case R.id.mystar5:
-                    ++i;
+                    ++star_on;
                     btStar[4].setImageResource(R.drawable.onstar);
                 case R.id.mystar4:
-                    ++i;
+                    ++star_on;
                     btStar[3].setImageResource(R.drawable.onstar);
                 case R.id.mystar3:
-                    ++i;
+                    ++star_on;
                     btStar[2].setImageResource(R.drawable.onstar);
                 case R.id.mystar2:
-                    ++i;
+                    ++star_on;
                     btStar[1].setImageResource(R.drawable.onstar);
                 case R.id.mystar1:
-                    ++i;
+                    ++star_on;
                     btStar[0].setImageResource(R.drawable.onstar);
             }
-            //0~i ¹øÂ°¸¦ Á¦¿ÜÇÑ ³ª¸ÓÁö º°µéÀº ´Ù½Ã unstar·Î ¹Ù²ãÁÖ±â.
-            for(;i<5;++i)
+            myave.setText(star_on+".0");
+            for(;star_on<5;++star_on)
             {
-                btStar[i].setImageResource(R.drawable.unstar);
+                btStar[star_on].setImageResource(R.drawable.unstar);
             }
         }
     };
 
 
-    public class onbtShare implements View.OnClickListener {
+    View.OnClickListener onShare = new View.OnClickListener() {
         public void onClick(View v) {
         }
-
-    }
-    public class onbtLike implements View.OnClickListener {
+    };
+    View.OnClickListener onLike = new View.OnClickListener() {
         public void onClick(View v) {
+            //í•´ë‹¹ ì œí’ˆì„ ì°œ ëª©ë¡ìœ¼ë¡œ ë“±ë¡, ì´ë¯¸ ë“±ë¡ë˜ì–´ìˆìœ¼ë©´ í•´ì œ.
+            String likeProducts = ((MyApplication)getApplicationContext()).getProduct().getObjectId();
+            ((MyApplication)getApplicationContext()).getUser().setLikeProducts(likeProducts);
+            //love_on = 0 í•˜íŠ¸ ë²„íŠ¼ êº¼ì§, love_on=1 ì¼œì§.
+            switch (love_on)
+            {
+                case 0:
+                    btLike.setImageResource(R.drawable.onlove); love_on=1;
+                    break;
+                case 1:
+                    btLike.setImageResource(R.drawable.empty_love); love_on=0; break;
+            }
         }
-
-    }
-    public class onbtSave implements View.OnClickListener {
+    };
+    View.OnClickListener onSave = new View.OnClickListener() {
         public void onClick(View v) {
+            //ì‚¬ìš©ìê°€ ì“´ ë¦¬ë·°ë¥¼ ë°›ì•„ Review í´ë˜ìŠ¤ ìƒì„±.
+            String content =etContent.getText().toString();
+            Review review = new Review(((MyApplication)getApplicationContext()).getProduct().getObjectId(), ((MyApplication)getApplicationContext()).getUser().getObjectId(), (double)star_on, content);
+            //review ì„œë²„ ì—…ë¡œë“œ
+            int i=0;
+            while(true)
+            {
+                if(ServerInteraction.onReviewUpload(review))
+                    //ê·¸ ì „ì°½ìœ¼ë¡œ ë„˜ê²¨ì£¼ê¸°.
+                    break;
+                if(++i>3)
+                    //ë©”ì„¸ì§€ ë„ì›Œì£¼ê¸° "ìŒ.. ì•ˆë¨ ì–´ì©Œêµ¬"
+                    break;
+            }
         }
-
-    }
+    };
     @Override
     protected void onDestroy(){
         super.onDestroy();
