@@ -18,4 +18,9 @@
     <style name="SignInTheme" parent="@style/Theme.AppCompat.Light">
 
     </style>
+
+    <!-- SearchActivity 테마 -->
+    <style name="SearchTheme" parent="@style/Theme.AppCompat.Light">
+
+    </style>
 </resources>

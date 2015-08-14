@@ -16,8 +16,16 @@ public class FontApplyer {
         String format = ".ttf";
         if(font.equals("NotoSansCJKkr"))
             format = ".otf";
-        Typeface face = Typeface.createFromAsset(context.getAssets(), "fonts/"+font+"-"+style+format);
+        Typeface face = ((MyApplication)context.getApplicationContext()).getFont("fonts/" + font + "-" + style + format, context);
         view.setTypeface(face);
+    }
+    public static void setFonts(Context context, TextView[] view, String font, String style){
+        String format = ".ttf";
+        if(font.equals("NotoSansCJKkr"))
+            format = ".otf";
+        Typeface face = ((MyApplication)context.getApplicationContext()).getFont("fonts/"+font+"-"+style+format,context);
+        for(int loop = 0; loop<view.length;loop++)
+            view[loop].setTypeface(face);
     }
 
     /**

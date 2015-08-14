@@ -1,5 +1,7 @@
 package cosmantic.cosmantic_khw;
 
+import java.util.ArrayList;
+
 public class User {
 	// 플래그
 	// 피부 타입
@@ -25,10 +27,11 @@ public class User {
 	private String displayedName;		// 닉네임
 	private boolean gender;				// 성별
 	private int age;					// 나이
-  private byte[] image;		        // 썸네일
-  private String skinType;			// 피부 타입
+    private byte[] image;		        // 썸네일
+    private String skinType;			// 피부 타입
 	private String[] skinProblem;		// 피부 문제
-	private String[] review;			// 리뷰(사용자 찜 목록)
+	private String[] review;			// 리뷰
+    private ArrayList<String> likeProducts;       // 사용자 찜 목록
 	
 	// 기본 생성자
 	User(){}

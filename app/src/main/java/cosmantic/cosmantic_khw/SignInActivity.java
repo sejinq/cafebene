@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +17,9 @@ public class SignInActivity extends Activity {
 
         // 검색 버튼은 안 쓰므로 안 보이게 설정
         ImageButton imgButton = (ImageButton)findViewById(R.id.searchButton);
+        imgButton.setVisibility(View.GONE);
+        // 비밀번호 찾기 버튼도 현재는 안 보이게 설정
+        imgButton = (ImageButton)findViewById(R.id.signInPwFindButton);
         imgButton.setVisibility(View.GONE);
 
         // 액션바 제목 추가 및 글꼴 변경
@@ -34,16 +38,13 @@ public class SignInActivity extends Activity {
         FontApplyer.setFont(this, mTitleTextView, FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
         mTitleTextView = (TextView)findViewById(R.id.signInPutPw);
         FontApplyer.setFont(this, mTitleTextView, FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
-        mTitleTextView = (TextView)findViewById(R.id.signInLoginText);
-        FontApplyer.setFont(this, mTitleTextView, FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        Button btn = (Button)findViewById(R.id.signInLoginButton);
+        FontApplyer.setFont(this, btn, FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
 
         // 버튼들 리스너 달아주기
-        imgButton = (ImageButton)findViewById(R.id.signInLoginButton);
-        imgButton.setOnClickListener(ClickListener);
-        imgButton = (ImageButton)findViewById(R.id.signInPwFindButton);
-        imgButton.setOnClickListener(ClickListener);
-        imgButton = (ImageButton)findViewById(R.id.backButton);
-        imgButton.setOnClickListener(ClickListener);
+        btn.setOnClickListener(ClickListener);
+        ((ImageButton)findViewById(R.id.signInPwFindButton)).setOnClickListener(ClickListener);
+        ((ImageButton)findViewById(R.id.backButton)).setOnClickListener(ClickListener);
     }
 
     // 액션바 뒤로가기 버튼, 로그인 버튼과 비밀번호 찾기 리스너

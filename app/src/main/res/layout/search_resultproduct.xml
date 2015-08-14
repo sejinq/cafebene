@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="69dp">
+
+    <!-- 검색 결과 이미지 -->
+    <ImageView
+        android:id="@+id/searchResultProductimage"
+        android:layout_width="59dp"
+        android:layout_height="59dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/product"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="72dp"
+        android:layout_centerVertical="true">
+
+        <!-- 검색 결과 브랜드명 -->
+        <TextView
+            android:id="@+id/searchResultProduct_BrandName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="브랜드명"
+            android:textSize="12dp"/>
+
+        <!-- 검색 결과 제품명 -->
+        <TextView
+            android:id="@+id/searchResultProduct_ProductName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/searchResultProduct_BrandName"
+            android:layout_below="@id/searchResultProduct_BrandName"
+            android:layout_marginTop="8dp"
+            android:text="제품명"
+            android:textSize="12dp"
+            android:textColor="@color/search_result_productname"/>
+    </RelativeLayout>
+
+    <!-- 검색 결과 찜하기 true -->
+    <ImageView
+        android:id="@+id/searchResultProduct_heartTrue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:paddingRight="18dp"
+        android:src="@drawable/pinkheart"/>
+
+    <!-- 검색 결과 찜하기 false -->
+    <ImageView
+        android:id="@+id/searchResultProduct_heartFalse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:paddingRight="18dp"
+        android:src="@drawable/unheart"/>
+
+    <!-- 검색 결과 밑줄 -->
+    <ImageView
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="0.25dp"
+        android:background="@color/search_result_underline"/>
+</RelativeLayout>

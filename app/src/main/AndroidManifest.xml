@@ -42,17 +42,24 @@
         <activity
             android:name=".RecommendDetailActivity"
             android:theme="@style/RecommendDetailTheme">
+
+
         </activity>
 
         <!-- SignIn 액티비티 -->
         <activity
             android:name=".SignInActivity"
             android:theme="@style/SignInTheme">
+
+        </activity>
+
+        <activity
+            android:name=".SearchActivity"
+            android:theme="@style/SearchTheme">
             <intent-filter>
                 <action android:name = "android.intent.action.MAIN"/>
                 <category android:name = "android.intent.category.LAUNCHER"/>
             </intent-filter>
-
         </activity>
     </application>
 

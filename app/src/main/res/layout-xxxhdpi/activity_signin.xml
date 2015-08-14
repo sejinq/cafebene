@@ -11,7 +11,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_margin="36dp">
 
         <!-- 첫 번째 선 -->
         <ImageView
@@ -19,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.25dp"
             android:layout_marginTop="139dp"
+            android:layout_alignLeft="@+id/signInFirstRect"
             android:src="@drawable/rectangle"/>
 
         <!-- 두 번째 선 -->
@@ -27,6 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.25dp"
             android:layout_below="@id/signInFirstLine"
+            android:layout_alignLeft="@+id/signInSecondRect"
             android:layout_marginTop="100dp"
             android:src="@drawable/rectangle"/>
 
@@ -36,7 +39,6 @@
             android:layout_width="50dp"
             android:layout_height="5dp"
             android:layout_marginTop="136.5dp"
-            android:layout_marginLeft="36dp"
             android:src= "@drawable/rectangle"/>
 
         <!-- 이메일 텍스트 -->
@@ -48,8 +50,8 @@
             android:layout_marginTop="107.5dp"
             android:includeFontPadding="false"
             android:text="이메일"
-            android:textSize="17sp"
-            android:textColor="#000000"/>
+            android:textSize="17dp"
+            android:textColor="@color/signin_idandpw"/>
 
         <!-- 이메일 입력하는 EditText -->
         <EditText
@@ -65,8 +67,8 @@
             android:background="@null"
             android:inputType="textEmailAddress"
             android:hint="(email@example.com)"
-            android:textSize="14sp"
-            android:textColorHint="#9fa6ad"/>
+            android:textSize="14dp"
+            android:textColorHint="@color/signin_hinttext"/>
 
         <!-- 두 번째 선 위, 비밀번호 아래 사각형 -->
         <ImageView
@@ -75,7 +77,6 @@
             android:layout_height="5dp"
             android:layout_below="@id/signInFirstRect"
             android:layout_marginTop="95dp"
-            android:layout_marginLeft="36dp"
             android:src= "@drawable/rectangle"/>
 
         <!-- 비밀번호 텍스트 -->
@@ -87,9 +88,9 @@
             android:layout_alignLeft="@id/signInSecondRect"
             android:includeFontPadding="false"
             android:text="비밀번호"
-            android:textSize="17sp"
+            android:textSize="17dp"
             android:layout_marginTop="67.5dp"
-            android:textColor="#000000"/>
+            android:textColor="@color/signin_idandpw"/>
 
         <!-- 비밀번호 입력하는 EditText -->
         <EditText
@@ -106,35 +107,22 @@
             android:includeFontPadding="false"
             android:background="@null"
             android:hint="6자 이상 숫자, 영문 대소문자"
-            android:textSize="14sp"
-            android:textColorHint="#9fa6ad"/>
+            android:textSize="14dp"
+            android:textColorHint="@color/signin_hinttext"/>
 
-        <!-- 로그인 버튼을 감싸는 RelativeLayout -->
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <!-- 로그인 이미지 버튼 -->
+        <Button
+            android:id="@+id/signInLoginButton"
+            android:layout_width="310dp"
+            android:layout_height="45dp"
             android:layout_below="@id/signInSecondLine"
-            android:layout_marginTop="109dp">
-
-            <!-- 로그인 이미지 버튼 -->
-            <ImageButton
-                android:id="@+id/signInLoginButton"
-                android:layout_width="310dp"
-                android:layout_height="45dp"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/loginbutton"/>
-
-            <!-- 로그인 텍스트 -->
-            <TextView
-                android:id="@+id/signInLoginText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:includeFontPadding="false"
-                android:text="로그인"
-                android:textSize="17dp"
-                android:textColor="#ffffff"/>
-        </RelativeLayout>
+            android:layout_marginTop="109dp"
+            android:layout_centerHorizontal="true"
+            android:text="로그인"
+            android:textSize="17dp"
+            android:includeFontPadding="false"
+            android:textColor="@color/signin_loginbtntxt"
+            android:background="@drawable/loginbutton"/>
 
         <!-- 비밀번호 찾기 버튼을 감싸는 레이아웃 -->
         <RelativeLayout
