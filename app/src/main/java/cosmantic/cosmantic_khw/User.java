@@ -14,16 +14,17 @@ public class User {
 	public static final int SKIN_TYPE_SENSITIVE = 3;		// 복합성
 	
 	// 관심 효능
-	public static final int INEREST_SHARE = 1;				// 보습
-	public static final int INEREST_TROUBLE = 2;			// 여드름 개선
-	public static final int INEREST_WRINKLE = 3;			// 주름 개선
-	public static final int INEREST_PORE = 4;				// 모공 축소
-	public static final int INEREST_SUN = 5;				// 자외선 차단
-	public static final int INEREST_WHITE = 6;				// 미백
-	public static final int INEREST_REPAIR = 7;				// 피부 재생
-	public static final int INEREST_SCRUB = 8;				// 각질 제거
+	public static final int INEREST_SHARE = 0;				// 보습
+	public static final int INEREST_TROUBLE = 1;			// 여드름 개선
+	public static final int INEREST_WRINKLE = 2;			// 주름 개선
+	public static final int INEREST_PORE = 3;				// 모공 축소
+	public static final int INEREST_SUN = 4;				// 자외선 차단
+	public static final int INEREST_WHITE = 5;				// 미백
+	public static final int INEREST_REPAIR = 6;				// 피부 재생
+	public static final int INEREST_SCRUB = 7;				// 각질 제거
   
 	// 멤버 변수
+    private int userType;
 	private String objectId;
 	private String username;			// 아이디
 	private String password;			// 비밀번호
@@ -40,18 +41,17 @@ public class User {
 	User(){}
 	
 	// 모든 정보를 다 받는 생성자
-	User(String objectId, String username, String password, String displayedName, boolean gender, int age, byte[] image, int skinType, int[] skinProblem){
-		this.objectId = objectId;
-		this.username = username;
+	User(int userType, String username, String password, String displayedName, boolean gender, int age, int skinType, int[] skinProblem){
+	    this.userType = userType;
+        this.username = username;
 		this.password = password;
 		this.displayedName = displayedName;
 		this.gender = gender;
 		this.age = age;
-    this.image = image;
     this.skinType = skinType;
     this.skinProblem = skinProblem;
   }
-  
+
 	// getter, setter
 
   public ArrayList<String> getLikeProducts() {

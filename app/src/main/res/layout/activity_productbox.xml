@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <RelativeLayout
+        android:layout_below="@+id/home_action_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/productbox"
+        android:layout_centerHorizontal="true"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView1"
+            android:layout_marginTop="17dp"
+            android:src="@drawable/image_frame" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView2"
+            android:layout_alignLeft="@id/imageView1"
+            android:layout_alignStart="@id/imageView1"
+            android:layout_alignTop="@id/imageView1"
+            android:scaleType="center"
+            android:src="@drawable/image_frame" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:id="@+id/likebutton"
+            android:background="@android:color/transparent"
+            android:layout_alignTop="@+id/imageView1"
+            android:layout_alignRight="@+id/imageView1"
+            android:layout_alignEnd="@+id/imageView1"
+            android:layout_margin="15dp"
+            android:src="@drawable/empty_love" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/imageView1"
+            android:layout_marginTop="10dp"
+            android:textColor="#000000"
+            android:textSize="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView"
+            android:textColor="#ff6b6e70"
+            android:textSize="12dp" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:id="@+id/starshow"
+            android:layout_below="@+id/textView2" >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/star1"
+                android:background="@android:color/transparent"
+                android:src="@drawable/empty_star" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/star2"
+                android:background="@android:color/transparent"
+                android:layout_toRightOf="@+id/star1"
+                android:layout_toEndOf="@+id/star1"
+                android:src="@drawable/empty_star" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/star3"
+                android:background="@android:color/transparent"
+                android:layout_toRightOf="@+id/star2"
+                android:layout_toEndOf="@+id/star2"
+                android:src="@drawable/empty_star" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/star4"
+                android:background="@android:color/transparent"
+                android:layout_toRightOf="@+id/star3"
+                android:layout_toEndOf="@+id/star3"
+                android:src="@drawable/empty_star" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/star5"
+                android:background="@android:color/transparent"
+                android:layout_toRightOf="@+id/star4"
+                android:layout_toEndOf="@+id/star4"
+                android:src="@drawable/empty_star" />
+
+            <TextView
+                android:id="@+id/average"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textSize="12dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_toRightOf="@+id/star5"
+                android:layout_toEndOf="@+id/star5"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+</RelativeLayout>
