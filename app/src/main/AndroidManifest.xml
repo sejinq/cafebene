@@ -43,7 +43,6 @@
             android:name=".RecommendDetailActivity"
             android:theme="@style/RecommendDetailTheme">
 
-
         </activity>
 
         <!-- SignIn 액티비티 -->
@@ -53,9 +52,17 @@
 
         </activity>
 
+        <!-- Search 액티비티 -->
         <activity
             android:name=".SearchActivity"
             android:theme="@style/SearchTheme">
+
+        </activity>
+
+        <!-- Home 액티비티 -->
+        <activity
+            android:name=".HomeActivity"
+            android:theme="@style/HomeTheme">
             <intent-filter>
                 <action android:name = "android.intent.action.MAIN"/>
                 <category android:name = "android.intent.category.LAUNCHER"/>

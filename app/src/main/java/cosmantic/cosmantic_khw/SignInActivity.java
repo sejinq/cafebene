@@ -27,7 +27,7 @@ public class SignInActivity extends Activity {
         mTitleTextView.setText("로그인");
 
         // 제목 글꼴 변경
-        FontApplyer.setFont(this, mTitleTextView, FontApplyer.Font.NotoSans, FontApplyer.Style.Bold);
+        FontApplyer.setFont(this, mTitleTextView, FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
 
         // xml 글씨들 글꼴 변경
         mTitleTextView = (TextView)findViewById(R.id.signInEmail);

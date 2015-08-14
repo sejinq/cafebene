@@ -16,10 +16,11 @@
         android:layout_centerVertical="true"
         android:background="@null"
         android:singleLine="true"
-        android:maxLength="30"
+        android:maxLength="20"
         android:includeFontPadding="false"
         android:hint="브랜드 및 제품을 입력해주세요."
         android:textSize="12dp"
+        android:textColor="@color/search_actionbar_edittext"
         android:textColorHint="@color/search_actionbar_edittext"/>
 
     <!-- EditText 밑줄 -->

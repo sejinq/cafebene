@@ -12,7 +12,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="36dp">
+        android:layout_margin="18dp">
 
         <!-- 첫 번째 선 -->
         <ImageView
@@ -20,7 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="0.25dp"
             android:layout_marginTop="139dp"
-            android:layout_alignLeft="@+id/signInFirstRect"
             android:src="@drawable/rectangle"/>
 
         <!-- 두 번째 선 -->
@@ -29,7 +28,6 @@
             android:layout_width="match_parent"
             android:layout_height="0.25dp"
             android:layout_below="@id/signInFirstLine"
-            android:layout_alignLeft="@+id/signInSecondRect"
             android:layout_marginTop="100dp"
             android:src="@drawable/rectangle"/>
 
@@ -38,7 +36,8 @@
             android:id="@+id/signInFirstRect"
             android:layout_width="50dp"
             android:layout_height="5dp"
-            android:layout_marginTop="136.5dp"
+            android:layout_marginTop="135dp"
+            android:layout_marginLeft="18dp"
             android:src= "@drawable/rectangle"/>
 
         <!-- 이메일 텍스트 -->
@@ -77,6 +76,7 @@
             android:layout_height="5dp"
             android:layout_below="@id/signInFirstRect"
             android:layout_marginTop="95dp"
+            android:layout_marginLeft="18dp"
             android:src= "@drawable/rectangle"/>
 
         <!-- 비밀번호 텍스트 -->
@@ -113,7 +113,7 @@
         <!-- 로그인 이미지 버튼 -->
         <Button
             android:id="@+id/signInLoginButton"
-            android:layout_width="310dp"
+            android:layout_width="311dp"
             android:layout_height="45dp"
             android:layout_below="@id/signInSecondLine"
             android:layout_marginTop="109dp"
@@ -122,7 +122,7 @@
             android:textSize="17dp"
             android:includeFontPadding="false"
             android:textColor="@color/signin_loginbtntxt"
-            android:background="@drawable/loginbutton"/>
+            android:background="@color/signin_loginbtbg"/>
 
         <!-- 비밀번호 찾기 버튼을 감싸는 레이아웃 -->
         <RelativeLayout

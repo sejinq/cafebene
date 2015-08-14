@@ -2,7 +2,7 @@ package cosmantic.cosmantic_khw;
 
 public class Product {
 	// 멤버 변수
-	private String objectId;	
+	private String objectId;
 	private String productName;		// 제품명
 	private int price;				// 가격
 	private String brand;			// 브랜드
@@ -17,8 +17,7 @@ public class Product {
 	Product(){}
 	
 	// 모든 정보를 다 받아오는 생성자
-	Product(String objectId, String productName, int price, String brand, double size, String[] effects, String skintype, String type, String curatingInfo){
-		this.objectId = objectId;
+	Product(String productName, int price, String brand, double size, String[] effects, String skintype, String type, String curatingInfo){
 		this.productName = productName;
 		this.price = price;
 		this.brand = brand;

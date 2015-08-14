@@ -5,7 +5,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -26,11 +25,18 @@ public class RecommendDetailActivity extends Activity{
         // 액션바 제목 추가 및 글꼴 적용
         TextView textView = (TextView)findViewById(R.id.titleText);
         textView.setText("지성용 화장품");
-        FontApplyer.setFont(this, textView, FontApplyer.Font.NotoSans, FontApplyer.Style.Bold);
+        FontApplyer.setFont(this, textView, FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
 
         // 검색 버튼은 안 쓰므로 안 보이게 설정
         ImageButton imgButton = (ImageButton)findViewById(R.id.searchButton);
         imgButton.setVisibility(View.GONE);
+
+        // 제품 분류바 글씨
+        ((TextView)(findViewById(R.id.product_layer1)).findViewById(R.id.product_title)).setText("추천 올인원");
+        ((TextView)(findViewById(R.id.product_layer2)).findViewById(R.id.product_title)).setText("추천 스킨");
+        ((TextView)(findViewById(R.id.product_layer3)).findViewById(R.id.product_title)).setText("추천 로션");
+        ((TextView)(findViewById(R.id.product_layer4)).findViewById(R.id.product_title)).setText("추천 썬크림");
+        ((TextView)(findViewById(R.id.product_layer5)).findViewById(R.id.product_title)).setText("추천 폼클렌징");
 
         // 나머지 글씨들 글꼴 적용
         settingProductLayer(R.id.product_layer1);
@@ -45,8 +51,6 @@ public class RecommendDetailActivity extends Activity{
     }
 
     private void settingProductLayer(int layoutId){
-        Log.d("RDetail", "Draw init");
-
         LinearLayout container = (LinearLayout)findViewById(layoutId);
 
         // 분류명
@@ -119,7 +123,7 @@ public class RecommendDetailActivity extends Activity{
     }
 
     private void onProductClick(int loc){
-        //click animation
+        // click animation
 //        int id = products[0].getId();
     }
 

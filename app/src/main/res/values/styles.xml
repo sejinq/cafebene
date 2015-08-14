@@ -23,4 +23,9 @@
     <style name="SearchTheme" parent="@style/Theme.AppCompat.Light">
 
     </style>
+
+    <!-- HomeActivity 테마 -->
+    <style name="HomeTheme" parent="@style/Theme.AppCompat.Light">
+
+    </style>
 </resources>

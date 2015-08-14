@@ -10,6 +10,8 @@
     <color name="signin_idandpw">#000000</color>
     <!-- SignInActivity 로그인 버튼 글씨 -->
     <color name="signin_loginbtntxt">#ffffff</color>
+    <!-- SignInActivity 로그인 버튼 배경 -->
+    <color name="signin_loginbtbg">#181c4c</color>
     <!-- RecommendDetailActivity 제품 분류 글씨 -->
     <color name="recommenddetail_producttitletxt">#ffffff</color>
     <!-- RecommendDetailActivity 제품 브랜드 글씨 -->
@@ -17,7 +19,7 @@
     <!-- RecommendDetailActivity 제품 제품명 글씨 -->
     <color name="recommenddetail_productnametxt">#7a7d7f</color>
     <!-- RecommendDetailAcitivty 제품 용량, 가격 글씨 -->
-    <color name="recommenddetail_productvolumepricetxt">#0190c9</color>
+    <color name="recommenddetail_productvolumepricetxt">#0066e0</color>
     <!-- SearchActivity 액션바 EditText 글씨, 밑줄 -->
     <color name="search_actionbar_edittext">#e0e0e0</color>
     <!-- SearchActivity 검색결과 밑줄 -->

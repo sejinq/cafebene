@@ -7,7 +7,7 @@
 
     <!-- 검색 결과 이미지 -->
     <ImageView
-        android:id="@+id/searchResultBrand_BrandImage"
+        android:id="@+id/searchResultProductimage"
         android:layout_width="59dp"
         android:layout_height="59dp"
         android:layout_centerVertical="true"
@@ -21,43 +21,41 @@
 
         <!-- 검색 결과 브랜드명 -->
         <TextView
-            android:id="@+id/searchResultBrand_BrandName"
+            android:id="@+id/searchResultProduct_BrandName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="브랜드명"
             android:textSize="12dp"/>
 
-        <!-- 검색 결과 등록 제품수 -->
+        <!-- 검색 결과 제품명 -->
         <TextView
-            android:id="@+id/searchResultBrnad_ProductNum"
+            android:id="@+id/searchResultProduct_ProductName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/searchResultBrand_BrandName"
-            android:layout_below="@id/searchResultBrand_BrandName"
+            android:layout_alignLeft="@id/searchResultProduct_BrandName"
+            android:layout_below="@id/searchResultProduct_BrandName"
             android:layout_marginTop="8dp"
-            android:text="등록 제품수"
+            android:text="제품명"
             android:textSize="12dp"
             android:textColor="@color/search_result_productname"/>
     </RelativeLayout>
 
     <!-- 검색 결과 찜하기 true -->
     <ImageView
-        android:id="@+id/searchResultBrand_heartTrue"
+        android:id="@+id/searchResultProduct_heartTrue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:paddingRight="18dp"
         android:src="@drawable/pinkheart"/>
 
     <!-- 검색 결과 찜하기 false -->
     <ImageView
-        android:id="@+id/searchResultBrand_heartFalse"
+        android:id="@+id/searchResultProduct_heartFalse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:paddingRight="18dp"
         android:src="@drawable/unheart"/>
 
     <!-- 검색 결과 밑줄 -->
