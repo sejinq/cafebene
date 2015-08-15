@@ -5,7 +5,7 @@
 
     <include
         android:id="@+id/home_action_bar"
-        layout="@layout/actionbar1"
+        layout="@layout/actionbar_sub"
         />
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
         >
         <include
             android:id="@+id/viewbox"
-            layout="@layout/activity_productbox" />
+            layout="@layout/activity_product_box" />
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -22,7 +22,7 @@
             android:id="@+id/tab1"
             android:background="@android:color/transparent"
             android:layout_marginLeft="18dp"
-            android:src="@drawable/tap1" />
+            android:src="@drawable/actionbar_tap_underline" />
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -31,7 +31,7 @@
             android:layout_toRightOf="@+id/tab1"
             android:layout_toEndOf="@+id/tab1"
             android:background="@android:color/transparent"
-            android:src="@drawable/tap1" />
+            android:src="@drawable/actionbar_tap_underline" />
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -39,7 +39,7 @@
             android:layout_below="@+id/viewbox"
             android:background="@android:color/transparent"
             android:layout_marginLeft="18dp"
-            android:src="@drawable/tap1" />
+            android:src="@drawable/actionbar_tap_underline" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,6 +51,6 @@
             android:layout_below="@+id/viewbox"
             android:background="@android:color/transparent"
             android:layout_marginLeft="18dp"
-            android:src="@drawable/tap1" />
+            android:src="@drawable/actionbar_tap_underline" />
     </RelativeLayout>
 </RelativeLayout>

@@ -31,9 +31,9 @@ public class WriteReviewActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
-        setContentView(R.layout.activity_reviewwrite);
+        setContentView(R.layout.activity_review_write);
 
-        title = (TextView) findViewById(R.id.titletext);
+        title = (TextView) findViewById(R.id.titleText);
 
         image = (ImageView) findViewById(R.id.imageView1);
         imageShade = (ImageView) findViewById(R.id.imageView2);
@@ -43,7 +43,7 @@ public class WriteReviewActivity extends Activity {
         myave = (TextView) findViewById(R.id.textScore);
         etContent = (EditText) findViewById(R.id.editText);
 
-        btShare = (ImageButton) findViewById(R.id.sideButton);
+        btShare = (ImageButton) findViewById(R.id.searchButton);
         btShare.setOnClickListener(onShare);
         btSave = (ImageButton) findViewById(R.id.imageButton8);
         btSave.setOnClickListener(onSave);
@@ -85,24 +85,24 @@ public class WriteReviewActivity extends Activity {
             {
                 case R.id.mystar5:
                     ++star_on;
-                    btStar[4].setImageResource(R.drawable.my_onstar);
+                    btStar[4].setImageResource(R.drawable.my_star_inable);
                 case R.id.mystar4:
                     ++star_on;
-                    btStar[3].setImageResource(R.drawable.my_onstar);
+                    btStar[3].setImageResource(R.drawable.my_star_inable);
                 case R.id.mystar3:
                     ++star_on;
-                    btStar[2].setImageResource(R.drawable.my_onstar);
+                    btStar[2].setImageResource(R.drawable.my_star_inable);
                 case R.id.mystar2:
                     ++star_on;
-                    btStar[1].setImageResource(R.drawable.my_onstar);
+                    btStar[1].setImageResource(R.drawable.my_star_inable);
                 case R.id.mystar1:
                     ++star_on;
-                    btStar[0].setImageResource(R.drawable.my_onstar);
+                    btStar[0].setImageResource(R.drawable.my_star_inable);
             }
             myave.setText(star_on+".0");
             for(;star_on<5;++star_on)
             {
-                btStar[star_on].setImageResource(R.drawable.my_unstar);
+                btStar[star_on].setImageResource(R.drawable.my_star_disable);
             }
         }
     };
@@ -121,10 +121,10 @@ public class WriteReviewActivity extends Activity {
             switch (love_on)
             {
                 case 0:
-                    btLike.setImageResource(R.drawable.onlove); love_on=1;
+                    btLike.setImageResource(R.drawable.love_inable); love_on=1;
                     break;
                 case 1:
-                    btLike.setImageResource(R.drawable.unlove); love_on=0; break;
+                    btLike.setImageResource(R.drawable.love_disable); love_on=0; break;
             }
         }
     };
