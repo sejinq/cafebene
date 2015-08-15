@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 전체레이아웃 theme-->
+    <style name="CustomActionBarTheme"
+        parent="@android:style/Theme.Holo.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+    </style>
+
+    <!-- ActionBar styles  액션바 색깔지정-->
+    <style name="MyActionBar"
+        parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">#FF0000</item>
+    </style>
+</resources>

@@ -17,8 +17,7 @@ public class Product {
 	Product(){}
 	
 	// 모든 정보를 다 받아오는 생성자
-	Product(String objectId, String productName, int price, String brand, double size, String[] effects, String skintype, String type, String curatingInfo){
-		this.objectId = objectId;
+	Product(String productName, int price, String brand, double size, String[] effects, String skintype, String type, String curatingInfo){
 		this.productName = productName;
 		this.price = price;
 		this.brand = brand;

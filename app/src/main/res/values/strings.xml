@@ -3,5 +3,51 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="app_id">714292098676892</string>
-    <string name="kakao_app_key">4ab91fc1398138fc332c02c3ae486c84</string>
+
+    <string name="kakao_app_key">b57ae7d5ae1806937f6c0d629aacff40</string>
+    <string name="error_message_for_service_unavailable">Unstable network connection. \nPlease try again later.</string>
+    <string name="facebook_app_key">1617932351828928</string>
+
+    <string name="must_inform">필수정보</string>
+    <string name="select_inform">선택정보</string>
+    <string name="pass_message">6자 이상, 숫자, 영문, 대소문자</string>
+    <string name="id_message">아이디입력</string>
+    <string name="repass_message">비밀번호를 다시 입력하세요</string>
+    <string name="user_id">아이디</string>
+    <string name="user_nick">닉네임</string>
+    <string name="user_pass">비밀번호</string>
+    <string name="user_repass">비밀번호확인</string>
+    <string name="user_gender">성별</string>
+    <string name="user_age">나이</string>
+    <string name="skin_type">피부타입</string>
+    <string name="interest_effect">관심효능</string>
+    <string name="nick_message">닉네임을 입력하세요</string>
+    <string name="overlap_select">중복선택</string>
+
+    <string name="check_overlap">중복확인</string>
+    <string name="male">남성</string>
+    <string name="female">여성</string>
+    <string name="age_10">10대</string>
+    <string name="age_20">20대</string>
+    <string name="age_30">30대</string>
+    <string name="age_40">40대</string>
+    <string name="skin_oily">지성</string>
+    <string name="skin_dry">건성</string>
+    <string name="skin_sensitive">민감성</string>
+    <string name="skin_unknown">모름</string>
+    <string name="effect_share">보습</string>
+    <string name="effect_trouble">여드름개선</string>
+    <string name="effect_wrinkle">주름개선</string>
+    <string name="effect_pore">모공축소</string>
+    <string name="effect_sun">자외선차단</string>
+    <string name="effect_white">미백</string>
+    <string name="effect_repair">피부재생</string>
+    <string name="effect_scrub">각질제거</string>
+    <string name="agree_message">이용약관/개인취급정보방침동의</string>
+    <string name="signup">가입완료</string>
+
+    <string name="myreview">마이리뷰</string>
+    <string name="mystar">내별점</string>
+    <string name="scoredefault">0.0</string>
+    <string name="reviewwrite">작성 완료</string>
 </resources>

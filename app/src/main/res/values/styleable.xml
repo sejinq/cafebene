@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="IngredientChartView">
+        <attr name="positive" format="integer"/>
+        <attr name="negative" format="integer"/>
+        <attr name="type_text" format="string"/>
+    </declare-styleable>
+</resources>

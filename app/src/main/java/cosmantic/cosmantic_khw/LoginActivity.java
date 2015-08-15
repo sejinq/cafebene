@@ -1,78 +1,163 @@
 package cosmantic.cosmantic_khw;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
+import android.util.Log;
+import android.widget.ImageButton;
 
+import com.kakao.auth.APIErrorResult;
+import com.kakao.auth.AuthType;
 import com.kakao.auth.Session;
-import com.kakao.auth.SessionCallback;
-import com.kakao.usermgmt.LoginButton;
-import com.kakao.util.exception.KakaoException;
+import com.kakao.usermgmt.LogoutResponseCallback;
+import com.kakao.usermgmt.MeResponseCallback;
+import com.kakao.usermgmt.SignupResponseCallback;
+import com.kakao.usermgmt.UserManagement;
+import com.kakao.usermgmt.UserProfile;
+import com.sromku.simple.fb.Permission;
+import com.sromku.simple.fb.SimpleFacebook;
+import com.sromku.simple.fb.listeners.OnLoginListener;
+
+import java.util.List;
 
 
-public class LoginActivity extends AppCompatActivity{
-	private Session session;
-	private LoginButton loginButton;
-	private final SessionCallback mySessionCallback = new MySessionStatusCallback();
+public class LoginActivity extends Activity {
+    private SimpleFacebook facebookApi;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-	    setContentView(R.layout.activity_login);
+        if(!Session.getCurrentSession().isClosed()) Log.d("Kakao","Session is unstable!");
+		setView();
+    }
 
-	    // 로그인 버튼을 찾아온다.
-	    loginButton = (LoginButton)findViewById(R.id.com_kakao_login);
+    @Override
+    protected void onResume(){
+        super.onResume();
 
-	    // 세션 콜백 추가
-	    session = Session.getCurrentSession();
-	    session.addCallback(mySessionCallback);
-
-	    if (session.isClosed()){
-		    // 세션이 완전 종료된 상태로 갱신도 할 수 없으므로 명시적 오픈을 위한 로그인 버튼을 보여준다.
-		    loginButton.setVisibility(View.VISIBLE);
-	    } else {
-		    // 세션을 가지고 있거나, 갱신할 수 있는 상태로 명시적 오픈을 위한 로그인 버튼을 보여주지 않는다.
-		    loginButton.setVisibility(View.GONE);
-		    session.implicitOpen();
-	    }
+        // Set Facebook Library
+        facebookApi =  SimpleFacebook.getInstance(this);
     }
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		session.removeCallback(mySessionCallback);
 	}
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (Session.getCurrentSession().handleActivityResult(requestCode, resultCode, data)) {
-			return;
-		}
-		super.onActivityResult(requestCode, resultCode, data);
-	}
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        facebookApi.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
-	private class MySessionStatusCallback implements SessionCallback {
-		@Override
-		public void onSessionOpened() {
-			// 프로그레스바 종료
+    private void setView(){
+		setContentView(R.layout.activity_login);
 
-			// 세션 오픈후 보일 페이지로 이동
-			final Intent intent = new Intent(LoginActivity.this, SignActivity.class);
-			startActivity(intent);
-			finish();
-		}
+		//Button Handler
+		((ImageButton)findViewById(R.id.login_email_join_btn)).setOnClickListener(view -> emailJoinAction());
+        ((ImageButton)findViewById(R.id.login_facebook_sign_btn)).setOnClickListener(view -> kakaoSignAction());
+        ((ImageButton)findViewById(R.id.login_facebook_sign_btn)).setOnClickListener(view -> facebookSignAction());
+        ((ImageButton)findViewById(R.id.login_email_sign_btn)).setOnClickListener(view -> emailSignAction());
+    }
 
-		@Override
-		public void onSessionClosed(final KakaoException exception) {
-			// 프로그레스바 종료
-			// 세션 오픈을 못했으니 다시 로그인 버튼 노출.
-			loginButton.setVisibility(View.VISIBLE);
-		}
+    //Button Action
+    private void emailJoinAction(){
+        startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
+    }
+    private void kakaoSignAction(){
+        Session.getCurrentSession().open(AuthType.KAKAO_TALK, this);
+        UserManagement.requestMe(new MeResponseCallback() {
+            @Override
+            public void onSuccess(UserProfile userProfile) {
+                UserManagement.requestLogout(new LogoutResponseCallback() {
+                    @Override
+                    public void onSuccess(long l) {
+                        return;
+                    }
 
-		@Override
-		public void onSessionOpening(){
-			//프로그레스바 시작
-		}
+                    @Override
+                    public void onFailure(APIErrorResult apiErrorResult) {
+                        return;
+                    }
+                });
+                ServerInteraction.onLogin("" + userProfile.getId(), null, User.UserType.KAKAO);
+            }
+
+            @Override
+            public void onNotSignedUp() {
+                UserManagement.requestSignup(new SignupResponseCallback() {
+                    @Override
+                    public void onSuccess(long userObjectId) {
+                        UserManagement.requestLogout(new LogoutResponseCallback() {
+                            @Override
+                            public void onSuccess(long l) {
+                                return;
+                            }
+
+                            @Override
+                            public void onFailure(APIErrorResult apiErrorResult) {
+                                return;
+                            }
+                        });
+                        externalSignAction(User.UserType.KAKAO, "" + userObjectId);
+                    }
+
+                    @Override
+                    public void onSessionClosedFailure(APIErrorResult apiErrorResult) {
+                        kakaoSignAction();
+                    }
+
+                    @Override
+                    public void onFailure(APIErrorResult errorResult) {
+                        Log.e("Kakao", "failed to sign up. msg = " + errorResult);
+                    }
+                }, null);
+            }
+
+            @Override
+            public void onSessionClosedFailure(APIErrorResult apiErrorResult) {
+                kakaoSignAction();
+            }
+
+            @Override
+            public void onFailure(APIErrorResult errorResult) {
+                Log.e("Kakao", "failed to update profile. msg = " + errorResult);
+            }
+        });
+    }
+    private void facebookSignAction(){
+        facebookApi.login(new OnLoginListener() {
+            @Override
+            public void onLogin(String s, List<Permission> list, List<Permission> list1) {
+                Log.d("Facebook","Login Success!");
+            }
+
+            @Override
+            public void onCancel() {
+                Log.d("Facebook","User Cancel");
+            }
+
+            @Override
+            public void onException(Throwable throwable) {
+                Log.e("Facebok","Facebook Exception:"+throwable);
+            }
+
+            @Override
+            public void onFail(String s) {
+                Log.e("Facebook","Login Fail:"+s);
+            }
+        });
+    }
+    private void emailSignAction(){
+        startActivity(new Intent(LoginActivity.this, SignInActivity.class));
+    }
+    private void externalSignAction(int type, String id){
+        Intent nextIntent = new Intent(LoginActivity.this, SignUpActivity.class);
+        nextIntent.putExtra("",type);
+        nextIntent.putExtra("",id);
+        startActivity(nextIntent);
+    }
+    // Facebook Method
+    private void facebookLoginAction(){
     }
 }

@@ -1,12 +1,26 @@
 <resources>
-
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="android:Theme.Holo.Light.NoActionBar">
         <!-- Customize your theme here. -->
     </style>
 
     <!-- 스플래시 테마 -->
-    <style name = "SplashTheme" parent = "@style/Theme.AppCompat.Light">
+    <style name = "SplashTheme" parent = "android:Theme.Holo.Light.NoActionBar">
         <item name = "android:windowBackground">@drawable/splash</item>
+    </style>
+
+    <!-- RecommendDetailActivity 테마 -->
+    <style name="RecommendDetailTheme" parent="android:Theme.Holo.Light.NoActionBar">
+
+    </style>
+
+    <!-- SignInActivity 테마 -->
+    <style name="SignInTheme" parent="android:Theme.Holo.Light.NoActionBar">
+
+    </style>
+
+    <!-- SearchActivity 테마 -->
+    <style name="SearchTheme" parent="android:Theme.Holo.Light.NoActionBar">
+
     </style>
 </resources>
