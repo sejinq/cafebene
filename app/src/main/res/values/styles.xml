@@ -23,9 +23,4 @@
     <style name="SearchTheme" parent="android:Theme.Holo.Light.NoActionBar">
 
     </style>
-
-    <!-- HomeActivity 테마 -->
-    <style name="HomeTheme" parent="android:Theme.Holo.Light.NoActionBar">
-
-    </style>
 </resources>

@@ -74,6 +74,7 @@ public class LoginActivity extends Activity {
                     public void onSuccess(long l) {
                         return;
                     }
+
                     @Override
                     public void onFailure(APIErrorResult apiErrorResult) {
                         return;

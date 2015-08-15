@@ -27,7 +27,7 @@
             android:layout_marginLeft="18dp"
             android:layout_marginTop="13dp"
             android:scaleType="center"
-            android:src="@drawable/tag_hot" />
+            android:src="@drawable/hot" />
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
             android:layout_toRightOf="@+id/imageView2"
             android:layout_toEndOf="@+id/imageView2"
             android:layout_marginLeft="5dp"
-            android:src="@drawable/tag_new" />
+            android:src="@drawable/tagnew" />
 
 
         <ImageButton
@@ -48,7 +48,7 @@
             android:layout_alignTop="@+id/imageView2"
             android:layout_alignParentRight="true"
             android:layout_marginRight="17dp"
-            android:src="@drawable/love_disable" />
+            android:src="@drawable/unlove" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/star1"
                 android:background="@android:color/transparent"
-                android:src="@drawable/star_disable" />
+                android:src="@drawable/unstar" />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -94,7 +94,7 @@
                 android:layout_toEndOf="@+id/star1"
                 android:layout_marginLeft="3dp"
                 android:layout_marginStart="3dp"
-                android:src="@drawable/star_disable" />
+                android:src="@drawable/unstar" />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -104,7 +104,7 @@
                 android:layout_toEndOf="@+id/star2"
                 android:layout_marginLeft="3dp"
                 android:layout_marginStart="3dp"
-                android:src="@drawable/star_disable" />
+                android:src="@drawable/unstar" />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -114,7 +114,7 @@
                 android:layout_toEndOf="@+id/star3"
                 android:layout_marginLeft="3dp"
                 android:layout_marginStart="3dp"
-                android:src="@drawable/star_disable" />
+                android:src="@drawable/unstar" />
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -124,7 +124,7 @@
                 android:layout_toEndOf="@+id/star4"
                 android:layout_marginLeft="3dp"
                 android:layout_marginStart="3dp"
-                android:src="@drawable/star_disable" />
+                android:src="@drawable/unstar" />
 
             <TextView
                 android:id="@+id/average"
