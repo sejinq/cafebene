@@ -31,13 +31,6 @@ public class MyApplication extends Application {
         ParseCrashReporting.enable(this);
     }
 
-    public cosmantic.cosmantic_khw.User getUser(){
-        return user;
-    }
-    public void setUser(cosmantic.cosmantic_khw.User gettedUser){
-        this.user = gettedUser;
-    }
-
     public Typeface getFont(String name, Context context){
         Typeface tf = fontCache.get(name);
         if(tf == null) {

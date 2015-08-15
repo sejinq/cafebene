@@ -24,7 +24,7 @@ public class RecommendDetailActivity extends Activity{
         skin_type = this.getIntent().getIntExtra(SKIN_INFORMATION,0);
 
         // 액션바 제목 추가 및 글꼴 적용
-        TextView textView = (TextView)findViewById(R.id.titleText);
+        TextView textView = (TextView)findViewById(R.id.titletext);
         textView.setText("지성용 화장품");
         FontApplyer.setFont(this, textView, FontApplyer.Font.NotoSans, FontApplyer.Style.Bold);
 

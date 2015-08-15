@@ -68,7 +68,7 @@ public class WriteReviewActivity extends Activity {
         btStar[4].setOnClickListener(listener);
 
         title.setText("평가하기");
-        btShare.setImageResource(R.drawable.sharebutton);
+        btShare.setImageResource(R.drawable.share_button);
         /*myImage.setImageResource(); byte로 저장되어있음*/
         Bitmap bitmap = BitmapFactory.decodeByteArray(((MyApplication)getApplicationContext()).getProduct().getThumnail(), 0, ((MyApplication)getApplicationContext()).getProduct().getThumnail().length);
         image.setImageBitmap(bitmap);

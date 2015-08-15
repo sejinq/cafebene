@@ -19,7 +19,7 @@ public class SignInActivity extends Activity {
         imgButton.setVisibility(View.GONE);
 
         // 액션바 제목 추가 및 글꼴 변경
-        TextView mTitleTextView = (TextView)findViewById(R.id.titleText);
+        TextView mTitleTextView = (TextView)findViewById(R.id.titletext);
         mTitleTextView.setText("로그인");
 
         // 제목 글꼴 변경

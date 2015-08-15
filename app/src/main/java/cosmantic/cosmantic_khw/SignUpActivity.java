@@ -100,7 +100,7 @@ public class SignUpActivity extends Activity {
         btSignup = (Button)findViewById(R.id.button20);
         btSignup.setOnClickListener(onSignup);
 
-        ckAgree = (CheckBox)findViewById(R.id.checkbox);
+        ckAgree = (CheckBox)findViewById(R.id.checkBox);
        // ckAgree.setOnClickListener(onAgree);
 
     }
