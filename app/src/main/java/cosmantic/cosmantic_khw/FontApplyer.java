@@ -16,7 +16,7 @@ public class FontApplyer {
     public static void setFont(Context context, TextView view, String font, String style){
         String format = ".ttf";
         if(font.equals("NotoSansCJKkr")) format = ".otf";
-        Typeface face = Typeface.createFromAsset(context.getAssets(), "fonts/"+font+"-"+style+format);
+        Typeface face = ((MyApplication)context.getApplicationContext()).getFont("fonts/"+font+"-"+style+format,context);
 
         view.setTypeface(face);
     }

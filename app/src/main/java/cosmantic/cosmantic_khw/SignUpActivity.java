@@ -17,6 +17,7 @@ public class SignUpActivity extends Activity {
     CheckBox ckAgree;
     Button btSignup;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
@@ -34,8 +35,8 @@ public class SignUpActivity extends Activity {
         btFemale = (Button)findViewById(R.id.button3);
         btFemale.setOnClickListener(new onbtFemale());
 
-        btAge_10 = (Button)findViewById(R.id.button4);
-        btAge_10.setOnClickListener(new onbtAge_10());
+        ((Button)findViewById(R.id.button4)).setOnClickListener(new onbtAge_10());
+
         btAge_20 = (Button)findViewById(R.id.button5);
         btAge_20.setOnClickListener(new onbtAge_20());
         btAge_30 = (Button)findViewById(R.id.button6);
@@ -75,6 +76,17 @@ public class SignUpActivity extends Activity {
         ckAgree = (CheckBox)findViewById(R.id.checkBox);
         ckAgree.setOnClickListener(new onckAgree());
 
+    }
+
+    private void signUp(){
+        User newUser = new User();
+        newUser.setAge(12);
+
+        if(ServerInteraction.onSignUp(newUser) == ServerInteraction.signUpFlag.SUCCESS){
+            ((MyApplication)getApplicationContext()).setUser(newUser);
+        }else{
+
+        }
     }
 
     //닉네임 중복확인

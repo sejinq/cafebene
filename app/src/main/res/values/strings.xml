@@ -3,4 +3,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="app_id">714292098676892</string>
+
+    <string name="kakao_app_key">b57ae7d5ae1806937f6c0d629aacff40</string>
+    <string name="error_message_for_service_unavailable">Unstable network connection. \nPlease try again later.</string>
+    <string name="facebook_app_key">1617932351828928</string>
 </resources>

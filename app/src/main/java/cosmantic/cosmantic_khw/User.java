@@ -17,6 +17,13 @@ public class User {
 	public static final int INEREST_WHITE = 6;				// 미백
 	public static final int INEREST_REPAIR = 7;				// 피부 재생
 	public static final int INEREST_SCRUB = 8;				// 각질 제거
+
+    // 유저 타입
+    public interface UserType {
+        int EMAIL = 0x0;
+        int FACEBOOK = 0x1;
+        int KAKAO = 0x2;
+    }
   
 	// 멤버 변수
 	private String objectId;
@@ -25,8 +32,8 @@ public class User {
 	private String displayedName;		// 닉네임
 	private boolean gender;				// 성별
 	private int age;					// 나이
-  private byte[] image;		        // 썸네일
-  private String skinType;			// 피부 타입
+    private byte[] image;		        // 썸네일
+    private String skinType;			// 피부 타입
 	private String[] skinProblem;		// 피부 문제
 	private String[] review;			// 리뷰(사용자 찜 목록)
 	
@@ -35,12 +42,12 @@ public class User {
 	
 	// 모든 정보를 다 받는 생성자
 	User(String objectId, String username, String password, String displayedName, boolean gender, int age, byte[] image, String skinType, String[] skinProblem, String[] review){
-		this.objectId = objectId;
-		this.username = username;
-		this.password = password;
-		this.displayedName = displayedName;
-		this.gender = gender;
-		this.age = age;
+    this.objectId = objectId;
+    this.username = username;
+    this.password = password;
+    this.displayedName = displayedName;
+    this.gender = gender;
+    this.age = age;
     this.image = image;
     this.skinType = skinType;
     this.skinProblem = skinProblem;

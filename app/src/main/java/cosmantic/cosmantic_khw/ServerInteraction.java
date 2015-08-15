@@ -28,7 +28,7 @@ public class ServerInteraction {
 	 * @return <b>loginFlag</b> 인터페이스의 플래그 중 하나<br/>
 	 * <b>SUCCESS, ID_MISMATCH, PW_MISMATCH</b> 반환
 	 */
-	public int onLogin(String id, String password){
+	public static int onLogin(String id, String password, int userType){
 		return loginFlag.SUCCESS;
 	}
 	//로그아웃 액션
@@ -40,7 +40,8 @@ public class ServerInteraction {
 		public static final int SUCCESS = 0x0; //가입 성공
 	}
 	//가입 액션
-	public int onSignUp(){
+	public static int onSignUp(User user){
+
 		return signUpFlag.SUCCESS;
 	}
 	//회원 정보 반환 메소드

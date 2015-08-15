@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="kakao_app_key">b57ae7d5ae1806937f6c0d629aacff40</string>
-    <string name="error_message_for_service_unavailable">Unstable network connection. \nPlease try again later.</string>
-</resources>
