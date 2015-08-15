@@ -159,6 +159,5 @@ public class LoginActivity extends Activity {
     }
     // Facebook Method
     private void facebookLoginAction(){
-
     }
 }

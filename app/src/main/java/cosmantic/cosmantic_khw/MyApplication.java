@@ -14,8 +14,10 @@ import com.sromku.simple.fb.utils.Logger;
 import java.util.Hashtable;
 
 public class MyApplication extends Application {
-    private cosmantic.cosmantic_khw.User user;
     private Hashtable<String, Typeface> fontCache;
+    private User user;
+    private Product product;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -62,5 +64,19 @@ public class MyApplication extends Application {
                 .setPermissions(permissions)
                 .build();
         SimpleFacebook.setConfiguration(config);
+    }
+    public User getUser(){
+        return user;
+    }
+    public void setUser(User user)
+    {
+        this.user = user;
+    }
+    public Product getProduct(){
+        return product;
+    }
+    public void setProduct(Product product)
+    {
+        this.product = product;
     }
 }

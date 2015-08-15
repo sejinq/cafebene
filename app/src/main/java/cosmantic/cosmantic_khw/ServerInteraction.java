@@ -41,7 +41,6 @@ public class ServerInteraction {
 	}
 	//가입 액션
 	public static int onSignUp(User user){
-
 		return signUpFlag.SUCCESS;
 	}
 	//회원 정보 반환 메소드
@@ -74,8 +73,12 @@ public class ServerInteraction {
 	public void searchProduct(String key_word){
 
 	}
-
-	public boolean onReviewUpload(){ //인자는 좀 더 고민해보고 채워넣을 예정
+	public static boolean compareNickName(String nickName)
+	{
+		return false;
+	}
+	public static boolean onReviewUpload(Review review){ //인자는 좀 더 고민해보고 채워넣을 예정
 		return false;
 	}
 }
+
