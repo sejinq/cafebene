@@ -34,8 +34,12 @@ public class SignUpActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
+        setContentView(R.layout.activity_sign_up);
 
+       /* ActionBar actionBar = getActionBar();
+        actionBar.setTitle("회원가입");
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.show();*/
         /*회원가입 방법 선택에 따라 보여주거나 안보여줄 행.인텐트 값 받아서 설정해 주기.
         passRow.setVisibility(View.GONE); passRow가 사라지고 동작하지 않음
         INVISIBLE : passRow가 사라지지만 투명하게 보이게함(공간은 남겨둠)

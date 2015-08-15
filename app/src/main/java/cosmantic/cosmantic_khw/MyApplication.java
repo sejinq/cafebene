@@ -13,6 +13,8 @@ import com.sromku.simple.fb.utils.Logger;
 
 import java.util.Hashtable;
 
+import java.util.Hashtable;
+
 public class MyApplication extends Application {
     private Hashtable<String, Typeface> fontCache;
     private User user;

@@ -1,0 +1,39 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff">
+
+    <include layout="@layout/actionbar_sub"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                layout="@layout/recommend_detail_product"
+                android:id="@+id/product_layer1"/>
+
+            <include
+                layout="@layout/recommend_detail_product"
+                android:id="@+id/product_layer2"/>
+
+            <include
+                layout="@layout/recommend_detail_product"
+                android:id="@+id/product_layer3"/>
+
+            <include
+                layout="@layout/recommend_detail_product"
+                android:id="@+id/product_layer4"/>
+
+            <include
+                layout="@layout/recommend_detail_product"
+                android:id="@+id/product_layer5"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

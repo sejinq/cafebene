@@ -5,7 +5,7 @@
 
     <include
         android:id="@+id/home_action_bar"
-        layout="@layout/actionbar1"
+        layout="@layout/actionbar_sub"
         />
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -15,7 +15,7 @@
 
         <include
             android:id="@+id/home_action_bar"
-            layout="@layout/activity_productbox"
+            layout="@layout/activity_product_box"
             />
     </RelativeLayout>
 <!--여기까지이이이이ㅣ이이이이이이 글씨빼기-->
@@ -101,7 +101,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/mystar1"
             android:background="@android:color/transparent"
-            android:src="@drawable/my_unstar" />
+            android:src="@drawable/my_star_disable" />
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -109,7 +109,7 @@
             android:background="@android:color/transparent"
             android:layout_toRightOf="@+id/mystar1"
             android:layout_toEndOf="@+id/mystar1"
-            android:src="@drawable/my_unstar" />
+            android:src="@drawable/my_star_disable" />
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
             android:background="@android:color/transparent"
             android:layout_toRightOf="@+id/mystar2"
             android:layout_toEndOf="@+id/mystar2"
-            android:src="@drawable/my_unstar" />
+            android:src="@drawable/my_star_disable" />
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
             android:background="@android:color/transparent"
             android:layout_toRightOf="@+id/mystar3"
             android:layout_toEndOf="@+id/mystar3"
-            android:src="@drawable/my_unstar" />
+            android:src="@drawable/my_star_disable" />
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -133,7 +133,7 @@
             android:background="@android:color/transparent"
             android:layout_toRightOf="@+id/mystar4"
             android:layout_toEndOf="@+id/mystar4"
-            android:src="@drawable/my_unstar" />
+            android:src="@drawable/my_star_disable" />
 
             <TextView
             android:id="@+id/textScore"
