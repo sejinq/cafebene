@@ -54,10 +54,10 @@ public class LoginActivity extends Activity {
 		setContentView(R.layout.activity_login);
 
 		//Button Handler
-		((ImageButton)findViewById(R.id.login_email_join_btn)).setOnClickListener(view -> emailJoinAction());
-        ((ImageButton)findViewById(R.id.login_facebook_sign_btn)).setOnClickListener(view -> kakaoSignAction());
-        ((ImageButton)findViewById(R.id.login_facebook_sign_btn)).setOnClickListener(view -> facebookSignAction());
-        ((ImageButton)findViewById(R.id.login_email_sign_btn)).setOnClickListener(view -> emailSignAction());
+//		((ImageButton)findViewById(R.id.login_email_join_btn)).setOnClickListener(view -> emailJoinAction());
+//        ((ImageButton)findViewById(R.id.login_facebook_sign_btn)).setOnClickListener(view -> kakaoSignAction());
+//        ((ImageButton)findViewById(R.id.login_facebook_sign_btn)).setOnClickListener(view -> facebookSignAction());
+//        ((ImageButton)findViewById(R.id.login_email_sign_btn)).setOnClickListener(view -> emailSignAction());
     }
 
     //Button Action

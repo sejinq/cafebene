@@ -8,6 +8,7 @@
     <string name="error_message_for_service_unavailable">Unstable network connection. \nPlease try again later.</string>
     <string name="facebook_app_key">1617932351828928</string>
 
+    <!-- sign_up 페이지-->
     <string name="must_inform">필수정보</string>
     <string name="select_inform">선택정보</string>
     <string name="pass_message">6자 이상, 숫자, 영문, 대소문자</string>
@@ -46,8 +47,21 @@
     <string name="agree_message">이용약관/개인취급정보방침동의</string>
     <string name="signup">가입완료</string>
 
+    <!-- review_write 페이지-->
     <string name="myreview">마이리뷰</string>
     <string name="mystar">내별점</string>
     <string name="scoredefault">0.0</string>
     <string name="reviewwrite">작성 완료</string>
+
+    <!-- actionbar_home-->
+    <string name="home">홈</string>
+    <string name="recommend_cosmetic">추천 화장품</string>
+    <string name="cosmetic_inform">화장품 상식</string>
+    <string name="my_page">마이 페이지</string>
+
+    <!-- product-->
+    <string name="product_curation">제품 분석</string>
+    <string name="product_inform">제품 정보</string>
+    <string name="price_inform">가격 정보</string>
+    <string name="user_review">유저 리뷰</string>
 </resources>

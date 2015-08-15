@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:customviews="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="23dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="15dp"
+            android:id="@+id/dot_bar"
+            android:src="@drawable/dot_bar"/>
+
+        <TextView
+            android:layout_toRightOf="@+id/dot_bar"
+            android:layout_toEndOf="@+id/dot_bar"
+            android:layout_alignBottom="@+id/dot_bar"
+            android:layout_marginLeft="7dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/user_review"
+            android:textSize="14dp"
+            android:id="@+id/text"/>
+        <TextView
+            android:layout_below="@+id/text"
+            android:layout_marginLeft="32dp"
+            android:textSize="9dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/user_review"
+            android:id="@+id/positive"/>
+
+        <TextView
+            android:layout_toRightOf="@+id/positive"
+            android:layout_toEndOf="@+id/positive"
+            android:layout_alignBottom="@+id/positive"
+            android:textSize="9dp"
+            android:layout_marginLeft="10.5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/user_review"
+            android:id="@+id/negetive"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/positive"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:id="@+id/linearLayout">
+
+            <RelativeLayout
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <cosmantic.cosmantic_khw.IngredientChartView
+                    android:id="@+id/donutChart_oily"
+                    android:layout_width="93dp"
+                    android:layout_height="93dp"
+                    android:layout_alignParentLeft="true"
+                    customviews:positive="1"
+                    customviews:negative="1"
+                    customviews:type_text="지성"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight= "1">
+                <cosmantic.cosmantic_khw.IngredientChartView
+                    android:id="@+id/donutChart_dry"
+                    android:layout_width="93dp"
+                    android:layout_height="93dp"
+                    android:layout_centerInParent="true"
+                    customviews:positive="1"
+                    customviews:negative="1"
+                    customviews:type_text="건성"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <cosmantic.cosmantic_khw.IngredientChartView
+                    android:id="@+id/donutChart_sensitive"
+                    android:layout_width="93dp"
+                    android:layout_height="93dp"
+                    android:layout_alignParentRight="true"
+                    customviews:positive="1"
+                    customviews:negative="1"
+                    customviews:type_text="민감성" />
+            </RelativeLayout>
+        </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/effect_white"
+        android:textColor="@color/effect_disable"
+        android:id="@+id/effect_tag1"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/linearLayout"
+        android:layout_alignStart="@+id/linearLayout" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/effect_wrinkle"
+        android:textColor="@color/effect_disable"
+        android:id="@+id/effect_tag2"
+        android:layout_alignBottom="@+id/negetive"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/effect_sun"
+        android:textColor="@color/effect_disable"
+        android:id="@+id/effect_tag3"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/product_curation"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>

@@ -37,11 +37,11 @@ public class User {
   private String displayedName;   // 닉네임
   private boolean gender;       // 성별
   private int age;          // 나이
-    private byte[] image;           // 썸네일
-    private int skinType;     // 피부 타입
+  private byte[] image;           // 썸네일
+  private int skinType;     // 피부 타입
   private int[] skinProblem;    // 피부 문제
   private String[] review;      // 리뷰
-    private Hashtable<String,Boolean> likeProducts;//사용자 찜 목록
+  private Hashtable<String,Boolean> likeProducts;//사용자 찜 목록
 
   // 기본 생성자
     User(){}
@@ -64,13 +64,24 @@ public class User {
     Set<String> keys = likeProducts.keySet();
     return null;
   }
+  public boolean isLike(String likeProducts)
+  {
+    if(this.likeProducts.get(likeProducts)!=null){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
 
-  public void setLikeProducts(String likeProducts) {
+  public boolean setLikeProducts(String likeProducts) {
     if(this.likeProducts.get(likeProducts)!=null){
       this.likeProducts.remove(likeProducts);
+      return false;
     }
     else{
       this.likeProducts.put(likeProducts,true);
+      return true;
     }
   }
   public String getObjectId() { return objectId; }

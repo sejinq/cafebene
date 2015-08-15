@@ -1,5 +1,6 @@
 package cosmantic.cosmantic_khw;
 
+/*손!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111세~~~~~~~~~~~~~~~~~~~~~~진@@@@@@@@@@@@@@@@@@@@@@@@@ 변수, 메소드 추가함.별점 스코어, 리뷰한 사람 수*/
 public class Product {
 	// 멤버 변수
 	private String objectId;
@@ -8,16 +9,18 @@ public class Product {
 	private String brand;			// 브랜드
 	private byte[] thumnail;		// 썸네일
 	private double size;			// 용량
-	private String[] effects;		// 효능/태그
+	private int[] effects;		// 효능/태그
 	private String skintype;		// 피부 타입
 	private String type;			// 종류
 	private String curatingInfo;	// 큐레이팅 정보
-	
+	private float score; //별점 스코어
+	private int reviewNum; //리뷰한 사람 수
+
 	// 기본 생성자
 	Product(){}
 	
 	// 모든 정보를 다 받아오는 생성자
-	Product(String productName, int price, String brand, double size, String[] effects, String skintype, String type, String curatingInfo){
+	Product(String productName, int price, String brand, double size, int[] effects, String skintype, String type, String curatingInfo, float score, int reviewNum){
 		this.productName = productName;
 		this.price = price;
 		this.brand = brand;
@@ -26,14 +29,29 @@ public class Product {
 		this.skintype = skintype;
 		this.type = type;
 		this.curatingInfo = curatingInfo;
+		this.score = score;
+		this.reviewNum = reviewNum;
 	}
 	
 	// getter, setter
 	public String getObjectId() { return objectId; }
 
-	public String getProductName() {
-		return productName;
+	public String getProductName() {	return productName;	}
+
+	public float getScore() {	return score;	}
+
+	public int getReviewNum() {
+		return reviewNum;
 	}
+
+	public void setScore(float score) {
+		this.score = score;
+	}
+
+	public void setReviewNum(int reviewNum) {
+		this.reviewNum = reviewNum;
+	}
+
 
 	public void setProductName(String productName) {
 		this.productName = productName;
@@ -71,11 +89,11 @@ public class Product {
 		this.size = size;
 	}
 
-	public String[] getEffects() {
+	public int[] getEffects() {
 		return effects;
 	}
 
-	public void setEffects(String[] effects) {
+	public void setEffects(int[] effects) {
 		this.effects = effects;
 	}
 
