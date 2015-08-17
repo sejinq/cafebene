@@ -134,7 +134,11 @@ public class WriteReviewActivity extends Activity {
         public void onClick(View v) {
             //사용자가 쓴 리뷰를 받아 Review 클래스 생성.
             String content =etContent.getText().toString();
-            Review review = new Review(((MyApplication)getApplicationContext()).getProduct().getObjectId(), ((MyApplication)getApplicationContext()).getUser().getObjectId(), (double)star_on, content);
+            Review review = new Review(((MyApplication)getApplicationContext()).getProduct().getObjectId(),
+                    ((MyApplication)getApplicationContext()).getUser().getObjectId(),
+                    ((MyApplication)getApplicationContext()).getUser().getDisplayedName(),
+                    ((MyApplication)getApplicationContext()).getUser().getImage(),
+                    (double)star_on, content);
             //review 서버 업로드
             int i=0;
             while(true)

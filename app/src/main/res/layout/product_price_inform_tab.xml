@@ -2,4 +2,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/naver"
+        android:background="@android:color/transparent"
+        android:src="@drawable/bt_naver" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gmarket"
+        android:src="@drawable/bt_gmarket"
+        android:background="@android:color/transparent"
+        />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/auction"
+        android:src="@drawable/bt_auction"
+        android:background="@android:color/transparent"
+        />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/eleven_store"
+        android:src="@drawable/bt_11store"
+        android:background="@android:color/transparent"
+        />
 </LinearLayout>

@@ -84,23 +84,28 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:layout_below="@+id/product_view_box">
+
         <include
             android:id="@+id/tablayout1"
             layout="@layout/product_curation_tab"
             />
+
         <include
             android:id="@+id/tablayout2"
             layout="@layout/product_inform_tab"
             />
+
         <include
             android:id="@+id/tablayout3"
             layout="@layout/product_price_inform_tab"
             />
+
         <include
             android:id="@+id/tablayout4"
             layout="@layout/product_user_review_tab"
             />
 
-        </FrameLayout>
+    </FrameLayout>
+
 </RelativeLayout>
 

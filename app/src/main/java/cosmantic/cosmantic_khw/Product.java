@@ -52,7 +52,6 @@ public class Product {
 		this.reviewNum = reviewNum;
 	}
 
-
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}

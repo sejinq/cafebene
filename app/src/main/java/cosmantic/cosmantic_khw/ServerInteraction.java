@@ -44,14 +44,14 @@ public class ServerInteraction {
 		return signUpFlag.SUCCESS;
 	}
 	//회원 정보 반환 메소드
-	public User getUserInform(){
+	public static User getUserInform(String user_id){
 		return null;
 	}
 	/**
 	 * 상품 정보 반환 메소드
 	 * 인자: int product_id - 상품 식별자
 	 */
-	public Product getProductInform(int product_id){
+	public static Product getProductInform(String product_id){
 		return null;
 	}
 	/**

@@ -22,7 +22,7 @@ public class ProductCurationTab implements ProductActivity.SmallTab{
     }
 
     private void effectSetting(){
-        int[] effects = ((MyApplication)context.getApplicationContext()).getProduct().getEffects();
+        int[] effects = ((MyApplication)context.getApplicationContext()).getProduct().getTag();
         for(int loop=0; loop<effects.length; loop++){
             if(effects[loop] == 0){ //0을 플래그 참조로 바꿀것
                 ((TextView)mainView.findViewById(R.id.effect_tag1)).setTextColor(context.getResources().getColor(R.color.effect_enable));
@@ -41,12 +41,16 @@ public class ProductCurationTab implements ProductActivity.SmallTab{
         String[] curation = new String[3];
 
         text = ((MyApplication)context.getApplicationContext()).getProduct().getCuratingInfo();
-        curation = text.split("\n");
+        //split 특수기호?
+        //공백 단위로 curation 을 나눈다.
+        curation = text.split(" ");
         text="";
+        //출력할 형식대로 curation 만들어 주기.
         for(int i=0;i<3;++i)
         {
             text+="-"+curation[i]+"\n";
         }
+        //curation 출력
         ((TextView)mainView.findViewById(R.id.product_curation)).setText(text);
     }
 }

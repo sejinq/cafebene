@@ -25,7 +25,7 @@ public class ProductActivity extends Activity {
     Button[] smallTab = new Button[4];
     ImageButton btLike;
     String likeProducts;
-
+    //하위 탭 4개 생성 클래스
     SmallTab tabClass;
 
     @Override
@@ -52,10 +52,13 @@ public class ProductActivity extends Activity {
         smallTab[0] = (Button) findViewById(R.id.tab1);
         smallTab[0].setOnClickListener(new View.OnClickListener() {
             @Override
+            //선택 시 frameInvisible로 탭 이미지 초기화. 보여줄 activity를 tabclass에서 액션 처리.
             public void onClick(View v) {
                 frameInvisible();
                 RelativeLayout view =  (RelativeLayout)findViewById(R.id.tablayout1);
+                //선택 될 탭의 내용만 활성화.
                 view.setVisibility(View.VISIBLE);
+                //RelativeLayout 정보와 ProductActivity의 content를 같이 넘겨주기.
                 tabClass = new ProductCurationTab(ProductActivity.this,view);
             }
         });
@@ -87,7 +90,7 @@ public class ProductActivity extends Activity {
             }
         });
 
-
+        //탭 이외의 기본 정보들 받아와서 보여주기.
         title.setText("화장품 상세");
         btShare.setImageResource(R.drawable.share_button);
         /*myImage.setImageResource(); byte로 저장되어있음*/
@@ -132,6 +135,7 @@ public class ProductActivity extends Activity {
             }
         }
     };
+    //초기화, 모두 비활성화.
     private void frameInvisible(){
         findViewById(R.id.tablayout1).setVisibility(View.GONE);
         findViewById(R.id.tablayout2).setVisibility(View.GONE);

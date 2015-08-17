@@ -12,20 +12,20 @@
     <ImageView
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:id="@+id/imageView5"
+        android:id="@+id/userThumnail"
         android:layout_marginLeft="27dp"
         android:layout_marginStart="27dp"
         android:src="@drawable/boy_image" />
     <TextView
-        android:layout_toRightOf="@+id/imageView5"
-        android:layout_toEndOf="@+id/imageView5"
-        android:layout_alignTop="@+id/imageView5"
+        android:layout_toRightOf="@+id/userThumnail"
+        android:layout_toEndOf="@+id/userThumnail"
+        android:layout_alignTop="@+id/userThumnail"
         android:layout_marginTop = "10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/myNick"
+        android:id="@+id/userNick"
         android:textColor="#ff0c1e36"
         android:textSize="11dp"
         android:text="룰루랄라"
@@ -37,19 +37,18 @@
         android:text="@string/mystar"
         android:textColor="#ff0c1e36"
         android:textSize="11dp"
-        android:id="@+id/myScore"
-        android:layout_below="@+id/myNick"
-        android:visibility="invisible"
-        android:layout_alignLeft="@+id/myNick"
-        android:layout_alignStart="@+id/myNick"
+        android:id="@+id/userScore"
+        android:layout_below="@+id/userNick"
+        android:layout_alignLeft="@+id/userNick"
+        android:layout_alignStart="@+id/userNick"
         android:layout_marginTop = "5dp"/>
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/myScore"
-        android:layout_toRightOf="@+id/myScore"
-        android:layout_toEndOf="@+id/myScore"
+        android:layout_alignTop="@+id/userScore"
+        android:layout_toRightOf="@+id/userScore"
+        android:layout_toEndOf="@+id/userScore"
         android:layout_marginLeft="10dp"
         android:id="@+id/starbox">
         <ImageButton
