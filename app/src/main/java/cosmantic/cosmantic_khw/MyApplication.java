@@ -2,6 +2,8 @@ package cosmantic.cosmantic_khw;
 
 import android.app.Application;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 
 import com.kakao.auth.Session;
@@ -10,8 +12,6 @@ import com.sromku.simple.fb.Permission;
 import com.sromku.simple.fb.SimpleFacebook;
 import com.sromku.simple.fb.SimpleFacebookConfiguration;
 import com.sromku.simple.fb.utils.Logger;
-
-import java.util.Hashtable;
 
 import java.util.Hashtable;
 
@@ -27,6 +27,13 @@ public class MyApplication extends Application {
 
         Session.initialize(this);
         facebookSetting();
+    }
+
+    //
+    public Bitmap getImage(byte[] bytes)
+    {
+        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        return bitmap;
     }
 
     public void parseCreate(){

@@ -50,4 +50,10 @@
     <string name="mystar">내별점</string>
     <string name="scoredefault">0.0</string>
     <string name="reviewwrite">작성 완료</string>
+
+    <!-- actionbar_home-->
+    <string name="home">홈</string>
+    <string name="recommend_cosmetic">추천 화장품</string>
+    <string name="cosmetic_inform">화장품 상식</string>
+    <string name="my_page">마이 페이지</string>
 </resources>

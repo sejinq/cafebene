@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -12,19 +13,38 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class RecommendDetailActivity extends Activity{
-    public static String SKIN_INFORMATION = "cosmantic.cosmantic_khw.RecommendDetailActivity.skin_type";
+public class RecommendActivity extends Activity{
     private int skin_type;
+    // SKIN_INFORMATION의 키 값
+    public static final String SKIN_INFORMATION = "cosmantic.cosmantic_khw.RecommendActivity.SKIN_INFORMATION";
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recommend_detail);
+        setContentView(R.layout.activity_recommend);
 
-        skin_type = this.getIntent().getIntExtra(SKIN_INFORMATION,0);
+        // 이전 액티비티에서 putIntExtra 한 값을 받아준다.
+        skin_type = this.getIntent().getIntExtra(SKIN_INFORMATION, 0);
 
         // 액션바 제목 추가 및 글꼴 적용
         TextView textView = (TextView)findViewById(R.id.titleText);
-        textView.setText("지성용 화장품");
+
+        switch(skin_type){
+            case 0:
+                // 에러 발생이므로 강제 종료
+                Log.e("RecommendActivity", "skin_type 확인");
+                android.os.Process.killProcess(android.os.Process.myPid());
+            case 1:
+                textView.setText("추천 지성용 화장품");
+                break;
+            case 2:
+                textView.setText("추천 건성용 화장품");
+                break;
+            case 3:
+                textView.setText("추천 민감성용 화장품");
+                break;
+        }
+
         FontApplyer.setFont(this, textView, FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
 
         // 검색 버튼은 안 쓰므로 안 보이게 설정
@@ -39,17 +59,17 @@ public class RecommendDetailActivity extends Activity{
         ((TextView)(findViewById(R.id.product_layer5)).findViewById(R.id.product_title)).setText("추천 폼클렌징");
 
         // 나머지 글씨들 글꼴 적용
-        settingProductLayer(R.id.product_layer1);
-        settingProductLayer(R.id.product_layer2);
-        settingProductLayer(R.id.product_layer3);
-        settingProductLayer(R.id.product_layer4);
-        settingProductLayer(R.id.product_layer5);
+        for(int i=1;i<5;i++){
+            int resourceId = getResources().getIdentifier("product_layer"+i, "id", "cosmantic.cosmantic_khw");
+            settingProductLayer(resourceId);
+        }
 
         // 액션바 뒤로가기 버튼 리스너 달아주는 코드
         ImageButton backButton = (ImageButton)findViewById(R.id.backButton);
         backButton.setOnClickListener(ClickListener);
     }
 
+    // 제품 컨테이너 안에 있는 글씨들 글꼴 적용
     private void settingProductLayer(int layoutId){
         LinearLayout container = (LinearLayout)findViewById(layoutId);
 
@@ -92,16 +112,16 @@ public class RecommendDetailActivity extends Activity{
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.backButton:
-                    Toast.makeText(RecommendDetailActivity.this, "Back Button", Toast.LENGTH_SHORT).show();
+                    finish();
                     break;
                 case R.id.product_left:
-                    Toast.makeText(RecommendDetailActivity.this, "product_left", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RecommendActivity.this, "product_left", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.product_center:
-                    Toast.makeText(RecommendDetailActivity.this, "product_center", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RecommendActivity.this, "product_center", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.product_right:
-                    Toast.makeText(RecommendDetailActivity.this, "product_right", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RecommendActivity.this, "product_right", Toast.LENGTH_SHORT).show();
                     break;
             }
         }
@@ -111,7 +131,8 @@ public class RecommendDetailActivity extends Activity{
         Product[] products = ServerInteraction.getRecommendList(skin_type);
         int img_id = R.id.product_left_image;
         int brand_id = R.id.product_left_brandname;
-        int product_id = R.id.product_left_image;
+        int product_id = R.id.product_left_productname;
+        int price_and_volume_id = R.id.product_left_priceandvolume;
 
         for(int p_loop = 0; p_loop<products.length;p_loop++){
             //이미지

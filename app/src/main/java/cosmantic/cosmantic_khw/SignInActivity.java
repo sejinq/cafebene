@@ -3,8 +3,10 @@ package cosmantic.cosmantic_khw;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +16,9 @@ public class SignInActivity extends Activity {
     protected void onCreate(Bundle savedInstance){
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_sign_in);
+
+        // 임시 User 생성
+        User user = new User("kugorang", "000000");
 
         // 검색 버튼은 안 쓰므로 안 보이게 설정
         ImageButton imgButton = (ImageButton)findViewById(R.id.searchButton);
@@ -45,7 +50,27 @@ public class SignInActivity extends Activity {
         btn.setOnClickListener(ClickListener);
         ((ImageButton)findViewById(R.id.signInPwFindButton)).setOnClickListener(ClickListener);
         ((ImageButton)findViewById(R.id.backButton)).setOnClickListener(ClickListener);
+
+        // EditText 리스너 달기
+        ((EditText)findViewById(R.id.signInPutPw)).setOnKeyListener(KeyListener);
     }
+
+    // EditText 키 리스너
+    View.OnKeyListener KeyListener = new View.OnKeyListener() {
+        @Override
+        public boolean onKey(View v, int keyCode, KeyEvent event) {
+            if (event.getAction() == KeyEvent.ACTION_DOWN){
+                switch (keyCode) {
+                    case KeyEvent.KEYCODE_ENTER:
+                        ClickListener.onClick(findViewById(R.id.signInLoginButton));
+                        return true;
+                    default:
+                        break;
+                }
+            }
+            return false;
+        }
+    };
 
     // 액션바 뒤로가기 버튼, 로그인 버튼과 비밀번호 찾기 리스너
     View.OnClickListener ClickListener = new View.OnClickListener() {
@@ -55,7 +80,19 @@ public class SignInActivity extends Activity {
                     Toast.makeText(SignInActivity.this, "Back Button", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.signInLoginButton:
-                    Toast.makeText(SignInActivity.this, "signInLoginButton", Toast.LENGTH_SHORT).show();
+                    String id = ((EditText)findViewById(R.id.signInPutEmail)).getText().toString();
+                    String pw = ((EditText)findViewById(R.id.signInPutPw)).getText().toString();
+
+                    if(id.length()<1) {
+                        Toast.makeText(SignInActivity.this, "이메일을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                    else if(pw.length()<6) {
+                        Toast.makeText(SignInActivity.this, "6자 이상 숫자, 영문 대소문자를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                    else
+                        Toast.makeText(SignInActivity.this, "입력한 ID : "+id+"\n입력한 PW : "+pw, Toast.LENGTH_SHORT).show();
                     break;
 
                 // 버튼 눌린 걸 처리해주기 위해 타이머 달아줌.

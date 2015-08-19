@@ -55,7 +55,7 @@
         <!-- 이메일 입력하는 EditText -->
         <EditText
             android:id="@+id/signInPutEmail"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/signInFirstRect"
             android:layout_below="@id/signInFirstRect"
@@ -67,7 +67,9 @@
             android:inputType="textEmailAddress"
             android:hint="(email@example.com)"
             android:textSize="14dp"
-            android:textColorHint="@color/signin_hinttext"/>
+            android:textColor="@color/signin_hinttext"
+            android:textColorHint="@color/signin_hinttext"
+            android:textCursorDrawable="@null"/>
 
         <!-- 두 번째 선 위, 비밀번호 아래 사각형 -->
         <ImageView
@@ -95,7 +97,7 @@
         <!-- 비밀번호 입력하는 EditText -->
         <EditText
             android:id="@+id/signInPutPw"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/signInSecondRect"
             android:layout_below="@id/signInSecondRect"
@@ -108,7 +110,9 @@
             android:background="@null"
             android:hint="6자 이상 숫자, 영문 대소문자"
             android:textSize="14dp"
-            android:textColorHint="@color/signin_hinttext"/>
+            android:textColor="@color/signin_hinttext"
+            android:textColorHint="@color/signin_hinttext"
+            android:textCursorDrawable="@null"/>
 
         <!-- 로그인 이미지 버튼 -->
         <Button

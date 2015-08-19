@@ -12,8 +12,10 @@ public class Product {
 	private String skintype;		// 피부 타입
 	private String type;			// 종류
 	private String curatingInfo;	// 큐레이팅 정보
-	
-	// 기본 생성자
+	private String cost_effectiveness;   // 가성비
+    private boolean like_check;      // 찜하기 여부
+
+    // 기본 생성자
 	Product(){}
 	
 	// 모든 정보를 다 받아오는 생성자
@@ -28,18 +30,14 @@ public class Product {
 		this.curatingInfo = curatingInfo;
 	}
 	
-	// getter, setter
+	// getter
 	public String getObjectId() { return objectId; }
 
 	public String getProductName() {
 		return productName;
 	}
 
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
-
-	public int getPrice() {
+    public int getPrice() {
 		return price;
 	}
 
@@ -51,55 +49,39 @@ public class Product {
 		return brand;
 	}
 
-	public void setBrand(String brand) {
-		this.brand = brand;
-	}
-
 	public byte[] getThumnail() {
 		return thumnail;
-	}
-
-	public void setThumnail(byte[] thumnail) {
-		this.thumnail = thumnail;
 	}
 
 	public double getSize() {
 		return size;
 	}
 
-	public void setSize(double size) {
-		this.size = size;
-	}
-
 	public String[] getEffects() {
 		return effects;
-	}
-
-	public void setEffects(String[] effects) {
-		this.effects = effects;
 	}
 
 	public String getSkintype() {
 		return skintype;
 	}
 
-	public void setSkintype(String skintype) {
-		this.skintype = skintype;
-	}
-
 	public String getType() {
 		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
 	}
 
 	public String getCuratingInfo() {
 		return curatingInfo;
 	}
 
-	public void setCuratingInfo(String curatingInfo) {
-		this.curatingInfo = curatingInfo;
-	}
+    public String getCost_effectiveness() {
+        return cost_effectiveness;
+    }
+
+    public void setLikeCheck(boolean like_check) {
+        this.like_check = like_check;
+    }
+
+    public boolean getLikeCheck(){
+        return like_check;
+    }
 }

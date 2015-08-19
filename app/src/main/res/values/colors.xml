@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- 액션바 배경 -->
+    <!-- Home 액션바 글씨 -->
+    <color name="actionbar_home_text">#0c1e36</color>
+    <!-- Sub 액션바 배경 -->
     <color name="actionbar_background">#0066e0</color>
-    <!-- 액션바 제목 글씨 -->
+    <!-- Sub 액션바 제목 글씨 -->
     <color name="actionbar_titletext">#ffffff</color>
     <!-- SignInActivity 힌트 글씨 -->
     <color name="signin_hinttext">#9fa6ad</color>
@@ -12,11 +14,11 @@
     <color name="signin_loginbtntxt">#ffffff</color>
     <!-- SignInActivity 로그인 버튼 배경 -->
     <color name="signin_loginbtbg">#181c4c</color>
-    <!-- RecommendDetailActivity 제품 분류 글씨 -->
+    <!-- RecommendActivity 제품 분류 글씨 -->
     <color name="recommenddetail_producttitletxt">#ffffff</color>
-    <!-- RecommendDetailActivity 제품 브랜드 글씨 -->
+    <!-- RecommendActivity 제품 브랜드 글씨 -->
     <color name="recommenddetail_productbrandtxt">#000000</color>
-    <!-- RecommendDetailActivity 제품 제품명 글씨 -->
+    <!-- RecommendActivity 제품 제품명 글씨 -->
     <color name="recommenddetail_productnametxt">#7a7d7f</color>
     <!-- RecommendDetailAcitivty 제품 용량, 가격 글씨 -->
     <color name="recommenddetail_productvolumepricetxt">#0066e0</color>
@@ -31,4 +33,14 @@
     <!-- SignUpActivity 버튼 선택 색상 -->
     <color name="signup_btselect">#f28314</color>
     <color name="signup_btunselect">#9fa6ad</color>
+    <!-- actionbar_home 액티비티 line 색상-->
+    <color name="actionbar_home_line">#0c1e36</color>
+    <!-- tab 액션바 배경-->
+    <color name="tab_background">#ffffff</color>
+    <!-- HomeActivity 배경 -->
+    <color name="home_background">#f4f4f4</color>
+    <!-- HomeActivity 컨테이너들 배경 -->
+    <color name="home_containerbg">#ffffff</color>
+    <!-- HomeActivity 메인바 글씨 -->
+    <color name="home_mainbar_txt">#ffffff</color>
 </resources>

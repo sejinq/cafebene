@@ -40,24 +40,6 @@
             android:textColor="@color/search_result_productname"/>
     </RelativeLayout>
 
-    <!-- 검색 결과 찜하기 true -->
-    <ImageView
-        android:id="@+id/searchResultBrand_heartTrue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:src="@drawable/pink_heart"/>
-
-    <!-- 검색 결과 찜하기 false -->
-    <ImageView
-        android:id="@+id/searchResultBrand_heartFalse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:src="@drawable/love_disable"/>
-
     <!-- 검색 결과 밑줄 -->
     <ImageView
         android:layout_alignParentBottom="true"

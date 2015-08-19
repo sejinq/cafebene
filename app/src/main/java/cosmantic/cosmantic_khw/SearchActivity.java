@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 public class SearchActivity extends Activity {
     @Override
@@ -28,7 +27,7 @@ public class SearchActivity extends Activity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.backButton:
-                    Toast.makeText(SearchActivity.this, "Back Button", Toast.LENGTH_SHORT).show();
+                    finish();
                     break;
                 case R.id.searchButton:
                     if((int)(Math.random()*2)==0) {

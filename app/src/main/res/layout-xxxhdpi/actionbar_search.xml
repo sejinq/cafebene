@@ -21,7 +21,8 @@
         android:hint="브랜드 및 제품을 입력해주세요."
         android:textSize="12dp"
         android:textColor="@color/search_actionbar_edittext"
-        android:textColorHint="@color/search_actionbar_edittext"/>
+        android:textColorHint="@color/search_actionbar_edittext"
+        android:textCursorDrawable="@null"/>
 
     <!-- EditText 밑줄 -->
     <ImageView

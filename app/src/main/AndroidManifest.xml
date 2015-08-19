@@ -11,50 +11,71 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
 
         <!-- 스플래시 액티비티 -->
         <activity
             android:name = ".SplashActivity"
             android:theme = "@style/SplashTheme"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name = "android.intent.action.MAIN"/>
-                <category android:name = "android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
 
         <!-- 메인 액티비티 -->
         <activity
             android:name=".LoginActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".SignUpActivity"></activity>
-        <!-- RecommendDetail 액티비티 -->
+
         <activity
-            android:name=".RecommendDetailActivity"
-            android:theme="@style/RecommendDetailTheme">
+            android:name=".SignUpActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <!-- RecommendIntro 액티비티 -->
+        <activity
+            android:name=".RecommendIntroActivity"
+            android:theme="@style/RecommendIntroTheme"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <!-- Recommend 액티비티 -->
+        <activity
+            android:name=".RecommendActivity"
+            android:theme="@style/RecommendTheme"
+            android:screenOrientation="portrait">
 
         </activity>
 
         <!-- SignIn 액티비티 -->
         <activity
             android:name=".SignInActivity"
-            android:theme="@style/SignInTheme">
+            android:theme="@style/SignInTheme"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible">
 
         </activity>
 
         <!-- Search 액티비티 -->
         <activity
             android:name=".SearchActivity"
-            android:theme="@style/SearchTheme">
+            android:theme="@style/SearchTheme"
+            android:screenOrientation="portrait">
 
         </activity>
 
         <!-- Home 액티비티 -->
         <activity
             android:name=".HomeActivity"
-            android:theme="@style/HomeTheme">
+            android:theme="@style/HomeTheme"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name = "android.intent.action.MAIN"/>
+                <category android:name = "android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
 
         <meta-data
