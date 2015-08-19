@@ -29,7 +29,8 @@
         android:layout_marginRight="18dp"
         android:layout_marginEnd="18dp"
         android:background="@null"
-        android:src="@drawable/search_button" />
+        android:src="@drawable/search_button"
+        android:onClick="ClickListener"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -47,6 +48,7 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:id="@+id/tab1"
+                android:onClick="ClickListener"
                 android:text="@string/home"
                 android:textSize="14dp"
                 android:background="@android:color/transparent"
@@ -57,14 +59,16 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:text="@string/recommend_cosmetic"
+                android:onClick="ClickTabListener"
                 android:textSize="14dp"
                 android:id="@+id/tab2"
-                android:background="@drawable/menutap"
+                android:background="@drawable/menu_tap"
                 />
             <Button
                 android:layout_width="0px"
                 android:layout_weight="1"
                 android:text="@string/cosmetic_inform"
+                android:onClick="ClickTabListener"
                 android:textSize="14dp"
                 android:layout_height="match_parent"
                 android:id="@+id/tab3"
@@ -75,6 +79,7 @@
                 android:layout_width="0px"
                 android:layout_weight="1"
                 android:text="@string/my_page"
+                android:onClick="ClickTabListener"
                 android:textSize="14dp"
                 android:layout_height="match_parent"
                 android:id="@+id/tab4"

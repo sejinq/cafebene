@@ -15,7 +15,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView1"
+            android:id="@+id/product_image"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="21dp"
             android:src="@drawable/image_frame" />
@@ -23,20 +23,20 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView2"
+            android:id="@+id/tag_image1"
             android:layout_marginLeft="18dp"
             android:layout_marginTop="13dp"
             android:scaleType="center"
-            android:src="@drawable/tag_hot" />
+            android:src="@drawable/tag_new" />
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView6"
-            android:layout_alignTop="@+id/imageView2"
-            android:layout_toRightOf="@+id/imageView2"
-            android:layout_toEndOf="@+id/imageView2"
+            android:id="@+id/tag_image2"
+            android:layout_alignTop="@+id/tag_image1"
+            android:layout_toRightOf="@+id/tag_image1"
+            android:layout_toEndOf="@+id/tag_image1"
             android:layout_marginLeft="5dp"
-            android:src="@drawable/tag_new" />
+            android:src="@drawable/tag_hot" />
 
 
         <ImageButton
@@ -45,7 +45,7 @@
             android:scaleType="fitCenter"
             android:id="@+id/likebutton"
             android:background="@android:color/transparent"
-            android:layout_alignTop="@+id/imageView2"
+            android:layout_alignTop="@+id/tag_image1"
             android:layout_alignParentRight="true"
             android:layout_marginRight="17dp"
             android:src="@drawable/love_disable" />
@@ -53,10 +53,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView"
+            android:id="@+id/brand_text"
             android:text="할루"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/imageView1"
+            android:layout_below="@+id/product_image"
             android:layout_marginTop="8dp"
             android:textColor="#000000"
             android:textSize="12dp" />
@@ -64,11 +64,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textView2"
-            android:layout_marginTop="12dp"
+            android:id="@+id/product_text"
+            android:layout_marginTop="6dp"
             android:layout_centerHorizontal="true"
             android:text="룰ㄹ루랄"
-            android:layout_below="@+id/textView"
+            android:layout_below="@+id/brand_text"
             android:textColor="#ff606060"
             android:textSize="12dp" />
 
@@ -76,9 +76,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:id="@+id/starshow"
-            android:layout_below="@+id/textView2" >
+            android:layout_below="@+id/product_text" >
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -133,6 +133,7 @@
                 android:textColor="#000000"
                 android:textSize="12dp"
                 android:text="별점 (0.0)"
+                android:gravity="center"
                 android:layout_marginLeft="10.5dp"
                 android:layout_marginStart="10.5dp"
                 android:layout_toRightOf="@+id/star5"

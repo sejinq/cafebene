@@ -25,7 +25,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/dot"
+            android:src="@drawable/square_dot"
             android:id="@+id/dot"
             android:layout_alignBottom="@+id/inform"
             android:layout_alignTop="@+id/inform"
@@ -282,7 +282,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/user_inform_box"
-                android:layout_marginTop="51dp"
+                android:layout_marginTop="25dp"
                 android:id="@+id/rel2">
                 <TextView
                     android:layout_width="wrap_content"
@@ -295,7 +295,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/dot"
+                    android:src="@drawable/square_dot"
                     android:id="@+id/dot2"
                     android:layout_alignBottom="@+id/sel_inform"
                     android:layout_alignTop="@+id/sel_inform"
@@ -496,7 +496,7 @@
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="27dp"
+            android:layout_marginTop="15dp"
             android:textSize="15dp"
             android:text="@string/agree_message"
             android:id="@+id/checkBox"
@@ -507,9 +507,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/user_select_box"
-        android:layout_marginTop="35dp"
         android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
         android:text="@string/signup"
         android:id="@+id/signup_button"
         android:textColor="@color/actionbar_titletext"

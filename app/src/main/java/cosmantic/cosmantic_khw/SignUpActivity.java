@@ -9,9 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class SignUpActivity extends Activity {
@@ -95,6 +98,10 @@ public class SignUpActivity extends Activity {
         ckAgree = (CheckBox)findViewById(R.id.checkBox);
        // ckAgree.setOnClickListener(onAgree);
 
+        ((ImageButton)findViewById(R.id.searchButton)).setVisibility(View.GONE);
+        // 액션바 뒤로가기 버튼, 검색 버튼 리스너 달아주는 코드
+        ((ImageButton) findViewById(R.id.backButton)).setOnClickListener(ClickListener);
+        ((TextView) findViewById(R.id.titleText)).setText("회원가입");
         //Intent intent = getIntent();
        // userType = intent.getExtras().getInt("type");
        // userId = intent.getExtras().getString("id");
@@ -109,12 +116,12 @@ public class SignUpActivity extends Activity {
         if(userType==User.UserType.FACEBOOK||userType==User.UserType.KAKAO)
         {
             //dp값 설정해 주기.>기기에 맞게 바뀌게 dp 코딩 해 주어야함.
-            DisplayMetrics dm = getResources().getDisplayMetrics();
-            int size = Math.round(50 * dm.density);
+           // DisplayMetrics dm = getResources().getDisplayMetrics();
+           // int size = Math.round(50 * dm.density);
             //dp값 변경하고자 하는 부분에 값 넣어주기.
-            RelativeLayout.LayoutParams plControl = (RelativeLayout.LayoutParams) ((RelativeLayout) findViewById(R.id.rel1)).getLayoutParams();
-            plControl.topMargin = size;
-            ((RelativeLayout) findViewById(R.id.rel1)).setLayoutParams(plControl);
+           // RelativeLayout.LayoutParams plControl = (RelativeLayout.LayoutParams) ((RelativeLayout) findViewById(R.id.rel1)).getLayoutParams();
+           // plControl.topMargin = size;
+           // ((RelativeLayout) findViewById(R.id.rel1)).setLayoutParams(plControl);
 //비밀번호 입력란 사라지기, 아이디칸 입력창이 아니라 파싱한 아이디 보여주기.
             ((RelativeLayout) findViewById(R.id.passRow)).setVisibility(View.GONE);
             ((RelativeLayout) findViewById(R.id.repassRow)).setVisibility(View.GONE);
@@ -123,6 +130,11 @@ public class SignUpActivity extends Activity {
             etID.setClickable(false);
         }
     }
+    View.OnClickListener ClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            finish();
+            }
+        };
     //닉네임 중복확인
     View.OnClickListener onNick = new View.OnClickListener() {
         public void onClick(View v) {
@@ -271,6 +283,12 @@ public class SignUpActivity extends Activity {
     //가입완료 버튼
     View.OnClickListener onSignup = new View.OnClickListener() {
         public void onClick(View v) {
+            //임시...
+            Intent Intent = new Intent(SignUpActivity.this, ProductActivity.class);
+            //nextIntent.putExtra("",type);
+            //nextIntent.putExtra("",id);
+            startActivity(Intent);
+
             //아이디 서버와 중복 검사.
             /**
             String password = etPass.getText().toString();

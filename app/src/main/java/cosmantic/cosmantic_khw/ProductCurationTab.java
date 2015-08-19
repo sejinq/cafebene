@@ -53,7 +53,7 @@ public class ProductCurationTab implements ProductActivity.SmallTab{
         text = ((MyApplication)context.getApplicationContext()).getProduct().getCuratingInfo();
         //split 특수기호?
         //공백 단위로 curation 을 나눈다.
-        curation = text.split(" ");
+        curation = text.split("\n");
         text="";
         //출력할 형식대로 curation 만들어 주기.
         for(int i=0;i<3;++i)

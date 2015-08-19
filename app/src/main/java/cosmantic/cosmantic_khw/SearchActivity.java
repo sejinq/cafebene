@@ -28,7 +28,7 @@ public class SearchActivity extends Activity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.backButton:
-                    Toast.makeText(SearchActivity.this, "Back Button", Toast.LENGTH_SHORT).show();
+                    finish();
                     break;
                 case R.id.searchButton:
                     if((int)(Math.random()*2)==0) {

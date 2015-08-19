@@ -21,8 +21,8 @@ public class MyApplication extends Application {
     private Hashtable<String, Typeface> fontCache;
     //임시 데이터
     private User user = new User(0, "sejin", "sejin", "쏜", true, 21, 0, null);
-    private Product product = new Product("올인원", 53000, "미샤", 500.0, "이것은 \n 물건 \n 이다", null, "지성?",
-            "올이뉴", "이건 \n 큐레이션 \n 이다", (float)4.2, 100);
+    private Product product = new Product("올인원", 53000, "미샤", 500.0, "이것은\n물건\n이다", null, "지성?",
+            "올이뉴", "이건\n큐레이션\n이다", (float)4.2, 100);
 
     @Override
     public void onCreate() {

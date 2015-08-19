@@ -11,7 +11,7 @@ public class ProductInformTab implements ProductActivity.SmallTab {
     private Context context;
     private RelativeLayout mainView;
 
-    public ProductInformTab(ProductActivity productActivity, RelativeLayout view) {
+    public ProductInformTab(Context context, RelativeLayout view) {
         this.context = context;
         this.mainView = view;
         settingDescription();
