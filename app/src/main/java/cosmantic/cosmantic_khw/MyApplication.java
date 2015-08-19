@@ -4,14 +4,13 @@ import android.app.Application;
 import android.content.Context;
 import android.graphics.Typeface;
 
+import com.facebook.FacebookSdk;
 import com.kakao.auth.Session;
+import com.parse.Parse;
+import com.parse.ParseACL;
 import com.parse.ParseCrashReporting;
-import com.sromku.simple.fb.Permission;
-import com.sromku.simple.fb.SimpleFacebook;
-import com.sromku.simple.fb.SimpleFacebookConfiguration;
-import com.sromku.simple.fb.utils.Logger;
-
-import java.util.Hashtable;
+import com.parse.ParseFacebookUtils;
+import com.parse.ParseUser;
 
 import java.util.Hashtable;
 
@@ -27,10 +26,20 @@ public class MyApplication extends Application {
 
         Session.initialize(this);
         facebookSetting();
+
+        parseCreate();
     }
 
     public void parseCreate(){
         ParseCrashReporting.enable(this);
+        Parse.enableLocalDatastore(this);
+        Parse.initialize(this);
+
+        ParseUser.enableAutomaticUser();
+        ParseACL defaultACL = new ParseACL();
+        ParseACL.setDefaultACL(defaultACL, true);
+
+        ParseFacebookUtils.initialize(getApplicationContext());
     }
 
     public Typeface getFont(String name, Context context){
@@ -48,17 +57,7 @@ public class MyApplication extends Application {
     }
 
     private void facebookSetting(){
-        Logger.DEBUG_WITH_STACKTRACE = true;
-        Permission[] permissions = new Permission[]{
-                Permission.EMAIL,
-                Permission.USER_PHOTOS
-        };
-        SimpleFacebookConfiguration config = new SimpleFacebookConfiguration.Builder()
-                .setAppId(getResources().getString(R.string.facebook_app_key))
-                .setNamespace("cosMantic")
-                .setPermissions(permissions)
-                .build();
-        SimpleFacebook.setConfiguration(config);
+        FacebookSdk.sdkInitialize(getApplicationContext());
     }
     public User getUser(){
         return user;

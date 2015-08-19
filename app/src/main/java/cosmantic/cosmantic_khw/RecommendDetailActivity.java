@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class RecommendDetailActivity extends Activity{
-    public static String SKIN_INFORMATION = "cosmantic.cosmantic_khw.RecommendDetailActivity.skin_type";
+    public static String SKIN_INFORMATION = "cosmantic.cosmantic_khw.RecommendDetailActivity.SKIN_INFORMATION";
     private int skin_type;
     @Override
     protected void onCreate(Bundle savedInstanceState){

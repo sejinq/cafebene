@@ -4,6 +4,7 @@
     <color name="actionbar_background">#0066e0</color>
     <!-- 액션바 제목 글씨 -->
     <color name="actionbar_titletext">#ffffff</color>
+    <color name="login_logo">#bfffffff</color>
     <!-- SignInActivity 힌트 글씨 -->
     <color name="signin_hinttext">#9fa6ad</color>
     <!-- SignInAcitivity 이메일, 비밀번호 글씨 -->
@@ -31,4 +32,7 @@
     <!-- SignUpActivity 버튼 선택 색상 -->
     <color name="signup_btselect">#f28314</color>
     <color name="signup_btunselect">#9fa6ad</color>
+    <!-- Colcor name-->
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
 </resources>

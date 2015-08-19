@@ -4,6 +4,7 @@
     package="cosmantic.cosmantic_khw" >
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <!-- 앱 구성요소에 대한 정보 -->
     <application
@@ -29,6 +30,11 @@
             android:name=".LoginActivity"
             android:label="@string/app_name">
         </activity>
+        <activity android:name="com.facebook.FacebookActivity"
+                  android:configChanges=
+                      "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+                  android:theme="@android:style/Theme.Translucent.NoTitleBar"
+                  android:label="@string/app_name" />
         <activity android:name=".SignUpActivity"></activity>
         <!-- RecommendDetail 액티비티 -->
         <activity
@@ -63,6 +69,12 @@
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_key"/>
+        <meta-data
+            android:name="com.parse.APPLICATION_ID"
+            android:value="@string/parse_app_id" />
+        <meta-data
+            android:name="com.parse.CLIENT_KEY"
+            android:value="@string/parse_client_key" />
     </application>
 
 </manifest>

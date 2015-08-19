@@ -7,6 +7,11 @@
     <string name="kakao_app_key">b57ae7d5ae1806937f6c0d629aacff40</string>
     <string name="error_message_for_service_unavailable">Unstable network connection. \nPlease try again later.</string>
     <string name="facebook_app_key">1617932351828928</string>
+    <string name="parse_app_id">3VsEHJqVXAEqhFlFvDe0NyeBYxqJvdcchsmHrMDQ</string>
+    <string name="parse_client_key">QIEIe931319vphtCQLIfmXBROmGA53UIp9A3ukeK</string>
+
+    <string name="login_main_punchline">남자의\n남자에 의한\n남자를 위한</string>
+    <string name="login_existing_login">기존 아이디로 로그인</string>
 
     <string name="must_inform">필수정보</string>
     <string name="select_inform">선택정보</string>
