@@ -33,4 +33,9 @@
     <style name="HomeTheme" parent="android:Theme.Holo.Light.NoActionBar">
 
     </style>
+
+    <!-- MyPageActivity 테마 -->
+    <style name="MyPageTheme" parent="android:Theme.Holo.Light.NoActionBar">
+
+    </style>
 </resources>

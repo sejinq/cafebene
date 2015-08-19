@@ -6,11 +6,12 @@ import java.util.Set;
 
 public class User {
     // 플래그
-    // 피부 타입
+    // 피부 타입 & 상황별 추천 (추천 화장품들을 보여줄 때 필요)
     public static final int SKIN_TYPE_UNKNOWN = 0;      // 모름
     public static final int SKIN_TYPE_OILY = 1;       // 지성
     public static final int SKIN_TYPE_DRY = 2;        // 건성
     public static final int SKIN_TYPE_SENSITIVE = 3;    // 민감성
+    public static final int SEASON_SOLDIER = 4;
 
     // 관심 효능
     public static final int INEREST_SHARE = 0;        // 보습

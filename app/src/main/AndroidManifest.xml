@@ -78,6 +78,14 @@
             </intent-filter>
         </activity>
 
+        <!-- MyPage 액티비티 -->
+        <activity
+            android:name=".MyPageActivity"
+            android:theme="@style/MyPageTheme"
+            android:screenOrientation="portrait">
+
+        </activity>
+
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />

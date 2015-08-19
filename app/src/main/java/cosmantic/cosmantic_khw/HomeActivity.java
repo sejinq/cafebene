@@ -3,6 +3,8 @@ package cosmantic.cosmantic_khw;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AnimationUtils;
@@ -10,13 +12,15 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 public class HomeActivity extends Activity {
     private ViewFlipper viewFlipper;
-    int flipperCount = 0;
+    private int flipperCount=0;
+    private boolean backCheck=false;
 
     @Override
     protected void onCreate(Bundle savedInstance) {
@@ -33,18 +37,26 @@ public class HomeActivity extends Activity {
         FontApplyer.setFont(this, ((TextView) findViewById(R.id.tab3)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
         FontApplyer.setFont(this, ((TextView) findViewById(R.id.tab4)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
         FontApplyer.setFont(this, ((TextView) findViewById(R.id.home_mainbar_txt)), FontApplyer.Font.NotoSans, FontApplyer.Style.Medium);
+        FontApplyer.setFont(this, ((TextView) findViewById(R.id.home_skintype_title)), FontApplyer.Font.NotoSans, FontApplyer.Style.Medium);
 
         // 나머지 글씨들 글꼴 적용
-        for (int i = 1; i < 3; i++) {
+        for (int i=1;i<=3;i++) {
             int resourceId = getResources().getIdentifier("home_productLayer" + i, "id", "cosmantic.cosmantic_khw");
             settingProductLayer(resourceId);
         }
 
         // 상단 레이아웃 리스너 달기
-        ((ViewFlipper) findViewById(R.id.home_product_container)).setOnTouchListener(TouchListener);
+        viewFlipper = (ViewFlipper) findViewById(R.id.home_product_container);
+//        viewFlipper.setOnTouchListener(TouchListener);        viewFlipper안의 Object들이 Flipper를 덮기 때문에 Flipper의 Touch가 인식되지 않음
 
         // 액션바 searchButton 리스너 달기
         ((ImageButton) findViewById(R.id.searchButton)).setOnClickListener(ClickListener);
+        ((RelativeLayout)findViewById(R.id.home_action_bar)).findViewById(R.id.tab2).setOnClickListener(ClickListener);
+        ((RelativeLayout)findViewById(R.id.home_action_bar)).findViewById(R.id.tab3).setOnClickListener(ClickListener);
+        ((RelativeLayout)findViewById(R.id.home_action_bar)).findViewById(R.id.tab4).setOnClickListener(ClickListener);
+        ((ImageButton) findViewById(R.id.oily_button)).setOnClickListener(ClickListener);
+        ((ImageButton) findViewById(R.id.dry_button)).setOnClickListener(ClickListener);
+        ((ImageButton) findViewById(R.id.sensitive_button)).setOnClickListener(ClickListener);
     }
 
     // 제품 컨테이너 안에 있는 글씨들 글꼴 적용
@@ -69,7 +81,10 @@ public class HomeActivity extends Activity {
         // 제품 클릭시 리스너를 나타내주기 위한 코드
 //        (container.findViewById(R.id.product_left)).setOnClickListener(ClickListener);
 //        (container.findViewById(R.id.product_center)).setOnClickListener(ClickListener);
-//        (container.findViewById(R.id.product_right)).setOnClickListener(ClickListener);
+//        (container.findViewById(R.id.product_right)).setOnClickListener(ClickListener);   // Touch이벤트가 등록되면 Click이벤트가 작동하지 않으므로 Touch에 Click이벤트를 입력
+        (container.findViewById(R.id.product_left)).setOnTouchListener(TouchListener); // Fliper안의 Object에 거리 인식, Flipping효과를 계산하는 이벤트 등록
+        (container.findViewById(R.id.product_center)).setOnTouchListener(TouchListener);
+        (container.findViewById(R.id.product_right)).setOnTouchListener(TouchListener);
     }
 
     // 애니메이션을 위한 코드
@@ -77,6 +92,7 @@ public class HomeActivity extends Activity {
         float xAtDown;
 
         public boolean onTouch(View v, MotionEvent event) {
+            Log.d("Home","Touch:"+v.getId());
             // 이벤트가 터치(ACTION_DOWN)일 때, 손가락이 화면에 붙어 있을 때
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 // 시작좌표입니다. 터치 시점을 저장합니다.
@@ -93,10 +109,12 @@ public class HomeActivity extends Activity {
                 int mMinimumFlipDrag = 50;
 
                 if (mMinimumFlipDrag > xDelta) {
+                    productClick(v);            // 충분히 이동하지 않으면 클릭한것으로 인식
                     return false;
                 }
                 if (xAtUp > xAtDown) {
                     // 좌측 이동시 처리내용.
+                    Log.d("debug","viewFlipper"+viewFlipper);
                     viewFlipper.setInAnimation(AnimationUtils.loadAnimation(HomeActivity.this, R.anim.home_left_in));
                     viewFlipper.setOutAnimation(AnimationUtils.loadAnimation(HomeActivity.this, R.anim.home_left_out));
 
@@ -153,25 +171,85 @@ public class HomeActivity extends Activity {
 
     // 버튼 리스너
     View.OnClickListener ClickListener = new View.OnClickListener() {
+        private Intent intent;
         @Override
         public void onClick(View v) {
+            Log.d("Home", "Click:"+v.getId());
             switch (v.getId()) {
                 case R.id.searchButton:
-                    Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
+                    intent = new Intent(HomeActivity.this, SearchActivity.class);
                     startActivity(intent);
                     break;
-                case R.id.product_left:
-                    Toast.makeText(HomeActivity.this, "product_left", Toast.LENGTH_SHORT).show();
+                case R.id.tab2:
+                    intent = new Intent(HomeActivity.this, RecommendIntroActivity.class);
+                    startActivity(intent);
                     break;
-                case R.id.product_center:
-                    Toast.makeText(HomeActivity.this, "product_center", Toast.LENGTH_SHORT).show();
+                case R.id.tab3:
+                    intent = new Intent(HomeActivity.this, InfoDetailActivity.class);
+                    startActivity(intent);
                     break;
-                case R.id.product_right:
-                    Toast.makeText(HomeActivity.this, "product_right", Toast.LENGTH_SHORT).show();
+                case R.id.tab4:
+                    intent = new Intent(HomeActivity.this, MyPageActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.home_skintype_test:
+                    intent = new Intent(HomeActivity.this, WebViewActivity.class);
+                    startActivity(intent);
+                    break;
+                case R.id.oily_button:
+                    intent = new Intent(HomeActivity.this, RecommendActivity.class);
+                    intent.putExtra(RecommendActivity.RECOMMEND_KEY, User.SKIN_TYPE_OILY);
+                    startActivity(intent);
+                    break;
+                case R.id.dry_button:
+                    intent = new Intent(HomeActivity.this, RecommendActivity.class);
+                    intent.putExtra(RecommendActivity.RECOMMEND_KEY, User.SKIN_TYPE_DRY);
+                    startActivity(intent);
+                    break;
+                case R.id.sensitive_button:
+                    intent = new Intent(HomeActivity.this, RecommendActivity.class);
+                    intent.putExtra(RecommendActivity.RECOMMEND_KEY, User.SKIN_TYPE_SENSITIVE);
+                    startActivity(intent);
                     break;
             }
         }
     };
+
+    private void productClick(View v){
+        switch (v.getId()) {
+            case R.id.product_left:
+                Toast.makeText(HomeActivity.this, "product_left", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.product_center:
+                Toast.makeText(HomeActivity.this, "product_center", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.product_right:
+                Toast.makeText(HomeActivity.this, "product_right", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        backCheck=false;
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                // if문 안에 들어오려면 항상 true여야 한다. 때문에 backCheck만 써줘도 되지만, 가독성을 위해 아래의 문구를 써 주었다.
+                if (backCheck == true)
+                    finish();
+                else {
+                    Toast.makeText(HomeActivity.this, "'뒤로' 버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show();
+                    backCheck = true;
+                    break;
+                }
+        }
+        return true;
+    }
 
     @Override
     protected void onDestroy() {

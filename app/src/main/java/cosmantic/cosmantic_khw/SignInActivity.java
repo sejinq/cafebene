@@ -64,8 +64,6 @@ public class SignInActivity extends Activity {
                     case KeyEvent.KEYCODE_ENTER:
                         ClickListener.onClick(findViewById(R.id.signInLoginButton));
                         return true;
-                    default:
-                        break;
                 }
             }
             return false;

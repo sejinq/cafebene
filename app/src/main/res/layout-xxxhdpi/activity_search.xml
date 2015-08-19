@@ -7,7 +7,7 @@
 
     <include
         layout="@layout/actionbar_search"
-        android:id="@+id/search_actionbar"/>
+        android:id="@+id/actionbar_search"/>
 
     <FrameLayout
         android:layout_width="match_parent"

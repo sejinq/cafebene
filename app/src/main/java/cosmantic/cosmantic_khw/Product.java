@@ -1,6 +1,9 @@
 package cosmantic.cosmantic_khw;
 
 public class Product {
+	// 플래그
+	// 상황별 추천
+
 	// 멤버 변수
 	private String objectId;
 	private String productName;		// 제품명

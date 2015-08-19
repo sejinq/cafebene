@@ -38,20 +38,18 @@
     </RelativeLayout>
 
     <!-- 제품들을 담는 레이아웃 -->
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginLeft="18dp"
-        android:layout_marginRight="18dp">
+        android:layout_marginTop="12dp">
 
         <!-- 왼쪽 제품 -->
         <LinearLayout
             android:id="@+id/product_left"
             android:orientation="vertical"
-            android:layout_width="wrap_content"
+            android:layout_width="0px"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true">
+            android:layout_weight="1">
 
             <!-- 상품 이미지 -->
             <ImageView
@@ -103,9 +101,9 @@
         <LinearLayout
             android:id="@+id/product_center"
             android:orientation="vertical"
-            android:layout_width="wrap_content"
+            android:layout_width="0px"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true">
+            android:layout_weight="1">
 
             <!-- 상품 이미지 -->
             <ImageView
@@ -157,9 +155,9 @@
         <LinearLayout
             android:id="@+id/product_right"
             android:orientation="vertical"
-            android:layout_width="wrap_content"
+            android:layout_width="0px"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true">
+            android:layout_weight="1">
 
             <!-- 상품 이미지 -->
             <ImageView
@@ -206,5 +204,5 @@
                 android:textColor="@color/recommenddetail_productvolumepricetxt"
                 android:layout_gravity="center"/>
         </LinearLayout>
-    </RelativeLayout>
+    </LinearLayout>
 </LinearLayout>

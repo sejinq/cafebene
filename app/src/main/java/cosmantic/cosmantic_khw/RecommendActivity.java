@@ -6,6 +6,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -14,22 +15,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class RecommendActivity extends Activity{
-    private int skin_type;
-    // SKIN_INFORMATION의 키 값
-    public static final String SKIN_INFORMATION = "cosmantic.cosmantic_khw.RecommendActivity.SKIN_INFORMATION";
+    private int flag_info;
+    // 키 값 불러오기
+    public static final String RECOMMEND_KEY = "cosmantic.cosmantic_khw.RecommendActivity.RECOMMEND_KEY";
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommend);
 
-        // 이전 액티비티에서 putIntExtra 한 값을 받아준다.
-        skin_type = this.getIntent().getIntExtra(SKIN_INFORMATION, 0);
+        // 이전 액티비티에서 어떤 추천 화장품을 보여줄 것인지 넘겨준 데이터를 putIntExtra 해서 받아준다.
+        flag_info = this.getIntent().getIntExtra(RECOMMEND_KEY, 0);
 
         // 액션바 제목 추가 및 글꼴 적용
         TextView textView = (TextView)findViewById(R.id.titleText);
 
-        switch(skin_type){
+        switch(flag_info){
             case 0:
                 // 에러 발생이므로 강제 종료
                 Log.e("RecommendActivity", "skin_type 확인");
@@ -42,6 +43,9 @@ public class RecommendActivity extends Activity{
                 break;
             case 3:
                 textView.setText("추천 민감성용 화장품");
+                break;
+            case 4:
+                textView.setText("군인을 위한 화장품");
                 break;
         }
 
@@ -59,7 +63,7 @@ public class RecommendActivity extends Activity{
         ((TextView)(findViewById(R.id.product_layer5)).findViewById(R.id.product_title)).setText("추천 폼클렌징");
 
         // 나머지 글씨들 글꼴 적용
-        for(int i=1;i<5;i++){
+        for(int i=1;i<=5;i++){
             int resourceId = getResources().getIdentifier("product_layer"+i, "id", "cosmantic.cosmantic_khw");
             settingProductLayer(resourceId);
         }
@@ -127,8 +131,17 @@ public class RecommendActivity extends Activity{
         }
     };
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                finish();
+        }
+        return true;
+    }
+
     private void setProduct(){
-        Product[] products = ServerInteraction.getRecommendList(skin_type);
+        Product[] products = ServerInteraction.getRecommendList(flag_info);
         int img_id = R.id.product_left_image;
         int brand_id = R.id.product_left_brandname;
         int product_id = R.id.product_left_productname;

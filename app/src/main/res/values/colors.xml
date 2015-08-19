@@ -33,14 +33,16 @@
     <!-- SignUpActivity 버튼 선택 색상 -->
     <color name="signup_btselect">#f28314</color>
     <color name="signup_btunselect">#9fa6ad</color>
-    <!-- actionbar_home 액티비티 line 색상-->
-    <color name="actionbar_home_line">#0c1e36</color>
+    <!-- actionbar_home 액티비티 , MyPageActivity line 색상-->
+    <color name="line_color">#0c1e36</color>
     <!-- tab 액션바 배경-->
     <color name="tab_background">#ffffff</color>
-    <!-- HomeActivity 배경 -->
+    <!-- HomeActivity, RecommendIntroActivity 배경 -->
     <color name="home_background">#f4f4f4</color>
     <!-- HomeActivity 컨테이너들 배경 -->
     <color name="home_containerbg">#ffffff</color>
     <!-- HomeActivity 메인바 글씨 -->
     <color name="home_mainbar_txt">#ffffff</color>
+    <!-- MyPageActivity 상단 컨테이너 배경 -->
+    <color name="mypage_top_container_bg">#d8d8d8</color>
 </resources>
