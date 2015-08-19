@@ -92,16 +92,21 @@
 
         <include
             android:id="@+id/tablayout2"
+            android:visibility="gone"
             layout="@layout/product_inform_tab"
+            android:isScrollContainer="true"
             />
 
         <include
             android:id="@+id/tablayout3"
+            android:visibility="gone"
             layout="@layout/product_price_inform_tab"
             />
 
         <include
             android:id="@+id/tablayout4"
+            android:visibility="gone"
+            android:isScrollContainer="true"
             layout="@layout/product_user_review_tab"
             />
 

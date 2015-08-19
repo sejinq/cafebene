@@ -10,6 +10,7 @@ public class WebViewActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstance){
         super.onCreate(savedInstance);
+
     }
     @Override
     protected void onDestroy(){

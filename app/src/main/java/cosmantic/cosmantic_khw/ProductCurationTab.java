@@ -22,16 +22,26 @@ public class ProductCurationTab implements ProductActivity.SmallTab{
     }
 
     private void effectSetting(){
-        int[] effects = ((MyApplication)context.getApplicationContext()).getProduct().getTag();
+      // int[] effects = ((MyApplication)context.getApplicationContext()).getProduct().getEffects();
+        //임시데이터
+        int[] effects = new int[2];
+        effects[0] = 0;
+        effects[1] = 1;
+
         for(int loop=0; loop<effects.length; loop++){
             if(effects[loop] == 0){ //0을 플래그 참조로 바꿀것
                 ((TextView)mainView.findViewById(R.id.effect_tag1)).setTextColor(context.getResources().getColor(R.color.effect_enable));
+                ((TextView)mainView.findViewById(R.id.effect_tag1)).setBackgroundResource(R.drawable.select_small_box);
             }else if(effects[loop] == 1){
                 ((TextView)mainView.findViewById(R.id.effect_tag2)).setTextColor(context.getResources().getColor(R.color.effect_enable));
+                ((TextView)mainView.findViewById(R.id.effect_tag2)).setBackgroundResource(R.drawable.select_small_box);
+
             }else {
+                ((TextView)mainView.findViewById(R.id.effect_tag3)).setBackgroundResource(R.drawable.select_small_box);
                 ((TextView)mainView.findViewById(R.id.effect_tag3)).setTextColor(context.getResources().getColor(R.color.effect_enable));
             }
         }
+
     }
     private void graphSetting(){
 

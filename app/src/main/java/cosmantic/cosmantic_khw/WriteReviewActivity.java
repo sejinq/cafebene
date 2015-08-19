@@ -70,10 +70,10 @@ public class WriteReviewActivity extends Activity {
         title.setText("평가하기");
         btShare.setImageResource(R.drawable.share_button);
         /*myImage.setImageResource(); byte로 저장되어있음*/
-        image.setImageBitmap(((MyApplication) getApplicationContext()).getImage(((MyApplication) getApplicationContext()).getProduct().getThumnail()));
-        myImage.setImageBitmap(((MyApplication) getApplicationContext()).getImage(((MyApplication) getApplicationContext()).getUser().getImage()));
-        int aver = Math.round(((MyApplication) getApplicationContext()).getProduct().getScore());
-
+        //image.setImageBitmap(((MyApplication) getApplicationContext()).getImage(((MyApplication) getApplicationContext()).getProduct().getThumnail()));
+        //myImage.setImageBitmap(((MyApplication) getApplicationContext()).getImage(((MyApplication) getApplicationContext()).getUser().getImage()));
+        //int aver = Math.round(((MyApplication) getApplicationContext()).getProduct().getScore());
+        int aver = 4;
         for(int i=0;i<aver;++i)
         {
             star[i].setImageResource(R.drawable.star_inable);

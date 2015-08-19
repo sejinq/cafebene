@@ -1,11 +1,13 @@
 package cosmantic.cosmantic_khw;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -31,6 +33,7 @@ public class ProductActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstance){
         super.onCreate(savedInstance);
+        setContentView(R.layout.activity_product);
 
         title = (TextView) findViewById(R.id.titleText);
         btShare = (ImageButton) findViewById(R.id.searchButton);
@@ -58,6 +61,7 @@ public class ProductActivity extends Activity {
                 RelativeLayout view =  (RelativeLayout)findViewById(R.id.tablayout1);
                 //선택 될 탭의 내용만 활성화.
                 view.setVisibility(View.VISIBLE);
+                findViewById(R.id.tab1).setBackgroundResource(R.drawable.tap);
                 //RelativeLayout 정보와 ProductActivity의 content를 같이 넘겨주기.
                 tabClass = new ProductCurationTab(ProductActivity.this,view);
             }
@@ -68,6 +72,7 @@ public class ProductActivity extends Activity {
                 frameInvisible();
                 RelativeLayout view =  (RelativeLayout)findViewById(R.id.tablayout2);
                 view.setVisibility(View.VISIBLE);
+                findViewById(R.id.tab2).setBackgroundResource(R.drawable.tap);
                 tabClass = new ProductInformTab(ProductActivity.this,view);
             }
         });
@@ -77,6 +82,7 @@ public class ProductActivity extends Activity {
                 frameInvisible();
                 RelativeLayout view =  (RelativeLayout)findViewById(R.id.tablayout3);
                 view.setVisibility(View.VISIBLE);
+                findViewById(R.id.tab3).setBackgroundResource(R.drawable.tap);
                 tabClass = new PriceInformTab(ProductActivity.this,view);
             }
         });
@@ -86,7 +92,8 @@ public class ProductActivity extends Activity {
                 frameInvisible();
                 RelativeLayout view =  (RelativeLayout)findViewById(R.id.tablayout4);
                 view.setVisibility(View.VISIBLE);
-                tabClass = new UserReviewTab(ProductActivity.this,view);
+                findViewById(R.id.tab4).setBackgroundResource(R.drawable.tap);
+                //tabClass = new UserReviewTab(ProductActivity.this,view);
             }
         });
 
@@ -94,7 +101,7 @@ public class ProductActivity extends Activity {
         title.setText("화장품 상세");
         btShare.setImageResource(R.drawable.share_button);
         /*myImage.setImageResource(); byte로 저장되어있음*/
-        product.setImageBitmap(((MyApplication) getApplicationContext()).getImage(((MyApplication) getApplicationContext()).getProduct().getThumnail()));
+       // product.setImageBitmap(((MyApplication) getApplicationContext()).getImage(((MyApplication) getApplicationContext()).getProduct().getThumnail()));
         /*brand 이름과 제품 이름을 받아 보여준다.*/
         String text = ((MyApplication) getApplicationContext()).getProduct().getBrand();
         brand.setText(text);
@@ -102,20 +109,21 @@ public class ProductActivity extends Activity {
         name.setText(text);
         /*별점 평균을 받아 평균에 맞는 별 이미지를 보여준다,*/
         int aver = Math.round(((MyApplication) getApplicationContext()).getProduct().getScore());
-        text = aver+".0";
+        text = ((MyApplication) getApplicationContext()).getProduct().getScore()+" (";
         for(int i=0;i<aver;++i)
         {
             star[i].setImageResource(R.drawable.star_inable);
         }
         aver = ((MyApplication) getApplicationContext()).getProduct().getReviewNum();
-        text += " ("+aver+"명)";
+        text += aver+"명)";
         /*리뷰한 사람의 수와 별점의 평균을 수치화해서 보여준다. ex) 4.5(100명) */
         average.setText(text);
-        likeProducts = ((MyApplication)getApplicationContext()).getProduct().getObjectId();
+        /*likeProducts = ((MyApplication)getApplicationContext()).getProduct().getObjectId();
         //하트 눌려있으면 이미지도 on해주기.
+
         if(((MyApplication)getApplicationContext()).getUser().isLike(likeProducts))
              btLike.setImageResource(R.drawable.love_inable);
-
+*/
     }
 
     View.OnClickListener onShare = new View.OnClickListener() {
@@ -141,6 +149,10 @@ public class ProductActivity extends Activity {
         findViewById(R.id.tablayout2).setVisibility(View.GONE);
         findViewById(R.id.tablayout3).setVisibility(View.GONE);
         findViewById(R.id.tablayout4).setVisibility(View.GONE);
+        findViewById(R.id.tab1).setBackgroundResource(Color.TRANSPARENT);
+        findViewById(R.id.tab2).setBackgroundResource(Color.TRANSPARENT);
+        findViewById(R.id.tab3).setBackgroundResource(Color.TRANSPARENT);
+        findViewById(R.id.tab4).setBackgroundResource(Color.TRANSPARENT);
     }
     @Override
     protected void onDestroy(){

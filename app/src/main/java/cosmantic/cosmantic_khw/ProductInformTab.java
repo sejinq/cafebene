@@ -14,11 +14,24 @@ public class ProductInformTab implements ProductActivity.SmallTab {
     public ProductInformTab(ProductActivity productActivity, RelativeLayout view) {
         this.context = context;
         this.mainView = view;
+        settingDescription();
+        settingProducts();
     }
-    private void settingEffect()
+    //제품의 가격, 용량, 설명 받아오기
+    private void settingDescription()
     {
         String text;
-        text = ((MyApplication)context.getApplicationContext()).getProduct().getEffects();
-        ((TextView)mainView.findViewById(R.id.product_curation)).setText(text);
+        text = ((MyApplication)context.getApplicationContext()).getProduct().getDescription();
+        ((TextView)mainView.findViewById(R.id.effect)).setText(text);
+        int value = ((MyApplication)context.getApplicationContext()).getProduct().getPrice();
+        ((TextView)mainView.findViewById(R.id.price)).setText(value+"원");
+        value = (int)((MyApplication)context.getApplicationContext()).getProduct().getSize();
+        ((TextView)mainView.findViewById(R.id.amount)).setText(value+"ml");
+
+    }
+    //유사 제품 보여주기
+    private void settingProducts()
+    {
+
     }
 }

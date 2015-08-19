@@ -1,13 +1,18 @@
 package cosmantic.cosmantic_khw;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TableRow;
+import android.widget.Toast;
 
 public class SignUpActivity extends Activity {
 
@@ -28,87 +33,96 @@ public class SignUpActivity extends Activity {
     //입력 유무 체크
     boolean checkNick=false, checkGender = false, checkAge = false;
     //관심효능 변수
-    int effect=0;
-    int userType; // 인텐트 값 저장해라...1~~!!@~@!@!@!@
-
+    int effect=0, userType;
+    String userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-       /* ActionBar actionBar = getActionBar();
-        actionBar.setTitle("회원가입");
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.show();*/
-        /*회원가입 방법 선택에 따라 보여주거나 안보여줄 행.인텐트 값 받아서 설정해 주기.
-        passRow.setVisibility(View.GONE); passRow가 사라지고 동작하지 않음
-        INVISIBLE : passRow가 사라지지만 투명하게 보이게함(공간은 남겨둠)
-        VISIBLE : 보여진다. 디폴트 값.
-        인텐트 받아오기
-        if()
-        {
-            passRow.setVisibility(View.GONE);
-        }
-        */
-        TableRow passRow = (TableRow)findViewById(R.id.passRow);
-        TableRow repassRow = (TableRow)findViewById(R.id.repassRow);
-
         //회원가입시 유저 정보. 아이디, 닉네임, 비밀번호, 성별, 나이
-        etID = (EditText)findViewById(R.id.editText1);
-        etNick = (EditText)findViewById(R.id.editText2);
-        etPass = (EditText)findViewById(R.id.editText3);
-        etR_Pass = (EditText)findViewById(R.id.editText4);
+        etID = (EditText)findViewById(R.id.etID);
+        etNick = (EditText)findViewById(R.id.etNick);
+        etPass = (EditText)findViewById(R.id.etPass);
+        etR_Pass = (EditText)findViewById(R.id.etRePass);
 
-        btNick = (Button)findViewById(R.id.button1);
+        btNick = (Button)findViewById(R.id.check_button);
         btNick.setOnClickListener(onNick);
 
-        btMale = (Button)findViewById(R.id.button2);
+        btMale = (Button)findViewById(R.id.gender_male);
         btMale.setOnClickListener(listener);
-        btFemale = (Button)findViewById(R.id.button3);
+        btFemale = (Button)findViewById(R.id.gender_female);
 
         btFemale.setOnClickListener(listener);
 
-        btAge[0] = (Button)findViewById(R.id.button4);
-        btAge[1] = (Button)findViewById(R.id.button5);
-        btAge[2] = (Button)findViewById(R.id.button6);
-        btAge[3] = (Button)findViewById(R.id.button7);
-        for(int i=0;i<4;++i)
+        btAge[0] = (Button)findViewById(R.id.age10);
+        btAge[1] = (Button)findViewById(R.id.age20);
+        btAge[2] = (Button)findViewById(R.id.age30);
+        btAge[3] = (Button)findViewById(R.id.age40);
+        btAge[4] = (Button)findViewById(R.id.age50);
+        for(int i=0;i<5;++i)
         {
             btAge[i].setOnClickListener(listener2);
         }
-        //유저의 피부타입 정보. 0.지성, 1.건성, 2.민감성, 3.모름
-        btSkinType[0] = (Button)findViewById(R.id.button8);
-        btSkinType[1] = (Button)findViewById(R.id.button9);
-        btSkinType[2] = (Button)findViewById(R.id.button10);
-        btSkinType[3] = (Button)findViewById(R.id.button11);
+        //유저의 피부타입 정보.  1.건성, 2.지성, 3.민감성, 0.모름
+        btSkinType[0] = (Button)findViewById(R.id.skin_unknown);
+        btSkinType[1] = (Button)findViewById(R.id.skin_dry);
+        btSkinType[2] = (Button)findViewById(R.id.skin_oily);
+        btSkinType[3] = (Button)findViewById(R.id.skin_sensitive);
         for(int i=0;i<4;++i)
         {
             btSkinType[i].setOnClickListener(listener3);
         }
 
-        //유저의 관심효능 0.보습, 1.여드름개선, 2.주름개선, 3.모공관리, 4.자외선차단, 5.미백, 6.피부재생, 7.각질제거
-        btEffect[0] = (Button)findViewById(R.id.button12);
-        btEffect[1] = (Button)findViewById(R.id.button13);
-        btEffect[2] = (Button)findViewById(R.id.button14);
-        btEffect[3] = (Button)findViewById(R.id.button15);
-        btEffect[4] = (Button)findViewById(R.id.button16);
-        btEffect[5] = (Button)findViewById(R.id.button17);
-        btEffect[6] = (Button)findViewById(R.id.button18);
-        btEffect[7] = (Button)findViewById(R.id.button19);
+        //유저의 관심효능 0.피지, 1.주름, 2.유분, 3.다크써클, 4.아토피, 5.여드름, 6.피부톤, 7.민감성
+        btEffect[0] = (Button)findViewById(R.id.effect_sebum);
+        btEffect[1] = (Button)findViewById(R.id.effect_wrinkle);
+        btEffect[2] = (Button)findViewById(R.id.effect_oil);
+        btEffect[3] = (Button)findViewById(R.id.effect_dark);
+        btEffect[4] = (Button)findViewById(R.id.effect_dry);
+        btEffect[5] = (Button)findViewById(R.id.effect_trouble);
+        btEffect[6] = (Button)findViewById(R.id.effect_color);
+        btEffect[7] = (Button)findViewById(R.id.effect_sensitive);
 
         for(int i=0;i<8;++i)
         {
             btEffect[i].setOnClickListener(listener4);
         }
 
-        btSignup = (Button)findViewById(R.id.button20);
+        btSignup = (Button)findViewById(R.id.signup_button);
         btSignup.setOnClickListener(onSignup);
 
         ckAgree = (CheckBox)findViewById(R.id.checkBox);
        // ckAgree.setOnClickListener(onAgree);
 
+        //Intent intent = getIntent();
+       // userType = intent.getExtras().getInt("type");
+       // userId = intent.getExtras().getString("id");
+        settingUserType(User.UserType.KAKAO, "페북ㅇ웅");
     }
 
+    //유저 타입에 따라 화면 레이아웃 바꿔 주기.
+    private void settingUserType(int userType, String id)
+    {
+        //그냥 가입하기, 플래그로 바꿔주기..?설정 없음..
+        //카카오톡 또는 페이스북..
+        if(userType==User.UserType.FACEBOOK||userType==User.UserType.KAKAO)
+        {
+            //dp값 설정해 주기.>기기에 맞게 바뀌게 dp 코딩 해 주어야함.
+            DisplayMetrics dm = getResources().getDisplayMetrics();
+            int size = Math.round(50 * dm.density);
+            //dp값 변경하고자 하는 부분에 값 넣어주기.
+            RelativeLayout.LayoutParams plControl = (RelativeLayout.LayoutParams) ((RelativeLayout) findViewById(R.id.rel1)).getLayoutParams();
+            plControl.topMargin = size;
+            ((RelativeLayout) findViewById(R.id.rel1)).setLayoutParams(plControl);
+//비밀번호 입력란 사라지기, 아이디칸 입력창이 아니라 파싱한 아이디 보여주기.
+            ((RelativeLayout) findViewById(R.id.passRow)).setVisibility(View.GONE);
+            ((RelativeLayout) findViewById(R.id.repassRow)).setVisibility(View.GONE);
+            etID.setText(id);
+            etID.setFocusable(false);
+            etID.setClickable(false);
+        }
+    }
     //닉네임 중복확인
     View.OnClickListener onNick = new View.OnClickListener() {
         public void onClick(View v) {
@@ -128,15 +142,19 @@ public class SignUpActivity extends Activity {
     View.OnClickListener listener = new View.OnClickListener() {
         public void onClick(View v) {
             checkGender = true;
+            //모든 버튼 해제 이미지로 초기화
             initSelect(btMale);initSelect(btFemale);
             switch (v.getId()) {
-                case R.id.button2:
+                //선택된 버튼만 선택 이미지로 바꿔주고, gender에 값 저장.
+                case R.id.gender_male:
                     gender = false;
-                    //다른 버튼 해제 이미지로 바꿔 주기.
+                    btMale.setBackgroundDrawable(getResources().getDrawable(R.drawable.select_small_box));
+                    btMale.setTextColor(0xf28314);
                     break;
-                case R.id.button3:
+                case R.id.gender_female:
+                    btFemale.setBackgroundDrawable(getResources().getDrawable(R.drawable.select_small_box));
+                    btFemale.setTextColor(0xf28314);
                     gender = true;
-                    //다른 버튼 해제 이미지로 바꿔 주기.
                     break;
             }
         }
@@ -150,30 +168,32 @@ public class SignUpActivity extends Activity {
                 initSelect(btAge[i]);
             }
             switch (v.getId()) {
-                case R.id.button4:
-                    btAge[0].setTextColor(0xf28314); age = 10; break;
-                case R.id.button5:
-                    btAge[1].setTextColor(0xf28314); age = 20; break;
-                case R.id.button6:
-                    btAge[2].setTextColor(0xf28314); age = 30; break;
-                case R.id.button7:
-                    btAge[3].setTextColor(0xf28314); age = 40; break;
-               /* case R.id.button7:
-                    age = 50;btAge_50.setTextColor(0xf28314); break;*/
+                case R.id.age10:
+                    selectEvent(btAge[0]);
+                    age = 10; break;
+                case R.id.age20:
+                    selectEvent(btAge[1]);
+                    age = 20; break;
+                case R.id.age30:
+                    selectEvent(btAge[2]);
+                    age = 30; break;
+                case R.id.age40:
+                    selectEvent(btAge[3]);
+                    age = 40; break;
+               case R.id.age50:
+                    age = 50;
+                   selectEvent(btAge[4]);
+                   break;
             }
         }
     };
-    private void initSelect(Button button)
-    {
+    private void initSelect(Button button) {
+        button.setBackgroundDrawable(getResources().getDrawable(R.drawable.unselect_small_box));
         button.setTextColor(0x9fa6ad);
-        //button.setBackground(R.drawable.);
-        //btAge_50.setTextColor(0x9fa6ad);
     }
-    private void initSelect2(Button button)
-    {
-        button.setTextColor(0x9fa6ad);
-        //button.setBackground(R.drawable.);
-        //btAge_50.setTextColor(0x9fa6ad);
+    private void selectEvent(Button button) {
+        button.setBackgroundDrawable(getResources().getDrawable(R.drawable.select_small_box));
+        button.setTextColor(0xf28314);
     }
     //피부타입 선택
     View.OnClickListener listener3 = new View.OnClickListener() {
@@ -183,13 +203,17 @@ public class SignUpActivity extends Activity {
                 initSelect(btSkinType[i]);
             }
             switch (v.getId()) {
-                case R.id.button8:
+                case R.id.skin_unknown:
+                    selectEvent(btSkinType[0]);
                     skinType=0; break;
-                case R.id.button9:
+                case R.id.skin_dry:
+                    selectEvent(btSkinType[1]);
                     skinType=1; break;
-                case R.id.button10:
+                case R.id.skin_oily:
+                    selectEvent(btSkinType[2]);
                     skinType=2; break;
-                case R.id.button11:
+                case R.id.skin_sensitive:
+                    selectEvent(btSkinType[3]);
                     skinType=3; break;
             }
         }
@@ -198,21 +222,21 @@ public class SignUpActivity extends Activity {
     View.OnClickListener listener4 = new View.OnClickListener() {
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.button12:
+                case R.id.effect_sebum:
                      multiSelect(btEffect[0], 0);break;
-                case R.id.button13:
+                case R.id.effect_wrinkle:
                     multiSelect(btEffect[1], 1);break;
-                case R.id.button14:
+                case R.id.effect_oil:
                     multiSelect(btEffect[2], 2);break;
-                case R.id.button15:
+                case R.id.effect_dark:
                     multiSelect(btEffect[3], 3);break;
-                case R.id.button16:
+                case R.id.effect_dry:
                     multiSelect(btEffect[4], 4);break;
-                case R.id.button17:
+                case R.id.effect_trouble:
                     multiSelect(btEffect[5], 5);break;
-                case R.id.button18:
+                case R.id.effect_color:
                     multiSelect(btEffect[6], 6);break;
-                case R.id.button19:
+                case R.id.effect_sensitive:
                     multiSelect(btEffect[7], 7);break;
             }
         }
@@ -220,19 +244,19 @@ public class SignUpActivity extends Activity {
     //버튼 상태에 따라 처리를 달리 해 준다.
     private void multiSelect(Button button, int index)
     {
-        //선택 안되어있을 때
-        if(button.getCurrentTextColor()==0x9fa6ad)
+        //선택 안되어있을 때>선택이미지로
+        if(skinProblem[index]==false)
         {
             skinProblem[index] = true;
+           button.setBackgroundResource(R.drawable.select_small_box);
             button.setTextColor(0xf28314);
-           // button.setBackground(R.drawable.);
         }
-        //선택 되어있을 때
+        //선택 되어있을 때>선택 해제 이미지로
         else
         {
             skinProblem[index] = false;
+            button.setBackgroundResource(R.drawable.unselect_small_box);
             button.setTextColor(0x9fa6ad);
-            //button.setBackground(R.drawable.);
         }
     }
     /*이용약관 동의 체크박스
@@ -248,6 +272,7 @@ public class SignUpActivity extends Activity {
     View.OnClickListener onSignup = new View.OnClickListener() {
         public void onClick(View v) {
             //아이디 서버와 중복 검사.
+            /**
             String password = etPass.getText().toString();
             String R_password = etR_Pass.getText().toString();
             if(!checkNick)
@@ -280,6 +305,14 @@ public class SignUpActivity extends Activity {
                 }
                 //MyApplication에 생성하기.
                 User user = new User(userType, username, password, displayedName, gender, age, skinType, effect);
+
+                //임시 테스트
+                String text = "아이디 : "+user.getUsername()+"\n 비밀번호 : "+user.getPassword()+"\n 닉네임 :"+user.getDisplayedName();
+                Toast.makeText(SignUpActivity.this, text, Toast.LENGTH_SHORT).show();
+                text = "나이 : "+user.getAge()+"\n 피부타입 : "+user.getSkinType()+"\n 관심효과 :"+user.getSkinProblem();
+                Toast.makeText(SignUpActivity.this, text, Toast.LENGTH_SHORT).show();
+
+
                 if(ServerInteraction.onSignUp(user) == ServerInteraction.signUpFlag.SUCCESS)
                 {
                     ((MyApplication)getApplicationContext()).setUser(user);
@@ -291,7 +324,9 @@ public class SignUpActivity extends Activity {
                 }
 
             }
+             **/
         }
+
     };
     private int checkBoolean(boolean[] array)
     {
@@ -305,6 +340,7 @@ public class SignUpActivity extends Activity {
         }
         return num;
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

@@ -60,7 +60,7 @@ public class PriceInformTab implements ProductActivity.SmallTab {
             }
         });
         //모르겠져유ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ
-        ((ImageButton) mainView.findViewById(R.id.eleven_store)).setOnClickListener(new View.OnClickListener() {
+        ((ImageButton) mainView.findViewById(R.id.store11)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //제품 이름 검색할 text로 저장,

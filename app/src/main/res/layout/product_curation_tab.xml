@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:customviews="http://schemas.android.com/apk/res-auto"
+    android:isScrollContainer="true"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="23dp"
             android:layout_marginStart="23dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="25dp"
             android:id="@+id/dot_bar"
             android:src="@drawable/dot_bar"/>
 
@@ -19,7 +21,7 @@
             android:layout_marginLeft="7dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/user_review"
+            android:text="피부타입별 성분 그래프"
             android:textSize="14dp"
             android:id="@+id/text"/>
         <TextView
@@ -29,18 +31,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/user_review"
+            android:text="+ POSITIVE"
+            android:textColor="#ff00c3dd"
             android:id="@+id/positive"/>
 
         <TextView
             android:layout_toRightOf="@+id/positive"
             android:layout_toEndOf="@+id/positive"
             android:layout_alignBottom="@+id/positive"
+            android:textColor="#ffff7e27"
             android:textSize="9dp"
             android:layout_marginLeft="10.5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/user_review"
+            android:text="- NEGATIVE"
             android:id="@+id/negetive"/>
 
         <LinearLayout
@@ -94,43 +98,103 @@
                     customviews:type_text="민감성" />
             </RelativeLayout>
         </LinearLayout>
-
-    <TextView
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/effect_white"
-        android:textColor="@color/effect_disable"
-        android:id="@+id/effect_tag1"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/linearLayout"
-        android:layout_alignStart="@+id/linearLayout" />
+        android:layout_marginLeft="23dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="15dp"
+        android:id="@+id/relativeLayout1"
+        android:layout_below="@+id/linearLayout"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bar"
+            android:src="@drawable/bar"/>
 
-    <TextView
+        <TextView
+            android:layout_toRightOf="@+id/bar"
+            android:layout_toEndOf="@+id/bar"
+            android:layout_marginLeft="7dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="기능성"
+            android:textSize="14dp"
+            android:id="@+id/text2"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="# 미백"
+            android:textSize="12dp"
+            android:textColor="@color/effect_disable"
+            android:id="@+id/effect_tag1"
+            android:layout_marginTop="12.5dp"
+            android:layout_below="@+id/bar"
+            android:layout_alignLeft="@+id/text2"
+             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:text="# 주름 개선"
+            android:textScaleX="center"
+            android:textColor="@color/effect_disable"
+            android:id="@+id/effect_tag2"
+            android:layout_alignTop="@+id/effect_tag1"
+            android:layout_toRightOf="@+id/effect_tag1"
+            android:layout_toEndOf="@+id/effect_tag1"
+            android:layout_marginLeft="19dp"
+             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="# 자외선 차단"
+            android:textSize="12dp"
+            android:textColor="@color/effect_disable"
+            android:id="@+id/effect_tag3"
+            android:textScaleX="center"
+            android:layout_alignTop="@+id/effect_tag2"
+            android:layout_toRightOf="@+id/effect_tag2"
+            android:layout_toEndOf="@+id/effect_tag2"
+            android:layout_marginLeft="19dp"
+            />
+    </RelativeLayout>
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/effect_wrinkle"
-        android:textColor="@color/effect_disable"
-        android:id="@+id/effect_tag2"
-        android:layout_alignBottom="@+id/negetive"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/relativeLayout1"
+        >
+        <ImageView
+            android:layout_marginLeft="23dp"
+            android:layout_marginStart="23dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bar2"
+            android:src="@drawable/bar"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/effect_sun"
-        android:textColor="@color/effect_disable"
-        android:id="@+id/effect_tag3"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        <TextView
+            android:layout_toRightOf="@+id/bar2"
+            android:layout_toEndOf="@+id/bar2"
+            android:layout_marginLeft="7dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="제품 특징"
+            android:textSize="14dp"
+            android:id="@+id/text3"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/product_curation"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/product_curation"
+            android:layout_below="@+id/text3"
+            android:layout_marginTop="12.5dp"
+            android:textSize="12dp"
+            android:layout_marginLeft="38dp"/>
 
+    </RelativeLayout>
 </RelativeLayout>

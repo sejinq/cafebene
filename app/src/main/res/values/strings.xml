@@ -12,7 +12,7 @@
     <string name="must_inform">필수정보</string>
     <string name="select_inform">선택정보</string>
     <string name="pass_message">6자 이상, 숫자, 영문, 대소문자</string>
-    <string name="id_message">아이디입력</string>
+    <string name="id_message">이메일을 입력하세요</string>
     <string name="repass_message">비밀번호를 다시 입력하세요</string>
     <string name="user_id">아이디</string>
     <string name="user_nick">닉네임</string>
@@ -22,6 +22,7 @@
     <string name="user_age">나이</string>
     <string name="skin_type">피부타입</string>
     <string name="interest_effect">관심효능</string>
+    <string name="multi_select">(중복선택)</string>
     <string name="nick_message">닉네임을 입력하세요</string>
     <string name="overlap_select">중복선택</string>
 
@@ -32,20 +33,21 @@
     <string name="age_20">20대</string>
     <string name="age_30">30대</string>
     <string name="age_40">40대</string>
+    <string name="age_50">50대</string>
     <string name="skin_oily">지성</string>
     <string name="skin_dry">건성</string>
     <string name="skin_sensitive">민감성</string>
     <string name="skin_unknown">모름</string>
-    <string name="effect_share">보습</string>
-    <string name="effect_trouble">여드름개선</string>
-    <string name="effect_wrinkle">주름개선</string>
-    <string name="effect_pore">모공축소</string>
-    <string name="effect_sun">자외선차단</string>
-    <string name="effect_white">미백</string>
-    <string name="effect_repair">피부재생</string>
-    <string name="effect_scrub">각질제거</string>
+    <string name="effect_oil">유분</string>
+    <string name="effect_sebum">피지</string>
+    <string name="effect_wrinkle">주름</string>
+    <string name="effect_dark">다크써클</string>
+    <string name="effect_dry">아토피</string>
+    <string name="effect_trouble">여드름</string>
+    <string name="effect_color">피부톤</string>
+    <string name="effect_sensitive">민감성</string>
     <string name="agree_message">이용약관/개인취급정보방침동의</string>
-    <string name="signup">가입완료</string>
+    <string name="signup">가입 완료</string>
 
     <!-- review_write 페이지-->
     <string name="myreview">마이리뷰</string>

@@ -15,17 +15,18 @@ public class Product {
 	private String curatingInfo;	// 큐레이팅 정보
 	private float score; //별점 스코어
 	private int reviewNum; //리뷰한 사람 수
-
+	private String description;
 	// 기본 생성자
 	Product(){}
 	
 	// 모든 정보를 다 받아오는 생성자
-	Product(String productName, int price, String brand, double size, int[] effects, String skintype, String type, String curatingInfo, float score, int reviewNum){
+	Product(String productName, int price, String brand, double size, String description, int[] effects, String skintype, String type, String curatingInfo, float score, int reviewNum){
 		this.productName = productName;
 		this.price = price;
 		this.brand = brand;
 		this.size = size;
 		this.effects = effects;
+		this.description = description;
 		this.skintype = skintype;
 		this.type = type;
 		this.curatingInfo = curatingInfo;
@@ -43,6 +44,8 @@ public class Product {
 	public int getReviewNum() {
 		return reviewNum;
 	}
+
+	public String getDescription() {	return description;	}
 
 	public void setScore(float score) {
 		this.score = score;
