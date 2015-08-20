@@ -12,7 +12,12 @@ public class InfoDetailActivity extends Activity {
         setContentView(R.layout.activity_info_detail);
 
         Intent intent = getIntent();
-        pageTab = intent.getExtras().getInt("pageNum");
+        pageTab = intent.getExtras().getInt("pageTag");
+        showWeb(pageTab);
+
+    }
+    private void showWeb(int tab)
+    {
 
     }
     @Override

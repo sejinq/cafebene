@@ -10,6 +10,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
@@ -22,38 +23,41 @@ public class InformationActivity extends Activity {
 
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_information);
+
         webview = new WebView(this);
         ((ImageButton) this.findViewById(R.id.inform_1)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //바로 웹뷰로 넘어감. 피부타입 테스트
-                webview = new WebView(getApplicationContext());
-                webview.loadUrl("http://www.cosmantic.co.kr");
-                //setContentView(webview);
-                }
+                Intent nextIntent = new Intent(InformationActivity.this, WebViewActivity.class);
+                nextIntent.putExtra("webview_title", "화장품 상식");
+                nextIntent.putExtra("webview_url", "http://m.blog.naver.com/cosmeticforman/220451294230");
+                startActivity(nextIntent);
+            }
         });
+        //추천제품리뷰
         ((ImageButton) this.findViewById(R.id.inform_2)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            //    Intent nextIntent = new Intent(InformationActivity.this, InfoDetailActivity.class);
-              //  nextIntent.putExtra("pageTag", web_pageFlag.PG_BAGIC_INFORM);
-              //  startActivity(nextIntent);
+                Intent nextIntent = new Intent(InformationActivity.this, WebViewActivity.class);
+                nextIntent.putExtra("pageTag", web_pageFlag.PG_PRODUCT_REVIEW);
+                startActivity(nextIntent);
             }
         });
         ((ImageButton) this.findViewById(R.id.inform_3)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // Intent nextIntent = new Intent(InformationActivity.this, InfoDetailActivity.class);
-               // nextIntent.putExtra("pageNum", web_pageFlag.PG_PRODUCT_REVIEW);
-               // startActivity(nextIntent);
+                Intent nextIntent = new Intent(InformationActivity.this, InfoDetailActivity.class);
+                nextIntent.putExtra("pageNum", web_pageFlag.PG_BAGIC_INFORM);
+                startActivity(nextIntent);
             }
         });
         ((ImageButton) this.findViewById(R.id.inform_4)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent nextIntent = new Intent(InformationActivity.this, InfoDetailActivity.class);
-                //nextIntent.putExtra("pageNum", web_pageFlag.PG_INGREDIENT);
-                //startActivity(nextIntent);
+                Intent nextIntent = new Intent(InformationActivity.this, InfoDetailActivity.class);
+                nextIntent.putExtra("pageNum", web_pageFlag.PG_INGREDIENT);
+                startActivity(nextIntent);
             }
         });
 
