@@ -15,28 +15,28 @@
             android:layout_height="wrap_content"
            >
 
-            <RelativeLayout
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:id="@+id/info_detail_basic"
-                android:visibility="gone">
-
-                <ListView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/listView"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
-            </RelativeLayout>
+                android:visibility="gone"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" >
+                </LinearLayout>
 
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:id="@+id/info_detail_review"
-                android:visibility="gone">
+                android:visibility="gone"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" >
+            </LinearLayout>
 
-            </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="wrap_content"

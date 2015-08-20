@@ -6,24 +6,20 @@ package cosmantic.cosmantic_khw;
 public class WebContents {
 
     private byte[] image;    //콘텐츠 이미지
-    private String title;   //콘텐츠 제목
-    private String subtitle;    //콘텐츠 부제목
-    private String user_objectId;
-    private String product_objectId;
-    private String url;
+    private String title="제목임";   //콘텐츠 제목
+    private String subtitle="부제목임";    //콘텐츠 부제목
+    private String product_objectId="제품.";
+    private String url="http://m.blog.naver.com/cosmeticforman/220456872674";
     //default 생성자
     WebContents(){}
     //생성자
-    WebContents(byte[] image, String title, String subtitle, String user_objectId, String product_objectId, String url){
+    WebContents(byte[] image, String title, String subtitle, String product_objectId, String url){
         this.image = image;
         this.title = title;
         this.subtitle = subtitle;
-        this.user_objectId = user_objectId;
         this.product_objectId = product_objectId;
         this.url=url;
     }
-
-    public User getUser() {    return ServerInteraction.getUserInform(user_objectId);   }
 
     public String getTitle() {   return title;    }
 
@@ -31,8 +27,17 @@ public class WebContents {
 
     public String getUrl() {  return url;    }
 
-    public Product getProduct() {
-        return ServerInteraction.getProductInform(product_objectId);
+    public String getProductName() {
+        return ServerInteraction.getProductInform(product_objectId).getProductName();
+    }
+    public byte[] getProductImage() {
+        return ServerInteraction.getProductInform(product_objectId).getThumnail();
+    }
+    public String getProductBrand() {
+        return ServerInteraction.getProductInform(product_objectId).getBrand();
+    }
+    public String getProduct_objectId() {
+        return product_objectId;
     }
     public byte[] getImage() { return image; }
 

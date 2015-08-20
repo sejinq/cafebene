@@ -141,7 +141,7 @@ public class ProductActivity extends Activity {
             public void onClick(View v) {
                 RelativeLayout view = (RelativeLayout) findViewById(R.id.tablayout3);
                 setting(view, findViewById(R.id.tab3));
-                tabClass = new PriceInformTab(getApplicationContext(), view);
+                tabClass = new PriceInformTab(ProductActivity.this, view);
             }
         });
         smallTab[3] = (Button) findViewById(R.id.tab4);

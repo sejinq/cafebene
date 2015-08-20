@@ -45,19 +45,23 @@ public class InformationActivity extends Activity {
                 startActivity(nextIntent);
             }
         });
+        //화장품 기초 상식
         ((ImageButton) this.findViewById(R.id.inform_3)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent nextIntent = new Intent(InformationActivity.this, InfoDetailActivity.class);
                 nextIntent.putExtra("pageTag", web_pageFlag.PG_BAGIC_INFORM);
+                nextIntent.putExtra("pageTitle", "화장품 기초 상식");
                 startActivity(nextIntent);
             }
         });
+        //화장품 성분
         ((ImageButton) this.findViewById(R.id.inform_4)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent nextIntent = new Intent(InformationActivity.this, InfoDetailActivity.class);
                 nextIntent.putExtra("pageTag", web_pageFlag.PG_INGREDIENT);
+                nextIntent.putExtra("pageTitle", "화장품 성분");
                 startActivity(nextIntent);
             }
         });

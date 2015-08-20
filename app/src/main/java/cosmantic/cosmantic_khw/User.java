@@ -42,7 +42,7 @@ public class User {
   private int[] skinProblem;    // 피부 문제
   private String[] review;      // 리뷰
   private Hashtable<String,Boolean> likeProducts;//사용자 찜 목록
-
+  private Hashtable<String,Boolean> likeContents;//사용자 찜 목록
   // 기본 생성자
     User(){}
     
@@ -67,6 +67,19 @@ public class User {
   public boolean isLike(String likeProducts)
   {
     if(this.likeProducts.get(likeProducts)!=null){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+  public ArrayList<String> getLikeContents() {
+    Set<String> keys = likeProducts.keySet();
+    return null;
+  }
+  public boolean isLikeContents(String likeContents)
+  {
+    if(this.likeProducts.get(likeContents)!=null){
       return true;
     }
     else{

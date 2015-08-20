@@ -74,6 +74,7 @@ public class MyApplication extends Application {
     public Product getProduct(){
         return product;
     }
+
     public void setProduct(Product product)
     {
         this.product = product;

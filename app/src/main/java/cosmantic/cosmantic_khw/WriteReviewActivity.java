@@ -85,6 +85,7 @@ public class WriteReviewActivity extends Activity {
             star[i].setImageResource(R.drawable.star_inable);
         }
         average.setText("별점 ("+aver+")");
+        //찜하기를 한건지 안한건지 판별
         //likeProducts = ((MyApplication)getApplicationContext()).getProduct().getObjectId();
         //if(((MyApplication)getApplicationContext()).getUser().isLike(likeProducts))
         //   btLike.setImageResource(R.drawable.love_inable);
