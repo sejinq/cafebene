@@ -44,6 +44,7 @@
     <string name="skin_dry">건성</string>
     <string name="skin_sensitive">민감성</string>
     <string name="skin_unknown">모름</string>
+
     <string name="effect_oil">유분</string>
     <string name="effect_sebum">피지</string>
     <string name="effect_wrinkle">주름</string>
@@ -52,6 +53,16 @@
     <string name="effect_trouble">여드름</string>
     <string name="effect_color">피부톤</string>
     <string name="effect_sensitive">민감성</string>
+
+    <string name="problem_subum">피지</string>
+    <string name="problem_wrinkle">주름</string>
+    <string name="problem_oil">유분</string>
+    <string name="problem_dry">건조</string>
+    <string name="problem_atopic">아토피</string>
+    <string name="problem_trouble">여드름</string>
+    <string name="problem_color">피부톤</string>
+    <string name="problem_dark">다크써클</string>
+
     <string name="agree_message">이용약관/개인취급정보방침동의</string>
     <string name="signup">가입 완료</string>
 
@@ -67,9 +78,11 @@
     <string name="cosmetic_inform">화장품 상식</string>
     <string name="my_page">마이 페이지</string>
 
+
     <!-- product-->
     <string name="product_curation">제품 분석</string>
     <string name="product_inform">제품 정보</string>
     <string name="price_inform">가격 정보</string>
     <string name="user_review">유저 리뷰</string>
+
 </resources>

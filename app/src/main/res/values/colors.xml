@@ -2,11 +2,9 @@
 <resources>
     <!-- Home 액션바 글씨 -->
     <color name="actionbar_home_text">#0c1e36</color>
-    <!-- 액션바 배경 -->
+    <!-- Sub 액션바 배경 -->
     <color name="actionbar_background">#0066e0</color>
-    <!-- tab 액션바 배경-->
-    <color name="tab_background">#ffffff</color>
-    <!-- 액션바 제목 글씨 -->
+    <!-- Sub 액션바 제목 글씨 -->
     <color name="actionbar_titletext">#ffffff</color>
     <color name="login_logo">#bfffffff</color>
     <!-- SignInActivity 힌트 글씨 -->
@@ -17,11 +15,11 @@
     <color name="signin_loginbtntxt">#ffffff</color>
     <!-- SignInActivity 로그인 버튼 배경 -->
     <color name="signin_loginbtbg">#181c4c</color>
-    <!-- RecommendDetailActivity 제품 분류 글씨 -->
+    <!-- RecommendActivity 제품 분류 글씨 -->
     <color name="recommenddetail_producttitletxt">#ffffff</color>
-    <!-- RecommendDetailActivity 제품 브랜드 글씨 -->
+    <!-- RecommendActivity 제품 브랜드 글씨 -->
     <color name="recommenddetail_productbrandtxt">#000000</color>
-    <!-- RecommendDetailActivity 제품 제품명 글씨 -->
+    <!-- RecommendActivity 제품 제품명 글씨 -->
     <color name="recommenddetail_productnametxt">#7a7d7f</color>
     <!-- RecommendDetailAcitivty 제품 용량, 가격 글씨 -->
     <color name="recommenddetail_productvolumepricetxt">#0066e0</color>
@@ -40,6 +38,8 @@
     <color name="actionbar_home_line">#0c1e36</color>
     <!-- theme color 주요 테마 컬러. 상단바 색과 기타 다른 요소들....통일 색!!-->
     <color name="theme_color">#0066e0</color>
+    <!-- tab 액션바 배경-->
+    <color name="tab_background">#ffffff</color>
     <!-- HomeActivity, RecommendIntroActivity 배경 -->
     <color name="home_background">#f4f4f4</color>
     <!-- HomeActivity 컨테이너들 배경 -->
@@ -54,4 +54,10 @@
     <!-- Colcor name-->
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
+    <!-- MyPageActivity 기본 글씨 -->
+    <color name="mypage_default_txt">#000000</color>
+    <!-- MyPageActivity 선택된 글씨 태그, 하단 컨테이너에 있는 글씨 -->
+    <color name="mypage_selected_tag">#0c1e36</color>
+    <!-- MyPageActivity 선택되지 않은 태그 글씨 -->
+    <color name="mypage_unselected_tag">#9fa6ad</color>
 </resources>

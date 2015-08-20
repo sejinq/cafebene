@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -51,7 +52,25 @@ public class SignInActivity extends Activity {
         btn.setOnClickListener(ClickListener);
         ((ImageButton)findViewById(R.id.signInPwFindButton)).setOnClickListener(ClickListener);
         ((ImageButton)findViewById(R.id.backButton)).setOnClickListener(ClickListener);
+
+        // EditText 리스너 달기
+        ((EditText)findViewById(R.id.signInPutPw)).setOnKeyListener(KeyListener);
     }
+
+    // EditText 키 리스너
+    View.OnKeyListener KeyListener = new View.OnKeyListener() {
+        @Override
+        public boolean onKey(View v, int keyCode, KeyEvent event) {
+            if (event.getAction() == KeyEvent.ACTION_DOWN){
+                switch (keyCode) {
+                    case KeyEvent.KEYCODE_ENTER:
+                        ClickListener.onClick(findViewById(R.id.signInLoginButton));
+                        return true;
+                }
+            }
+            return false;
+        }
+    };
 
     // 액션바 뒤로가기 버튼, 로그인 버튼과 비밀번호 찾기 리스너
     View.OnClickListener ClickListener = new View.OnClickListener() {

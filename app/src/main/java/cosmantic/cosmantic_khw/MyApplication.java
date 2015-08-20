@@ -34,6 +34,7 @@ public class MyApplication extends Application {
         parseCreate();
     }
 
+    //
     public void parseCreate(){
         ParseCrashReporting.enable(this);
         Parse.enableLocalDatastore(this);

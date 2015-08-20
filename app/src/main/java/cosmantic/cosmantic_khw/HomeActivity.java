@@ -294,8 +294,11 @@ public class HomeActivity extends Activity {
         switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
                 // if문 안에 들어오려면 항상 true여야 한다. 때문에 backCheck만 써줘도 되지만, 가독성을 위해 아래의 문구를 써 주었다.
-                if (backCheck == true)
+                if (backCheck == true){
+                    moveTaskToBack(true);
                     finish();
+                    android.os.Process.killProcess(android.os.Process.myPid());
+                }
                 else {
                     Toast.makeText(HomeActivity.this, "'뒤로' 버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show();
                     backCheck = true;

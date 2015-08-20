@@ -8,7 +8,7 @@
 
     <!-- 검색하는 EditText -->
     <EditText
-        android:id="@+id/searchActionbarInputTxt"
+        android:id="@+id/actionbar_search_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="61dp"
@@ -21,14 +21,15 @@
         android:hint="브랜드 및 제품을 입력해주세요."
         android:textSize="12dp"
         android:textColor="@color/search_actionbar_edittext"
-        android:textColorHint="@color/search_actionbar_edittext"/>
+        android:textColorHint="@color/search_actionbar_edittext"
+        android:textCursorDrawable="@null"/>
 
     <!-- EditText 밑줄 -->
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0.25dp"
-        android:layout_below="@id/searchActionbarInputTxt"
-        android:layout_alignLeft="@id/searchActionbarInputTxt"
+        android:layout_below="@id/actionbar_search_edittext"
+        android:layout_alignLeft="@id/actionbar_search_edittext"
         android:layout_marginRight="64dp"
         android:layout_marginTop="5.5dp"
         android:background="@color/search_actionbar_edittext"/>
