@@ -1,13 +1,19 @@
 package cosmantic.cosmantic_khw;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.parse.LogInCallback;
+import com.parse.ParseException;
+import com.parse.ParseUser;
 
 public class SignInActivity extends Activity {
     @Override
@@ -55,7 +61,8 @@ public class SignInActivity extends Activity {
                     Toast.makeText(SignInActivity.this, "Back Button", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.signInLoginButton:
-                    Toast.makeText(SignInActivity.this, "signInLoginButton", Toast.LENGTH_SHORT).show();
+                    onSignIn();
+                    //Toast.makeText(SignInActivity.this, "signInLoginButton", Toast.LENGTH_SHORT).show();
                     break;
 
                 // 버튼 눌린 걸 처리해주기 위해 타이머 달아줌.
@@ -70,6 +77,19 @@ public class SignInActivity extends Activity {
             }
         }
     };
+
+    private void onSignIn(){
+        String id = ((EditText)findViewById(R.id.signInPutEmail)).getText().toString();
+        String passwd = ((EditText)findViewById(R.id.signInPutPw)).getText().toString();
+
+        ParseUser.logInInBackground(id, passwd, new LogInCallback() {
+            @Override
+            public void done(ParseUser parseUser, ParseException e) {
+                ((MyApplication) getApplicationContext()).setUser(ServerInteraction.onLoginWithParseUser(parseUser));
+                startActivity(new Intent(SignInActivity.this, HomeActivity.class));
+            }
+        });
+    }
 
     @Override
     protected void onDestroy(){

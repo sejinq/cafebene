@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/*손!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111세~~~~~~~~~~~~~~~~~~~~~~진@@@@@@@@@@@@@@@@@@@@@@@@@ 내가다함*/
 public class WriteReviewActivity extends Activity {
 
     // 제품 이미지, 이미지 그림자, 프로필 사진
@@ -25,9 +26,8 @@ public class WriteReviewActivity extends Activity {
     //사용자가 쓴 리뷰
     EditText etContent;
     //별 버튼 이벤트 변수, 찜하기 버튼 이벤트 변수
-    int star_on, love_on=0;
-
-
+    int star_on;
+    String likeProducts;
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
@@ -70,17 +70,21 @@ public class WriteReviewActivity extends Activity {
         title.setText("평가하기");
         btShare.setImageResource(R.drawable.share_button);
         /*myImage.setImageResource(); byte로 저장되어있음*/
-        Bitmap bitmap = BitmapFactory.decodeByteArray(((MyApplication)getApplicationContext()).getProduct().getThumnail(), 0, ((MyApplication)getApplicationContext()).getProduct().getThumnail().length);
-        image.setImageBitmap(bitmap);
-        bitmap = BitmapFactory.decodeByteArray(((MyApplication)getApplicationContext()).getUser().getImage(), 0, ((MyApplication)getApplicationContext()).getUser().getImage().length);
-        myImage.setImageBitmap(bitmap);
-        etContent.setMovementMethod(null);
+        //image.setImageBitmap(((MyApplication) getApplicationContext()).getImage(((MyApplication) getApplicationContext()).getProduct().getThumnail()));
+        //myImage.setImageBitmap(((MyApplication) getApplicationContext()).getImage(((MyApplication) getApplicationContext()).getUser().getImage()));
+        //int aver = Math.round(((MyApplication) getApplicationContext()).getProduct().getScore());
+        int aver = 4;
+        for(int i=0;i<aver;++i)
+        {
+            star[i].setImageResource(R.drawable.star_inable);
+        }
+        likeProducts = ((MyApplication)getApplicationContext()).getProduct().getObjectId();
+        if(((MyApplication)getApplicationContext()).getUser().isLike(likeProducts))
+            btLike.setImageResource(R.drawable.love_inable);
     }
     View.OnClickListener listener = new View.OnClickListener() {
         public void onClick(View v)
         {
-            //별 클릭 이벤트. i번째를 클릭하면 0~i번째 까지의 별이 onstar이미지로 바뀐다.
-            star_on=0;
             switch(v.getId())
             {
                 case R.id.mystar5:
@@ -115,16 +119,14 @@ public class WriteReviewActivity extends Activity {
     View.OnClickListener onLike = new View.OnClickListener() {
         public void onClick(View v) {
             //해당 제품을 찜 목록으로 등록, 이미 등록되어있으면 해제.
-            String likeProducts = ((MyApplication)getApplicationContext()).getProduct().getObjectId();
-            ((MyApplication)getApplicationContext()).getUser().setLikeProducts(likeProducts);
-            //love_on = 0 하트 버튼 꺼짐, love_on=1 켜짐.
-            switch (love_on)
+
+            if(!((MyApplication)getApplicationContext()).getUser().setLikeProducts(likeProducts))
             {
-                case 0:
-                    btLike.setImageResource(R.drawable.love_inable); love_on=1;
-                    break;
-                case 1:
-                    btLike.setImageResource(R.drawable.love_disable); love_on=0; break;
+                btLike.setImageResource(R.drawable.love_disable);
+            }
+            else
+            {
+                btLike.setImageResource(R.drawable.love_inable);
             }
         }
     };
@@ -132,7 +134,11 @@ public class WriteReviewActivity extends Activity {
         public void onClick(View v) {
             //사용자가 쓴 리뷰를 받아 Review 클래스 생성.
             String content =etContent.getText().toString();
-            Review review = new Review(((MyApplication)getApplicationContext()).getProduct().getObjectId(), ((MyApplication)getApplicationContext()).getUser().getObjectId(), (double)star_on, content);
+            Review review = new Review(((MyApplication)getApplicationContext()).getProduct().getObjectId(),
+                    ((MyApplication)getApplicationContext()).getUser().getObjectId(),
+                    ((MyApplication)getApplicationContext()).getUser().getDisplayedName(),
+                    ((MyApplication)getApplicationContext()).getUser().getImage(),
+                    (double)star_on, content);
             //review 서버 업로드
             int i=0;
             while(true)

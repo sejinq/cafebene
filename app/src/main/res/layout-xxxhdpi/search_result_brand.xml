@@ -11,7 +11,7 @@
         android:layout_width="59dp"
         android:layout_height="59dp"
         android:layout_centerVertical="true"
-        android:src="@drawable/product_dummy"/>
+        android:src="@drawable/product_default_image"/>
 
     <RelativeLayout
         android:layout_width="wrap_content"

@@ -16,9 +16,9 @@ public class RecommendDetailActivity extends Activity{
     public static String SKIN_INFORMATION = "cosmantic.cosmantic_khw.RecommendDetailActivity.SKIN_INFORMATION";
     private int skin_type;
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recommend_detail);
+        /*setContentView(R.layout.activity_recommend_detail);
 
         skin_type = this.getIntent().getIntExtra(SKIN_INFORMATION,0);
 
@@ -126,7 +126,8 @@ public class RecommendDetailActivity extends Activity{
         // click animation
 //        int id = products[0].getId();
     }
-
+*/
+    }
     protected void onDestroy() {
         super.onDestroy();
     }

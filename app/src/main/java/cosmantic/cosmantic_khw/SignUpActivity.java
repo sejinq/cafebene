@@ -1,7 +1,11 @@
 package cosmantic.cosmantic_khw;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.View;
@@ -9,8 +13,17 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.parse.LogInCallback;
+import com.parse.ParseException;
+import com.parse.ParseUser;
 
 public class SignUpActivity extends Activity {
+    public static String USER_TYPE = "cosmantic.cosmantic_khw.SignUpActivity.USER_TYPE";
+    public static String USER_NAME = "cosmantic.cosmantic_khw.SignUpActivity.USER_NAME";
+
     EditText etID, etPass, etR_Pass, etNick;
     Button btNick, btMale, btFemale;
     Button[] btAge = new Button[5];
@@ -18,12 +31,15 @@ public class SignUpActivity extends Activity {
     Button[] btEffect = new Button[8];
     CheckBox ckAgree;
     Button btSignup;
+    TextWatcher nickWatcher;
 
     String username=null;
     String displayedName;
     boolean gender;
     int age, skinType;
     boolean[] skinProblem = new boolean[8];
+
+    User signingUser;
 
     //입력 유무 체크
     boolean checkNick=false, checkGender = false, checkAge = false;
@@ -33,11 +49,50 @@ public class SignUpActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        settingView();
 
+        Intent intent = getIntent();
+        userType = intent.getIntExtra(USER_TYPE, User.UserType.EMAIL);
+        signingUser = new User();
+        settingUserType(userType, intent.getStringExtra(USER_NAME));
+
+    }
+
+    private void limitInput(CharSequence repair){
+        etNick.removeTextChangedListener(nickWatcher);
+        etNick.setText(repair);
+        etNick.addTextChangedListener(nickWatcher);
+    }
+
+    private void settingView(){
+        setContentView(R.layout.activity_sign_up);
+        ((TextView)findViewById(R.id.titleText)).setText(R.string.signup_title);
         //회원가입시 유저 정보. 아이디, 닉네임, 비밀번호, 성별, 나이
         etID = (EditText)findViewById(R.id.etID);
         etNick = (EditText)findViewById(R.id.etNick);
+        nickWatcher = new TextWatcher() {
+            CharSequence repair = null;
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                repair = etNick.getText();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.toString().getBytes().length > 14){
+                    limitInput(repair);
+                    etNick.removeTextChangedListener(this);
+                    etNick.setText(repair);
+                    etNick.addTextChangedListener(this);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        };
+        etNick.addTextChangedListener(nickWatcher);
         etPass = (EditText)findViewById(R.id.etPass);
         etR_Pass = (EditText)findViewById(R.id.etRePass);
 
@@ -90,18 +145,38 @@ public class SignUpActivity extends Activity {
         ckAgree = (CheckBox)findViewById(R.id.checkBox);
         // ckAgree.setOnClickListener(onAgree);
 
-        //Intent intent = getIntent();
-        // userType = intent.getExtras().getInt("type");
-        // userId = intent.getExtras().getString("id");
-        settingUserType(User.UserType.KAKAO, "페북ㅇ웅");
+        //폰트 설정
+        TextView[] regularSet = new TextView[]{
+                (TextView)findViewById(R.id.titleText),
+                etID, etPass, etR_Pass, etNick, btSignup, btMale, btFemale,
+                btAge[0],btAge[1],btAge[2],btAge[3],btAge[4],
+                btSkinType[0],btSkinType[1],btSkinType[2],btSkinType[3],
+                btEffect[0],btEffect[1],btEffect[2],btEffect[3],btEffect[4],btEffect[5],btEffect[6],btEffect[7]
+        };
+        TextView[] mediumSet = new TextView[]{
+                (TextView)findViewById(R.id.inform),
+                (TextView)findViewById(R.id.sel_inform),
+                (TextView)findViewById(R.id.tvId),
+                (TextView)findViewById(R.id.tv2),
+                (TextView)findViewById(R.id.tv3),
+                (TextView)findViewById(R.id.tv4),
+                (TextView)findViewById(R.id.tv5),
+                (TextView)findViewById(R.id.tv6),
+                (TextView)findViewById(R.id.tv7),
+                (TextView)findViewById(R.id.tv8),
+                (TextView)findViewById(R.id.tv8_small)
+        };
+        FontApplyer.setFonts(getApplicationContext(),regularSet,FontApplyer.Font.NotoSans,FontApplyer.Style.Regular);
+        FontApplyer.setFonts(getApplicationContext(),mediumSet,FontApplyer.Font.NotoSans,FontApplyer.Style.Medium);
+        FontApplyer.setFont(getApplicationContext(),(TextView)findViewById(R.id.checkBox), FontApplyer.Font.NotoSans, FontApplyer.Style.Light);
     }
 
     //유저 타입에 따라 화면 레이아웃 바꿔 주기.
     private void settingUserType(int userType, String id)
     {
         //그냥 가입하기, 플래그로 바꿔주기..?설정 없음..
-        //카카오톡 또는 페이스북..
-        if(userType==User.UserType.FACEBOOK||userType==User.UserType.KAKAO)
+        //이메일이 아니면(카카오톡 또는 페이스북)
+        if(userType!=User.UserType.EMAIL)
         {
             //dp값 설정해 주기.>기기에 맞게 바뀌게 dp 코딩 해 주어야함.
             DisplayMetrics dm = getResources().getDisplayMetrics();
@@ -110,12 +185,14 @@ public class SignUpActivity extends Activity {
             RelativeLayout.LayoutParams plControl = (RelativeLayout.LayoutParams) ((RelativeLayout) findViewById(R.id.rel1)).getLayoutParams();
             plControl.topMargin = size;
             ((RelativeLayout) findViewById(R.id.rel1)).setLayoutParams(plControl);
-//비밀번호 입력란 사라지기, 아이디칸 입력창이 아니라 파싱한 아이디 보여주기.
+            //아이디, 비밀번호 입력란 사라지기.
+            findViewById(R.id.signup_id_row).setVisibility(View.GONE);
             ((RelativeLayout) findViewById(R.id.passRow)).setVisibility(View.GONE);
             ((RelativeLayout) findViewById(R.id.repassRow)).setVisibility(View.GONE);
             etID.setText(id);
             etID.setFocusable(false);
             etID.setClickable(false);
+            signingUser.setUsername(id);
         }
     }
     //닉네임 중복확인
@@ -126,10 +203,12 @@ public class SignUpActivity extends Activity {
             if(checkNick)
             {
                 //팝업창 띄우기. 사용가능한 어쩌구..
+                Toast.makeText(SignUpActivity.this,"사용가능한 닉네임입니다.",Toast.LENGTH_SHORT).show();
             }
             else
             {
                 //팝업창 띄우기. 사용가능한 어쩌구..
+                Toast.makeText(SignUpActivity.this,"이미 사용중인 닉네임입니다.",Toast.LENGTH_SHORT).show();
             }
         }
     };
@@ -139,18 +218,30 @@ public class SignUpActivity extends Activity {
             checkGender = true;
             //모든 버튼 해제 이미지로 초기화
             initSelect(btMale);initSelect(btFemale);
-            switch (v.getId()) {
-                //선택된 버튼만 선택 이미지로 바꿔주고, gender에 값 저장.
-                case R.id.gender_male:
-                    gender = false;
-                    btMale.setBackground(getResources().getDrawable(R.drawable.select_small_box));
-                    btMale.setTextColor(0xf28314);
-                    break;
-                case R.id.gender_female:
-                    btFemale.setBackground(getResources().getDrawable(R.drawable.select_small_box));
-                    btFemale.setTextColor(0xf28314);
-                    gender = true;
-                    break;
+            if(Build.VERSION.SDK_INT < 16) {
+                switch (v.getId()) {
+                    //선택된 버튼만 선택 이미지로 바꿔주고, gender에 값 저장.
+                    case R.id.gender_male:
+                        gender = false;
+                        selectEvent(btMale);
+                        break;
+                    case R.id.gender_female:
+                        selectEvent(btFemale);
+                        gender = true;
+                        break;
+                }
+            }else{
+                switch (v.getId()) {
+                    //선택된 버튼만 선택 이미지로 바꿔주고, gender에 값 저장.
+                    case R.id.gender_male:
+                        gender = false;
+                        selectEvent(btMale);
+                        break;
+                    case R.id.gender_female:
+                        selectEvent(btFemale);
+                        gender = true;
+                        break;
+                }
             }
         }
     };
@@ -184,11 +275,11 @@ public class SignUpActivity extends Activity {
     };
     private void initSelect(Button button) {
         button.setBackgroundDrawable(getResources().getDrawable(R.drawable.unselect_small_box));
-        button.setTextColor(0x9fa6ad);
+        button.setTextColor(getApplicationContext().getResources().getColor(R.color.signup_btunselect));
     }
     private void selectEvent(Button button) {
         button.setBackgroundDrawable(getResources().getDrawable(R.drawable.select_small_box));
-        button.setTextColor(0xf28314);
+        button.setTextColor(getApplicationContext().getResources().getColor(R.color.signup_btselect));
     }
     //피부타입 선택
     View.OnClickListener listener3 = new View.OnClickListener() {
@@ -243,15 +334,13 @@ public class SignUpActivity extends Activity {
         if(skinProblem[index]==false)
         {
             skinProblem[index] = true;
-            button.setBackgroundResource(R.drawable.select_small_box);
-            button.setTextColor(0xf28314);
+            selectEvent(button);
         }
         //선택 되어있을 때>선택 해제 이미지로
         else
         {
             skinProblem[index] = false;
-            button.setBackgroundResource(R.drawable.unselect_small_box);
-            button.setTextColor(0x9fa6ad);
+            initSelect(button);
         }
     }
     /*이용약관 동의 체크박스
@@ -266,56 +355,96 @@ public class SignUpActivity extends Activity {
     //가입완료 버튼
     View.OnClickListener onSignup = new View.OnClickListener() {
         public void onClick(View v) {
+            boolean signable = true;
             //아이디 서버와 중복 검사.
-            /**
-             String password = etPass.getText().toString();
-             String R_password = etR_Pass.getText().toString();
-             if(!checkNick)
-             { //메세지 팝업 띄우기. 닉네임 중복확인을 하지 않음.
-             }
-             else if(password.length()<6)
-             { //메세지 팝업 띄우기. 비밀번호 6자 이상 해라.
-             }
-             else if(!password.equals(R_password))
-             { //메세지 팝업 띄우기. 비밀번호 재확인 부분이 다르다.
-             }
-             else if(!checkGender)
-             { //메세지 팝업 띄우기. 성별 체크해라
-             }
-             else if(!checkAge)
-             { //메세지 팝업 띄우기. 나이 체크해라
-             }
-             else if(!ckAgree.isChecked())
-             { //메세지 팝업 띄우기. 동의 체크해라
-             }
-             else
-             {
-             int[] effect = new int[checkBoolean(skinProblem)]; int j=0;
-             for(int i=0;i<8;++i)
-             {
-             if(skinProblem[i])
-             {
-             effect[j++] = i;
-             }
-             }
-             //MyApplication에 생성하기.
-             User user = new User(userType, username, password, displayedName, gender, age, skinType, effect);
-             //임시 테스트
-             String text = "아이디 : "+user.getUsername()+"\n 비밀번호 : "+user.getPassword()+"\n 닉네임 :"+user.getDisplayedName();
-             Toast.makeText(SignUpActivity.this, text, Toast.LENGTH_SHORT).show();
-             text = "나이 : "+user.getAge()+"\n 피부타입 : "+user.getSkinType()+"\n 관심효과 :"+user.getSkinProblem();
-             Toast.makeText(SignUpActivity.this, text, Toast.LENGTH_SHORT).show();
-             if(ServerInteraction.onSignUp(user) == ServerInteraction.signUpFlag.SUCCESS)
-             {
-             ((MyApplication)getApplicationContext()).setUser(user);
-             //가입성공 메세지, 다른창으로 넘어가기.
-             }
-             else
-             {
-             //네트워크 장애 팝업창 띄워주기.
-             }
-             }
-             **/
+            if(userType == User.UserType.EMAIL) {
+                username = etID.getText().toString();
+                String[] checkSet = username.split("@");
+                if(checkSet.length != 2){
+                    Toast.makeText(SignUpActivity.this, "아이디를 이메일 형식으로 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    signable = false;
+                }
+                if(!ServerInteraction.compareUserName(username)){
+                    Toast.makeText(SignUpActivity.this, "이미 가입된 이메일입니다.",Toast.LENGTH_SHORT).show();
+                    signable = false;
+                }
+            }
+            String password = etPass.getText().toString();
+            String R_password = etR_Pass.getText().toString();
+            if(!checkNick)
+            { //메세지 팝업 띄우기. 닉네임 중복확인을 하지 않음.
+                Toast.makeText(SignUpActivity.this, "닉네임 중복 확인을 해주세요.",Toast.LENGTH_SHORT).show();
+                signable = false;
+            }
+            if(userType == User.UserType.EMAIL) {
+                if (password.length() < 6) { //메세지 팝업 띄우기. 비밀번호 6자 이상 해라.
+                    Toast.makeText(SignUpActivity.this, "비밀번호를 6자 이상 설정해주세요.", Toast.LENGTH_SHORT).show();
+                    signable = false;
+                }
+                if (!password.equals(R_password)) { //메세지 팝업 띄우기. 비밀번호 재확인 부분이 다르다.
+                    Toast.makeText(SignUpActivity.this, "비밀번호와 재확인 번호를 확인해주세요.", Toast.LENGTH_SHORT).show();
+                    signable = false;
+                }
+            }
+            if(!checkGender)
+            { //메세지 팝업 띄우기. 성별 체크해라
+                Toast.makeText(SignUpActivity.this, "성별을 설정해주세요.",Toast.LENGTH_SHORT).show();
+                signable = false;
+            }
+            else if(!checkAge)
+            { //메세지 팝업 띄우기. 나이 체크해라
+                Toast.makeText(SignUpActivity.this, "나이를 설정해주세요.",Toast.LENGTH_SHORT).show();
+                signable = false;
+            }
+            if(!ckAgree.isChecked())
+            { //메세지 팝업 띄우기. 동의 체크해라
+                Toast.makeText(SignUpActivity.this, "이용 약관 동의를 하셔야 가입할 수 있습니다.",Toast.LENGTH_SHORT).show();
+                signable = false;
+            }
+            if(signable)
+            {
+                int[] effect = new int[checkBoolean(skinProblem)]; int j=0;
+                for(int i=0;i<8;++i)
+                {
+                    if(skinProblem[i])
+                    {
+                        effect[j++] = i;
+                    }
+                }
+                //MyApplication에 생성하기.
+                User user = new User(userType, username, password, displayedName, gender, age, skinType, effect);
+
+                //임시 테스트
+//                String text = "아이디 : "+user.getUsername()+"\n 비밀번호 : "+user.getPassword()+"\n 닉네임 :"+user.getDisplayedName();
+//                Toast.makeText(SignUpActivity.this, text, Toast.LENGTH_SHORT).show();
+//                text = "나이 : "+user.getAge()+"\n 피부타입 : "+user.getSkinType()+"\n 관심효과 :"+user.getSkinProblem();
+//                Toast.makeText(SignUpActivity.this, text, Toast.LENGTH_SHORT).show();
+
+
+                if(ServerInteraction.onSignUp(user,userType) == ServerInteraction.signUpFlag.SUCCESS)
+                {
+                    if(userType!= User.UserType.EMAIL) {
+                        ((MyApplication) getApplicationContext()).setUser(ServerInteraction.onLoginWithParseUser(ParseUser.getCurrentUser()));
+                        startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
+                    }
+//                    ((MyApplication)getApplicationContext()).setUser(user);
+                    Toast.makeText(SignUpActivity.this, "가입 성공!", Toast.LENGTH_SHORT).show();
+                    //가입성공 메세지, 다른창으로 넘어가기.
+                    ParseUser.logInInBackground(user.getUsername(), user.getPassword(), new LogInCallback() {
+                        @Override
+                        public void done(ParseUser parseUser, ParseException e) {
+                            ((MyApplication)getApplicationContext()).setUser(ServerInteraction.onLoginWithParseUser(parseUser));
+                            startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
+                        }
+                    });
+                }
+                else
+                {
+                    //네트워크 장애 팝업창 띄워주기.
+                    Toast.makeText(SignUpActivity.this, "가입에 실패했습니다.", Toast.LENGTH_SHORT).show();
+                }
+
+            }
         }
 
     };

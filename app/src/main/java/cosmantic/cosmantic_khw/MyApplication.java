@@ -2,6 +2,8 @@ package cosmantic.cosmantic_khw;
 
 import android.app.Application;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 
 import com.facebook.FacebookSdk;
@@ -16,8 +18,10 @@ import java.util.Hashtable;
 
 public class MyApplication extends Application {
     private Hashtable<String, Typeface> fontCache;
-    private User user;
-    private Product product;
+    //임시 데이터
+    private User user = new User(0, "sejin", "sejin", "쏜", true, 21, 0, null);
+    private Product product = new Product("올인원", 53000, "미샤", "500ml", 220, "이것은 \n 물건 \n 이다", null, "지성?",
+            "올이뉴", "이건 \n 큐레이션 \n 이다", (float)4.2, 100);
 
     @Override
     public void onCreate() {
@@ -72,5 +76,10 @@ public class MyApplication extends Application {
     public void setProduct(Product product)
     {
         this.product = product;
+    }
+    public Bitmap getImage(byte[] bytes)
+    {
+        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        return bitmap;
     }
 }

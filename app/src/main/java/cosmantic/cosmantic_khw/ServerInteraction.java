@@ -1,9 +1,22 @@
 package cosmantic.cosmantic_khw;
 
+import android.util.Log;
+
+import com.parse.ParseCloud;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 
 /**
  * <b>Parse.com</b>의 서버와 통신을 담당하는 클래스<br/>
@@ -11,30 +24,41 @@ import com.parse.ParseUser;
  * 데이터에는 회원, 상품, 리뷰 등이 있다.
  */
 public class ServerInteraction {
-	/**
-	 * 로그인 액션에서 사용되는 플래그들이 속해있는 인터페이스<br/>
-	 *
-	 * <br/><b><i>플래그 : </i></b><br/>
-	 * <pre><b>SUCCESS</b> - 로그인 성공 플래그(0x0)<br/></pre>
-	 * <pre><b>ID_MISMATCH</b> - 로그인 실패; 존재하지 않는 아이디 플래그(0x1)<br/></pre>
-	 * <pre><b>PW_MISMATCH</b> - 로그인 실패; 일치하지 않는 비밀번호 플래그(0x2)</pre>
-	 */
-	public interface loginFlag{
-		public static final int SUCCESS = 0x0;	   //로그인 성공
-		public static final int ID_MISMATCH = 0x1; //아이디 없음
-		public static final int PW_MISMATCH = 0x2; //비밀번호 불일치
-        public static final int UNKNOWN_ERROR = 0x3;//원인을 모르는 에러
-	}
-	/**
-	 * 서버와 통신하여 로그인을하는 메소드<br/>
-	 *
-	 * @param id 로그인할 아이디<br/>
-	 * @param password 로그인할 비밀번호<br/>
-	 *
-	 * @return <b>loginFlag</b> 인터페이스의 플래그 중 하나<br/>
-	 * <b>SUCCESS, ID_MISMATCH, PW_MISMATCH</b> 반환
-	 */
-	public static int onLogin(String id, String password, int userType){
+    //임시로 설정
+    static int[] skinType = new int[3];
+    static int[] effects = new int[3];
+    private static User instant_user = new User(0, "sejin", "sejin", "sejinq", true, 21, 0, skinType);
+    private static Product instant_product = new Product("제품이름이당", 53000, "미샤이쁘당", "500ml", 220, "룰루" +
+            "랄라" +
+            "뀨뀨" +
+            "꺄꺄", effects, "몰라",  "올인원?", "이것은" +
+            "큐레이팅" +
+            "이다", (float)3.5, 50);
+
+    /**
+     * 로그인 액션에서 사용되는 플래그들이 속해있는 인터페이스<br/>
+     *
+     * <br/><b><i>플래그 : </i></b><br/>
+     * <pre><b>SUCCESS</b> - 로그인 성공 플래그(0x0)<br/></pre>
+     * <pre><b>ID_MISMATCH</b> - 로그인 실패; 존재하지 않는 아이디 플래그(0x1)<br/></pre>
+     * <pre><b>PW_MISMATCH</b> - 로그인 실패; 일치하지 않는 비밀번호 플래그(0x2)</pre>
+     */
+    public interface loginFlag{
+        int SUCCESS = 0x0;	   //로그인 성공
+        int ID_MISMATCH = 0x1; //아이디 없음
+        int PW_MISMATCH = 0x2; //비밀번호 불일치
+        int UNKNOWN_ERROR = 0x3;//원인을 모르는 에러
+    }
+    /**
+     * 서버와 통신하여 로그인을하는 메소드<br/>
+     *
+     * @param id 로그인할 아이디<br/>
+     * @param password 로그인할 비밀번호<br/>
+     *
+     * @return <b>loginFlag</b> 인터페이스의 플래그 중 하나<br/>
+     * <b>SUCCESS, ID_MISMATCH, PW_MISMATCH</b> 반환
+     */
+    public static int onLogin(String id, String password, int userType){
         String objectId = null;
         if(userType == User.UserType.EMAIL){
             try {
@@ -48,63 +72,247 @@ public class ServerInteraction {
 
         }
         return loginFlag.SUCCESS;
-	}
-	//로그아웃 액션
-	public boolean onLogout(){
-		return false;
-	}
-	//가입 액션 플래그
-	public interface signUpFlag{
-		public static final int SUCCESS = 0x0; //가입 성공
-	}
-	//가입 액션
-	public static int onSignUp(User user){
-		return signUpFlag.SUCCESS;
-	}
-	//회원 정보 반환 메소드
-	public User getUserInform(){
-		return null;
-	}
-	/**
-	 * 상품 정보 반환 메소드
-	 * 인자: int product_id - 상품 식별자
-	 */
-	public Product getProductInform(int product_id){
-		return null;
-	}
-	/**
-	 *
-	 */
-	public Product[] getMainRecommendList(int skin_type){
-		return null;
-	}
+    }
+    public static User onLoginWithParseUser(ParseUser parseUser){
+        User loginUser = new User();
+        String nickName = parseUser.getString("displayedName");
+        if(nickName != null) {
+            loginUser.setUsername(parseUser.getUsername());
+            loginUser.setDisplayedName(nickName);
+            loginUser.setAge(parseUser.getNumber("age").intValue());
+            loginUser.setGender(parseUser.getBoolean("gender"));
+            JSONArray JSONSkinProblems = parseUser.getJSONArray("skinProblem");
+            int[] skinProblems = new int[JSONSkinProblems.length()];
+            try {
+                for (int loop = 0; loop < JSONSkinProblems.length(); loop++)
+                    skinProblems[loop] = JSONSkinProblems.getInt(loop);
+                loginUser.setSkinProblem(skinProblems);
+            } catch (Exception e) {
+                Log.e("Sign In", "Error in get skin problem:" + e.getMessage());
+                return null;
+            }
+            loginUser.setSkinType(parseUser.getNumber("skinType").intValue());
+            if(parseUser.getParseFile("profilePicture")!=null)
+                loginUser.setImage(parseUser.getParseFile("profilePicture").getDataInBackground().getResult());
+            else loginUser.setImage(null);
+            return loginUser;
+        }else{
+            return null;
+        }
+    }
+    //로그아웃 액션
+    public static boolean onLogout(){
+        return false;
+    }
+    //가입 액션 플래그
+    public interface signUpFlag{
+        int SUCCESS = 0x0; //가입 성공
+        int FAILURE = 0x1; //가입 실패
 
-	/**
-	 *
-	 * @param skin_type
-	 * @return
-	 */
-	public static Product[] getRecommendList(int skin_type){
-		return null;
-	}
-
-	public void searchProduct(String key_word){
-
-	}
-	public static boolean compareNickName(String nickName){
-        ParseQuery<ParseObject> countQuery = ParseQuery.getQuery("_User");
-        countQuery.whereEqualTo("displayedName", nickName);
+    }
+    //가입 액션
+    public static int onSignUp(User user, int userType){
+        ParseUser newUser;
+        if(userType == User.UserType.EMAIL) {
+            newUser = new ParseUser();
+            newUser.setUsername(user.getUsername());
+            newUser.setPassword(user.getPassword());
+        }else{
+            newUser = ParseUser.getCurrentUser();
+        }
+        newUser.put("gender", user.getGender());
+        newUser.put("age", user.getAge());
+        newUser.put("skinType", user.getSkinType());
+        int[] skinProblemArray = user.getSkinProblem();
+        JSONArray skinProblemJSON = new JSONArray();
+        for(int loop = 0; loop < skinProblemArray.length; loop++) skinProblemJSON.put(skinProblemArray[loop]);
+        newUser.put("skinProblem", skinProblemJSON);
+        newUser.put("userType", user.getUserType());
+        newUser.put("like", new JSONArray());
+        newUser.put("displayedName", user.getDisplayedName());
         try {
-            int count = countQuery.count();
-            if(count==0) return true;
+            if(userType == User.UserType.EMAIL)
+                newUser.signUp();
+            else
+                newUser.save();
+        }catch(ParseException e){
+            e.getCode();
+            return signUpFlag.FAILURE;
+        }
+        return signUpFlag.SUCCESS;
+    }
+    //회원 정보 반환 메소드
+    public static User getUserInform(String user_id){
+        return instant_user;
+    }
+    /**
+     * 상품 정보 반환 메소드
+     * 인자: int product_id - 상품 식별자
+     */
+    public static Product getInstantProductInform(String product_id){
+        return instant_product;
+    }
+    /**
+     *
+     */
+    public static void getMainRecommendList(HomeActivity context, int skin_type){
+        Product[] products = new Product[9];
+        ParseQuery<ParseObject> recommandQuery = ParseQuery.getQuery("recommendData");
+        if(skin_type==User.SKIN_TYPE_DRY)
+            recommandQuery.whereEqualTo("recommendedName","Dry");
+        else if(skin_type==User.SKIN_TYPE_OILY)
+            recommandQuery.whereEqualTo("recommendedName","Oily");
+        else if(skin_type==User.SKIN_TYPE_SENSITIVE)
+            recommandQuery.whereEqualTo("recommendedName","Sensitive");
+        else {
+            String[] unknown = {"Dry","Oily","Sensitive"};
+            recommandQuery.whereContainedIn("recommendedName",Arrays.asList(unknown));
+        }
+        try {
+            recommandQuery.selectKeys(Arrays.asList("recommendedList"));
+            List<String> recommendedID;
+            if(skin_type==User.SKIN_TYPE_UNKNOWN){
+                ParseObject objects = recommandQuery.find().get(0);
+                recommendedID = objects.getList("recommendedList");
+                objects = recommandQuery.find().get(1);
+                recommendedID.addAll(objects.getList("recommendedList"));
+                objects = recommandQuery.find().get(2);
+                recommendedID.addAll(objects.getList("recommendedList"));
+            }else {
+                ParseObject objects = recommandQuery.find().get(0);
+                recommendedID = objects.getList("recommendedList");
+            }
+            long seed = System.nanoTime();
+            Collections.shuffle(recommendedID,new Random(seed));
+            String[] productIds = new String[9];
+            for(int loop=0; loop<9;loop++) {
+                Log.d("Main Recommend","Get Main Recommend:"+skin_type+"("+loop+")"+recommendedID.get(loop));
+                productIds[loop] = recommendedID.get(loop);
+//                products[loop] = getProductInform(recommendedID.get(loop));
+//                context.recommendApply(products);
+            }
+            context.recommendApply(productIds);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     *
+     * @param skin_type
+     * @return
+     */
+    public static Product[] getRecommendList(int skin_type){
+        return null;
+    }
+//    String productName, int price, String brand, String size, double pricePerSize, String description, int[] effects, String skintype, String type, String curatingInfo, float score, int reviewNum
+    public static Product getProductInform(String productObjectId){
+        Product findProduct = new Product();
+        ParseObject productObject = null;
+        try {
+            ParseQuery<ParseObject> productQuery = ParseQuery.getQuery("cosmeticData");
+            productQuery.whereEqualTo("objectId", productObjectId);
+            productObject = productQuery.find().get(0);
         }catch(ParseException e){
             e.printStackTrace();
-        }finally {
+        }
+        if(productObject == null){
+            findProduct = null;
+        }
+
+        findProduct.setBrand(productObject.getString("brand"));
+        findProduct.setBrandKor(productObject.getString("brandKor"));
+        findProduct.setCuratingInfo(productObject.getString("curation"));
+        List<String> effetsList = productObject.getList("effect");
+        int[] effects = new int[effetsList.size()];
+        for(int effect_loop = 0; effect_loop<effetsList.size(); effect_loop++){
+            String effect = effetsList.get(effect_loop);
+            if(effect.equals("보습")) effects[effect_loop] = User.INEREST_SHARE;
+            else if(effect.equals("여드름개선")) effects[effect_loop] = User.INEREST_TROUBLE;
+            else if(effect.equals("주름개선")) effects[effect_loop] = User.INEREST_WRINKLE;
+            else if(effect.equals("모공축소")) effects[effect_loop] = User.INEREST_PORE;
+            else if(effect.equals("자외선차단")) effects[effect_loop] = User.INEREST_SUN;
+            else if(effect.equals("미백")) effects[effect_loop] = User.INEREST_WHITE;
+            else if(effect.equals("피부재생")) effects[effect_loop] = User.INEREST_REPAIR;
+            else if(effect.equals("각질제거")) effects[effect_loop] = User.INEREST_SCRUB;
+        }
+        findProduct.setEffects(effects);
+        findProduct.setPrice(productObject.getInt("price"));
+        findProduct.setPricePerSize(productObject.getDouble("price_size"));
+        findProduct.setProductName(productObject.getString("productName"));
+        findProduct.setSize(productObject.getString("size"));
+        ParseFile fileName = productObject.getParseFile("thumbnail");
+        try {
+            if (fileName != null) findProduct.setThumnail(fileName.getData());
+            else findProduct.setThumnail(null);
+        }catch(ParseException e){
+            e.printStackTrace();
+            findProduct.setThumnail(null);
+        }
+        findProduct.setType(productObject.getString("category"));
+        findProduct.setDescription(productObject.getString("description"));
+        findProduct.setIngredientCount(new int[]{productObject.getInt("oilyPos"), productObject.getInt("oilyNeg"),
+                productObject.getInt("dryPos"), productObject.getInt("dryNeg"),
+                productObject.getInt("sensetivePos"), productObject.getInt("sensetiveNeg")});
+        HashMap<String, Object> params = new HashMap<String, Object>();
+        params.put("productId", findProduct.getObjectId());
+        try {
+            double avg = ((JSONObject)ParseCloud.callFunction("averageStars", params)).getDouble("result");
+            findProduct.setScore((float)avg);
+        }catch(Exception e){
+            e.printStackTrace();
+            findProduct.setScore(0.0f);
+        }
+
+        ParseQuery<ParseObject> countQuery = ParseQuery.getQuery("reviewData");
+        countQuery.whereEqualTo("productId", findProduct.getObjectId());
+        try {
+            int count = countQuery.count();
+            findProduct.setReviewNum(count);
+        }catch(ParseException e){
+            e.printStackTrace();
+            findProduct.setReviewNum(0);
+        }
+
+        Log.d("Product","Get:"+findProduct.getBrandKor()+", "+findProduct.getProductName()+", "+findProduct.getSize());
+
+        return findProduct;
+    }
+
+    public void searchProduct(String key_word){
+
+    }
+    public static boolean compareNickName(String nickName){
+        ParseQuery<ParseObject> countQuery = ParseQuery.getQuery("_User");
+        countQuery.whereEqualTo("displayedName", nickName);
+        int count;
+        try {
+            count = countQuery.count();
+            Log.d("Nick Name", "check:"+nickName+","+count);
+        }catch(ParseException e){
+            e.printStackTrace();
             return false;
         }
-	}
-	public static boolean onReviewUpload(Review review){ //인자는 좀 더 고민해보고 채워넣을 예정
-		return false;
-	}
+        if(count==0) return true;
+        return false;
+    }
+    public static boolean compareUserName(String userName){
+        ParseQuery<ParseObject> countQuery = ParseQuery.getQuery("_User");
+        countQuery.whereEqualTo("userName", userName);
+        int count;
+        try {
+            count = countQuery.count();
+            Log.d("User Name", "check:"+userName+","+count);
+        }catch(ParseException e){
+            e.printStackTrace();
+            return false;
+        }
+        if(count==0) return true;
+        return false;
+    }
+    public static boolean onReviewUpload(Review review){ //인자는 좀 더 고민해보고 채워넣을 예정
+        return false;
+    }
 }
 

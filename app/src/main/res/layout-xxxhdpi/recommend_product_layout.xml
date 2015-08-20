@@ -50,7 +50,7 @@
                 android:layout_width="90dp"
                 android:layout_height="90dp"
                 android:layout_gravity="center"
-                android:src="@drawable/product_dummy"
+                android:src="@drawable/product_default_image"
                 android:background="@drawable/recommend_click_event"/>
 
             <!-- 상품 브랜드명 -->
@@ -93,7 +93,7 @@
                 android:layout_height="90dp"
                 android:layout_gravity="center"
                 android:background="@null"
-                android:src="@drawable/product_dummy"/>
+                android:src="@drawable/product_default_image"/>
 
             <!-- 상품 브랜드명 -->
             <TextView
@@ -135,7 +135,7 @@
                 android:layout_height="90dp"
                 android:layout_gravity="center"
                 android:background="@null"
-                android:src="@drawable/product_dummy"/>
+                android:src="@drawable/product_default_image"/>
 
             <!-- 상품 브랜드명 -->
             <TextView

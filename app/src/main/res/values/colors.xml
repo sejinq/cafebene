@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Home 액션바 글씨 -->
+    <color name="actionbar_home_text">#0c1e36</color>
     <!-- 액션바 배경 -->
     <color name="actionbar_background">#0066e0</color>
+    <!-- tab 액션바 배경-->
+    <color name="tab_background">#ffffff</color>
     <!-- 액션바 제목 글씨 -->
     <color name="actionbar_titletext">#ffffff</color>
     <color name="login_logo">#bfffffff</color>
@@ -32,6 +36,21 @@
     <!-- SignUpActivity 버튼 선택 색상 -->
     <color name="signup_btselect">#f28314</color>
     <color name="signup_btunselect">#9fa6ad</color>
+    <!-- actionbar_home 액티비티 line 색상-->
+    <color name="actionbar_home_line">#0c1e36</color>
+    <!-- theme color 주요 테마 컬러. 상단바 색과 기타 다른 요소들....통일 색!!-->
+    <color name="theme_color">#0066e0</color>
+    <!-- HomeActivity, RecommendIntroActivity 배경 -->
+    <color name="home_background">#f4f4f4</color>
+    <!-- HomeActivity 컨테이너들 배경 -->
+    <color name="home_containerbg">#ffffff</color>
+    <!-- HomeActivity 메인바 글씨 -->
+    <color name="home_mainbar_txt">#ffffff</color>
+    <!-- Sign Up 선택 글씨 -->
+    <color name="effect_disable">#CCD4DB</color>
+    <color name="effect_enable">#000000</color>
+    <!-- actionbar_home 액티비티 , MyPageActivity line 색상-->
+    <color name="line_color">#0c1e36</color>
     <!-- Colcor name-->
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>

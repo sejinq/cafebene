@@ -16,9 +16,13 @@ import com.kakao.usermgmt.SignupResponseCallback;
 import com.kakao.usermgmt.UserManagement;
 import com.kakao.usermgmt.UserProfile;
 import com.parse.KakaoAuthenticationProvider;
+import com.parse.LogInCallback;
 import com.parse.ParseAnalytics;
+import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
+import com.parse.ParseUser;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 
@@ -29,7 +33,7 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         if(!Session.getCurrentSession().isClosed()) Log.d("Kakao","Session is unstable!");
         ParseAnalytics.trackAppOpenedInBackground(getIntent());
-		setView();
+        setView();
     }
 
     @Override
@@ -37,10 +41,10 @@ public class LoginActivity extends Activity {
         super.onResume();
     }
 
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-	}
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -49,14 +53,14 @@ public class LoginActivity extends Activity {
     }
 
     private void setView(){
-		setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login);
 
-        findViewById(R.id.login_logo).setAlpha(0.7f);
+        findViewById(R.id.login_logo).setAlpha(0.8f);
 
         FontApplyer.setFont(this, (TextView)findViewById(R.id.login_existing_text),FontApplyer.Font.NotoSans, FontApplyer.Style.Bold);
 
-		//Button Handler
-                ((ImageButton) findViewById(R.id.login_email_join_btn)).setOnClickListener(view -> emailJoinAction());
+        //Button Handler
+        ((ImageButton) findViewById(R.id.login_email_join_btn)).setOnClickListener(view -> emailJoinAction());
         ((ImageButton)findViewById(R.id.login_kakao_sign_btn)).setOnClickListener(view -> block());
         ((ImageButton)findViewById(R.id.login_facebook_sign_btn)).setOnClickListener(view -> facebookSignAction());
         ((ImageButton)findViewById(R.id.login_email_sign_btn)).setOnClickListener(view -> emailSignAction());
@@ -161,22 +165,35 @@ public class LoginActivity extends Activity {
         });
     }
     private void facebookSignAction(){
-//        ParseFacebookUtils.logInWithReadPermissionsInBackground(this, Arrays.asList("email"), new LogInCallback() {
-//            @Override
-//            public void done(ParseUser parseUser, ParseException e) {
-//                if (parseUser == null) {
-//                    Log.d("MyApp", "Uh oh. The user cancelled the Facebook login.");
-//                } else if (parseUser.isNew()) {
-//                    Log.d("MyApp", "User signed up and logged in through Facebook!");
-//                } else {
-//                    Log.d("MyApp", "User logged in through Facebook!");
-//                }
-//            }
-//        });
+        ParseFacebookUtils.logInWithReadPermissionsInBackground(this, Arrays.asList("email"), new LogInCallback() {
+            @Override
+            public void done(ParseUser parseUser, ParseException e) {
+                if (parseUser == null) {
+                    Log.d("MyApp", "Uh oh. The user cancelled the Facebook login.");
+                } else if (parseUser.isNew()) {
+                    Log.d("MyApp", "User signed up and logged in through Facebook!");
+                    Intent signup = new Intent(LoginActivity.this,SignUpActivity.class);
+                    signup.putExtra(SignUpActivity.USER_TYPE,User.UserType.FACEBOOK);
+                    signup.putExtra(SignUpActivity.USER_NAME,parseUser.getUsername());
+                    startActivity(signup);
+                } else {
+                    Log.d("MyApp", "User logged in through Facebook!");
+                    User loginUser = ServerInteraction.onLoginWithParseUser(parseUser);
+                    if(parseUser.get("displayedName") != null) {
+                        ((MyApplication) getApplicationContext()).setUser(loginUser);
+                        startActivity(new Intent(LoginActivity.this,HomeActivity.class));
+                    }else{
+                        Intent signup = new Intent(LoginActivity.this,SignUpActivity.class);
+                        signup.putExtra(SignUpActivity.USER_TYPE,User.UserType.FACEBOOK);
+                        signup.putExtra(SignUpActivity.USER_NAME,parseUser.getUsername());
+                        startActivity(signup);
+                    }
+                }
+            }
+        });
     }
     private void emailSignAction(){
         startActivity(new Intent(LoginActivity.this, SignInActivity.class));
-
     }
     private void externalSignAction(int type, String id){
         Intent nextIntent = new Intent(LoginActivity.this, SignUpActivity.class);
