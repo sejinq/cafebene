@@ -1,13 +1,16 @@
 package cosmantic.cosmantic_khw;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /*손!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111세~~~~~~~~~~~~~~~~~~~~~~진@@@@@@@@@@@@@@@@@@@@@@@@@ 내가다함*/
@@ -26,7 +29,7 @@ public class WriteReviewActivity extends Activity {
     //사용자가 쓴 리뷰
     EditText etContent;
     //별 버튼 이벤트 변수, 찜하기 버튼 이벤트 변수
-    int star_on;
+    int star_on=0;
     String likeProducts;
     @Override
     protected void onCreate(Bundle savedInstance) {
@@ -35,11 +38,11 @@ public class WriteReviewActivity extends Activity {
 
         title = (TextView) findViewById(R.id.titleText);
 
-        image = (ImageView) findViewById(R.id.imageView1);
-        imageShade = (ImageView) findViewById(R.id.imageView2);
-        product = (TextView) findViewById(R.id.textView);
-        brand = (TextView) findViewById(R.id.textView2);
+        image = (ImageView) findViewById(R.id.product_image);
+        product = (TextView) findViewById(R.id.product_text);
+        brand = (TextView) findViewById(R.id.brand_text);
         average = (TextView) findViewById(R.id.average);
+
         myave = (TextView) findViewById(R.id.textScore);
         etContent = (EditText) findViewById(R.id.editText);
 
@@ -69,6 +72,9 @@ public class WriteReviewActivity extends Activity {
 
         title.setText("평가하기");
         btShare.setImageResource(R.drawable.share_button);
+        ((ImageView) findViewById(R.id.writebox)).setVisibility(View.VISIBLE);
+        ((EditText) findViewById(R.id.editText)).setVisibility(View.VISIBLE);
+
         /*myImage.setImageResource(); byte로 저장되어있음*/
         //image.setImageBitmap(((MyApplication) getApplicationContext()).getImage(((MyApplication) getApplicationContext()).getProduct().getThumnail()));
         //myImage.setImageBitmap(((MyApplication) getApplicationContext()).getImage(((MyApplication) getApplicationContext()).getUser().getImage()));
@@ -78,13 +84,16 @@ public class WriteReviewActivity extends Activity {
         {
             star[i].setImageResource(R.drawable.star_inable);
         }
-        likeProducts = ((MyApplication)getApplicationContext()).getProduct().getObjectId();
-        if(((MyApplication)getApplicationContext()).getUser().isLike(likeProducts))
-            btLike.setImageResource(R.drawable.love_inable);
+        average.setText("별점 ("+aver+")");
+        //찜하기를 한건지 안한건지 판별
+        //likeProducts = ((MyApplication)getApplicationContext()).getProduct().getObjectId();
+        //if(((MyApplication)getApplicationContext()).getUser().isLike(likeProducts))
+        //   btLike.setImageResource(R.drawable.love_inable);
     }
     View.OnClickListener listener = new View.OnClickListener() {
         public void onClick(View v)
         {
+            star_on=0;
             switch(v.getId())
             {
                 case R.id.mystar5:
@@ -144,7 +153,7 @@ public class WriteReviewActivity extends Activity {
             while(true)
             {
                 if(ServerInteraction.onReviewUpload(review))
-                    //그 전창으로 넘겨주기.
+                    //홈화면으로 으로 넘겨주기.
                     break;
                 if(++i>3)
                     //메세지 띄워주기 "음.. 안됨 어쩌구"

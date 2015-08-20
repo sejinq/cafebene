@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -15,7 +16,7 @@ import android.widget.TextView;
 public class UserReviewTab implements ProductActivity.SmallTab {
     private Context context;
     private RelativeLayout mainView;
-    ListView lv;
+    private LinearLayout lv;
 
     public UserReviewTab(Context context, RelativeLayout view) {
         this.context = context;
@@ -28,14 +29,15 @@ public class UserReviewTab implements ProductActivity.SmallTab {
     {
         ImageButton[] star = new ImageButton[5];
 
-        int reviewNum = ((MyApplication)context.getApplicationContext()).getProduct().getReviewNum();
-        lv = ((ListView)mainView.findViewById(R.id.listReview));//카드 내부에 이벤트 등록
+        int reviewNum = ((MyApplication)context).getProduct().getReviewNum();
+        lv = ((LinearLayout)mainView.findViewById(R.id.listReview));//카드 내부에 이벤트 등록
         final Review[] reviewList = new Review[reviewNum];
         //Review[] 서버 메소드 return 값 받아오기!!!!!!!!!!!!!!!!!!!!!!!!!!
         for(int i=0;i<reviewNum;++i) {
+            reviewList[i] = new Review();
             final Review review = reviewList[i];
             RelativeLayout layout = (RelativeLayout) View.inflate(context, R.layout.user_review_box, null);
-            ((ImageView)layout.findViewById(R.id.userThumnail)).setImageBitmap(((MyApplication) context.getApplicationContext()).getImage(review.getThumnail()));
+            //((ImageView)layout.findViewById(R.id.userThumnail)).setImageBitmap(((MyApplication) context.getApplicationContext()).getImage(review.getThumnail()));
             //유저의 사진 클릭시 유저 정보창으로 넘어간다.
             ((ImageView)layout.findViewById(R.id.userThumnail)).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -52,6 +54,7 @@ public class UserReviewTab implements ProductActivity.SmallTab {
             star[3] = (ImageButton)layout.findViewById(R.id.mystar4);
             star[4] = (ImageButton)layout.findViewById(R.id.mystar5);
             int aver = (int)review.getRate();
+
             for(int j=0;j<aver;++j)
             {
                 star[j].setImageResource(R.drawable.star_inable);

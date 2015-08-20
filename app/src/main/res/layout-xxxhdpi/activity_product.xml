@@ -20,7 +20,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="30dp"
             android:layout_marginStart="30dp"
             android:layout_marginRight="30dp"
@@ -80,37 +80,50 @@
             android:background="@color/theme_color" />
 
     </RelativeLayout>
-    <FrameLayout
+    <ScrollView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent"
         android:layout_below="@+id/product_view_box">
+        <FrameLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+           >
 
-        <include
-            android:id="@+id/tablayout1"
-            layout="@layout/product_curation_tab"
-            />
+            <include
+                android:id="@+id/tablayout1"
+                layout="@layout/product_curation_tab"
+                />
 
-        <include
-            android:id="@+id/tablayout2"
-            android:visibility="gone"
-            layout="@layout/product_inform_tab"
-            android:isScrollContainer="true"
-            />
+            <include
+                android:id="@+id/tablayout2"
+                android:visibility="gone"
+                layout="@layout/product_inform_tab"
+                />
 
-        <include
-            android:id="@+id/tablayout3"
-            android:visibility="gone"
-            layout="@layout/product_price_inform_tab"
-            />
+            <include
+                android:id="@+id/tablayout3"
+                android:visibility="gone"
+                layout="@layout/product_price_inform_tab"
+                />
 
-        <include
-            android:id="@+id/tablayout4"
-            android:visibility="gone"
-            android:isScrollContainer="true"
-            layout="@layout/product_user_review_tab"
-            />
-
-    </FrameLayout>
-
-</RelativeLayout>
+            <include
+                android:id="@+id/tablayout4"
+                android:visibility="gone"
+                android:isScrollContainer="true"
+                layout="@layout/product_user_review_tab"
+                />
+        </FrameLayout>
+    </ScrollView>
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10.5dp"
+        android:layout_marginBottom="10.5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/review_pen_button"
+        android:background="@android:color/transparent"
+        android:src="@drawable/pen_button"/>
+    </RelativeLayout>
 

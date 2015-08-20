@@ -45,6 +45,7 @@ public class User {
     private Hashtable<String,Boolean> likeProducts;//사용자 찜 목록
 
     // 기본 생성자
+
     User(){}
 
     // 모든 정보를 다 받는 생성자
@@ -68,6 +69,20 @@ public class User {
     public boolean isLike(String likeProducts)
     {
         if(this.likeProducts.get(likeProducts)!=null){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public ArrayList<String> getLikeContents() {
+        Set<String> keys = likeProducts.keySet();
+        return null;
+    }
+    public boolean isLikeContents(String likeContents)
+    {
+        if(this.likeProducts.get(likeContents)!=null){
             return true;
         }
         else{

@@ -195,6 +195,11 @@ public class SignUpActivity extends Activity {
             signingUser.setUsername(id);
         }
     }
+    View.OnClickListener ClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            finish();
+            }
+        };
     //닉네임 중복확인
     View.OnClickListener onNick = new View.OnClickListener() {
         public void onClick(View v) {

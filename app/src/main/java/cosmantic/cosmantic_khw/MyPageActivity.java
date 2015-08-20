@@ -21,7 +21,7 @@ public class MyPageActivity extends Activity {
 
         // 액션바의 마이 페이지 버튼에 배경 설정
         Button btn = (Button) findViewById(R.id.tab4);
-        btn.setBackgroundResource(R.drawable.menutap);
+        btn.setBackgroundResource(R.drawable.menu_tap);
 
         // 글꼴 설정
         FontApplyer.setFont(this, ((TextView) findViewById(R.id.tab4)), FontApplyer.Font.NotoSans, FontApplyer.Style.Medium);

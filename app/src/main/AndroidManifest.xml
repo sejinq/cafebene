@@ -56,6 +56,12 @@
             android:theme="@style/RecommendTheme"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".InfoDetailActivity"
+            android:theme="@style/AppTheme">
+
+        </activity>
+
         <!-- SignIn 액티비티 -->
         <activity
             android:name=".SignInActivity"
@@ -68,6 +74,17 @@
             android:name=".SearchActivity"
             android:theme="@style/SearchTheme"
             android:screenOrientation="portrait"/>
+
+        <!-- WriteReviewActivity-->
+        <activity
+            android:name=".WriteReviewActivity"
+            android:theme="@style/AppTheme">
+        </activity>
+        <!-- ProductActivity-->
+        <activity
+            android:name=".UserInformActivity"
+            android:theme="@style/AppTheme">
+        </activity>
 
         <!-- Home 액티비티 -->
         <activity
