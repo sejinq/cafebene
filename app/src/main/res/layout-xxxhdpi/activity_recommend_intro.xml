@@ -31,7 +31,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:src="@drawable/skintype_oily"
-                    android:background="@null"/>
+                    android:background="@null"
+                    android:scaleType="fitCenter"/>
 
                 <ImageButton
                     android:id="@+id/dry_button"
@@ -39,7 +40,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:src="@drawable/skintype_dry"
-                    android:background="@null"/>
+                    android:background="@null"
+                    android:scaleType="fitCenter"/>
 
                 <ImageButton
                     android:id="@+id/sensitive_button"
@@ -47,7 +49,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:src="@drawable/skintype_sensitive"
-                    android:background="@null"/>
+                    android:background="@null"
+                    android:scaleType="fitCenter"/>
             </LinearLayout>
 
             <!-- 제품 분류바를 담는 레이아웃 -->

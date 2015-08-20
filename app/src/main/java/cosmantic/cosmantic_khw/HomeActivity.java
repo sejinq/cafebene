@@ -45,7 +45,7 @@ public class HomeActivity extends Activity {
             settingProductLayer(resourceId);
         }
 
-        // 상단 레이아웃 리스너 달기
+        // viewFlipper를 이용하여 상단 레이아웃 리스너 달기
         viewFlipper = (ViewFlipper) findViewById(R.id.home_product_container);
 //        viewFlipper.setOnTouchListener(TouchListener);        viewFlipper안의 Object들이 Flipper를 덮기 때문에 Flipper의 Touch가 인식되지 않음
 
@@ -79,10 +79,8 @@ public class HomeActivity extends Activity {
         FontApplyer.setFont(this, (TextView) container.findViewById(R.id.product_right_priceandvolume), FontApplyer.Font.NotoSans, FontApplyer.Style.Light);
 
         // 제품 클릭시 리스너를 나타내주기 위한 코드
-//        (container.findViewById(R.id.product_left)).setOnClickListener(ClickListener);
-//        (container.findViewById(R.id.product_center)).setOnClickListener(ClickListener);
-//        (container.findViewById(R.id.product_right)).setOnClickListener(ClickListener);   // Touch이벤트가 등록되면 Click이벤트가 작동하지 않으므로 Touch에 Click이벤트를 입력
-        (container.findViewById(R.id.product_left)).setOnTouchListener(TouchListener); // Fliper안의 Object에 거리 인식, Flipping효과를 계산하는 이벤트 등록
+        // Touch이벤트가 등록되면 Click이벤트가 작동하지 않으므로 Touch에 Click이벤트를 입력
+        (container.findViewById(R.id.product_left)).setOnTouchListener(TouchListener); // Fliper안의 Object에 거리 인식, Flipping 효과를 계산하는 이벤트 등록
         (container.findViewById(R.id.product_center)).setOnTouchListener(TouchListener);
         (container.findViewById(R.id.product_right)).setOnTouchListener(TouchListener);
     }
@@ -95,7 +93,7 @@ public class HomeActivity extends Activity {
             Log.d("Home","Touch:"+v.getId());
             // 이벤트가 터치(ACTION_DOWN)일 때, 손가락이 화면에 붙어 있을 때
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                // 시작좌표입니다. 터치 시점을 저장합니다.
+                // 시작 좌표, 즉 터치 시점을 저장
                 xAtDown = event.getX();
                 return true;
             } else if (event.getAction() == MotionEvent.ACTION_UP) {
@@ -176,36 +174,44 @@ public class HomeActivity extends Activity {
         public void onClick(View v) {
             Log.d("Home", "Click:"+v.getId());
             switch (v.getId()) {
+                // 액션바에 있는 검색 버튼
                 case R.id.searchButton:
                     intent = new Intent(HomeActivity.this, SearchActivity.class);
                     startActivity(intent);
                     break;
+                // 추천 화장품 버튼
                 case R.id.tab2:
                     intent = new Intent(HomeActivity.this, RecommendIntroActivity.class);
                     startActivity(intent);
                     break;
+                // 화장품 상식 버튼
                 case R.id.tab3:
                     intent = new Intent(HomeActivity.this, InformationActivity.class);
                     startActivity(intent);
                     break;
+                // 마이 페이지 버튼
                 case R.id.tab4:
                     intent = new Intent(HomeActivity.this, MyPageActivity.class);
                     startActivity(intent);
                     break;
+                // HomeActivity 안에 있는 '나의 피부 타입 테스트'
                 case R.id.home_skintype_test:
                     intent = new Intent(HomeActivity.this, WebViewActivity.class);
                     startActivity(intent);
                     break;
+                // HomeActivity 안에 있는 지성 버튼
                 case R.id.oily_button:
                     intent = new Intent(HomeActivity.this, RecommendActivity.class);
                     intent.putExtra(RecommendActivity.RECOMMEND_KEY, User.SKIN_TYPE_OILY);
                     startActivity(intent);
                     break;
+                // HomeActivity 안에 있는 건성 버튼
                 case R.id.dry_button:
                     intent = new Intent(HomeActivity.this, RecommendActivity.class);
                     intent.putExtra(RecommendActivity.RECOMMEND_KEY, User.SKIN_TYPE_DRY);
                     startActivity(intent);
                     break;
+                // HomeActivity 안에 있는 민감성 버튼
                 case R.id.sensitive_button:
                     intent = new Intent(HomeActivity.this, RecommendActivity.class);
                     intent.putExtra(RecommendActivity.RECOMMEND_KEY, User.SKIN_TYPE_SENSITIVE);
@@ -215,14 +221,18 @@ public class HomeActivity extends Activity {
         }
     };
 
+    // 제품 클릭을 처리하는 리스너
     private void productClick(View v){
         switch (v.getId()) {
+            // 왼쪽 제품
             case R.id.product_left:
                 Toast.makeText(HomeActivity.this, "product_left", Toast.LENGTH_SHORT).show();
                 break;
+            // 가운데 제품
             case R.id.product_center:
                 Toast.makeText(HomeActivity.this, "product_center", Toast.LENGTH_SHORT).show();
                 break;
+            // 오른쪽 제품
             case R.id.product_right:
                 Toast.makeText(HomeActivity.this, "product_right", Toast.LENGTH_SHORT).show();
                 break;
@@ -232,6 +242,7 @@ public class HomeActivity extends Activity {
     @Override
     protected void onStop() {
         super.onStop();
+        // 다른 액티비티로 갔을 때 뒤로 가기 버튼이 두 번 눌렸는지 확인해주는 변수를 false로 다시 초기화.
         backCheck=false;
     }
 
@@ -245,6 +256,7 @@ public class HomeActivity extends Activity {
                     finish();
                     android.os.Process.killProcess(android.os.Process.myPid());
                 }
+                // 뒤로 가기 버튼이 한번만 눌렸을 때 처리.
                 else {
                     Toast.makeText(HomeActivity.this, "'뒤로' 버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show();
                     backCheck = true;
@@ -254,8 +266,10 @@ public class HomeActivity extends Activity {
         return true;
     }
 
+    // 액티비티가 보여지기 바로 전에 거치는 곳.
     @Override
     protected void onResume() {
+        // 화면 전환 애니메이션을 무시해주는 코드.
         this.overridePendingTransition(0,0);
         super.onResume();
     }

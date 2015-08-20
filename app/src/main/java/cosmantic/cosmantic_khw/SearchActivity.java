@@ -34,6 +34,8 @@ public class SearchActivity extends Activity {
                 case R.id.backButton:
                     finish();
                     break;
+                // 검색 버튼 누르면 검색창이 떠야 하는데
+                // 서버 통신이 안 되는 관계로 랜덤하게 xml 창이 뜨도록 해놓음.
                 case R.id.searchButton:
                     if((int)(Math.random()*2)==0) {
                         ((LinearLayout) findViewById(R.id.search_result)).setVisibility(View.VISIBLE);
@@ -56,6 +58,7 @@ public class SearchActivity extends Activity {
     View.OnKeyListener KeyListener = new View.OnKeyListener(){
         @Override
         public boolean onKey(View v, int keyCode, KeyEvent keyEvent) {
+            // EditText에서 Enter를 눌러도 검색이 되도록 설정.
             if(keyCode==KeyEvent.KEYCODE_ENTER){
                 ClickListener.onClick(findViewById(R.id.searchButton));
                 return true;

@@ -65,21 +65,25 @@ public class RecommendIntroActivity extends Activity {
                     intent = new Intent(RecommendIntroActivity.this, MyPageActivity.class);
                     startActivity(intent);
                     break;
+                // '지성' 키 값을 전달
                 case R.id.oily_button:
                     intent = new Intent(RecommendIntroActivity.this, RecommendActivity.class);
                     intent.putExtra(RecommendActivity.RECOMMEND_KEY, User.SKIN_TYPE_OILY);
                     startActivity(intent);
                     break;
+                // '건성' 키 값을 전달
                 case R.id.dry_button:
                     intent = new Intent(RecommendIntroActivity.this, RecommendActivity.class);
                     intent.putExtra(RecommendActivity.RECOMMEND_KEY, User.SKIN_TYPE_DRY);
                     startActivity(intent);
                     break;
+                // '민감성' 키 값을 전달
                 case R.id.sensitive_button:
                     intent = new Intent(RecommendIntroActivity.this, RecommendActivity.class);
                     intent.putExtra(RecommendActivity.RECOMMEND_KEY, User.SKIN_TYPE_SENSITIVE);
                     startActivity(intent);
                     break;
+                // '상황별_군인' 키 값을 전달
                 case R.id.situation_button:
                     intent = new Intent(RecommendIntroActivity.this, RecommendActivity.class);
                     intent.putExtra(RecommendActivity.RECOMMEND_KEY, User.SEASON_SOLDIER);

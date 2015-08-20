@@ -59,10 +59,12 @@ public class MyPageActivity extends Activity {
         public void onClick(View v) {
             Log.d("Home", "Click:" + v.getId());
             switch (v.getId()) {
+                // 액션바 찾기 버튼
                 case R.id.searchButton:
                     intent = new Intent(MyPageActivity.this, SearchActivity.class);
                     startActivity(intent);
                     break;
+                // 홈 버트
                 case R.id.tab1:
                     intent = new Intent(MyPageActivity.this, HomeActivity.class);
                     startActivity(intent);

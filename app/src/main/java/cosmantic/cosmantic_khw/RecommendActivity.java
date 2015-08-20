@@ -140,6 +140,7 @@ public class RecommendActivity extends Activity{
         return true;
     }
 
+    // 서버에 관한 메서드인데 미완.
     private void setProduct(){
         Product[] products = ServerInteraction.getRecommendList(flag_info);
         int img_id = R.id.product_left_image;
