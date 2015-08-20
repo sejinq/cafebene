@@ -113,14 +113,15 @@ public class InfoDetailActivity extends Activity {
         //int contentsNum = ((MyApplication) context).getProduct().getReviewNum();
         int contentsNum = 4;
 
-        final WebContents[] contentsList = new WebContents[contentsNum];
+         WebContents[] contentsList = new WebContents[contentsNum];
         //contentsList[] 서버 메소드 return 값 받아오기, int pageTab값 넘겨주기.!!!!!!!!!!!!!!!!!!!!!!!!!!
         for (int i = 0; i < contentsNum; ++i) {
             contentsList[i] = new WebContents();
             final WebContents contents = contentsList[i];
             RelativeLayout layout = (RelativeLayout) View.inflate(context, R.layout.inform_detail_box, null);
-            //컨텐츠 이미지, 제목, 부제 받아와서 보여주기.
+            //컨텐츠 이미지, 제품 이미지, 브랜드, 이르 받아와서 보여주기.
             ((RelativeLayout)layout.findViewById(R.id.info_detail_box_review)).setVisibility(View.VISIBLE);
+
             //이미지 받아오기
             /*((ImageButton) layout.findViewById(R.id.detail_image)).
                     setImageBitmap(((MyApplication) context.getApplicationContext()).getImage(contentsList[i].getImage()));
@@ -128,15 +129,16 @@ public class InfoDetailActivity extends Activity {
                     getImage(contents.getProductImage());
             ((TextView) layout.findViewById(R.id.review_brand)).setText(contents.getProductBrand());
             ((TextView) layout.findViewById(R.id.review_name)).setText(contents.getProductName());
-            */
+*/
             ((ImageButton) layout.findViewById(R.id.inform_detail_product_button)).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ((MyApplication) getApplicationContext()).setProduct(ServerInteraction.getProductInform(contents.getProduct_objectId()));
+                    //((MyApplication) getApplicationContext()).setProduct(ServerInteraction.getProductInform(contents.getProduct_objectId()));
                     Intent nextIntent = new Intent(getApplicationContext(), ProductActivity.class);
                     callIntent(nextIntent);
                 }
             });
+
             layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -19,7 +19,7 @@ public class WebViewActivity extends Activity {
         setContentView(R.layout.activity_webview);
 
         webview = (WebView) findViewById(R.id.webview);
-      //  webview.getSettings().setJavaScriptEnabled(true);
+        webview.getSettings().setJavaScriptEnabled(true);
 
         Intent intent = getIntent();
         String title = intent.getExtras().getString("webview_title");

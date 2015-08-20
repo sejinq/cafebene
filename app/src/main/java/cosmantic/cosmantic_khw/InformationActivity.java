@@ -39,7 +39,7 @@ public class InformationActivity extends Activity {
         ((ImageButton) this.findViewById(R.id.inform_2)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent nextIntent = new Intent(InformationActivity.this, WebViewActivity.class);
+                Intent nextIntent = new Intent(InformationActivity.this, InfoDetailActivity.class);
                 nextIntent.putExtra("pageTag", web_pageFlag.PG_PRODUCT_REVIEW);
                 nextIntent.putExtra("pageTitle", "추천 제품 리뷰");
                 startActivity(nextIntent);
