@@ -147,8 +147,7 @@
         <!-- 프로필 사진, 닉네임, 성별, 나이, 피부 타입 -->
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
+            android:layout_height="wrap_content">
 
             <ImageButton
                 android:id="@+id/mypage_profile_photo"
@@ -176,8 +175,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/mypage_nickname"
                 android:includeFontPadding="false"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="12dp"
+                android:layout_marginTop="12.5dp"
+                android:layout_marginBottom="12.5dp"
                 android:layout_centerHorizontal="true"
                 android:text="성별  /  나이"
                 android:textSize="14dp"/>
@@ -198,16 +197,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/mypage_skintype"
-                android:paddingTop="26dp"
-                android:paddingLeft="84dp"
-                android:paddingRight="84dp">
+                android:gravity="center"
+                android:paddingTop="26dp">
 
                 <!-- 건조 -->
                 <TextView
                     android:id="@+id/mypage_skin_problem4"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:gravity="center"
                     android:includeFontPadding="false"
                     android:text="@string/problem_dry"
@@ -218,40 +215,38 @@
                 <!-- 유분 -->
                 <TextView
                     android:id="@+id/mypage_skin_problem3"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
                     android:gravity="center"
                     android:includeFontPadding="false"
                     android:text="@string/problem_oil"
                     android:textSize="11dp"
-                    android:textColor="@color/mypage_selected_tag"
-                    android:background="@drawable/selected_tag"/>
-
-                <!-- 피지 -->
-                <TextView
-                    android:id="@+id/mypage_skin_problem1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:includeFontPadding="false"
-                    android:text="@string/problem_subum"
-                    android:textSize="11dp"
-                    android:textColor="@color/mypage_selected_tag"
-                    android:background="@drawable/selected_tag"/>
+                    android:textColor="@color/mypage_selected_tag"/>
 
                 <!-- 주름 -->
                 <TextView
                     android:id="@+id/mypage_skin_problem2"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:gravity="center"
                     android:includeFontPadding="false"
                     android:text="@string/problem_wrinkle"
                     android:textSize="11dp"
                     android:textColor="@color/mypage_unselected_tag"/>
+
+                <!-- 피지 -->
+                <TextView
+                    android:id="@+id/mypage_skin_problem1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginLeft="25dp"
+                    android:includeFontPadding="false"
+                    android:text="@string/problem_subum"
+                    android:textSize="11dp"
+                    android:textColor="@color/mypage_selected_tag"/>
             </LinearLayout>
 
             <!-- 피부 고민 아래쪽 컨테이너 -->
@@ -260,42 +255,38 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/mypage_skin_problem_top_container"
-                android:paddingTop="17dp"
-                android:paddingLeft="70dp"
-                android:paddingRight="70dp">
+                android:gravity="center_horizontal"
+                android:paddingTop="17dp">
 
                 <!-- 아토피 -->
                 <TextView
                     android:id="@+id/mypage_skin_problem5"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:gravity="center"
                     android:includeFontPadding="false"
                     android:text="@string/problem_atopic"
                     android:textSize="11dp"
-                    android:textColor="@color/mypage_selected_tag"
-                    android:background="@drawable/selected_tag"/>
+                    android:textColor="@color/mypage_selected_tag"/>
 
                 <!-- 여드름 -->
                 <TextView
                     android:id="@+id/mypage_skin_problem6"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:gravity="center"
                     android:includeFontPadding="false"
+                    android:layout_marginLeft="21dp"
+                    android:layout_marginRight="21dp"
                     android:text="@string/problem_trouble"
                     android:textSize="11dp"
-                    android:textColor="@color/mypage_selected_tag"
-                    android:background="@drawable/selected_tag"/>
+                    android:textColor="@color/mypage_selected_tag"/>
 
                 <!-- 피부톤 -->
                 <TextView
                     android:id="@+id/mypage_skin_problem7"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:gravity="center"
                     android:includeFontPadding="false"
                     android:text="@string/problem_color"
@@ -305,15 +296,14 @@
                 <!-- 다크써클 -->
                 <TextView
                     android:id="@+id/mypage_skin_problem8"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:gravity="center"
                     android:includeFontPadding="false"
+                    android:layout_marginLeft="21dp"
                     android:text="@string/problem_dark"
                     android:textSize="11dp"
-                    android:textColor="@color/mypage_selected_tag"
-                    android:background="@drawable/selected_tag"/>
+                    android:textColor="@color/mypage_selected_tag"/>
             </LinearLayout>
         </RelativeLayout>
     </FrameLayout>

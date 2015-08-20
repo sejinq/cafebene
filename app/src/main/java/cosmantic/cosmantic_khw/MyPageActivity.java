@@ -34,7 +34,7 @@ public class MyPageActivity extends Activity {
         FontApplyer.setFont(this, ((TextView) findViewById(R.id.mypage_skintype)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
 
         // 피부 고민들 글꼴 적용
-        for(int i=1;i<=5;i++){
+        for(int i=1;i<=8;i++){
             int resourceId = getResources().getIdentifier("mypage_skin_problem"+i, "id", "cosmantic.cosmantic_khw");
             TextView textView = (TextView)findViewById(resourceId);
             textView.setText("# "+textView.getText().toString());
