@@ -237,25 +237,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/button12"
-                    android:text="@string/effect_share"
+                    android:text="@string/problem_subum"
                     />
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/button13"
-                    android:text="@string/effect_trouble"
+                    android:text="@string/problem_wrinkle"
                     />
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/button14"
-                    android:text="@string/effect_wrinkle"
+                    android:text="@string/problem_oil"
                     />
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/button15"
-                    android:text="@string/effect_pore"
+                    android:text="@string/problem_dark"
                     android:layout_marginRight="40dp"
                     />
             </TableRow>
@@ -269,25 +269,25 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/button16"
                     android:layout_column="1"
-                    android:text="@string/effect_sun"
+                    android:text="@string/problem_dry"
                     />
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/button17"
-                    android:text="@string/effect_white"
+                    android:text="@string/problem_trouble"
                     />
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/button18"
-                    android:text="@string/effect_repair"
+                    android:text="@string/problem_color"
                     />
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/button19"
-                    android:text="@string/effect_scrub"
+                    android:text="@string/problem_dry"
                     android:layout_marginRight="40dp"
                     />
             </TableRow>

@@ -34,6 +34,11 @@
 
     </style>
 
+    <!-- InformationActivity 테마 -->
+    <style name="InformationTheme" parent="android:Theme.Holo.Light.NoActionBar">
+
+    </style>
+
     <!-- MyPageActivity 테마 -->
     <style name="MyPageTheme" parent="android:Theme.Holo.Light.NoActionBar">
 

@@ -4,10 +4,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MyPageActivity extends Activity {
     @Override
@@ -20,16 +24,33 @@ public class MyPageActivity extends Activity {
         btn.setBackgroundResource(R.drawable.menutap);
 
         // 글꼴 설정
-        FontApplyer.setFont(this, ((TextView) findViewById(R.id.tab1)), FontApplyer.Font.NotoSans, FontApplyer.Style.Medium);
+        FontApplyer.setFont(this, ((TextView) findViewById(R.id.tab4)), FontApplyer.Font.NotoSans, FontApplyer.Style.Medium);
+        FontApplyer.setFont(this, ((TextView) findViewById(R.id.tab1)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
         FontApplyer.setFont(this, ((TextView) findViewById(R.id.tab2)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
         FontApplyer.setFont(this, ((TextView) findViewById(R.id.tab3)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
-        FontApplyer.setFont(this, ((TextView) findViewById(R.id.tab4)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(this, ((TextView) findViewById(R.id.mypage_profile_titletxt)), FontApplyer.Font.NotoSans, FontApplyer.Style.Light);
+        FontApplyer.setFont(this, ((TextView) findViewById(R.id.mypage_nickname)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(this, ((TextView) findViewById(R.id.mypage_genender_age)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(this, ((TextView) findViewById(R.id.mypage_skintype)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
 
-        // 액션바 버튼 리스너 달기
+        // 피부 고민들 글꼴 적용
+        for(int i=1;i<=5;i++){
+            int resourceId = getResources().getIdentifier("mypage_skin_problem"+i, "id", "cosmantic.cosmantic_khw");
+            TextView textView = (TextView)findViewById(resourceId);
+            textView.setText("# "+textView.getText().toString());
+            FontApplyer.setFont(this, textView, FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        }
+
+        // Click 리스너 달기
         ((RelativeLayout)findViewById(R.id.home_action_bar)).findViewById(R.id.tab1).setOnClickListener(ClickListener);
         ((RelativeLayout)findViewById(R.id.home_action_bar)).findViewById(R.id.tab2).setOnClickListener(ClickListener);
         ((RelativeLayout)findViewById(R.id.home_action_bar)).findViewById(R.id.tab3).setOnClickListener(ClickListener);
-        }
+        ((RelativeLayout)findViewById(R.id.home_action_bar)).findViewById(R.id.searchButton).setOnClickListener(ClickListener);
+        ((ImageButton)findViewById(R.id.mypage_profile_photo)).setOnClickListener(ClickListener);
+        ((LinearLayout)findViewById(R.id.mypage_likelist)).setOnClickListener(ClickListener);
+        ((LinearLayout)findViewById(R.id.mypage_myreview)).setOnClickListener(ClickListener);
+        ((LinearLayout)findViewById(R.id.mypage_settings)).setOnClickListener(ClickListener);
+    }
 
     // 버튼 리스너
     View.OnClickListener ClickListener = new View.OnClickListener() {
@@ -54,9 +75,33 @@ public class MyPageActivity extends Activity {
                     intent = new Intent(MyPageActivity.this, InformationActivity.class);
                     startActivity(intent);
                     break;
+                case R.id.mypage_profile_photo:
+                    Toast.makeText(MyPageActivity.this, "프로필 사진 기능은 추후 지원 예정입니다.", Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.mypage_likelist:
+                    Toast.makeText(MyPageActivity.this, "찜 목록", Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.mypage_myreview:
+                    Toast.makeText(MyPageActivity.this, "나의 리뷰", Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.mypage_settings:
+                    Toast.makeText(MyPageActivity.this, "로그아웃의 탈을 쓴 환경설정", Toast.LENGTH_SHORT).show();
+                    break;
             }
         }
     };
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                Intent intent = new Intent(MyPageActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finish();
+                break;
+        }
+        return true;
+    }
 
     @Override
     protected void onResume() {

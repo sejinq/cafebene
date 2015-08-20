@@ -7,134 +7,57 @@
         android:id="@+id/home_action_bar"
         layout="@layout/actionbar_home"
         />
-
-    <RelativeLayout
-        android:layout_below="@id/home_action_bar"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/home_content">
-
-        <ImageView
-            android:layout_width="156dp"
-            android:layout_height="21dp"
-            android:id="@+id/imageView"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/subject_bar" />
-
-
-        <ImageView
-            android:layout_width="156dp"
-            android:layout_height="21dp"
-            android:id="@+id/imageView2"
-            android:layout_below="@+id/imageButton4"
-            android:layout_marginTop="20dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:src="@drawable/subject_bar" />
-
-        <ImageView
-            android:layout_width="156dp"
-            android:layout_height="21dp"
-            android:id="@+id/imageView3"
-            android:layout_below="@+id/imageButton5"
-            android:layout_marginTop="20dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:src="@drawable/subject_bar" />
-        <ImageView
-            android:layout_width="156dp"
-            android:layout_height="21dp"
-            android:id="@+id/imageView4"
-            android:layout_below="@+id/imageButton6"
-            android:layout_marginTop="20dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:src="@drawable/subject_bar" />
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageButton4"
-            android:layout_below="@+id/imageView"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageButton5"
-            android:layout_below="@+id/imageView2"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageButton6"
-            android:layout_below="@+id/imageView3"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageButton7"
-            android:layout_below="@+id/imageView4"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-        <TextView
-            android:id="@+id/ImageViewText4"
+        android:layout_below="@id/home_action_bar"
+        >
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/imageView4"
-            android:layout_alignTop="@id/imageView4"
-            android:layout_alignRight="@id/imageView4"
-            android:layout_alignBottom="@id/imageView4"
-            android:layout_margin="1dp"
-            android:gravity="center"
-            android:text="Hello"
-            android:textColor="#ffffffff" />
-        <TextView
-            android:id="@+id/ImageViewText1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/imageView"
-            android:layout_alignTop="@id/imageView"
-            android:layout_alignRight="@id/imageView"
-            android:layout_alignBottom="@id/imageView"
-            android:layout_margin="1dp"
-            android:gravity="center"
-            android:text="Hello"
-            android:textColor="#ffffffff" />
-        <TextView
-            android:id="@+id/ImageViewText2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/imageView2"
-            android:layout_alignTop="@id/imageView2"
-            android:layout_alignRight="@id/imageView2"
-            android:layout_alignBottom="@id/imageView2"
-            android:layout_margin="1dp"
-            android:gravity="center"
-            android:text="Hello"
-            android:textColor="#ffffffff" />
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/home_content">
 
-        <TextView
-            android:id="@+id/ImageViewText3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/imageView3"
-            android:layout_alignTop="@id/imageView3"
-            android:layout_alignRight="@id/imageView3"
-            android:layout_alignBottom="@id/imageView3"
-            android:layout_margin="1dp"
-            android:gravity="center"
-            android:text="Hello"
-            android:textColor="#ffffffff" />
-    </RelativeLayout>
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:layout_weight="1"
+                android:id="@+id/inform_1"
+                android:src="@drawable/inform_image1"
+                />
 
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="3dp"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:id="@+id/inform_2"
+                android:src="@drawable/inform_image2" />
 
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:id="@+id/inform_3"
+                android:src="@drawable/inform_image3" />
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:scaleType="fitCenter"
+                android:layout_gravity="center_horizontal"
+                android:background="@android:color/transparent"
+                android:id="@+id/inform_4"
+                android:src="@drawable/inform_image4" />
 
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

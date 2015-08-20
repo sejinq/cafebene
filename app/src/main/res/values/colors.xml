@@ -43,6 +43,10 @@
     <color name="home_containerbg">#ffffff</color>
     <!-- HomeActivity 메인바 글씨 -->
     <color name="home_mainbar_txt">#ffffff</color>
-    <!-- MyPageActivity 상단 컨테이너 배경 -->
-    <color name="mypage_top_container_bg">#d8d8d8</color>
+    <!-- MyPageActivity 기본 글씨 -->
+    <color name="mypage_default_txt">#000000</color>
+    <!-- MyPageActivity 선택된 글씨 태그, 하단 컨테이너에 있는 글씨 -->
+    <color name="mypage_selected_tag">#0c1e36</color>
+    <!-- MyPageActivity 선택되지 않은 태그 글씨 -->
+    <color name="mypage_unselected_tag">#9fa6ad</color>
 </resources>

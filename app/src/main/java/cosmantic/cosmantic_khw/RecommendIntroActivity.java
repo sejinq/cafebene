@@ -58,7 +58,7 @@ public class RecommendIntroActivity extends Activity {
                     startActivity(intent);
                     break;
                 case R.id.tab3:
-                    intent = new Intent(RecommendIntroActivity.this, InfomationActivity.class);
+                    intent = new Intent(RecommendIntroActivity.this, InformationActivity.class);
                     startActivity(intent);
                     break;
                 case R.id.tab4:
@@ -97,7 +97,10 @@ public class RecommendIntroActivity extends Activity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
+                Intent intent = new Intent(RecommendIntroActivity.this, HomeActivity.class);
+                startActivity(intent);
                 finish();
+                break;
         }
         return true;
     }

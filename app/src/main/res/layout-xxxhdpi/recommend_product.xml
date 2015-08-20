@@ -41,7 +41,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp">
+        android:layout_marginTop="5.5dp">
 
         <!-- 왼쪽 제품 -->
         <LinearLayout
@@ -204,5 +204,11 @@
                 android:textColor="@color/recommenddetail_productvolumepricetxt"
                 android:layout_gravity="center"/>
         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp">
+
     </LinearLayout>
 </LinearLayout>

@@ -78,6 +78,14 @@
             </intent-filter>
         </activity>
 
+        <!-- Information 액티비티 -->
+        <activity
+            android:name=".InformationActivity"
+            android:theme="@style/InformationTheme"
+            android:screenOrientation="portrait">
+
+        </activity>
+
         <!-- MyPage 액티비티 -->
         <activity
             android:name=".MyPageActivity"

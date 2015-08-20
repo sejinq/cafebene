@@ -36,13 +36,13 @@
     <string name="skin_sensitive">민감성</string>
     <string name="skin_unknown">모름</string>
     <string name="problem_subum">피지</string>
-    <string name="problem_oil">유분</string>
     <string name="problem_wrinkle">주름</string>
-    <string name="problem_dark">다크써클</string>
-    <string name="problem_dry">아토피</string>
+    <string name="problem_oil">유분</string>
+    <string name="problem_dry">건조</string>
+    <string name="problem_atopic">아토피</string>
     <string name="problem_trouble">여드름</string>
     <string name="problem_color">피부톤</string>
-    <string name="problem_sensitive">민감성</string>
+    <string name="problem_dark">다크써클</string>
     <string name="agree_message">이용약관/개인취급정보방침동의</string>
     <string name="signup">가입완료</string>
 
