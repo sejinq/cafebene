@@ -35,14 +35,14 @@
     <string name="skin_dry">건성</string>
     <string name="skin_sensitive">민감성</string>
     <string name="skin_unknown">모름</string>
-    <string name="effect_share">보습</string>
-    <string name="effect_trouble">여드름개선</string>
-    <string name="effect_wrinkle">주름개선</string>
-    <string name="effect_pore">모공축소</string>
-    <string name="effect_sun">자외선차단</string>
-    <string name="effect_white">미백</string>
-    <string name="effect_repair">피부재생</string>
-    <string name="effect_scrub">각질제거</string>
+    <string name="problem_subum">피지</string>
+    <string name="problem_oil">유분</string>
+    <string name="problem_wrinkle">주름</string>
+    <string name="problem_dark">다크써클</string>
+    <string name="problem_dry">아토피</string>
+    <string name="problem_trouble">여드름</string>
+    <string name="problem_color">피부톤</string>
+    <string name="problem_sensitive">민감성</string>
     <string name="agree_message">이용약관/개인취급정보방침동의</string>
     <string name="signup">가입완료</string>
 

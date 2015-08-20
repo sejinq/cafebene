@@ -132,5 +132,87 @@
                 </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
+
+        <!-- 프로필 사진, 닉네임, 성별, 나이, 피부 타입 -->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <ImageButton
+                android:id="@+id/mypage_profile_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="66.5dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/man"/>
+
+            <TextView
+                android:id="@+id/mypage_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mypage_profile_photo"
+                android:layout_marginTop="14.5dp"
+                android:layout_centerHorizontal="true"
+                android:text="닉네임"/>
+
+            <TextView
+                android:id="@+id/mypage_genender_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mypage_nickname"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:layout_centerHorizontal="true"
+                android:text="성별  /  나이" />
+
+            <TextView
+                android:id="@+id/mypage_skintype"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mypage_genender_age"
+                android:layout_centerHorizontal="true"
+                android:text="피부 타입"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mypage_skintype"
+                android:padding="26dp">
+
+                <!-- 피지 -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/problem_subum"/>
+
+                <!-- 주름 -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/problem_wrinkle"/>
+
+                <!-- 유분 -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/problem_oil"/>
+
+                <!-- 다크 써클 -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/problem_dark"/>
+            </LinearLayout>
+
+        </RelativeLayout>
     </FrameLayout>
 </LinearLayout>

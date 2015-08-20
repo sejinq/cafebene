@@ -54,10 +54,11 @@ public class RecommendIntroActivity extends Activity {
                     startActivity(intent);
                     break;
                 case R.id.tab1:
-                    finish();
+                    intent = new Intent(RecommendIntroActivity.this, HomeActivity.class);
+                    startActivity(intent);
                     break;
                 case R.id.tab3:
-                    intent = new Intent(RecommendIntroActivity.this, InfoDetailActivity.class);
+                    intent = new Intent(RecommendIntroActivity.this, InfomationActivity.class);
                     startActivity(intent);
                     break;
                 case R.id.tab4:
@@ -99,6 +100,12 @@ public class RecommendIntroActivity extends Activity {
                 finish();
         }
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        this.overridePendingTransition(0,0);
+        super.onResume();
     }
 
     @Override

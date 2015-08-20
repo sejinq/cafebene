@@ -185,7 +185,7 @@ public class HomeActivity extends Activity {
                     startActivity(intent);
                     break;
                 case R.id.tab3:
-                    intent = new Intent(HomeActivity.this, InfoDetailActivity.class);
+                    intent = new Intent(HomeActivity.this, InformationActivity.class);
                     startActivity(intent);
                     break;
                 case R.id.tab4:
@@ -249,6 +249,12 @@ public class HomeActivity extends Activity {
                 }
         }
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        this.overridePendingTransition(0,0);
+        super.onResume();
     }
 
     @Override

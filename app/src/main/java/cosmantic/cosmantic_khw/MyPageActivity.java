@@ -26,10 +26,10 @@ public class MyPageActivity extends Activity {
         FontApplyer.setFont(this, ((TextView) findViewById(R.id.tab4)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
 
         // 액션바 버튼 리스너 달기
+        ((RelativeLayout)findViewById(R.id.home_action_bar)).findViewById(R.id.tab1).setOnClickListener(ClickListener);
         ((RelativeLayout)findViewById(R.id.home_action_bar)).findViewById(R.id.tab2).setOnClickListener(ClickListener);
         ((RelativeLayout)findViewById(R.id.home_action_bar)).findViewById(R.id.tab3).setOnClickListener(ClickListener);
-        ((RelativeLayout)findViewById(R.id.home_action_bar)).findViewById(R.id.tab4).setOnClickListener(ClickListener);
-    }
+        }
 
     // 버튼 리스너
     View.OnClickListener ClickListener = new View.OnClickListener() {
@@ -51,12 +51,19 @@ public class MyPageActivity extends Activity {
                     startActivity(intent);
                     break;
                 case R.id.tab3:
-                    intent = new Intent(MyPageActivity.this, InfoDetailActivity.class);
+                    intent = new Intent(MyPageActivity.this, InformationActivity.class);
                     startActivity(intent);
                     break;
             }
         }
     };
+
+    @Override
+    protected void onResume() {
+        this.overridePendingTransition(0,0);
+        super.onResume();
+    }
+
     @Override
     protected void onDestroy(){
         super.onDestroy();
