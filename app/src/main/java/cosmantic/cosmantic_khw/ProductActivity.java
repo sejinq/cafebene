@@ -51,6 +51,7 @@ public class ProductActivity extends Activity {
         tabClass = new ProductCurationTab(ProductActivity.this,(RelativeLayout) findViewById(R.id.tablayout1));
 
         settingActionBar();
+        settingSmallTab();
         settingStar();
 
     }
@@ -124,7 +125,7 @@ public class ProductActivity extends Activity {
                 //선택 될 탭의 내용만 활성화.
                 setting(view, findViewById(R.id.tab1));
                 //RelativeLayout 정보와 ProductActivity의 content를 같이 넘겨주기.
-                tabClass = new ProductCurationTab(ProductActivity.this,view);
+                tabClass = new ProductCurationTab(getApplicationContext(),view);
             }
         });
         smallTab[1] = (Button) findViewById(R.id.tab2);
@@ -132,7 +133,7 @@ public class ProductActivity extends Activity {
             public void onClick(View v) {
                 RelativeLayout view =  (RelativeLayout)findViewById(R.id.tablayout2);
                 setting(view, findViewById(R.id.tab2));
-                tabClass = new ProductInformTab(ProductActivity.this,view);
+                tabClass = new ProductInformTab(getApplicationContext(),view);
             }
         });
         smallTab[2] = (Button) findViewById(R.id.tab3);
@@ -140,7 +141,7 @@ public class ProductActivity extends Activity {
             public void onClick(View v) {
                 RelativeLayout view = (RelativeLayout) findViewById(R.id.tablayout3);
                 setting(view, findViewById(R.id.tab3));
-                tabClass = new PriceInformTab(ProductActivity.this, view);
+                tabClass = new PriceInformTab(getApplicationContext(), view);
             }
         });
         smallTab[3] = (Button) findViewById(R.id.tab4);
@@ -148,7 +149,7 @@ public class ProductActivity extends Activity {
             public void onClick(View v) {
                 RelativeLayout view = (RelativeLayout) findViewById(R.id.tablayout4);
                 setting(view, findViewById(R.id.tab4));
-                //tabClass = new UserReviewTab(ProductActivity.this,view);
+                tabClass = new UserReviewTab(getApplicationContext(),view);
             }
         });
 
@@ -204,4 +205,7 @@ public class ProductActivity extends Activity {
     }
 
     public interface SmallTab{}
+    public void changeActivity(Intent intent){
+        startActivity(intent);
+    }
 }

@@ -41,6 +41,7 @@ public class InformationActivity extends Activity {
             public void onClick(View v) {
                 Intent nextIntent = new Intent(InformationActivity.this, WebViewActivity.class);
                 nextIntent.putExtra("pageTag", web_pageFlag.PG_PRODUCT_REVIEW);
+                nextIntent.putExtra("pageTitle", "추천 제품 리뷰");
                 startActivity(nextIntent);
             }
         });
@@ -48,7 +49,7 @@ public class InformationActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent nextIntent = new Intent(InformationActivity.this, InfoDetailActivity.class);
-                nextIntent.putExtra("pageNum", web_pageFlag.PG_BAGIC_INFORM);
+                nextIntent.putExtra("pageTag", web_pageFlag.PG_BAGIC_INFORM);
                 startActivity(nextIntent);
             }
         });
@@ -56,7 +57,7 @@ public class InformationActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent nextIntent = new Intent(InformationActivity.this, InfoDetailActivity.class);
-                nextIntent.putExtra("pageNum", web_pageFlag.PG_INGREDIENT);
+                nextIntent.putExtra("pageTag", web_pageFlag.PG_INGREDIENT);
                 startActivity(nextIntent);
             }
         });

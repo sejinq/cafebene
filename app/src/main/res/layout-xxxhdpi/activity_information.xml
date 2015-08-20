@@ -8,20 +8,22 @@
         layout="@layout/actionbar_home"
         />
 <ScrollView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:layout_below="@id/home_action_bar"
     >
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_gravity="center_horizontal"
         android:id="@+id/home_content">
 
         <ImageButton
             android:layout_width="match_parent"
-            android:layout_height="0px"
-            android:scaleType="fitXY"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="fitCenter"
             android:background="@android:color/transparent"
             android:layout_weight="1"
             android:id="@+id/inform_1"
@@ -30,29 +32,28 @@
 
         <ImageButton
             android:layout_width="match_parent"
-            android:layout_height="0px"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="3dp"
-            android:scaleType="fitXY"
+            android:scaleType="fitCenter"
             android:background="@android:color/transparent"
             android:id="@+id/inform_2"
             android:src="@drawable/inform_image2" />
 
         <ImageButton
             android:layout_width="match_parent"
-            android:layout_height="0px"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
-            android:scaleType="fitXY"
+            android:scaleType="fitCenter"
             android:background="@android:color/transparent"
             android:id="@+id/inform_3"
             android:src="@drawable/inform_image3" />
         <ImageButton
             android:layout_width="match_parent"
-            android:layout_height="0px"
+            android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
-            android:layout_weight="1"
-            android:scaleType="fitXY"
+            android:scaleType="fitCenter"
+            android:layout_gravity="center_horizontal"
             android:background="@android:color/transparent"
             android:id="@+id/inform_4"
             android:src="@drawable/inform_image4" />

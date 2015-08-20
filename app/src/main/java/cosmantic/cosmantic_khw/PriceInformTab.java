@@ -15,7 +15,7 @@ public class PriceInformTab implements ProductActivity.SmallTab {
     private Context context;
     private RelativeLayout mainView;
 
-    public PriceInformTab(ProductActivity context, RelativeLayout view) {
+    public PriceInformTab(Context context, RelativeLayout view) {
         this.context = context;
         this.mainView = view;
 
@@ -33,7 +33,7 @@ public class PriceInformTab implements ProductActivity.SmallTab {
                 //키워드 검색 페이지 주소 만들어 주기, 해당 url로 넘어감.
                 Uri uri = Uri.parse("http://m.shopping.naver.com/search/all_search.nhn?query=" + text);
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                context.startActivity(intent);
+                ((ProductActivity)context).startActivity(intent);
             }
         });
         //g-market 검색.
@@ -45,7 +45,7 @@ public class PriceInformTab implements ProductActivity.SmallTab {
                 text.replaceAll("\\p{Space}", "+");
                 Uri uri = Uri.parse("http://mobile.gmarket.co.kr/Search/Search?topKeyword=" + text);
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                context.startActivity(intent);
+                ((ProductActivity)context).startActivity(intent);
             }
         });
         //action검색. 한글 유니코드로 인코딩 해주기.
@@ -68,7 +68,7 @@ public class PriceInformTab implements ProductActivity.SmallTab {
                 text.replaceAll("\\p{Space}", "+");
                 Uri uri = Uri.parse("http://mobile.gmarket.co.kr/Search/Search?topKeyword=" + text);
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                context.startActivity(intent);
+                ((ProductActivity)context).startActivity(intent);
             }
         });
     }

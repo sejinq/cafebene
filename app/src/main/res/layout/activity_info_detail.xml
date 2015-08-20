@@ -6,36 +6,76 @@
         android:id="@+id/home_action_bar"
         layout="@layout/actionbar_sub"
         />
-    <ImageButton
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:layout_marginTop="12dp"
-        android:id="@+id/inform_detail_1"
-        android:layout_below="@+id/home_action_bar"
-        android:src="@drawable/inform_detail_img1" />
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:layout_marginLeft="18.5dp"
-        android:layout_below="@+id/inform_detail_1">
-        <RelativeLayout
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/home_action_bar">
+        <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="화장품 종류별 효과"
-                android:textSize="23dp"
-                android:id="@+id/text"
-                android:layout_marginBottom="8dp"
-                android:textColor="#ff00086b"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/text"
-                android:text="남성 화장품 종류와 그 효과에 대해 알아보아요~"/>
+           >
 
-        </RelativeLayout>
-    </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/info_detail_basic"
+                android:visibility="gone">
+
+                <ListView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/listView"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/info_detail_review"
+                android:visibility="gone">
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/info_detail_ingredient"
+                android:visibility="gone">
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/info_detail_ingredient_tab1"
+                    >
+                    <include
+                        layout="@layout/inform_detail_box"
+                        />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/info_detail_ingredient_tab2"
+                    android:layout_below="@+id/info_detail_ingredient_tab1"
+                    >
+                    <include
+                        layout="@layout/inform_detail_box"
+                        />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/info_detail_ingredient_tab3"
+                    android:layout_below="@+id/info_detail_ingredient_tab2"
+                    >
+                    <include
+                        layout="@layout/inform_detail_box"
+                        />
+                </RelativeLayout>
+            </RelativeLayout>
+
+
+        </FrameLayout>
+    </ScrollView>
 </RelativeLayout>

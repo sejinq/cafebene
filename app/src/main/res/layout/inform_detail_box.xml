@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:id="@+id/detail_basic_1"
+    >
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:id="@+id/detail_image"
+        android:src="@drawable/inform_detail_img1" />
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/detail_image"
+        android:layout_alignRight="@+id/detail_image"
+        android:padding="12dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/love_disable"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_marginLeft="18.5dp"
+        android:layout_below="@+id/detail_image">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="화장품 종류별 효과"
+                android:textSize="23dp"
+                android:id="@+id/content_title"
+                android:layout_marginBottom="8dp"
+                android:textColor="#ff00086b"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/content_title"
+                android:id="@+id/content_subtitle"
+                android:text="남성 화장품 종류와 그 효과에 대해 알아보아요~"/>
+
+        </RelativeLayout>
+
+</RelativeLayout>
+</RelativeLayout>
