@@ -30,6 +30,7 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/skintype_oily"
                     android:background="@null"/>
 
@@ -38,6 +39,7 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/skintype_dry"
                     android:background="@null"/>
 
@@ -46,6 +48,7 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/skintype_sensitive"
                     android:background="@null"/>
             </LinearLayout>
@@ -97,6 +100,7 @@
                 android:id="@+id/situation_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
                 android:src="@drawable/soldier"
                 android:background="@null"/>
 
@@ -151,6 +155,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/season_ss"
                     android:background="@null"/>
 
@@ -159,6 +164,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/season_fw"
                     android:background="@null"/>
             </LinearLayout>

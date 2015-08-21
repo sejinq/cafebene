@@ -84,4 +84,8 @@ public class MyApplication extends Application {
         Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         return bitmap;
     }
+    public interface action_bar_tag{
+        public static final int AC_HOME = 0x0;		 //기초상식
+        public static final int AC_SUB = 0x1; //추천제품리뷰
+    }
 }

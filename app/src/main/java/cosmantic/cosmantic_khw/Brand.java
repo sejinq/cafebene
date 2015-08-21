@@ -3,6 +3,7 @@ package cosmantic.cosmantic_khw;
 public class Brand {
     // 멤버 변수
     private String objectId;
+    private byte[] thumb;
     private String brandName;       // 브랜드 이름
     private int productNum;         // 제품 등록수
 
@@ -13,6 +14,10 @@ public class Brand {
     Brand(String brandName, int productNum){
         this.brandName = brandName;
         this.productNum = productNum;
+    }
+
+    Brand(String objectId, byte[] thumb, String name, int productNum){
+
     }
 
     // getter, setter

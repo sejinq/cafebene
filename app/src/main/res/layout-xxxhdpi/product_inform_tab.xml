@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+                android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="23dp"
         android:layout_marginStart="23dp"
         android:layout_marginTop="24dp"
+        android:orientation="horizontal"
         android:id="@+id/relativeLayout1"
         >
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/bar"
+            android:layout_gravity="center"
             android:src="@drawable/bar"/>
 
         <TextView
-            android:layout_toRightOf="@+id/bar"
-            android:layout_toEndOf="@+id/bar"
             android:layout_marginLeft="7dp"
             android:layout_marginStart="7dp"
             android:textColor="#ff00086b"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="정가"
             android:textSize="14dp"
-            android:id="@+id/text2"/>
+            android:id="@+id/text"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,14 +35,13 @@
             android:id="@+id/price"
             android:textColor="#ff0066e0"
             android:textSize="12dp"
-            android:layout_toRightOf="@+id/text2"
-            android:layout_toEndOf="@+id/text2"
             android:layout_marginLeft="24dp"
+            android:layout_gravity="center"
             />
 
-    </RelativeLayout>
+    </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="23dp"
@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:text="용량"
             android:textSize="14dp"
-            android:id="@+id/text3"/>
+            android:id="@+id/text2"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -79,51 +79,53 @@
             android:layout_marginLeft="24dp"
             />
 
-    </RelativeLayout>
+    </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="23dp"
         android:layout_marginStart="23dp"
         android:layout_marginTop="23dp"
         android:id="@+id/relativeLayout3"
+        android:orientation="horizontal"
         android:layout_below="@+id/relativeLayout2"
         >
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:id="@+id/bar3"
             android:src="@drawable/bar"/>
 
         <TextView
-            android:layout_toRightOf="@+id/bar3"
-            android:layout_toEndOf="@+id/bar3"
             android:layout_marginLeft="7dp"
             android:layout_marginStart="7dp"
             android:textColor="#ff00086b"
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="제품 효과"
             android:textSize="14dp"
-            android:id="@+id/text4"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/effect"
-            android:layout_marginTop="12dp"
-            android:textSize="12dp"
-            android:layout_marginStart="48dp"
-            android:textColor="#ff000000"
-            android:layout_below="@+id/text4"
-            android:layout_marginLeft="48dp"
-            />
-    </RelativeLayout>
+            android:id="@+id/text3"/>
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/effect"
+        android:layout_marginTop="12dp"
+        android:textSize="12dp"
+        android:layout_marginStart="48dp"
+        android:textColor="#ff000000"
+        android:layout_below="@+id/relativeLayout3"
+        android:layout_marginLeft="48dp"
+        />
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/relativeLayout3"
+        android:layout_below="@+id/effect"
         android:layout_marginLeft="23dp"
         android:layout_marginStart="23dp"
         android:layout_marginTop="23dp"
@@ -146,7 +148,7 @@
             android:layout_height="wrap_content"
             android:text="비슷한 성분의 제품"
             android:textSize="14dp"
-            android:id="@+id/text5"/>
+            android:id="@+id/text4"/>
 
     </RelativeLayout>
 

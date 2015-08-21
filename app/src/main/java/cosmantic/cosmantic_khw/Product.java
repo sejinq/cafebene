@@ -41,6 +41,8 @@ public class Product {
     // getter, setter
     public String getObjectId() { return objectId; }
 
+    public void setObjectId(String id){ this.objectId = id; }
+
     public String getProductName() {	return productName;	}
 
     public float getScore() {	return score;	}

@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 /**
@@ -31,13 +30,14 @@ public class UserReviewTab implements ProductActivity.SmallTab {
 
         int reviewNum = ((MyApplication)context).getProduct().getReviewNum();
         lv = ((LinearLayout)mainView.findViewById(R.id.listReview));//카드 내부에 이벤트 등록
-        final Review[] reviewList = new Review[reviewNum];
+        Review[] reviewList = ServerInteraction.getReviewInform(((MyApplication)context).getProduct().getObjectId(),null);
         //Review[] 서버 메소드 return 값 받아오기!!!!!!!!!!!!!!!!!!!!!!!!!!
         for(int i=0;i<reviewNum;++i) {
-            reviewList[i] = new Review();
             final Review review = reviewList[i];
             RelativeLayout layout = (RelativeLayout) View.inflate(context, R.layout.user_review_box, null);
-            //((ImageView)layout.findViewById(R.id.userThumnail)).setImageBitmap(((MyApplication) context.getApplicationContext()).getImage(review.getThumnail()));
+            byte[] thumb = ServerInteraction.getUserInform(review.getUserObjectId()).getImage();
+            if(thumb!=null)
+                ((ImageView)layout.findViewById(R.id.userThumnail)).setImageBitmap(((MyApplication) context.getApplicationContext()).getImage(thumb));
             //유저의 사진 클릭시 유저 정보창으로 넘어간다.
             ((ImageView)layout.findViewById(R.id.userThumnail)).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -60,10 +60,10 @@ public class UserReviewTab implements ProductActivity.SmallTab {
                 star[j].setImageResource(R.drawable.star_inable);
             }
             //유저의 닉네임, 별점 스코어, 리뷰내용 보여주기
-            ((TextView)layout.findViewById(R.id.userNick)).setText(review.getDisplayedname());
+            ((TextView)layout.findViewById(R.id.userNick)).setText(ServerInteraction.getUserInform(review.getUserObjectId()).getDisplayedName());
             ((TextView)layout.findViewById(R.id.userScore)).setVisibility(View.GONE);
 
-            ((TextView)layout.findViewById(R.id.textScore)).setText(aver+".0 ("+reviewNum+"명)");
+            ((TextView)layout.findViewById(R.id.textScore)).setText(aver+".0");
             ((TextView)layout.findViewById(R.id.reviewText)).setText(review.getContent());
             lv.addView(layout); // 부모에 부착
         }

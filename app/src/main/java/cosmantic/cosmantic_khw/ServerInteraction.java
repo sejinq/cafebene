@@ -2,7 +2,6 @@ package cosmantic.cosmantic_khw;
 
 import android.util.Log;
 
-import com.parse.ParseCloud;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
@@ -10,7 +9,6 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -145,6 +143,27 @@ public class ServerInteraction {
     public static User getUserInform(String user_id){
         return instant_user;
     }
+    public static Review[] getReviewInform(String productId, String userId){
+        ParseQuery<ParseObject> reviewQuery = ParseQuery.getQuery("reviewData");
+        if(userId != null) reviewQuery.whereEqualTo("userId", userId);
+        if(productId != null) reviewQuery.whereEqualTo("productId", productId);
+        try {
+            List<ParseObject> reviewList = reviewQuery.find();
+            Review[] reviews = new Review[reviewList.size()];
+            for(int loop = 0; loop < reviewList.size(); loop++){
+                ParseObject reviewData = reviewList.get(loop);
+                reviews[loop] = new Review();
+                reviews[loop].setUserObjectId(reviewData.getString("userId"));
+                reviews[loop].setProductObjectId(reviewData.getString("productId"));
+                reviews[loop].setRate(reviewData.getDouble("productId"));
+                reviews[loop].setContent(reviewData.getString("content"));
+            }
+            return reviews;
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
     /**
      * 상품 정보 반환 메소드
      * 인자: int product_id - 상품 식별자
@@ -247,6 +266,7 @@ public class ServerInteraction {
             findProduct = null;
         }
 
+        findProduct.setObjectId(productObject.getObjectId());
         findProduct.setBrand(productObject.getString("brand"));
         findProduct.setBrandKor(productObject.getString("brandKor"));
         findProduct.setCuratingInfo(productObject.getString("curation"));
@@ -281,13 +301,17 @@ public class ServerInteraction {
         findProduct.setIngredientCount(new int[]{productObject.getInt("oilyPos"), productObject.getInt("oilyNeg"),
                 productObject.getInt("dryPos"), productObject.getInt("dryNeg"),
                 productObject.getInt("sensetivePos"), productObject.getInt("sensetiveNeg")});
+        //평균 점수
+        if(findProduct.getObjectId().equals("Zgm7xKsOPF")) Log.d("Review", "AVG Star test start");
         HashMap<String, Object> params = new HashMap<String, Object>();
         params.put("productId", findProduct.getObjectId());
         try {
-            double avg = ((JSONObject)ParseCloud.callFunction("averageStars", params)).getDouble("result");
-            findProduct.setScore((float)avg);
+            float avg = 0.0f;//((HashMap<String,JSONObject>)ParseCloud.callFunction("averageStars", params)).get("result");
+            findProduct.setScore(avg);
+            if(findProduct.getObjectId().equals("Zgm7xKsOPF")) Log.d("Review", "AVG Star test End:"+avg);
         }catch(Exception e){
-            e.printStackTrace();
+            e.printStackTrace();if(findProduct.getObjectId().equals("Zgm7xKsOPF")) Log.d("Review", "AVG Star test Error:");
+
             findProduct.setScore(0.0f);
         }
 
@@ -295,6 +319,7 @@ public class ServerInteraction {
         countQuery.whereEqualTo("productId", findProduct.getObjectId());
         try {
             int count = countQuery.count();
+            Log.d("Review", "pid:"+findProduct.getObjectId()+", count:"+count);
             findProduct.setReviewNum(count);
         }catch(ParseException e){
             e.printStackTrace();
@@ -306,8 +331,39 @@ public class ServerInteraction {
         return findProduct;
     }
 
-    public void searchProduct(String key_word){
+    public Product[] searchProduct(String key_word){
+        ParseQuery<ParseObject> pQuery = ParseQuery.getQuery("cosmeticData");
+        pQuery.whereMatches("productName", ".*"+key_word+".*","i");
 
+        try {
+            List<ParseObject> results = pQuery.find();
+            Product[] products = new Product[results.size()];
+            for(int loop=0; loop<results.size(); loop++)
+                products[loop] = getProductInform(results.get(loop).getObjectId());
+            return products;
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public Brand[] searchBrand(String key_word){
+        ParseQuery<ParseObject> pQuery = ParseQuery.getQuery("brandData");
+        pQuery.whereMatches("name", ".*"+key_word+".*","i");
+
+        try {
+            List<ParseObject> results = pQuery.find();
+            Brand[] brands = new Brand[results.size()];
+            for(int loop=0; loop<results.size(); loop++) {
+                brands[loop] = new Brand();
+                brands[loop].setBrandName(results.get(loop).getString("name"));
+                brands[loop].setBrandName(results.get(loop).getString("name"));
+                brands[loop].setBrandName(results.get(loop).getString("name"));
+            }
+            return brands;
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
+        return null;
     }
     public static boolean compareNickName(String nickName){
         ParseQuery<ParseObject> countQuery = ParseQuery.getQuery("_User");
@@ -342,4 +398,3 @@ public class ServerInteraction {
     }
 
 }
-
