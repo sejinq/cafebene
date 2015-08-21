@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,6 +56,7 @@ public class SignUpActivity extends Activity {
         userType = intent.getIntExtra(USER_TYPE, User.UserType.EMAIL);
         signingUser = new User();
         settingUserType(userType, intent.getStringExtra(USER_NAME));
+        ((ImageButton)findViewById(R.id.searchButton)).setVisibility(View.GONE);
 
     }
 

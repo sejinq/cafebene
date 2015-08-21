@@ -7,7 +7,7 @@
 
     <!-- 검색 결과 이미지 -->
     <ImageView
-        android:id="@+id/searchResultProductimage"
+        android:id="@+id/searchResultImage"
         android:layout_width="59dp"
         android:layout_height="59dp"
         android:layout_centerVertical="true"
@@ -21,7 +21,7 @@
 
         <!-- 검색 결과 브랜드명 -->
         <TextView
-            android:id="@+id/searchResultProduct_BrandName"
+            android:id="@+id/searchResultBrandName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="브랜드명"
@@ -29,11 +29,11 @@
 
         <!-- 검색 결과 제품명 -->
         <TextView
-            android:id="@+id/searchResultProduct_ProductName"
+            android:id="@+id/searchResultProductName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/searchResultProduct_BrandName"
-            android:layout_below="@id/searchResultProduct_BrandName"
+            android:layout_alignLeft="@id/searchResultBrandName"
+            android:layout_below="@id/searchResultBrandName"
             android:layout_marginTop="8dp"
             android:text="제품명"
             android:textSize="12dp"
@@ -42,22 +42,16 @@
 
     <!-- 검색 결과 찜하기 true -->
     <ImageView
-        android:id="@+id/searchResultProduct_heartTrue"
+        android:id="@+id/searchResultProduct_like"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentRight="true"
+        android:padding="20dp"
+        android:visibility="gone"
         android:layout_centerVertical="true"
         android:src="@drawable/pink_heart"/>
 
     <!-- 검색 결과 찜하기 false -->
-    <ImageView
-        android:id="@+id/searchResultProduct_heartFalse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:src="@drawable/love_disable"/>
-
     <!-- 검색 결과 밑줄 -->
     <ImageView
         android:layout_alignParentBottom="true"

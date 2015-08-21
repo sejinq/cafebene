@@ -18,7 +18,6 @@ public class InfoDetailActivity extends Activity {
     int pageTab;
     Intent intent;
     String title;
-    Page pageTag;
     @Override
     protected void onCreate(Bundle savedInstance){
         super.onCreate(savedInstance);
@@ -61,7 +60,7 @@ public class InfoDetailActivity extends Activity {
             case InformationActivity.web_pageFlag.PG_INGREDIENT
                     :settingIngredient(getApplicationContext(), tab);
                 ((RelativeLayout) findViewById(R.id.info_detail_ingredient)).setVisibility(View.VISIBLE);
-                break;
+                 break;
         }
     }
     private void settingBasic(Context context, LinearLayout list, int pageTab) {

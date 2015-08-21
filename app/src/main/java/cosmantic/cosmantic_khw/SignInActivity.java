@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -104,8 +105,13 @@ public class SignInActivity extends Activity {
         ParseUser.logInInBackground(id, passwd, new LogInCallback() {
             @Override
             public void done(ParseUser parseUser, ParseException e) {
-                ((MyApplication) getApplicationContext()).setUser(ServerInteraction.onLoginWithParseUser(parseUser));
-                startActivity(new Intent(SignInActivity.this, HomeActivity.class));
+                if(e==null) {
+                    ((MyApplication) getApplicationContext()).setUser(ServerInteraction.onLoginWithParseUser(parseUser));
+                    startActivity(new Intent(SignInActivity.this, HomeActivity.class));
+                }else{
+                    if(e.getCode()==ParseException.OBJECT_NOT_FOUND);
+                    e.printStackTrace();
+                }
             }
         });
     }

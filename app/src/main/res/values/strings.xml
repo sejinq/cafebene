@@ -27,7 +27,7 @@
     <string name="user_gender">성별</string>
     <string name="user_age">나이</string>
     <string name="skin_type">피부타입</string>
-    <string name="interest_effect">관심효능</string>
+    <string name="interest_effect">피부고민</string>
     <string name="multi_select">(중복선택)</string>
     <string name="nick_message">닉네임을 입력하세요</string>
     <string name="overlap_select">중복선택</string>
