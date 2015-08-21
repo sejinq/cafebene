@@ -29,14 +29,14 @@ public class ProductCurationTab implements ProductActivity.SmallTab{
         effects[1] = 1;
 
         for(int loop=0; loop<effects.length; loop++){
-            if(effects[loop] == 0){ //0을 플래그 참조로 바꿀것
+            if(effects[loop] == User.INEREST_WHITE){ //0을 플래그 참조로 바꿀것
                 ((TextView)mainView.findViewById(R.id.effect_tag1)).setTextColor(context.getResources().getColor(R.color.effect_enable));
                 ((TextView)mainView.findViewById(R.id.effect_tag1)).setBackgroundResource(R.drawable.select_small_box);
-            }else if(effects[loop] == 1){
+            }else if(effects[loop] == User.INEREST_WRINKLE){
                 ((TextView)mainView.findViewById(R.id.effect_tag2)).setTextColor(context.getResources().getColor(R.color.effect_enable));
                 ((TextView)mainView.findViewById(R.id.effect_tag2)).setBackgroundResource(R.drawable.select_small_box);
 
-            }else {
+            }else if(effects[loop] == User.INEREST_WRINKLE){
                 ((TextView)mainView.findViewById(R.id.effect_tag3)).setBackgroundResource(R.drawable.select_small_box);
                 ((TextView)mainView.findViewById(R.id.effect_tag3)).setTextColor(context.getResources().getColor(R.color.effect_enable));
             }
@@ -44,7 +44,17 @@ public class ProductCurationTab implements ProductActivity.SmallTab{
 
     }
     private void graphSetting(){
+        Product product = ((MyApplication)context.getApplicationContext()).getProduct();
 
+        ((IngredientChartView)mainView.findViewById(R.id.donutChart_oily)).setIngredientValue(
+                product.getIngredientCount(Product.IngredientCountType.OILY_POSITIVE),
+                product.getIngredientCount(Product.IngredientCountType.OILY_NEGATIVE));
+        ((IngredientChartView)mainView.findViewById(R.id.donutChart_dry)).setIngredientValue(
+                product.getIngredientCount(Product.IngredientCountType.DRY_POSITIVE),
+                product.getIngredientCount(Product.IngredientCountType.DRY_NEGATIVE));
+        ((IngredientChartView)mainView.findViewById(R.id.donutChart_sensitive)).setIngredientValue(
+                product.getIngredientCount(Product.IngredientCountType.SENSITIVE_POSITIVE),
+                product.getIngredientCount(Product.IngredientCountType.SENSITIVE_NEGATIVE));
     }
     private void curationgSetting(){
         String text;

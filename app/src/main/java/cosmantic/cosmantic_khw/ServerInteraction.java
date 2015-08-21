@@ -155,7 +155,7 @@ public class ServerInteraction {
     /**
      *
      */
-    public static void getMainRecommendList(HomeActivity context, int skin_type){
+    public static String[] getMainRecommendList(int skin_type){
         Product[] products = new Product[9];
         ParseQuery<ParseObject> recommandQuery = ParseQuery.getQuery("recommendData");
         if(skin_type==User.SKIN_TYPE_DRY)
@@ -191,11 +191,11 @@ public class ServerInteraction {
 //                products[loop] = getProductInform(recommendedID.get(loop));
 //                context.recommendApply(products);
             }
-            context.recommendApply(productIds);
+            return productIds;
         }catch(Exception e){
             e.printStackTrace();
         }
-
+            return null;
     }
 
     /**
@@ -203,7 +203,33 @@ public class ServerInteraction {
      * @param skin_type
      * @return
      */
-    public static Product[] getRecommendList(int skin_type){
+    public static String[] getRecommendList(int skin_type){
+        ParseQuery<ParseObject> recommandQuery = ParseQuery.getQuery("recommendData");
+        if(skin_type==User.SKIN_TYPE_DRY)
+            recommandQuery.whereEqualTo("recommendedName","Dry");
+        else if(skin_type==User.SKIN_TYPE_OILY)
+            recommandQuery.whereEqualTo("recommendedName","Oily");
+        else if(skin_type==User.SKIN_TYPE_SENSITIVE)
+            recommandQuery.whereEqualTo("recommendedName","Sensitive");
+        else if(skin_type==User.SEASON_SOLDIER)
+            recommandQuery.whereEqualTo("recommendedName","Soldier");
+
+        try {
+            recommandQuery.selectKeys(Arrays.asList("recommendedList"));
+            List<String> recommendedID;
+            ParseObject objects = recommandQuery.find().get(0);
+            recommendedID = objects.getList("recommendedList");
+
+            String[] productIds = new String[recommendedID.size()];
+            for(int loop=0; loop<recommendedID.size();loop++) {
+                Log.d("Main Recommend","Get Recommend Activity:"+skin_type+"("+loop+")"+recommendedID.get(loop));
+                productIds[loop] = recommendedID.get(loop);
+            }
+            return productIds;
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
         return null;
     }
 //    String productName, int price, String brand, String size, double pricePerSize, String description, int[] effects, String skintype, String type, String curatingInfo, float score, int reviewNum

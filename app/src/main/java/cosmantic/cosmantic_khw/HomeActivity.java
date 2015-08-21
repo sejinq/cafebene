@@ -17,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.parse.ParseUser;
+
 import java.text.DecimalFormat;
 
 public class HomeActivity extends Activity {
@@ -64,7 +66,75 @@ public class HomeActivity extends Activity {
         ((ImageButton) findViewById(R.id.sensitive_button)).setOnClickListener(ClickListener);
 
         int skinType = ((MyApplication)getApplicationContext()).getUser().getSkinType();
-        new Thread(()->ServerInteraction.getMainRecommendList(this, skinType)).run();
+        String[] recomProductIds = ServerInteraction.getMainRecommendList(skinType);
+        if(recomProductIds == null) Toast.makeText(this,"추천 정보를 받아오는데\n오류가 발생했습니다.",Toast.LENGTH_SHORT).show();
+        else {
+            this.recommendProducts = new Product[recomProductIds.length];
+            for(int loop = 0; loop < recomProductIds.length; loop++) {
+                final int index = loop;
+                new Thread(() -> setEachProduct(recomProductIds[index], index)).start();
+            }
+        }
+    }
+
+    private void setEachProduct(String productID, int index){
+        Product product = ServerInteraction.getProductInform(productID);
+        recommendProducts[index] = product;
+        LinearLayout parent = (LinearLayout)findViewById(getApplicationContext().getResources().getIdentifier("home_productLayer" + (index/3 + 1), "id", "cosmantic.cosmantic_khw"));
+        runOnUiThread(() -> {
+            switch (index % 3) {
+                case 0:
+                    if (product.getThumnail() != null)
+                        ((ImageView) parent.findViewById(R.id.product_left_image))
+                                .setImageBitmap(((MyApplication) getApplicationContext()).getImage(product.getThumnail()));
+                    ((TextView) parent.findViewById(R.id.product_left_brandname)).setText(product.getBrandKor());
+                    String name = product.getProductName();
+                    if (name.length() <= 8)
+                        ((TextView) parent.findViewById(R.id.product_left_productname)).setText(name);
+                    else
+                        ((TextView) parent.findViewById(R.id.product_left_productname)).setText(name.substring(0, 7) + "...");
+                    DecimalFormat formatter = new DecimalFormat("#,###,###");
+                    ((TextView) parent.findViewById(R.id.product_left_priceandvolume))
+                            .setText(product.getSize() + " / " + formatter.format(product.getPrice()));
+                    parent.findViewById(R.id.product_left).setOnClickListener(view -> setProductListener(index));
+                    break;
+                case 1:
+                    if (product.getThumnail() != null)
+                        ((ImageView) parent.findViewById(R.id.product_center_image))
+                                .setImageBitmap(((MyApplication) getApplicationContext()).getImage(product.getThumnail()));
+                    ((TextView) parent.findViewById(R.id.product_center_brandname)).setText(product.getBrandKor());
+                    name = product.getProductName();
+                    if (name.length() <= 8)
+                        ((TextView) parent.findViewById(R.id.product_center_productname)).setText(name);
+                    else
+                        ((TextView) parent.findViewById(R.id.product_center_productname)).setText(name.substring(0, 7) + "...");
+                    formatter = new DecimalFormat("#,###,###");
+                    ((TextView) parent.findViewById(R.id.product_center_priceandvolume))
+                            .setText(product.getSize() + " / " + formatter.format(product.getPrice()));
+                    parent.findViewById(R.id.product_center).setOnClickListener(view -> setProductListener(index));
+                    break;
+                default:
+                    if (product.getThumnail() != null)
+                        ((ImageView) parent.findViewById(R.id.product_right_image))
+                                .setImageBitmap(((MyApplication) getApplicationContext()).getImage(product.getThumnail()));
+                    ((TextView) parent.findViewById(R.id.product_right_brandname)).setText(product.getBrandKor());
+                    name = product.getProductName();
+                    if (name.length() <= 8)
+                        ((TextView) parent.findViewById(R.id.product_right_productname)).setText(name);
+                    else
+                        ((TextView) parent.findViewById(R.id.product_right_productname)).setText(name.substring(0, 7) + "...");
+                    formatter = new DecimalFormat("#,###,###");
+                    ((TextView) parent.findViewById(R.id.product_right_priceandvolume))
+                            .setText(product.getSize() + " / " + formatter.format(product.getPrice()));
+                    parent.findViewById(R.id.product_right).setOnClickListener(view -> setProductListener(index));
+            }
+        });
+    }
+
+    private void setProductListener(int index){
+        ((MyApplication) getApplicationContext()).setProduct(recommendProducts[index]);
+        Intent intent = new Intent(HomeActivity.this, ProductActivity.class);
+        startActivity(intent);
     }
 
     public void recommendApply(String[] recommendProductsID){
@@ -103,7 +173,6 @@ public class HomeActivity extends Activity {
 
             //Size & Price
             DecimalFormat formatter = new DecimalFormat("#,###,###");
-            String yourFormattedString = formatter.format(100000);
             ((TextView)container.findViewById(R.id.product_left_priceandvolume))
                     .setText(recommendProducts[recommendIndex].getSize() + " / " + formatter.format(recommendProducts[recommendIndex].getPrice()));
             ((TextView)container.findViewById(R.id.product_center_priceandvolume))
@@ -317,5 +386,6 @@ public class HomeActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        ParseUser.logOut();
     }
 }

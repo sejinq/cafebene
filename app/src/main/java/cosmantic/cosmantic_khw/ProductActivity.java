@@ -2,13 +2,11 @@ package cosmantic.cosmantic_khw;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -101,11 +99,15 @@ public class ProductActivity extends Activity {
     private void settingProduct()
     {
         /*myImage.setImageResource(); byte로 저장되어있음*/
+        Product productObject = ((MyApplication) getApplicationContext()).getProduct();
+        if (productObject.getThumnail() != null)
+            ((ImageView) findViewById(R.id.product_image))
+                    .setImageBitmap(((MyApplication) getApplicationContext()).getImage(productObject.getThumnail()));
         // product.setImageBitmap(((MyApplication) getApplicationContext()).getImage(((MyApplication) getApplicationContext()).getProduct().getThumnail()));
         /*brand 이름과 제품 이름을 받아 보여준다.*/
-        String text = ((MyApplication) getApplicationContext()).getProduct().getBrand();
+        String text = productObject.getBrand();
         ((TextView) findViewById(R.id.brand_text)).setText(text);
-        text = ((MyApplication) getApplicationContext()).getProduct().getProductName();
+        text = productObject.getProductName();
         ((TextView) findViewById(R.id.product_text)).setText(text);
         /*likeProducts = ((MyApplication)getApplicationContext()).getProduct().getObjectId();
         //하트 눌려있으면 이미지도 on해주기.
@@ -194,10 +196,10 @@ public class ProductActivity extends Activity {
         findViewById(R.id.tablayout2).setVisibility(View.GONE);
         findViewById(R.id.tablayout3).setVisibility(View.GONE);
         findViewById(R.id.tablayout4).setVisibility(View.GONE);
-        findViewById(R.id.tab1).setBackgroundResource(Color.TRANSPARENT);
-        findViewById(R.id.tab2).setBackgroundResource(Color.TRANSPARENT);
-        findViewById(R.id.tab3).setBackgroundResource(Color.TRANSPARENT);
-        findViewById(R.id.tab4).setBackgroundResource(Color.TRANSPARENT);
+        findViewById(R.id.tab1).setBackgroundResource(android.R.color.transparent);
+        findViewById(R.id.tab2).setBackgroundResource(android.R.color.transparent);
+        findViewById(R.id.tab3).setBackgroundResource(android.R.color.transparent);
+        findViewById(R.id.tab4).setBackgroundResource(android.R.color.transparent);
     }
     @Override
     protected void onDestroy(){

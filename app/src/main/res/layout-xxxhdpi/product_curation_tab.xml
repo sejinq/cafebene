@@ -194,7 +194,6 @@
             android:text="New Text"
             android:id="@+id/product_curation"
             android:layout_below="@+id/text3"
-            android:gravity="center"
             android:layout_marginTop="12.5dp"
             android:textSize="12dp"
             android:layout_marginLeft="38dp"/>

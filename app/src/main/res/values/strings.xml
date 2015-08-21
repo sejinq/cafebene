@@ -78,6 +78,15 @@
     <string name="cosmetic_inform">화장품 상식</string>
     <string name="my_page">마이 페이지</string>
 
+    <!-- recommended 페이지 -->
+    <string name="recommend_default_0">추천 올인원</string>
+    <string name="recommend_default_1">추천 스킨</string>
+    <string name="recommend_default_2">추천 로션</string>
+    <string name="recommend_default_3">추천 썬크림</string>
+    <string name="recommend_default_4">추천 폼클렌징</string>
+    <string name="recommend_soldier_0">추천 마스크/팩</string>
+    <string name="recommend_soldier_1">추천 위장크림</string>
+    <string name="recommend_soldier_2">추천 썬크림</string>
 
     <!-- product-->
     <string name="product_curation">제품 분석</string>
