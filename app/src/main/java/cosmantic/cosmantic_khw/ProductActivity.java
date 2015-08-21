@@ -59,7 +59,14 @@ public class ProductActivity extends Activity {
         star[3] = (ImageView)findViewById(R.id.star4);
         star[4] = (ImageView)findViewById(R.id.star5);
         ((MyApplication)getApplicationContext()).settingStar(star, average);
+        setFont();
 
+    }
+    private void setFont()
+    {
+        FontApplyer.setFont(this, ((TextView) findViewById(R.id.brand_text)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(this, ((TextView) findViewById(R.id.product_text)), FontApplyer.Font.NotoSans, FontApplyer.Style.Light);
+        FontApplyer.setFont(this, ((TextView) findViewById(R.id.average)), FontApplyer.Font.NotoSans, FontApplyer.Style.Light);
     }
     private void settingActionBar()
     {
@@ -110,6 +117,7 @@ public class ProductActivity extends Activity {
                 RelativeLayout view =  (RelativeLayout)findViewById(R.id.tablayout1);
                 //선택 될 탭의 내용만 활성화.
                 setting(view, findViewById(R.id.tab1));
+                FontApplyer.setFont(getApplicationContext(), ((TextView) findViewById(R.id.tab1)), FontApplyer.Font.NotoSans, FontApplyer.Style.Medium);
                 //RelativeLayout 정보와 ProductActivity의 content를 같이 넘겨주기.
                 tabClass = new ProductCurationTab(getApplicationContext(),view);
             }
@@ -119,6 +127,7 @@ public class ProductActivity extends Activity {
             public void onClick(View v) {
                 RelativeLayout view =  (RelativeLayout)findViewById(R.id.tablayout2);
                 setting(view, findViewById(R.id.tab2));
+                FontApplyer.setFont(getApplicationContext(), ((TextView) findViewById(R.id.tab2)), FontApplyer.Font.NotoSans, FontApplyer.Style.Medium);
                 tabClass = new ProductInformTab(getApplicationContext(),view);
             }
         });
@@ -127,6 +136,7 @@ public class ProductActivity extends Activity {
             public void onClick(View v) {
                 RelativeLayout view = (RelativeLayout) findViewById(R.id.tablayout3);
                 setting(view, findViewById(R.id.tab3));
+                FontApplyer.setFont(getApplicationContext(), ((TextView) findViewById(R.id.tab3)), FontApplyer.Font.NotoSans, FontApplyer.Style.Medium);
                 tabClass = new PriceInformTab(ProductActivity.this, view);
             }
         });
@@ -135,6 +145,7 @@ public class ProductActivity extends Activity {
             public void onClick(View v) {
                 RelativeLayout view = (RelativeLayout) findViewById(R.id.tablayout4);
                 setting(view, findViewById(R.id.tab4));
+                FontApplyer.setFont(getApplicationContext(), ((TextView) findViewById(R.id.tab4)), FontApplyer.Font.NotoSans, FontApplyer.Style.Medium);
                 tabClass = new UserReviewTab(getApplicationContext(),view);
             }
         });
@@ -184,6 +195,10 @@ public class ProductActivity extends Activity {
         findViewById(R.id.tab2).setBackgroundResource(Color.TRANSPARENT);
         findViewById(R.id.tab3).setBackgroundResource(Color.TRANSPARENT);
         findViewById(R.id.tab4).setBackgroundResource(Color.TRANSPARENT);
+        FontApplyer.setFont(this, ((TextView) findViewById(R.id.tab1)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(this, ((TextView) findViewById(R.id.tab2)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(this, ((TextView) findViewById(R.id.tab3)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(this, ((TextView) findViewById(R.id.tab4)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
     }
     @Override
     protected void onDestroy(){

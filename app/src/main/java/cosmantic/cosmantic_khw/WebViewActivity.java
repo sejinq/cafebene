@@ -44,9 +44,24 @@ public class WebViewActivity extends Activity {
             ((TextView) findViewById(R.id.titleText)).setText(title);
             ((RelativeLayout)findViewById(R.id.webview_action_bar_sub)).setVisibility(View.VISIBLE);
         }
-
+        setTab();
         // 구글홈페이지 지정
         webview.loadUrl(url);
+
+    }
+
+    private void setTab()
+    {
+        ((Button) findViewById(R.id.tab1)).setOnClickListener(ClickTabListener);
+        ((Button) findViewById(R.id.tab2)).setOnClickListener(ClickTabListener);
+        ((Button) findViewById(R.id.tab4)).setOnClickListener(ClickTabListener);
+
+        ((Button)findViewById(R.id.tab3)).setBackgroundResource(R.drawable.menu_tap);
+
+        FontApplyer.setFont(this, ((TextView) findViewById(R.id.tab1)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(this, ((TextView) findViewById(R.id.tab2)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(this, ((TextView) findViewById(R.id.tab3)), FontApplyer.Font.NotoSans, FontApplyer.Style.Medium);
+        FontApplyer.setFont(this, ((TextView) findViewById(R.id.tab4)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
     }
     View.OnClickListener ClickTabListener = new View.OnClickListener() {
         public void onClick(View v) {

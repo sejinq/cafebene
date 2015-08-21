@@ -5,28 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="23dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal"
+        android:id="@+id/text_bar">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="23dp"
-            android:layout_marginStart="23dp"
-            android:layout_marginTop="25dp"
+            android:layout_gravity="center"
             android:id="@+id/dot_bar"
             android:src="@drawable/dot_bar"/>
 
         <TextView
-            android:layout_toRightOf="@+id/dot_bar"
-            android:layout_toEndOf="@+id/dot_bar"
-            android:layout_alignBottom="@+id/dot_bar"
-            android:layout_marginLeft="7dp"
-            android:gravity="center"
+           android:layout_marginLeft="7dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="피부타입별 성분 그래프"
             android:textSize="14dp"
             android:id="@+id/text"/>
+    </LinearLayout>
         <TextView
-            android:layout_below="@+id/text"
+            android:layout_below="@+id/text_bar"
             android:layout_marginLeft="32dp"
             android:textSize="9dp"
             android:layout_width="wrap_content"
@@ -102,28 +105,32 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="23dp"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="15dp"
         android:id="@+id/relativeLayout1"
         android:layout_below="@+id/linearLayout"
         >
-        <ImageView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/bar"
-            android:src="@drawable/bar"/>
+            android:layout_marginLeft="23dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:id="@+id/text_bar2">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/dot_bar2"
+                android:src="@drawable/dot_bar"/>
 
-        <TextView
-            android:layout_toRightOf="@+id/bar"
-            android:layout_toEndOf="@+id/bar"
-            android:layout_marginLeft="7dp"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="기능성"
-            android:textSize="14dp"
-            android:id="@+id/text2"/>
+            <TextView
+                android:layout_marginLeft="7dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="피부타입별 성분 그래프"
+                android:textSize="14dp"
+                android:id="@+id/text2"/>
+        </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -133,8 +140,8 @@
             android:textColor="@color/effect_disable"
             android:id="@+id/effect_tag1"
             android:layout_marginTop="12.5dp"
-            android:layout_below="@+id/bar"
-            android:layout_alignLeft="@+id/text2"
+            android:layout_below="@+id/text_bar2"
+            android:layout_alignLeft="@+id/text_bar2"
              />
 
         <TextView
@@ -170,30 +177,36 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_below="@+id/relativeLayout1">
-        <ImageView
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:layout_marginLeft="23dp"
             android:layout_marginStart="23dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/bar2"
-            android:src="@drawable/bar"/>
+            android:layout_marginTop="15dp"
+            android:id="@+id/text_bar3">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/dot_bar3"
+                android:src="@drawable/dot_bar"/>
 
-        <TextView
-            android:layout_toRightOf="@+id/bar2"
-            android:layout_toEndOf="@+id/bar2"
-            android:layout_marginLeft="7dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="제품 특징"
-            android:textSize="14dp"
-            android:id="@+id/text3"/>
+            <TextView
+                android:layout_marginLeft="7dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="피부타입별 성분 그래프"
+                android:textSize="14dp"
+                android:id="@+id/text3"/>
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/product_curation"
-            android:layout_below="@+id/text3"
+            android:layout_below="@+id/text_bar3"
             android:gravity="center"
             android:layout_marginTop="12.5dp"
             android:textSize="12dp"

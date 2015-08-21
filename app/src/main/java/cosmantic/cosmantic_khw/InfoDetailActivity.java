@@ -33,6 +33,20 @@ public class InfoDetailActivity extends Activity {
         showWeb(pageTab);
 
     }
+    private void setFont(RelativeLayout layout)
+    {
+        FontApplyer.setFont(getApplicationContext(), ((TextView) layout.findViewById(R.id.content_title)), FontApplyer.Font.NotoSans, FontApplyer.Style.Medium);
+        FontApplyer.setFont(getApplicationContext(), ((TextView) layout.findViewById(R.id.content_subtitle)), FontApplyer.Font.NotoSans, FontApplyer.Style.Light);
+        //  FontApplyer.setFont(getApplicationContext(), ((TextView) layout.findViewById(R.id.review_brand)), FontApplyer.Font.NotoSans, FontApplyer.Style.Light);
+        //review_name
+    }
+    private void setReviewFont(RelativeLayout layout)
+    {
+        FontApplyer.setFont(getApplicationContext(), ((TextView) layout.findViewById(R.id.review_brand)), FontApplyer.Font.NotoSans, FontApplyer.Style.Medium);
+        FontApplyer.setFont(getApplicationContext(), ((TextView) layout.findViewById(R.id.review_name)), FontApplyer.Font.NotoSans, FontApplyer.Style.Light);
+        //  FontApplyer.setFont(getApplicationContext(), ((TextView) layout.findViewById(R.id.review_brand)), FontApplyer.Font.NotoSans, FontApplyer.Style.Light);
+        //review_name
+    }
     private void showWeb(int tab)
     {
 
@@ -64,6 +78,7 @@ public class InfoDetailActivity extends Activity {
             final WebContents contents = contentsList[i];
             RelativeLayout layout = (RelativeLayout) View.inflate(context, R.layout.inform_detail_box, null);
             //컨텐츠 이미지, 제목, 부제 받아와서 보여주기.
+            setFont(layout);
             ((RelativeLayout)layout.findViewById(R.id.info_detail_box_default)).setVisibility(View.VISIBLE);
             ((ImageView) layout.findViewById(R.id.detail_image)).setImageBitmap(((MyApplication) context).getImage(contents.getImage()));
             ((TextView) layout.findViewById(R.id.content_title)).setText(contents.getTitle());
@@ -98,6 +113,7 @@ public class InfoDetailActivity extends Activity {
             contentsList[i] = new WebContents();
             final WebContents listenerContent = contentsList[i];
             ((RelativeLayout)tab[i].findViewById(R.id.info_detail_box_default)).setVisibility(View.VISIBLE);
+            setFont(tab[i]);
            // ((ImageButton) tab[i].findViewById(R.id.detail_image)).setImageBitmap(((MyApplication) context.getApplicationContext()).getImage(listenerContent.getImage()));
             ((TextView) tab[i].findViewById(R.id.content_title)).setText(listenerContent.getTitle());
             ((TextView) tab[i].findViewById(R.id.content_subtitle)).setText(listenerContent.getSubTitle());
@@ -128,9 +144,9 @@ public class InfoDetailActivity extends Activity {
             contentsList[i] = new WebContents();
             final WebContents contents = contentsList[i];
             RelativeLayout layout = (RelativeLayout) View.inflate(context, R.layout.inform_detail_box, null);
+            setReviewFont(layout);
             //컨텐츠 이미지, 제품 이미지, 브랜드, 이르 받아와서 보여주기.
             ((RelativeLayout)layout.findViewById(R.id.info_detail_box_review)).setVisibility(View.VISIBLE);
-
             //이미지 받아오기
             ((ImageView) layout.findViewById(R.id.detail_image)).
                     setImageBitmap(((MyApplication) context).getImage(contentsList[i].getImage()));
