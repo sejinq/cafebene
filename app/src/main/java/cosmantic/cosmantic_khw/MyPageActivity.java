@@ -50,6 +50,38 @@ public class MyPageActivity extends Activity {
         ((LinearLayout)findViewById(R.id.mypage_likelist)).setOnClickListener(ClickListener);
         ((LinearLayout)findViewById(R.id.mypage_myreview)).setOnClickListener(ClickListener);
         ((LinearLayout)findViewById(R.id.mypage_settings)).setOnClickListener(ClickListener);
+
+        initTab();
+    }
+    View.OnClickListener ClickTabListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent Intent;
+            switch (v.getId())
+            {
+                //홈으로 넘겨줌
+                case R.id.tab1
+                        :Intent = new Intent(MyPageActivity.this, HomeActivity.class);
+                    startActivity(Intent);break;
+                //추천화장품으로넘겨줌
+                case R.id.tab3
+                        :Intent = new Intent(MyPageActivity.this, InformationActivity.class);
+                    startActivity(Intent);break;
+                //마이페이지로넘김
+                case R.id.tab2
+                        :Intent = new Intent(MyPageActivity.this, RecommendIntroActivity.class);
+                    startActivity(Intent);break;
+            }
+
+        }
+    };
+    private void initTab()
+    {
+        //리스너 부착
+        ((Button) findViewById(R.id.tab1)).setOnClickListener(ClickTabListener);
+        ((Button) findViewById(R.id.tab2)).setOnClickListener(ClickTabListener);
+        ((Button) findViewById(R.id.tab3)).setOnClickListener(ClickTabListener);
+
+        ((Button)findViewById(R.id.tab4)).setBackgroundResource(R.drawable.menu_tap);
     }
 
     // 버튼 리스너

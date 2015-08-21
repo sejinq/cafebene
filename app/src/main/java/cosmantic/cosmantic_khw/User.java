@@ -2,6 +2,7 @@ package cosmantic.cosmantic_khw;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Set;
 
 public class User {
@@ -76,7 +77,7 @@ public class User {
         }
     }
 
-    public ArrayList<String> getLikeContents() {
+    public List<String> getLikeContents() {
         Set<String> keys = likeProducts.keySet();
         return null;
     }

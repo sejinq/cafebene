@@ -14,6 +14,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class InfoDetailActivity extends Activity {
+    public static final String TITLE = "cosmantic.cosmantic_khw.InfoDetailActivity.TITLE";
+    public static final String PAGE_TAG = "cosmantic.cosmantic_khw.InfoDetailActivity.PAGE_TAG";
+
     int pageTab;
     Intent intent;
     String title;
@@ -24,8 +27,8 @@ public class InfoDetailActivity extends Activity {
         setContentView(R.layout.activity_info_detail);
         intent = getIntent();
 
-        title = intent.getExtras().getString("pageTitle");
-        pageTab = intent.getExtras().getInt("pageTag");
+        title = intent.getExtras().getString(TITLE);
+        pageTab = intent.getExtras().getInt(PAGE_TAG);
         ((TextView) findViewById(R.id.titleText)).setText(title);
         showWeb(pageTab);
 
@@ -51,27 +54,30 @@ public class InfoDetailActivity extends Activity {
     }
     private void settingBasic(Context context, LinearLayout list, int pageTab) {
         //컨텐츠 개수 서버에서 받아오기. 수정해야됨.
-        //int contentsNum = ((MyApplication) context).getProduct().getReviewNum();
-        int contentsNum = 4;
-
+        int contentsNum = ((MyApplication) context).getProduct().getReviewNum();
         WebContents[] contentsList = new WebContents[contentsNum];
+        //서버 받아오면 됨. 생성 필요 음슴.
+        //contentsList =
         //contentsList[] 서버 메소드 return 값 받아오기, int pageTab값 넘겨주기.!!!!!!!!!!!!!!!!!!!!!!!!!!
+
         for (int i = 0; i < contentsNum; ++i) {
-            contentsList[i] = new WebContents();
             final WebContents contents = contentsList[i];
             RelativeLayout layout = (RelativeLayout) View.inflate(context, R.layout.inform_detail_box, null);
             //컨텐츠 이미지, 제목, 부제 받아와서 보여주기.
             ((RelativeLayout)layout.findViewById(R.id.info_detail_box_default)).setVisibility(View.VISIBLE);
-           // ((ImageButton) layout.findViewById(R.id.detail_image)).setImageBitmap(((MyApplication) context.getApplicationContext()).getImage(contents.getImage()));
+            ((ImageView) layout.findViewById(R.id.detail_image)).setImageBitmap(((MyApplication) context).getImage(contents.getImage()));
             ((TextView) layout.findViewById(R.id.content_title)).setText(contents.getTitle());
             ((TextView) layout.findViewById(R.id.content_subtitle)).setText(contents.getSubTitle());
+            FontApplyer.setFont(this, ((TextView) findViewById(R.id.content_title)), FontApplyer.Font.NotoSans, FontApplyer.Style.Medium);
+            FontApplyer.setFont(this, ((TextView) findViewById(R.id.content_subtitle)), FontApplyer.Font.NotoSans, FontApplyer.Style.Light);
             //유저의 사진 클릭시 유저 정보창으로 넘어간다.
             layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent nextIntent = new Intent(getApplicationContext(), WebViewActivity.class);
-                    nextIntent.putExtra("webview_title", "화장품 기초 상식");
-                    nextIntent.putExtra("webview_url", contents.getUrl());
+                    nextIntent.putExtra(WebViewActivity.TITLE, "화장품 기초 상식");
+                    nextIntent.putExtra(WebViewActivity.ACTIONBAR, MyApplication.action_bar_tag.AC_SUB);
+                    nextIntent.putExtra(WebViewActivity.URL, contents.getUrl());
                     callIntent(nextIntent);
                 }
             });
@@ -95,13 +101,16 @@ public class InfoDetailActivity extends Activity {
            // ((ImageButton) tab[i].findViewById(R.id.detail_image)).setImageBitmap(((MyApplication) context.getApplicationContext()).getImage(listenerContent.getImage()));
             ((TextView) tab[i].findViewById(R.id.content_title)).setText(listenerContent.getTitle());
             ((TextView) tab[i].findViewById(R.id.content_subtitle)).setText(listenerContent.getSubTitle());
+            FontApplyer.setFont(this, ((TextView) findViewById(R.id.content_title)), FontApplyer.Font.NotoSans, FontApplyer.Style.Medium);
+            FontApplyer.setFont(this, ((TextView) findViewById(R.id.content_subtitle)), FontApplyer.Font.NotoSans, FontApplyer.Style.Light);
 
             tab[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent nextIntent = new Intent(getApplicationContext(), WebViewActivity.class);
-                    nextIntent.putExtra("webview_title", "화장품 성분");
-                    nextIntent.putExtra("webview_url", listenerContent.getUrl());
+                    nextIntent.putExtra(WebViewActivity.TITLE, "화장품 성분");
+                    nextIntent.putExtra(WebViewActivity.URL, listenerContent.getUrl());
+                    nextIntent.putExtra(WebViewActivity.ACTIONBAR, MyApplication.action_bar_tag.AC_SUB);
                     callIntent(nextIntent);
                 }
             });
@@ -123,17 +132,19 @@ public class InfoDetailActivity extends Activity {
             ((RelativeLayout)layout.findViewById(R.id.info_detail_box_review)).setVisibility(View.VISIBLE);
 
             //이미지 받아오기
-            /*((ImageButton) layout.findViewById(R.id.detail_image)).
-                    setImageBitmap(((MyApplication) context.getApplicationContext()).getImage(contentsList[i].getImage()));
-            ((ImageButton) layout.findViewById(R.id.info_detail_product_image)).setImageBitmap(((MyApplication) getApplicationContext()).
-                    getImage(contents.getProductImage());
+            ((ImageView) layout.findViewById(R.id.detail_image)).
+                    setImageBitmap(((MyApplication) context).getImage(contentsList[i].getImage()));
+            ((ImageView) layout.findViewById(R.id.info_detail_product_image)).
+                    setImageBitmap(((MyApplication) context.getApplicationContext()).getImage(contentsList[i].getProductImage()));
             ((TextView) layout.findViewById(R.id.review_brand)).setText(contents.getProductBrand());
             ((TextView) layout.findViewById(R.id.review_name)).setText(contents.getProductName());
-*/
+            FontApplyer.setFont(this, ((TextView) findViewById(R.id.review_brand)), FontApplyer.Font.NotoSans, FontApplyer.Style.Medium);
+            FontApplyer.setFont(this, ((TextView) findViewById(R.id.review_name)), FontApplyer.Font.NotoSans, FontApplyer.Style.Light);
+
             ((ImageButton) layout.findViewById(R.id.inform_detail_product_button)).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //((MyApplication) getApplicationContext()).setProduct(ServerInteraction.getProductInform(contents.getProduct_objectId()));
+                    ((MyApplication) getApplicationContext()).setProduct(ServerInteraction.getProductInform(contents.getProduct_objectId()));
                     Intent nextIntent = new Intent(getApplicationContext(), ProductActivity.class);
                     callIntent(nextIntent);
                 }
@@ -143,8 +154,9 @@ public class InfoDetailActivity extends Activity {
                 @Override
                 public void onClick(View v) {
                     Intent nextIntent = new Intent(getApplicationContext(), WebViewActivity.class);
-                    nextIntent.putExtra("webview_title", "추천 제품 리뷰");
-                    nextIntent.putExtra("webview_url", contents.getUrl());
+                    nextIntent.putExtra(WebViewActivity.TITLE, "추천 제품 리뷰");
+                    nextIntent.putExtra(WebViewActivity.URL, contents.getUrl());
+                    nextIntent.putExtra(WebViewActivity.ACTIONBAR, MyApplication.action_bar_tag.AC_SUB);
                     callIntent(nextIntent);
                 }
             });

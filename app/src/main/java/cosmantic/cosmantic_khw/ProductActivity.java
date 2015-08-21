@@ -3,6 +3,7 @@ package cosmantic.cosmantic_khw;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -44,7 +45,7 @@ public class ProductActivity extends Activity {
         btLike.setOnClickListener(onLike);
 
         product = (ImageView) findViewById(R.id.product_image);
-
+        average = (TextView)findViewById(R.id.average);
         //탭 이외의 기본 정보들 받아와서 보여주기.
         settingProduct();
         setting((RelativeLayout) findViewById(R.id.tablayout1), findViewById(R.id.tab1));
@@ -52,7 +53,12 @@ public class ProductActivity extends Activity {
 
         settingActionBar();
         settingSmallTab();
-        settingStar();
+        star[0] = (ImageView)findViewById(R.id.star1);
+        star[1] = (ImageView)findViewById(R.id.star2);
+        star[2] = (ImageView)findViewById(R.id.star3);
+        star[3] = (ImageView)findViewById(R.id.star4);
+        star[4] = (ImageView)findViewById(R.id.star5);
+        ((MyApplication)getApplicationContext()).settingStar(star, average);
 
     }
     private void settingActionBar()
@@ -77,42 +83,22 @@ public class ProductActivity extends Activity {
     };
 
 /*별점 평균을 받아 평균에 맞는 별 이미지를 보여준다,*/
-    private void settingStar()
-    {
-        average = (TextView) findViewById(R.id.average);
-        star[0] = (ImageView) findViewById(R.id.star1);
-        star[1] = (ImageView) findViewById(R.id.star2);
-        star[2] = (ImageView) findViewById(R.id.star3);
-        star[3] = (ImageView) findViewById(R.id.star4);
-        star[4] = (ImageView) findViewById(R.id.star5);
 
-        int aver = Math.round(((MyApplication) getApplicationContext()).getProduct().getScore());
-        String text = ((MyApplication) getApplicationContext()).getProduct().getScore()+" (";
-        for(int i=0;i<aver;++i)
-        {
-            star[i].setImageResource(R.drawable.star_inable);
-        }
-        aver = ((MyApplication) getApplicationContext()).getProduct().getReviewNum();
-        text += aver+"명)";
-        /*리뷰한 사람의 수와 별점의 평균을 수치화해서 보여준다. ex) 4.5(100명) */
-        average.setText(text);
-
-    }
     private void settingProduct()
     {
         /*myImage.setImageResource(); byte로 저장되어있음*/
-        // product.setImageBitmap(((MyApplication) getApplicationContext()).getImage(((MyApplication) getApplicationContext()).getProduct().getThumnail()));
+        product.setImageBitmap(((MyApplication) getApplicationContext()).getImage(((MyApplication) getApplicationContext()).getProduct().getThumnail()));
         /*brand 이름과 제품 이름을 받아 보여준다.*/
         String text = ((MyApplication) getApplicationContext()).getProduct().getBrand();
         ((TextView) findViewById(R.id.brand_text)).setText(text);
         text = ((MyApplication) getApplicationContext()).getProduct().getProductName();
         ((TextView) findViewById(R.id.product_text)).setText(text);
-        /*likeProducts = ((MyApplication)getApplicationContext()).getProduct().getObjectId();
+        likeProducts = ((MyApplication)getApplicationContext()).getProduct().getObjectId();
         //하트 눌려있으면 이미지도 on해주기.
 
         if(((MyApplication)getApplicationContext()).getUser().isLike(likeProducts))
              btLike.setImageResource(R.drawable.love_inable);
-*/
+
     }
     private void settingSmallTab()
     {

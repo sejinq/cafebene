@@ -79,10 +79,17 @@
     <string name="my_page">마이 페이지</string>
 
 
+
     <!-- product-->
     <string name="product_curation">제품 분석</string>
     <string name="product_inform">제품 정보</string>
     <string name="price_inform">가격 정보</string>
     <string name="user_review">유저 리뷰</string>
+
+    <!-- Home activity-->
+    <string name="recommand_oily">추천 지성 화장품</string>
+    <string name="recommand_dry">추천 건성 화장품</string>
+    <string name="recommand_sensitive">추천 민감성 화장품</string>
+    <string name="recommand_unknwon">추천 화장품</string>
 
 </resources>

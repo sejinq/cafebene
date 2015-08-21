@@ -3,9 +3,26 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <include
-        android:id="@+id/webview_action_bar"
-        layout="@layout/actionbar_sub"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/webview_action_bar_home"
+            android:visibility="gone">
+            <include
+                layout="@layout/actionbar_home"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/webview_action_bar_sub"
+            android:visibility="gone">
+            <include
+                layout="@layout/actionbar_sub"/>
+        </RelativeLayout>
+    </RelativeLayout>
     <WebView
         android:id="@+id/webview"
         android:layout_width="match_parent"

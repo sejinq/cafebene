@@ -5,6 +5,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.facebook.FacebookSdk;
 import com.kakao.auth.Session;
@@ -83,5 +85,22 @@ public class MyApplication extends Application {
     {
         Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         return bitmap;
+    }
+    public void settingStar(ImageView[] star, TextView average)
+    {
+        int aver = Math.round(getProduct().getScore());
+        String text = getProduct().getScore()+" (";
+        for(int i=0;i<aver;++i)
+        {
+            star[i].setImageResource(R.drawable.star_inable);
+        }
+        aver = getProduct().getReviewNum();
+        text += aver+"명)";
+        /*리뷰한 사람의 수와 별점의 평균을 수치화해서 보여준다. ex) 4.5(100명) */
+        average.setText(text);
+    }
+    public interface action_bar_tag{
+        public static final int AC_HOME = 0x0;		 //기초상식
+        public static final int AC_SUB = 0x1; //추천제품리뷰
     }
 }
