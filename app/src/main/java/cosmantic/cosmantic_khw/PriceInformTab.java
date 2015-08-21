@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -27,9 +26,9 @@ public class PriceInformTab implements ProductActivity.SmallTab {
     }
     private void setFont()
     {
-        FontApplyer.setFont(context, ((TextView)mainView.findViewById(R.id.text)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
-        FontApplyer.setFont(context, ((TextView)mainView.findViewById(R.id.text2)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
-        FontApplyer.setFont(context, ((TextView)mainView.findViewById(R.id.text3)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+//        FontApplyer.setFont(context, ((TextView)mainView.findViewById(R.id.text)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+//        FontApplyer.setFont(context, ((TextView)mainView.findViewById(R.id.text2)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+//        FontApplyer.setFont(context, ((TextView)mainView.findViewById(R.id.text3)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
         FontApplyer.setFont(context, ((TextView)mainView.findViewById(R.id.tv)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
 
         FontApplyer.setFont(context, ((TextView) mainView.findViewById(R.id.tv_naver)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);

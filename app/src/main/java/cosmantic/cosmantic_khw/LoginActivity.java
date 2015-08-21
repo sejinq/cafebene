@@ -192,6 +192,7 @@ public class LoginActivity extends Activity {
             public void done(ParseUser parseUser, ParseException e) {
                 if (parseUser == null) {
                     Log.d("MyApp", "Uh oh. The user cancelled the Facebook login.");
+                    e.printStackTrace();
                 } else if (parseUser.isNew()) {
                     Log.d("MyApp", "User signed up and logged in through Facebook!");
                     Intent signup = new Intent(LoginActivity.this,SignUpActivity.class);
@@ -204,6 +205,7 @@ public class LoginActivity extends Activity {
                     if(parseUser.get("displayedName") != null) {
                         ((MyApplication) getApplicationContext()).setUser(loginUser);
                         startActivity(new Intent(LoginActivity.this,HomeActivity.class));
+                        finish();
                     }else{
                         Intent signup = new Intent(LoginActivity.this,SignUpActivity.class);
                         signup.putExtra(SignUpActivity.USER_TYPE,User.UserType.FACEBOOK);

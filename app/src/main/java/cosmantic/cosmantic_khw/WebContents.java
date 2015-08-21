@@ -5,6 +5,13 @@ package cosmantic.cosmantic_khw;
  */
 public class WebContents {
 
+    public interface ContentsType{
+        int SKIN_TYPE_TEST = 0x1;// 피부타입 테스트
+        // 화장품 상식
+        // 추천 리뷰
+        // 성분
+    }
+
     private byte[] image;    //콘텐츠 이미지
     private String title="제목임";   //콘텐츠 제목
     private String subtitle="부제목임";    //콘텐츠 부제목

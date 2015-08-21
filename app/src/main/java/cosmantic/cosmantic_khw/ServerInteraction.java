@@ -335,9 +335,9 @@ public class ServerInteraction {
         return findProduct;
     }
 
-    public Product[] searchProduct(String key_word){
+    public static Product[] searchProduct(String key_word){
         ParseQuery<ParseObject> pQuery = ParseQuery.getQuery("cosmeticData");
-        pQuery.whereMatches("productName", ".*"+key_word+".*","i");
+        pQuery.whereMatches("productName", ".*" + key_word + ".*", "i");
 
         try {
             List<ParseObject> results = pQuery.find();
@@ -350,20 +350,37 @@ public class ServerInteraction {
         }
         return null;
     }
-    public Brand[] searchBrand(String key_word){
+    public static Brand[] searchBrand(String key_word){
         ParseQuery<ParseObject> pQuery = ParseQuery.getQuery("brandData");
-        pQuery.whereMatches("name", ".*"+key_word+".*","i");
+        pQuery.whereMatches("name", ".*" + key_word + ".*", "i");
 
         try {
             List<ParseObject> results = pQuery.find();
             Brand[] brands = new Brand[results.size()];
             for(int loop=0; loop<results.size(); loop++) {
-                brands[loop] = new Brand();
-                brands[loop].setBrandName(results.get(loop).getString("name"));
-                brands[loop].setBrandName(results.get(loop).getString("name"));
-                brands[loop].setBrandName(results.get(loop).getString("name"));
+                String name = results.get(loop).getString("name");
+                byte[] thumb = results.get(loop).getParseFile("thumb").getData();
+                String id = results.get(loop).getObjectId();
+                ParseQuery<ParseObject> countQuery = ParseQuery.getQuery("cosmeticData");
+                countQuery.whereEqualTo("brand",results.get(loop).get("name"));
+                int count = countQuery.count();
+                brands[loop] = new Brand(id, thumb, name, count);
             }
             return brands;
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public static Product[] searchProductInBrand(String brandName){
+        ParseQuery<ParseObject> searchQuery = ParseQuery.getQuery("cosmeticData");
+        searchQuery.whereEqualTo("brand",brandName);
+        try{
+            List<ParseObject> results = searchQuery.find();
+            Product[] products = new Product[results.size()];
+            for(int loop = 0; loop < results.size(); loop++)
+                products[loop] = getProductInform(results.get(loop).getObjectId());
+            return products;
         }catch(ParseException e){
             e.printStackTrace();
         }
@@ -398,6 +415,18 @@ public class ServerInteraction {
         return false;
     }
     public static boolean onReviewUpload(Review review){ //인자는 좀 더 고민해보고 채워넣을 예정
+        ParseObject reviewObject = new ParseObject("reviewData");
+        Log.d("Review Upload","pid:"+review.getProductObjectId()+", uid:"+review.getUserObjectId()+", rate:"+review.getRate()+", content:"+review.getContent());
+        reviewObject.put("productId", review.getProductObjectId());
+        reviewObject.put("usertId",review.getUserObjectId());
+        reviewObject.put("content",review.getContent());
+        reviewObject.put("rate",review.getRate());
+        try {
+            reviewObject.save();
+            return true;
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
         return false;
     }
 

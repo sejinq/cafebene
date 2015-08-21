@@ -2,16 +2,14 @@ package cosmantic.cosmantic_khw;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.parse.ParseUser;
 
 /*손!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111세~~~~~~~~~~~~~~~~~~~~~~진@@@@@@@@@@@@@@@@@@@@@@@@@ 내가다함*/
 public class WriteReviewActivity extends Activity {
@@ -38,11 +36,14 @@ public class WriteReviewActivity extends Activity {
 
         title = (TextView) findViewById(R.id.titleText);
 
+        //Product
+        Product productObject = ((MyApplication)getApplicationContext()).getProduct();
         image = (ImageView) findViewById(R.id.product_image);
         product = (TextView) findViewById(R.id.product_text);
+        product.setText(productObject.getProductName());
         brand = (TextView) findViewById(R.id.brand_text);
+        brand.setText(productObject.getBrand());
         average = (TextView) findViewById(R.id.average);
-
         myave = (TextView) findViewById(R.id.textScore);
         etContent = (EditText) findViewById(R.id.editText);
 
@@ -71,24 +72,31 @@ public class WriteReviewActivity extends Activity {
         btStar[4].setOnClickListener(listener);
 
         title.setText("평가하기");
+
         btShare.setImageResource(R.drawable.share_button);
         ((ImageView) findViewById(R.id.writebox)).setVisibility(View.VISIBLE);
         ((EditText) findViewById(R.id.editText)).setVisibility(View.VISIBLE);
 
         /*myImage.setImageResource(); byte로 저장되어있음*/
-        //image.setImageBitmap(((MyApplication) getApplicationContext()).getImage(((MyApplication) getApplicationContext()).getProduct().getThumnail()));
-        //myImage.setImageBitmap(((MyApplication) getApplicationContext()).getImage(((MyApplication) getApplicationContext()).getUser().getImage()));
-        //int aver = Math.round(((MyApplication) getApplicationContext()).getProduct().getScore());
-        int aver = 4;
+        byte[] byteImage = ((MyApplication) getApplicationContext()).getProduct().getThumnail();
+        if(byteImage != null)
+            image.setImageBitmap(((MyApplication) getApplicationContext()).getImage(byteImage));
+        byteImage = ((MyApplication) getApplicationContext()).getUser().getImage();
+        if(byteImage != null)
+            myImage.setImageBitmap(((MyApplication) getApplicationContext()).getImage(byteImage));
+        int aver = Math.round(((MyApplication) getApplicationContext()).getProduct().getScore());
+//        int aver = 4;
         for(int i=0;i<aver;++i)
         {
             star[i].setImageResource(R.drawable.star_inable);
         }
-        average.setText("별점 ("+aver+")");
+        average.setText(productObject.getScore() + " ("+productObject.getReviewNum()+"명)");
         //찜하기를 한건지 안한건지 판별
-        //likeProducts = ((MyApplication)getApplicationContext()).getProduct().getObjectId();
-        //if(((MyApplication)getApplicationContext()).getUser().isLike(likeProducts))
-        //   btLike.setImageResource(R.drawable.love_inable);
+        likeProducts = ((MyApplication)getApplicationContext()).getProduct().getObjectId();
+        if(((MyApplication)getApplicationContext()).getUser().isLike(likeProducts))
+           btLike.setImageResource(R.drawable.love_inable);
+
+        ((TextView)findViewById(R.id.userNick)).setText(((MyApplication)getApplicationContext()).getUser().getDisplayedName());
     }
     View.OnClickListener listener = new View.OnClickListener() {
         public void onClick(View v)
@@ -144,17 +152,22 @@ public class WriteReviewActivity extends Activity {
             //사용자가 쓴 리뷰를 받아 Review 클래스 생성.
             String content =etContent.getText().toString();
             Review review = new Review(((MyApplication)getApplicationContext()).getProduct().getObjectId(),
-                    ((MyApplication)getApplicationContext()).getUser().getObjectId(),
-                    ((MyApplication)getApplicationContext()).getUser().getDisplayedName(),
+                    ParseUser.getCurrentUser().getObjectId(),
+                    ParseUser.getCurrentUser().getString("displayedName"),
                     ((MyApplication)getApplicationContext()).getUser().getImage(),
                     (double)star_on, content);
             //review 서버 업로드
             int i=0;
             while(true)
             {
-                if(ServerInteraction.onReviewUpload(review))
+                if(ServerInteraction.onReviewUpload(review)) {
                     //홈화면으로 으로 넘겨주기.
+                    Intent finishIntent = new Intent();
+                    finishIntent.putExtra("result","SUCCESS");
+                    WriteReviewActivity.this.setResult(Activity.RESULT_OK,finishIntent);
+                    WriteReviewActivity.this.finish();
                     break;
+                }
                 if(++i>3)
                     //메세지 띄워주기 "음.. 안됨 어쩌구"
                     break;

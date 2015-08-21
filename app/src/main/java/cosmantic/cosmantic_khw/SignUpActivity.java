@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -192,7 +193,7 @@ public class SignUpActivity extends Activity {
             etID.setText(id);
             etID.setFocusable(false);
             etID.setClickable(false);
-            signingUser.setUsername(id);
+            username = id;
         }
     }
     View.OnClickListener ClickListener = new View.OnClickListener() {
@@ -369,7 +370,7 @@ public class SignUpActivity extends Activity {
                     Toast.makeText(SignUpActivity.this, "아이디를 이메일 형식으로 입력해주세요.", Toast.LENGTH_SHORT).show();
                     signable = false;
                 }
-                if(!ServerInteraction.compareUserName(username)){
+                else if(!ServerInteraction.compareUserName(username)){
                     Toast.makeText(SignUpActivity.this, "이미 가입된 이메일입니다.",Toast.LENGTH_SHORT).show();
                     signable = false;
                 }
@@ -425,30 +426,32 @@ public class SignUpActivity extends Activity {
 //                text = "나이 : "+user.getAge()+"\n 피부타입 : "+user.getSkinType()+"\n 관심효과 :"+user.getSkinProblem();
 //                Toast.makeText(SignUpActivity.this, text, Toast.LENGTH_SHORT).show();
 
-
                 if(ServerInteraction.onSignUp(user,userType) == ServerInteraction.signUpFlag.SUCCESS)
                 {
                     if(userType!= User.UserType.EMAIL) {
                         ((MyApplication) getApplicationContext()).setUser(ServerInteraction.onLoginWithParseUser(ParseUser.getCurrentUser()));
                         startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
-                    }
+                        finish();
+                    }else {
+                        Log.d("User Type Check", "" + userType);
 //                    ((MyApplication)getApplicationContext()).setUser(user);
-                    Toast.makeText(SignUpActivity.this, "가입 성공!", Toast.LENGTH_SHORT).show();
-                    //가입성공 메세지, 다른창으로 넘어가기.
-                    ParseUser.logInInBackground(user.getUsername(), user.getPassword(), new LogInCallback() {
-                        @Override
-                        public void done(ParseUser parseUser, ParseException e) {
-                            ((MyApplication)getApplicationContext()).setUser(ServerInteraction.onLoginWithParseUser(parseUser));
-                            startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
-                        }
-                    });
+                        Toast.makeText(SignUpActivity.this, "가입 성공!", Toast.LENGTH_SHORT).show();
+                        //가입성공 메세지, 다른창으로 넘어가기.
+                        ParseUser.logInInBackground(user.getUsername(), user.getPassword(), new LogInCallback() {
+                            @Override
+                            public void done(ParseUser parseUser, ParseException e) {
+                                ((MyApplication) getApplicationContext()).setUser(ServerInteraction.onLoginWithParseUser(parseUser));
+                                startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
+                                finish();
+                            }
+                        });
+                    }
                 }
                 else
                 {
                     //네트워크 장애 팝업창 띄워주기.
                     Toast.makeText(SignUpActivity.this, "가입에 실패했습니다.", Toast.LENGTH_SHORT).show();
                 }
-
             }
         }
 

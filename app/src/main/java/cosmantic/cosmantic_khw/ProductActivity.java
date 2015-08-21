@@ -2,8 +2,6 @@ package cosmantic.cosmantic_khw;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -188,6 +186,15 @@ public class ProductActivity extends Activity {
             startActivity(Intent);
         }
     };
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            RelativeLayout view = (RelativeLayout) findViewById(R.id.tablayout4);
+            setting(view, findViewById(R.id.tab4));
+            FontApplyer.setFont(getApplicationContext(), ((TextView) findViewById(R.id.tab4)), FontApplyer.Font.NotoSans, FontApplyer.Style.Medium);
+            tabClass = new UserReviewTab(getApplicationContext(),view);
+        }
+    }
     //초기화, 모두 비활성화.
     private void frameInvisible(){
         findViewById(R.id.tablayout1).setVisibility(View.GONE);

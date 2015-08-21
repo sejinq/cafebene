@@ -1,7 +1,6 @@
 package cosmantic.cosmantic_khw;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -337,7 +336,7 @@ public class HomeActivity extends Activity {
                     break;
                 case R.id.home_skintype_test:
                     intent = new Intent(HomeActivity.this, WebViewActivity.class);
-                    intent.putExtra(WebViewActivity.URL, "http://m.blog.naver.com/cosmeticforman/220451294230");
+                    intent.putExtra(WebViewActivity.URL, "http://m.blog.naver.com/cosmeticforman/220438314170");
                     intent.putExtra(WebViewActivity.ACTIONBAR, MyApplication.action_bar_tag.AC_HOME);
                     startActivity(intent);
                     break;

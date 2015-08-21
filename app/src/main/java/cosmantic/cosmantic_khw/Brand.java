@@ -38,4 +38,5 @@ public class Brand {
     public void setProductNum(int productNum){
         this.productNum = productNum;
     }
+
 }

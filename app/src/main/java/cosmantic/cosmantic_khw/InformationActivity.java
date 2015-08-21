@@ -7,7 +7,6 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
@@ -27,7 +26,7 @@ public class InformationActivity extends Activity {
             public void onClick(View v) {
                 //바로 웹뷰로 넘어감. 피부타입 테스트
                 Intent nextIntent = new Intent(InformationActivity.this, WebViewActivity.class);
-                nextIntent.putExtra(WebViewActivity.URL, "http://m.blog.naver.com/cosmeticforman/220451294230");
+                nextIntent.putExtra(WebViewActivity.URL, "http://m.blog.naver.com/cosmeticforman/220438314170");
                 nextIntent.putExtra(WebViewActivity.ACTIONBAR, MyApplication.action_bar_tag.AC_HOME);
                 startActivity(nextIntent);
             }

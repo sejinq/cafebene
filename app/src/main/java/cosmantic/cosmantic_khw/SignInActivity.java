@@ -104,8 +104,13 @@ public class SignInActivity extends Activity {
         ParseUser.logInInBackground(id, passwd, new LogInCallback() {
             @Override
             public void done(ParseUser parseUser, ParseException e) {
-                ((MyApplication) getApplicationContext()).setUser(ServerInteraction.onLoginWithParseUser(parseUser));
-                startActivity(new Intent(SignInActivity.this, HomeActivity.class));
+                if(e == null) {
+                    ((MyApplication) getApplicationContext()).setUser(ServerInteraction.onLoginWithParseUser(parseUser));
+                    startActivity(new Intent(SignInActivity.this, HomeActivity.class));
+                }else{
+                    e.printStackTrace();
+                    Toast.makeText(SignInActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

@@ -1,5 +1,7 @@
 package cosmantic.cosmantic_khw;
 
+import com.parse.ParseUser;
+
 import java.util.Hashtable;
 import java.util.List;
 
@@ -61,7 +63,7 @@ public class User {
 
     // getter, setter
     public void initLike(List<String> likeList){
-        likeProducts = new Hashtable<String,Boolean>();
+        likeProducts = new Hashtable();
         for(int loop = 0; loop< likeList.size(); loop++)
             likeProducts.put(likeList.get(loop),true);
     }
@@ -72,6 +74,7 @@ public class User {
     }
     public boolean isLike(String likeProducts)
     {
+        if(likeProducts == null) initLike(ParseUser.getCurrentUser().getList("like"));
         if(this.likeProducts.get(likeProducts)!=null){
             return true;
         }
