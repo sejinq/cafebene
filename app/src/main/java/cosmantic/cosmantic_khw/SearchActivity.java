@@ -21,8 +21,7 @@ public class SearchActivity extends Activity {
         setContentView(R.layout.activity_search);
 
         // 임시로 보이지 않게 설정
-        ((LinearLayout)findViewById(R.id.search_result)).setVisibility(View.GONE);
-        ((RelativeLayout)findViewById(R.id.search_nosearch)).setVisibility(View.GONE);
+        ((LinearLayout)findViewById(R.id.search_result)).setVisibility(View.VISIBLE);
 
         // 액션바 뒤로가기 버튼, 검색 버튼 리스너 달아주는 코드
         ((ImageButton)findViewById(R.id.backButton)).setOnClickListener(ClickListener);
@@ -31,7 +30,7 @@ public class SearchActivity extends Activity {
         // EditText에서 Enter키를 눌렀을 때 검색이 되게 하도록 리스너 달아줌.
         ((EditText)findViewById(R.id.actionbar_search_edittext)).setOnKeyListener(KeyListener);
     }
-
+//????????????????????????????????????????????????????이게뭐람??????????????
     // 제품 클릭 시 동작하는 리스너
     View.OnClickListener ClickListener = new View.OnClickListener() {
         public void onClick(View v) {
@@ -43,16 +42,8 @@ public class SearchActivity extends Activity {
                     String word =((EditText)findViewById(R.id.actionbar_search_edittext)).getText().toString();
                     Brand[] brands = ServerInteraction.searchBrand(word);
                     Product[] products = ServerInteraction.searchProduct(word);
-                    if(brands.length==0 && products.length==0) {
-                        ((RelativeLayout) findViewById(R.id.noSearch)).setVisibility(View.VISIBLE);
-                        ((LinearLayout) findViewById(R.id.search_result)).setVisibility(View.GONE);
-                       }
-                    else {
-                        LinearLayout layout = ((LinearLayout) findViewById(R.id.search_result));
-                        ((RelativeLayout) findViewById(R.id.noSearch)).setVisibility(View.GONE);
-                        layout.setVisibility(View.VISIBLE);
-                        settingList(getApplicationContext(), word, layout);
-                    }
+                    LinearLayout layout = ((LinearLayout) findViewById(R.id.search_result));
+                    settingList(getApplicationContext(), word, layout);
                     break;
             }
         }
@@ -72,7 +63,7 @@ public class SearchActivity extends Activity {
 
     private void settingList(Context context, String searchWord, LinearLayout list)
     {
-        Brand brands[] = ServerInteraction.searchBrand(searchWord);
+        Brand brands[] = new Brand[4];
         Product products[] = ServerInteraction.searchProduct(searchWord);
 
         for (int i = 0; i < brands.length; ++i) {
@@ -80,10 +71,13 @@ public class SearchActivity extends Activity {
             RelativeLayout layout = (RelativeLayout) View.inflate(context, R.layout.search_result_product, null);
             //컨텐츠 이미지, 제목, 부제 받아와서 보여주기.
             setFont(layout);
+          //  byte[] thumb = ServerInteraction.getUserInform(brand.getObjectId()).getImage();
+          //  if(brand.getThumnail()!=null)
+          //      ((ImageView)layout.findViewById(R.id.userThumnail)).setImageBitmap(((MyApplication) context.getApplicationContext()).getImage(thumb));
             //브랜드 이미지
-            //((ImageView) layout.findViewById(R.id.searchResultImage)).setImageBitmap(((MyApplication) context).getImage(brand.getThumnail()));
+//            ((ImageView) layout.findViewById(R.id.searchResultImage)).setImageBitmap(((MyApplication) context).getImage(brand.getThumnail()));
             //브랜드 제품 수
-            ((TextView) layout.findViewById(R.id.searchResultBrandName)).setText(brand.getBrandName());
+            ((TextView) layout.findViewById(R.id.searchResultBrandName)).setText(brand.getBrandName()+"");
             ((TextView) layout.findViewById(R.id.searchResultProductName)).setText("등록 제품 수 : " + brand.getProductNum() + " 개");
             //브랜드 클릭시 그 브랜드의 제품들을 보여준다.
             layout.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +89,7 @@ public class SearchActivity extends Activity {
             });
             list.addView(layout); // 부모에 부착
         }
+        /*
         //제품 검색.
         for (int i = 0; i < products.length; ++i) {
             final Product product = products[i];
@@ -121,7 +116,7 @@ public class SearchActivity extends Activity {
             });
             list.addView(layout); // 부모에 부착
         }
-
+*/
     }
     private void settingHeart(String product_id)
     {

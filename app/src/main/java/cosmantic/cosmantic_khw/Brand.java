@@ -4,8 +4,8 @@ public class Brand {
     // 멤버 변수
     private String objectId;
     private byte[] thumb;
-    private String brandName;       // 브랜드 이름
-    private int productNum;         // 제품 등록수
+    private String brandName = "브랜드 이름이다..";       // 브랜드 이름
+    private int productNum = 3;         // 제품 등록수
 
     // 기본 생성자
     Brand(){}

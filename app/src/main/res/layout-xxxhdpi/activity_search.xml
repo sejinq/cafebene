@@ -7,7 +7,6 @@
     <include
         layout="@layout/actionbar_search"
         android:id="@+id/actionbar_search"/>
-
         <LinearLayout
             android:id="@+id/search_result"
             android:scrollbars="vertical"
@@ -15,22 +14,8 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/actionbar_search"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
         </LinearLayout>
 
-        <RelativeLayout
-            android:id="@+id/noSearch"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/actionbar_search"
-            android:visibility="gone">
-
-        <include
-            android:id="@+id/search_nosearch"
-            layout="@layout/search_no_search"
-            />
-        </RelativeLayout>
 </RelativeLayout>
