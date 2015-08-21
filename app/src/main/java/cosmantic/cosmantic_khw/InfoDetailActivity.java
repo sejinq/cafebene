@@ -151,7 +151,7 @@ public class InfoDetailActivity extends Activity {
 
                     for(int i=0;i<3;++i)
                     {
-                        contentsList[i] = new WebContents();
+//                        contentsList[i] = new WebContents();
                         final WebContents listenerContent = contentsList[i];
                         ((RelativeLayout)tab[i].findViewById(R.id.info_detail_box_default)).setVisibility(View.VISIBLE);
                         setFont(tab[i]);
@@ -193,20 +193,21 @@ public class InfoDetailActivity extends Activity {
                     for (int loop = 0; loop < contentslist.size(); loop++) {
                         ParseObject object = contentslist.get(loop);
                         contentsList[loop] = new WebContents((object.getParseFile("image") == null) ? null : object.getParseFile("image").getData(),
-                                object.getString("title"),object.getString("subTitle"),null,object.getString("url"));
+                                object.getString("title"),object.getString("subTitle"),object.getString("product_objectId"),object.getString("url"));
                     }
                 }catch(ParseException pe){
                     pe.printStackTrace();
                 }
                 runOnUiThread(() -> {
                     for (int i = 0; i < contentsNum; ++i) {
-                        contentsList[i] = new WebContents();
+//                        contentsList[i] = new WebContents();
                         final WebContents contents = contentsList[i];
                         RelativeLayout layout = (RelativeLayout) View.inflate(context, R.layout.inform_detail_box, null);
                         setReviewFont(layout);
                         //컨텐츠 이미지, 제품 이미지, 브랜드, 이르 받아와서 보여주기.
                         ((RelativeLayout) layout.findViewById(R.id.info_detail_box_review)).setVisibility(View.VISIBLE);
                         //이미지 받아오기
+                        if(contentsList[i].getImage() == null) continue;
                         ((ImageView) layout.findViewById(R.id.detail_image)).
                                 setImageBitmap(((MyApplication) context).getImage(contentsList[i].getImage()));
                         ((ImageView) layout.findViewById(R.id.info_detail_product_image)).
