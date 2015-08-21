@@ -2,6 +2,8 @@ package cosmantic.cosmantic_khw;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -42,7 +44,7 @@ public class ProductActivity extends Activity {
         btLike.setOnClickListener(onLike);
 
         product = (ImageView) findViewById(R.id.product_image);
-
+        average = (TextView)findViewById(R.id.average);
         //탭 이외의 기본 정보들 받아와서 보여주기.
         settingProduct();
         setting((RelativeLayout) findViewById(R.id.tablayout1), findViewById(R.id.tab1));
@@ -50,8 +52,20 @@ public class ProductActivity extends Activity {
 
         settingActionBar();
         settingSmallTab();
-        settingStar();
+        star[0] = (ImageView)findViewById(R.id.star1);
+        star[1] = (ImageView)findViewById(R.id.star2);
+        star[2] = (ImageView)findViewById(R.id.star3);
+        star[3] = (ImageView)findViewById(R.id.star4);
+        star[4] = (ImageView)findViewById(R.id.star5);
+        ((MyApplication)getApplicationContext()).settingStar(star, average);
+        setFont();
 
+    }
+    private void setFont()
+    {
+        FontApplyer.setFont(this, ((TextView) findViewById(R.id.brand_text)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(this, ((TextView) findViewById(R.id.product_text)), FontApplyer.Font.NotoSans, FontApplyer.Style.Light);
+        FontApplyer.setFont(this, ((TextView) findViewById(R.id.average)), FontApplyer.Font.NotoSans, FontApplyer.Style.Light);
     }
     private void settingActionBar()
     {
@@ -75,27 +89,7 @@ public class ProductActivity extends Activity {
     };
 
 /*별점 평균을 받아 평균에 맞는 별 이미지를 보여준다,*/
-    private void settingStar()
-    {
-        average = (TextView) findViewById(R.id.average);
-        star[0] = (ImageView) findViewById(R.id.star1);
-        star[1] = (ImageView) findViewById(R.id.star2);
-        star[2] = (ImageView) findViewById(R.id.star3);
-        star[3] = (ImageView) findViewById(R.id.star4);
-        star[4] = (ImageView) findViewById(R.id.star5);
 
-        int aver = Math.round(((MyApplication) getApplicationContext()).getProduct().getScore());
-        String text = ((MyApplication) getApplicationContext()).getProduct().getScore()+" (";
-        for(int i=0;i<aver;++i)
-        {
-            star[i].setImageResource(R.drawable.star_inable);
-        }
-        aver = ((MyApplication) getApplicationContext()).getProduct().getReviewNum();
-        text += aver+"명)";
-        /*리뷰한 사람의 수와 별점의 평균을 수치화해서 보여준다. ex) 4.5(100명) */
-        average.setText(text);
-
-    }
     private void settingProduct()
     {
         /*myImage.setImageResource(); byte로 저장되어있음*/
@@ -109,12 +103,12 @@ public class ProductActivity extends Activity {
         ((TextView) findViewById(R.id.brand_text)).setText(text);
         text = productObject.getProductName();
         ((TextView) findViewById(R.id.product_text)).setText(text);
-        /*likeProducts = ((MyApplication)getApplicationContext()).getProduct().getObjectId();
+        likeProducts = ((MyApplication)getApplicationContext()).getProduct().getObjectId();
         //하트 눌려있으면 이미지도 on해주기.
 
         if(((MyApplication)getApplicationContext()).getUser().isLike(likeProducts))
              btLike.setImageResource(R.drawable.love_inable);
-*/
+
     }
     private void settingSmallTab()
     {
@@ -126,6 +120,7 @@ public class ProductActivity extends Activity {
                 RelativeLayout view =  (RelativeLayout)findViewById(R.id.tablayout1);
                 //선택 될 탭의 내용만 활성화.
                 setting(view, findViewById(R.id.tab1));
+                FontApplyer.setFont(getApplicationContext(), ((TextView) findViewById(R.id.tab1)), FontApplyer.Font.NotoSans, FontApplyer.Style.Medium);
                 //RelativeLayout 정보와 ProductActivity의 content를 같이 넘겨주기.
                 tabClass = new ProductCurationTab(getApplicationContext(),view);
             }
@@ -135,6 +130,7 @@ public class ProductActivity extends Activity {
             public void onClick(View v) {
                 RelativeLayout view =  (RelativeLayout)findViewById(R.id.tablayout2);
                 setting(view, findViewById(R.id.tab2));
+                FontApplyer.setFont(getApplicationContext(), ((TextView) findViewById(R.id.tab2)), FontApplyer.Font.NotoSans, FontApplyer.Style.Medium);
                 tabClass = new ProductInformTab(getApplicationContext(),view);
             }
         });
@@ -143,6 +139,7 @@ public class ProductActivity extends Activity {
             public void onClick(View v) {
                 RelativeLayout view = (RelativeLayout) findViewById(R.id.tablayout3);
                 setting(view, findViewById(R.id.tab3));
+                FontApplyer.setFont(getApplicationContext(), ((TextView) findViewById(R.id.tab3)), FontApplyer.Font.NotoSans, FontApplyer.Style.Medium);
                 tabClass = new PriceInformTab(ProductActivity.this, view);
             }
         });
@@ -151,6 +148,7 @@ public class ProductActivity extends Activity {
             public void onClick(View v) {
                 RelativeLayout view = (RelativeLayout) findViewById(R.id.tablayout4);
                 setting(view, findViewById(R.id.tab4));
+                FontApplyer.setFont(getApplicationContext(), ((TextView) findViewById(R.id.tab4)), FontApplyer.Font.NotoSans, FontApplyer.Style.Medium);
                 tabClass = new UserReviewTab(getApplicationContext(),view);
             }
         });
@@ -200,6 +198,10 @@ public class ProductActivity extends Activity {
         findViewById(R.id.tab2).setBackgroundResource(android.R.color.transparent);
         findViewById(R.id.tab3).setBackgroundResource(android.R.color.transparent);
         findViewById(R.id.tab4).setBackgroundResource(android.R.color.transparent);
+        FontApplyer.setFont(this, ((TextView) findViewById(R.id.tab1)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(this, ((TextView) findViewById(R.id.tab2)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(this, ((TextView) findViewById(R.id.tab3)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(this, ((TextView) findViewById(R.id.tab4)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
     }
     @Override
     protected void onDestroy(){

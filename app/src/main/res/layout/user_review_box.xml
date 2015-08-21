@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/lineLayout"
+    android:layout_marginTop="15dp"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true"
+
+        >
+    <ImageView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/userThumnail"
+        android:layout_marginLeft="27dp"
+        android:layout_marginStart="27dp"
+        android:src="@drawable/man" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/userThumnail"
+        android:layout_toEndOf="@+id/userThumnail"
+        android:layout_alignTop="@+id/userThumnail"
+        android:layout_marginTop = "10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:id="@+id/textBox" >
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/userNick"
+        android:textColor="#ff0c1e36"
+        android:textSize="11dp"
+        android:text="룰루랄라"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mystar"
+        android:textColor="#ff0c1e36"
+        android:textSize="11dp"
+        android:visibility="visible"
+        android:id="@+id/userScore"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/userNick"
+        android:layout_alignLeft="@+id/userNick"
+        android:layout_alignStart="@+id/userNick"
+        android:layout_marginTop = "8dp"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userNick"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/userScore"
+        android:layout_toEndOf="@+id/userScore"
+        android:id="@+id/starbox">
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mystar1"
+            android:layout_marginRight="4dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/my_star_disable" />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mystar2"
+            android:background="@android:color/transparent"
+            android:layout_marginRight="4dp"
+            android:layout_toRightOf="@+id/mystar1"
+            android:layout_toEndOf="@+id/mystar1"
+            android:src="@drawable/my_star_disable" />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mystar3"
+            android:background="@android:color/transparent"
+            android:layout_toRightOf="@+id/mystar2"
+            android:layout_marginRight="4dp"
+            android:layout_toEndOf="@+id/mystar2"
+            android:src="@drawable/my_star_disable" />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mystar4"
+            android:background="@android:color/transparent"
+            android:layout_toRightOf="@+id/mystar3"
+            android:layout_marginRight="4dp"
+            android:layout_toEndOf="@+id/mystar3"
+            android:src="@drawable/my_star_disable" />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mystar5"
+            android:background="@android:color/transparent"
+            android:layout_toRightOf="@+id/mystar4"
+            android:layout_toEndOf="@+id/mystar4"
+            android:src="@drawable/my_star_disable" />
+
+        <TextView
+            android:id="@+id/textScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ff0c1e36"
+            android:textSize="11dp"
+            android:text="@string/scoredefault"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_toRightOf="@+id/mystar5"
+            android:layout_toEndOf="@+id/mystar5"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+    </RelativeLayout>
+    <ImageView
+        android:layout_marginTop="18dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/textBox"
+        android:layout_width="310dp"
+        android:layout_height="60dp"
+        android:id="@+id/writebox"
+        android:visibility="gone"
+        android:src="@drawable/review_box"
+        />
+    <TextView
+        android:layout_marginTop="18dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/textBox"
+        android:layout_width="310dp"
+        android:layout_height="60dp"
+        android:id="@+id/reviewText"
+        android:src="@drawable/review_box"
+        />
+    <EditText
+        android:layout_width="310dp"
+        android:layout_height="60dp"
+        android:id="@+id/editText"
+        android:textSize="15dp"
+        android:inputType="textMultiLine"
+        android:ems="20"
+        android:background="@android:color/transparent"
+        android:maxLength="60"
+        android:visibility="gone"
+        android:layout_alignTop="@+id/writebox"
+        android:layout_alignLeft="@+id/writebox"
+        android:layout_alignStart="@+id/writebox" />
+
+</RelativeLayout>

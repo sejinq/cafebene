@@ -93,6 +93,10 @@ public class ServerInteraction {
             if(parseUser.getParseFile("profilePicture")!=null)
                 loginUser.setImage(parseUser.getParseFile("profilePicture").getDataInBackground().getResult());
             else loginUser.setImage(null);
+
+            List<String> likeList = parseUser.getList("like");
+            loginUser.initLike(likeList);
+
             return loginUser;
         }else{
             return null;
@@ -189,7 +193,7 @@ public class ServerInteraction {
         }
         try {
             recommandQuery.selectKeys(Arrays.asList("recommendedList"));
-            List<String> recommendedID;
+            List<Object> recommendedID;
             if(skin_type==User.SKIN_TYPE_UNKNOWN){
                 ParseObject objects = recommandQuery.find().get(0);
                 recommendedID = objects.getList("recommendedList");
@@ -206,7 +210,7 @@ public class ServerInteraction {
             String[] productIds = new String[9];
             for(int loop=0; loop<9;loop++) {
                 Log.d("Main Recommend","Get Main Recommend:"+skin_type+"("+loop+")"+recommendedID.get(loop));
-                productIds[loop] = recommendedID.get(loop);
+                productIds[loop] = (String)recommendedID.get(loop);
 //                products[loop] = getProductInform(recommendedID.get(loop));
 //                context.recommendApply(products);
             }

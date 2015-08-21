@@ -112,7 +112,7 @@ public class InfoDetailActivity extends Activity {
             final WebContents listenerContent = contentsList[i];
             ((RelativeLayout)tab[i].findViewById(R.id.info_detail_box_default)).setVisibility(View.VISIBLE);
             setFont(tab[i]);
-            // ((ImageButton) tab[i].findViewById(R.id.detail_image)).setImageBitmap(((MyApplication) context.getApplicationContext()).getImage(listenerContent.getImage()));
+           // ((ImageButton) tab[i].findViewById(R.id.detail_image)).setImageBitmap(((MyApplication) context.getApplicationContext()).getImage(listenerContent.getImage()));
             ((TextView) tab[i].findViewById(R.id.content_title)).setText(listenerContent.getTitle());
             ((TextView) tab[i].findViewById(R.id.content_subtitle)).setText(listenerContent.getSubTitle());
             FontApplyer.setFont(this, ((TextView) findViewById(R.id.content_title)), FontApplyer.Font.NotoSans, FontApplyer.Style.Medium);

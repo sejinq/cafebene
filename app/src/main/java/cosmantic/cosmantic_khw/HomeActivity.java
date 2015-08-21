@@ -1,6 +1,7 @@
 package cosmantic.cosmantic_khw;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,15 +26,16 @@ public class HomeActivity extends Activity {
     private ViewFlipper viewFlipper;
     private int flipperCount=0;
     private boolean backCheck=false;
-
+    int skinType;
     private Product[] recommendProducts;
+    HomeActivity context;
 
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
 
         setContentView(R.layout.activity_home);
-
+        context = this;
         // 액션바의 홈 버튼에 배경 설정
         Button btn = (Button) findViewById(R.id.tab1);
         btn.setBackgroundResource(R.drawable.menu_tap);
@@ -64,8 +66,25 @@ public class HomeActivity extends Activity {
         ((ImageButton) findViewById(R.id.oily_button)).setOnClickListener(ClickListener);
         ((ImageButton) findViewById(R.id.dry_button)).setOnClickListener(ClickListener);
         ((ImageButton) findViewById(R.id.sensitive_button)).setOnClickListener(ClickListener);
+        ((ImageButton) findViewById(R.id.home_skintype_test)).setOnClickListener(ClickListener);
 
         int skinType = ((MyApplication)getApplicationContext()).getUser().getSkinType();
+        if(skinType == User.SKIN_TYPE_OILY)
+        {
+            ((TextView)findViewById(R.id.home_mainbar_txt)).setText(getResources().getText(R.string.recommand_oily));
+        }
+        else if(skinType == User.SKIN_TYPE_DRY)
+        {
+            ((TextView)findViewById(R.id.home_mainbar_txt)).setText(getResources().getText(R.string.recommand_dry));
+        }
+        else if(skinType == User.SKIN_TYPE_UNKNOWN)
+        {
+            ((TextView)findViewById(R.id.home_mainbar_txt)).setText(getResources().getText(R.string.recommand_sensitive));
+        }
+        else
+        {
+            ((TextView)findViewById(R.id.home_mainbar_txt)).setText(getResources().getText(R.string.recommand_unknwon));
+        }
         String[] recomProductIds = ServerInteraction.getMainRecommendList(skinType);
         if(recomProductIds == null) Toast.makeText(this,"추천 정보를 받아오는데\n오류가 발생했습니다.",Toast.LENGTH_SHORT).show();
         else {
@@ -202,9 +221,10 @@ public class HomeActivity extends Activity {
         FontApplyer.setFont(this, (TextView) container.findViewById(R.id.product_right_priceandvolume), FontApplyer.Font.NotoSans, FontApplyer.Style.Light);
 
         // 제품 클릭시 리스너를 나타내주기 위한 코드
-//        (container.findViewById(R.id.product_left)).setOnClickListener(ClickListener);
-//        (container.findViewById(R.id.product_center)).setOnClickListener(ClickListener);
-//        (container.findViewById(R.id.product_right)).setOnClickListener(ClickListener);   // Touch이벤트가 등록되면 Click이벤트가 작동하지 않으므로 Touch에 Click이벤트를 입력
+         (container.findViewById(R.id.product_left)).setOnClickListener(ClickListener);
+        (container.findViewById(R.id.product_center)).setOnClickListener(ClickListener);
+        (container.findViewById(R.id.product_right)).setOnClickListener(ClickListener);
+          // Touch이벤트가 등록되면 Click이벤트가 작동하지 않으므로 Touch에 Click이벤트를 입력
         (container.findViewById(R.id.product_left)).setOnTouchListener(TouchListener); // Fliper안의 Object에 거리 인식, Flipping효과를 계산하는 이벤트 등록
         (container.findViewById(R.id.product_center)).setOnTouchListener(TouchListener);
         (container.findViewById(R.id.product_right)).setOnTouchListener(TouchListener);
@@ -232,7 +252,7 @@ public class HomeActivity extends Activity {
                 int mMinimumFlipDrag = 50;
 
                 if (mMinimumFlipDrag > xDelta) {
-                    productClick(v);            // 충분히 이동하지 않으면 클릭한것으로 인식
+                    productClick(v, flipperCount);            // 충분히 이동하지 않으면 클릭한것으로 인식
                     return false;
                 }
                 if (xAtUp > xAtDown) {
@@ -317,6 +337,8 @@ public class HomeActivity extends Activity {
                     break;
                 case R.id.home_skintype_test:
                     intent = new Intent(HomeActivity.this, WebViewActivity.class);
+                    intent.putExtra(WebViewActivity.URL, "http://m.blog.naver.com/cosmeticforman/220451294230");
+                    intent.putExtra(WebViewActivity.ACTIONBAR, MyApplication.action_bar_tag.AC_HOME);
                     startActivity(intent);
                     break;
                 case R.id.oily_button:
@@ -338,18 +360,22 @@ public class HomeActivity extends Activity {
         }
     };
 
-    private void productClick(View v){
+    private void productClick(View v, int flipperCount){
+        int index = flipperCount*3;
         switch (v.getId()) {
             case R.id.product_left:
-                Toast.makeText(HomeActivity.this, "product_left", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.product_center:
-                Toast.makeText(HomeActivity.this, "product_center", Toast.LENGTH_SHORT).show();
+                index++;
                 break;
             case R.id.product_right:
-                Toast.makeText(HomeActivity.this, "product_right", Toast.LENGTH_SHORT).show();
+                index+=2;
                 break;
         }
+        ((MyApplication)getApplicationContext()).setProduct(recommendProducts[index]);
+        Intent intent = new Intent(HomeActivity.this,ProductActivity.class);
+        startActivity(intent);
+
     }
 
     @Override

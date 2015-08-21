@@ -17,10 +17,6 @@ public class RecommendIntroActivity extends Activity {
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_recommend_intro);
 
-        // 액션바의 홈 버튼에 배경 설정
-        Button btn = (Button) findViewById(R.id.tab2);
-        btn.setBackgroundResource(R.drawable.menu_tap);
-
         // 글꼴 설정
         FontApplyer.setFont(this, ((TextView) findViewById(R.id.tab2)), FontApplyer.Font.NotoSans, FontApplyer.Style.Medium);
         FontApplyer.setFont(this, ((TextView) findViewById(R.id.tab1)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
@@ -41,8 +37,40 @@ public class RecommendIntroActivity extends Activity {
         ((ImageButton) findViewById(R.id.situation_button)).setOnClickListener(ClickListener);
         ((ImageButton) findViewById(R.id.season_btn1)).setOnClickListener(ClickListener);
         ((ImageButton) findViewById(R.id.season_btn2)).setOnClickListener(ClickListener);
+
+        initTab();
     }
 
+    View.OnClickListener ClickTabListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            Intent Intent;
+            switch (v.getId())
+            {
+                //홈으로 넘겨줌
+                case R.id.tab1
+                        :Intent = new Intent(RecommendIntroActivity.this, HomeActivity.class);
+                    startActivity(Intent);break;
+                //추천화장품으로넘겨줌
+                case R.id.tab3
+                        :Intent = new Intent(RecommendIntroActivity.this, InformationActivity.class);
+                    startActivity(Intent);break;
+                //마이페이지로넘김
+                case R.id.tab4
+                        :Intent = new Intent(RecommendIntroActivity.this, MyPageActivity.class);
+                    startActivity(Intent);break;
+            }
+
+        }
+    };
+    private void initTab()
+    {
+        //리스너 부착
+        ((Button) findViewById(R.id.tab1)).setOnClickListener(ClickTabListener);
+        ((Button) findViewById(R.id.tab3)).setOnClickListener(ClickTabListener);
+        ((Button) findViewById(R.id.tab4)).setOnClickListener(ClickTabListener);
+
+        ((Button)findViewById(R.id.tab2)).setBackgroundResource(R.drawable.menu_tap);
+    }
     // 버튼 리스너
     View.OnClickListener ClickListener = new View.OnClickListener() {
         private Intent intent;

@@ -1,8 +1,7 @@
 package cosmantic.cosmantic_khw;
 
-import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.Set;
+import java.util.List;
 
 public class User {
     // 플래그
@@ -61,10 +60,15 @@ public class User {
     }
 
     // getter, setter
+    public void initLike(List<String> likeList){
+        likeProducts = new Hashtable<String,Boolean>();
+        for(int loop = 0; loop< likeList.size(); loop++)
+            likeProducts.put(likeList.get(loop),true);
+    }
 
-    public ArrayList<String> getLikeProducts() {
-        Set<String> keys = likeProducts.keySet();
-        return null;
+    public String[] getLikeProducts() {
+        String[] keys = (String[])likeProducts.keySet().toArray();
+        return keys;
     }
     public boolean isLike(String likeProducts)
     {
@@ -76,9 +80,9 @@ public class User {
         }
     }
 
-    public ArrayList<String> getLikeContents() {
-        Set<String> keys = likeProducts.keySet();
-        return null;
+    public String[] getLikeContents() {
+        String[] keys = (String[])likeProducts.keySet().toArray();
+        return keys;
     }
     public boolean isLikeContents(String likeContents)
     {

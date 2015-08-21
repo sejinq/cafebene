@@ -24,6 +24,13 @@ public class UserReviewTab implements ProductActivity.SmallTab {
         listViewSetting();
 
     }
+    private void setFont(RelativeLayout layout)
+    {
+        FontApplyer.setFont(context, ((TextView)layout.findViewById(R.id.userNick)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+       // FontApplyer.setFont(context, ((TextView)layout.findViewById(R.id.userScore)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(context, ((TextView)layout.findViewById(R.id.textScore)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(context, ((TextView)layout.findViewById(R.id.reviewText)), FontApplyer.Font.NotoSans, FontApplyer.Style.Light);
+    }
     private void listViewSetting()
     {
         ImageButton[] star = new ImageButton[5];
@@ -38,6 +45,8 @@ public class UserReviewTab implements ProductActivity.SmallTab {
             byte[] thumb = ServerInteraction.getUserInform(review.getUserObjectId()).getImage();
             if(thumb!=null)
                 ((ImageView)layout.findViewById(R.id.userThumnail)).setImageBitmap(((MyApplication) context.getApplicationContext()).getImage(thumb));
+            setFont(layout);
+            //((ImageView)layout.findViewById(R.id.userThumnail)).setImageBitmap(((MyApplication) context.getApplicationContext()).getImage(review.getThumnail()));
             //유저의 사진 클릭시 유저 정보창으로 넘어간다.
             ((ImageView)layout.findViewById(R.id.userThumnail)).setOnClickListener(new View.OnClickListener() {
                 @Override

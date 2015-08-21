@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,10 +61,31 @@ public class LoginActivity extends Activity {
         FontApplyer.setFont(this, (TextView)findViewById(R.id.login_existing_text),FontApplyer.Font.NotoSans, FontApplyer.Style.Bold);
 
         //Button Handler
-        ((ImageButton) findViewById(R.id.login_email_join_btn)).setOnClickListener(view -> emailJoinAction());
-        ((ImageButton)findViewById(R.id.login_kakao_sign_btn)).setOnClickListener(view -> block());
-        ((ImageButton)findViewById(R.id.login_facebook_sign_btn)).setOnClickListener(view -> facebookSignAction());
-        ((ImageButton)findViewById(R.id.login_email_sign_btn)).setOnClickListener(view -> emailSignAction());
+//        ((ImageButton) findViewById(R.id.login_email_join_btn)).setOnClickListener(view -> emailJoinAction());
+        ((ImageButton) findViewById(R.id.login_email_join_btn)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                emailJoinAction();
+            }
+        });
+        ((ImageButton)findViewById(R.id.login_kakao_sign_btn)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                block();
+            }
+        });
+        ((ImageButton)findViewById(R.id.login_facebook_sign_btn)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                facebookSignAction();
+            }
+        });
+        ((ImageButton)findViewById(R.id.login_email_sign_btn)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                emailSignAction();
+            }
+        });
     }
 
     //Button Action

@@ -19,8 +19,21 @@ public class ProductCurationTab implements ProductActivity.SmallTab{
         effectSetting();
         graphSetting();
         curationgSetting();
+        setFont();
     }
 
+    private void setFont()
+    {
+        FontApplyer.setFont(context, ((TextView)mainView.findViewById(R.id.text)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(context, ((TextView)mainView.findViewById(R.id.text2)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(context, ((TextView)mainView.findViewById(R.id.text3)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(context, ((TextView)mainView.findViewById(R.id.positive)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(context, ((TextView)mainView.findViewById(R.id.negetive)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(context, ((TextView)mainView.findViewById(R.id.effect_tag1)), FontApplyer.Font.NotoSans, FontApplyer.Style.Light);
+        FontApplyer.setFont(context, ((TextView)mainView.findViewById(R.id.effect_tag2)), FontApplyer.Font.NotoSans, FontApplyer.Style.Light);
+        FontApplyer.setFont(context, ((TextView)mainView.findViewById(R.id.effect_tag3)), FontApplyer.Font.NotoSans, FontApplyer.Style.Light);
+        FontApplyer.setFont(context, ((TextView)mainView.findViewById(R.id.product_curation)), FontApplyer.Font.NotoSans, FontApplyer.Style.Thin);
+    }
     private void effectSetting(){
       // int[] effects = ((MyApplication)context.getApplicationContext()).getProduct().getEffects();
         //임시데이터

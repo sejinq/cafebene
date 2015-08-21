@@ -16,7 +16,20 @@ public class ProductInformTab implements ProductActivity.SmallTab {
         this.mainView = view;
         settingDescription();
         settingProducts();
+        setFont();
     }
+    private void setFont()
+    {
+        FontApplyer.setFont(context, ((TextView)mainView.findViewById(R.id.text)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(context, ((TextView)mainView.findViewById(R.id.text2)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(context, ((TextView)mainView.findViewById(R.id.text3)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(context, ((TextView)mainView.findViewById(R.id.text4)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+
+        FontApplyer.setFont(context, ((TextView) mainView.findViewById(R.id.price)), FontApplyer.Font.NotoSans, FontApplyer.Style.Light);
+        FontApplyer.setFont(context, ((TextView) mainView.findViewById(R.id.amount)), FontApplyer.Font.NotoSans, FontApplyer.Style.Thin);
+        FontApplyer.setFont(context, ((TextView) mainView.findViewById(R.id.effect)), FontApplyer.Font.NotoSans, FontApplyer.Style.Thin);
+    }
+
     //제품의 가격, 용량, 설명 받아오기
     private void settingDescription()
     {

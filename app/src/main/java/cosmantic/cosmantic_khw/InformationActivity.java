@@ -7,6 +7,8 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 /**
  * Created by jsw on 2015. 7. 16..손세지니 시작한댜야ㅑㅑㅑㅑ8월 18일!!!!!!!!!
@@ -25,8 +27,8 @@ public class InformationActivity extends Activity {
             public void onClick(View v) {
                 //바로 웹뷰로 넘어감. 피부타입 테스트
                 Intent nextIntent = new Intent(InformationActivity.this, WebViewActivity.class);
-                nextIntent.putExtra("webview_title", "화장품 상식");
-                nextIntent.putExtra("webview_url", "http://m.blog.naver.com/cosmeticforman/220451294230");
+                nextIntent.putExtra(WebViewActivity.URL, "http://m.blog.naver.com/cosmeticforman/220451294230");
+                nextIntent.putExtra(WebViewActivity.ACTIONBAR, MyApplication.action_bar_tag.AC_HOME);
                 startActivity(nextIntent);
             }
         });
@@ -35,8 +37,8 @@ public class InformationActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent nextIntent = new Intent(InformationActivity.this, InfoDetailActivity.class);
-                nextIntent.putExtra("pageTag", web_pageFlag.PG_PRODUCT_REVIEW);
-                nextIntent.putExtra("pageTitle", "추천 제품 리뷰");
+                nextIntent.putExtra(InfoDetailActivity.PAGE_TAG, web_pageFlag.PG_PRODUCT_REVIEW);
+                nextIntent.putExtra(InfoDetailActivity.TITLE, "추천 제품 리뷰");
                 startActivity(nextIntent);
             }
         });
@@ -45,8 +47,8 @@ public class InformationActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent nextIntent = new Intent(InformationActivity.this, InfoDetailActivity.class);
-                nextIntent.putExtra("pageTag", web_pageFlag.PG_BAGIC_INFORM);
-                nextIntent.putExtra("pageTitle", "화장품 기초 상식");
+                nextIntent.putExtra(InfoDetailActivity.PAGE_TAG, web_pageFlag.PG_BAGIC_INFORM);
+                nextIntent.putExtra(InfoDetailActivity.TITLE, "화장품 기초 상식");
                 startActivity(nextIntent);
             }
         });
@@ -55,8 +57,8 @@ public class InformationActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent nextIntent = new Intent(InformationActivity.this, InfoDetailActivity.class);
-                nextIntent.putExtra("pageTag", web_pageFlag.PG_INGREDIENT);
-                nextIntent.putExtra("pageTitle", "화장품 성분");
+                nextIntent.putExtra(InfoDetailActivity.PAGE_TAG, web_pageFlag.PG_INGREDIENT);
+                nextIntent.putExtra(InfoDetailActivity.TITLE, "화장품 성분");
                 startActivity(nextIntent);
             }
         });
@@ -65,6 +67,7 @@ public class InformationActivity extends Activity {
         ((ImageButton) findViewById(R.id.searchButton)).setOnClickListener(ClickListener);
 
         initTab();
+        setFont();
 
     }
 
@@ -83,15 +86,15 @@ public class InformationActivity extends Activity {
             {
                 //홈으로 넘겨줌
                 case R.id.tab1
-                    :Intent = new Intent(InformationActivity.this, SearchActivity.class);
+                    :Intent = new Intent(InformationActivity.this, HomeActivity.class);
                     startActivity(Intent);break;
                 //추천화장품으로넘겨줌
                 case R.id.tab2
-                    :Intent = new Intent(InformationActivity.this, SearchActivity.class);
+                    :Intent = new Intent(InformationActivity.this, RecommendIntroActivity.class);
                     startActivity(Intent);break;
                 //마이페이지로넘김
                 case R.id.tab4
-                    :Intent = new Intent(InformationActivity.this, SearchActivity.class);
+                    :Intent = new Intent(InformationActivity.this, MyPageActivity.class);
                     startActivity(Intent);break;
             }
 
@@ -104,18 +107,25 @@ public class InformationActivity extends Activity {
         ((Button) findViewById(R.id.tab1)).setOnClickListener(ClickTabListener);
         ((Button) findViewById(R.id.tab2)).setOnClickListener(ClickTabListener);
         ((Button) findViewById(R.id.tab4)).setOnClickListener(ClickTabListener);
-        //선택해제해주기
-        //((Button) findViewById(R.id.tab1)).setBackground(get);
-        //((Button) findViewById(R.id.tab2)).setBackgroundResource(getResources().getColor(Color.TRANSPARENT));
-        //((Button) findViewById(R.id.tab4)).setBackgroundResource(getResources().getColor(Color.TRANSPARENT));
 
-        //화장품 상식 탭만 선택으로 이미지 바꾸기
-     //   ((Button) findViewById(R.id.tab4)).setBackground(getResources().getDrawable(R.drawable.menu_tap));
+        ((Button)findViewById(R.id.tab3)).setBackgroundResource(R.drawable.menu_tap);
     }
     public interface web_pageFlag{
         public static final int PG_BAGIC_INFORM = 0x0;		 //기초상식
         public static final int PG_PRODUCT_REVIEW = 0x1; //추천제품리뷰
         public static final int PG_INGREDIENT = 0x2; //화장품성분
+    }
+    private void setFont()
+    {
+        FontApplyer.setFont(this, ((TextView) findViewById(R.id.tab1)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(this, ((TextView) findViewById(R.id.tab2)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(this, ((TextView) findViewById(R.id.tab3)), FontApplyer.Font.NotoSans, FontApplyer.Style.Medium);
+        FontApplyer.setFont(this, ((TextView) findViewById(R.id.tab4)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+    }
+    @Override
+    protected void onResume() {
+        this.overridePendingTransition(0, 0);
+        super.onResume();
     }
 
     @Override
