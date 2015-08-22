@@ -140,6 +140,7 @@
         android:id="@+id/editText"
         android:textSize="15dp"
         android:inputType="textMultiLine"
+        android:gravity="top"
         android:ems="20"
         android:background="@android:color/transparent"
         android:maxLength="60"
