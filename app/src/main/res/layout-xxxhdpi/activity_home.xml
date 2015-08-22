@@ -95,6 +95,12 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/uncircle"/>
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="7dp">
+
+            </LinearLayout>
         </RelativeLayout>
 
         <!-- 중단 컨테이너 -->
@@ -129,7 +135,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:src="@drawable/skintype_oily"
-                    android:background="@android:color/transparent"/>
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"/>
 
                 <ImageButton
                     android:id="@+id/dry_button"
@@ -137,7 +144,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:src="@drawable/skintype_dry"
-                    android:background="@android:color/transparent"/>
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"/>
 
                 <ImageButton
                     android:id="@+id/sensitive_button"
@@ -145,7 +153,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:src="@drawable/skintype_sensitive"
-                    android:background="@android:color/transparent"/>
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"/>
             </LinearLayout>
 
             <!-- 제품 분류바를 담는 레이아웃 -->

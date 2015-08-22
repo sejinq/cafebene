@@ -60,4 +60,6 @@
     <color name="mypage_selected_tag">#0c1e36</color>
     <!-- MyPageActivity 선택되지 않은 태그 글씨 -->
     <color name="mypage_unselected_tag">#9fa6ad</color>
+    <!-- MyPageActivity 상단 컨테이너 배경 -->
+    <color name="mypage_top_container_bg">#d8d8d8</color>
 </resources>

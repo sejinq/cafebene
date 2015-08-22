@@ -4,7 +4,7 @@
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_marginTop="46.5dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="10dp"
         android:id="@+id/bar"
@@ -12,17 +12,22 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         />
-    <TextView
-        android:text="인터넷 최저가"
+    <LinearLayout
         android:id="@+id/tv"
-        android:textSize="14dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/bar"
         android:layout_toEndOf="@+id/bar"
         android:layout_alignBottom="@+id/bar"
-        android:layout_alignTop="@+id/bar"
-        android:includeFontPadding="false"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_alignTop="@+id/bar">
+        <TextView
+            android:text="인터넷 최저가"
+            android:textSize="13dp"
+            android:includeFontPadding="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_below="@+id/tv"

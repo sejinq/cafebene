@@ -1,14 +1,18 @@
 package cosmantic.cosmantic_khw;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,6 +59,9 @@ public class SignInActivity extends Activity {
 
         // EditText 리스너 달기
         ((EditText)findViewById(R.id.signInPutPw)).setOnKeyListener(KeyListener);
+
+        // EditText 밖으로 넘어가면 키보드 보이지 않게 하기
+        ((LinearLayout)findViewById(R.id.signInMainLayout)).setOnTouchListener(TouchListener);
     }
 
     // EditText 키 리스너
@@ -72,19 +79,31 @@ public class SignInActivity extends Activity {
         }
     };
 
+    // EditText 밖으로 넘어가면 키보드 보이지 않게 하기
+    View.OnTouchListener TouchListener = new View.OnTouchListener(){
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(((EditText)findViewById(R.id.signInPutEmail)).getWindowToken(), 0);
+            imm.hideSoftInputFromWindow(((EditText)findViewById(R.id.signInPutPw)).getWindowToken(), 0);
+
+            return false;
+        }
+    };
+
     // 액션바 뒤로가기 버튼, 로그인 버튼과 비밀번호 찾기 리스너
     View.OnClickListener ClickListener = new View.OnClickListener() {
         public void onClick(View v) {
             switch(v.getId()){
                 case R.id.backButton:
-                    Toast.makeText(SignInActivity.this, "Back Button", Toast.LENGTH_SHORT).show();
+                    finish();
                     break;
                 case R.id.signInLoginButton:
                     onSignIn();
                     //Toast.makeText(SignInActivity.this, "signInLoginButton", Toast.LENGTH_SHORT).show();
                     break;
 
-                // 버튼 눌린 걸 처리해주기 위해 타이머 달아줌.
+                // 버튼 눌린 걸 처리해주기 위해 타이머 달아줌. 현재는 지원하지 않는 기능.
                 case R.id.signInPwFindButton:
                     new Handler().postDelayed(new Runnable() {
                         @Override

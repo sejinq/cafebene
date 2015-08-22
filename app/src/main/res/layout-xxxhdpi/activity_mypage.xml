@@ -22,15 +22,20 @@
                 android:id="@+id/mypage_top_container"
                 android:layout_width="match_parent"
                 android:layout_height="111dp"
-                android:background="@drawable/mypage_top_bg">
-
+                android:background="@color/mypage_top_container_bg">
+'
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/logomypage"
+                    android:layout_centerInParent="true"/>
             </RelativeLayout>
 
             <!-- 중단 컨테이너 -->
             <RelativeLayout
                 android:id="@+id/mypage_middle_container"
                 android:layout_width="match_parent"
-                android:layout_height="221.5dp"
+                android:layout_height="225dp"
                 android:layout_below="@id/mypage_top_container"
                 android:paddingLeft="18dp"
                 android:paddingRight="18dp">
@@ -58,7 +63,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/mypage_middle_container"
-                android:layout_marginTop="34dp"
+                android:layout_marginTop="30dp"
                 android:paddingLeft="18dp"
                 android:paddingRight="18dp">
 
@@ -149,6 +154,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
+            <!-- 프로필 사진 버튼 -->
             <ImageButton
                 android:id="@+id/mypage_profile_photo"
                 android:layout_width="wrap_content"
@@ -175,8 +181,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/mypage_nickname"
                 android:includeFontPadding="false"
-                android:layout_marginTop="12.5dp"
-                android:layout_marginBottom="12.5dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="6dp"
                 android:layout_centerHorizontal="true"
                 android:text="성별  /  나이"
                 android:textSize="14dp"/>
@@ -198,7 +204,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/mypage_skintype"
                 android:gravity="center"
-                android:paddingTop="26dp">
+                android:paddingTop="20dp">
 
                 <!-- 건조 -->
                 <TextView
@@ -210,7 +216,7 @@
                     android:text="@string/problem_dry"
                     android:textSize="11dp"
                     android:textColor="@color/mypage_selected_tag"
-                    android:background="@drawable/select_small_box"/>
+                    android:background="@drawable/selected_tag_2word"/>
 
                 <!-- 유분 -->
                 <TextView
@@ -223,7 +229,8 @@
                     android:includeFontPadding="false"
                     android:text="@string/problem_oil"
                     android:textSize="11dp"
-                    android:textColor="@color/mypage_selected_tag"/>
+                    android:textColor="@color/mypage_selected_tag"
+                    android:background="@drawable/selected_tag_2word"/>
 
                 <!-- 주름 -->
                 <TextView
@@ -246,7 +253,8 @@
                     android:includeFontPadding="false"
                     android:text="@string/problem_subum"
                     android:textSize="11dp"
-                    android:textColor="@color/mypage_selected_tag"/>
+                    android:textColor="@color/mypage_selected_tag"
+                    android:background="@drawable/selected_tag_2word"/>
             </LinearLayout>
 
             <!-- 피부 고민 아래쪽 컨테이너 -->
@@ -256,7 +264,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/mypage_skin_problem_top_container"
                 android:gravity="center_horizontal"
-                android:paddingTop="17dp">
+                android:paddingTop="12dp">
 
                 <!-- 아토피 -->
                 <TextView
@@ -267,7 +275,8 @@
                     android:includeFontPadding="false"
                     android:text="@string/problem_atopic"
                     android:textSize="11dp"
-                    android:textColor="@color/mypage_selected_tag"/>
+                    android:textColor="@color/mypage_selected_tag"
+                    android:background="@drawable/selected_tag_3word"/>
 
                 <!-- 여드름 -->
                 <TextView
@@ -280,7 +289,8 @@
                     android:layout_marginRight="21dp"
                     android:text="@string/problem_trouble"
                     android:textSize="11dp"
-                    android:textColor="@color/mypage_selected_tag"/>
+                    android:textColor="@color/mypage_selected_tag"
+                    android:background="@drawable/selected_tag_3word"/>
 
                 <!-- 피부톤 -->
                 <TextView
@@ -303,7 +313,8 @@
                     android:layout_marginLeft="21dp"
                     android:text="@string/problem_dark"
                     android:textSize="11dp"
-                    android:textColor="@color/mypage_selected_tag"/>
+                    android:textColor="@color/mypage_selected_tag"
+                    android:background="@drawable/selected_tag_4word"/>
             </LinearLayout>
         </RelativeLayout>
     </FrameLayout>

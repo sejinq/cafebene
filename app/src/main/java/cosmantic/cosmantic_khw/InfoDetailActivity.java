@@ -37,6 +37,8 @@ public class InfoDetailActivity extends Activity {
         ((TextView) findViewById(R.id.titleText)).setText(title);
         showWeb(pageTab);
 
+        // 검색 버튼 안 보이게 설정
+        ((ImageButton)findViewById(R.id.searchButton)).setVisibility(View.GONE);
     }
     private void setFont(RelativeLayout layout)
     {

@@ -1,6 +1,7 @@
 package cosmantic.cosmantic_khw;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,10 +10,13 @@ import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,7 +25,7 @@ import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
-public class SignUpActivity extends Activity {
+public class SignUpActivity extends Activity implements View.OnTouchListener {
     public static String USER_TYPE = "cosmantic.cosmantic_khw.SignUpActivity.USER_TYPE";
     public static String USER_NAME = "cosmantic.cosmantic_khw.SignUpActivity.USER_NAME";
 
@@ -57,7 +61,36 @@ public class SignUpActivity extends Activity {
         signingUser = new User();
         settingUserType(userType, intent.getStringExtra(USER_NAME));
 
+        // 검색 버튼은 안 쓰므로 안 보이게 설정
+        ImageButton imgButton = (ImageButton)findViewById(R.id.searchButton);
+        imgButton.setVisibility(View.GONE);
+
+        // 액션바 설정
+        ImageButton backButton = (ImageButton)findViewById(R.id.backButton);
+        backButton.setOnClickListener(ClickListener);
     }
+
+    @Override
+    // EditText 밖을 터치하면 키보드 가리게 설정.
+    public boolean onTouch(View v, MotionEvent event){
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(((EditText)findViewById(R.id.etNick)).getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(((EditText)findViewById(R.id.etPass)).getWindowToken(), 0);
+        imm.hideSoftInputFromWindow(((EditText)findViewById(R.id.etRePass)).getWindowToken(), 0);
+
+        return true;
+    }
+
+    View.OnClickListener ClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.backButton:
+                    finish();
+                    break;
+            }
+        }
+    };
+
 
     private void limitInput(CharSequence repair){
         etNick.removeTextChangedListener(nickWatcher);
@@ -196,11 +229,6 @@ public class SignUpActivity extends Activity {
             username = id;
         }
     }
-    View.OnClickListener ClickListener = new View.OnClickListener() {
-        public void onClick(View v) {
-            finish();
-            }
-        };
     //닉네임 중복확인
     View.OnClickListener onNick = new View.OnClickListener() {
         public void onClick(View v) {

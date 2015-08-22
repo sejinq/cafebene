@@ -35,8 +35,8 @@
         <ImageView
             android:id="@+id/signInFirstRect"
             android:layout_width="50dp"
-            android:layout_height="5dp"
-            android:layout_marginTop="135dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="138dp"
             android:layout_marginLeft="18dp"
             android:src= "@drawable/sign_in_partition_rectangle"/>
 
@@ -75,9 +75,9 @@
         <ImageView
             android:id="@+id/signInSecondRect"
             android:layout_width="64dp"
-            android:layout_height="5dp"
+            android:layout_height="2dp"
             android:layout_below="@id/signInFirstRect"
-            android:layout_marginTop="95dp"
+            android:layout_marginTop="98dp"
             android:layout_marginLeft="18dp"
             android:src= "@drawable/sign_in_partition_rectangle"/>
 
@@ -103,7 +103,7 @@
             android:layout_below="@id/signInSecondRect"
             android:layout_marginTop="20dp"
             android:singleLine="true"
-            android:maxLength="30"
+            android:maxLength="20"
             android:inputType="textPassword"
             android:password="true"
             android:includeFontPadding="false"

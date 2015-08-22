@@ -232,4 +232,5 @@ public class LoginActivity extends Activity {
     private void block(){
         Toast.makeText(this,"Not support now",Toast.LENGTH_SHORT).show();
     }
+
 }
