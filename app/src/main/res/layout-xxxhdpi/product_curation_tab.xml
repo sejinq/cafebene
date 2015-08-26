@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="23dp"
         android:layout_marginStart="23dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="12dp"
         android:orientation="horizontal"
         android:id="@+id/text_bar">
         <ImageView
@@ -25,37 +25,45 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="피부타입별 성분 그래프"
+            android:includeFontPadding="false"
             android:textSize="14dp"
             android:id="@+id/text"/>
     </LinearLayout>
-    <TextView
+    <LinearLayout
+        android:id="@+id/true_false_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/text_bar"
-        android:layout_marginLeft="32dp"
-        android:textSize="9dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:text="+ POSITIVE"
-        android:textColor="#ff00c3dd"
-        android:id="@+id/positive"/>
+        android:layout_marginTop="1dp">
+        <TextView
+            android:layout_marginLeft="32dp"
+            android:textSize="9dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+ POSITIVE"
+            android:includeFontPadding="false"
+            android:textColor="#ff00c3dd"
+            android:id="@+id/positive"/>
 
-    <TextView
-        android:layout_toRightOf="@+id/positive"
-        android:layout_toEndOf="@+id/positive"
-        android:layout_alignBottom="@+id/positive"
-        android:textColor="#ffff7e27"
-        android:textSize="9dp"
-        android:layout_marginLeft="9dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="- NEGATIVE"
-        android:id="@+id/negetive"/>
+        <TextView
+            android:layout_toRightOf="@+id/positive"
+            android:layout_toEndOf="@+id/positive"
+            android:layout_alignBottom="@+id/positive"
+            android:textColor="#ffff7e27"
+            android:textSize="9dp"
+            android:layout_marginLeft="9dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="- NEGATIVE"
+            android:includeFontPadding="false"
+            android:id="@+id/negetive"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/positive"
-        android:layout_marginTop="15dp"
+        android:layout_below="@+id/true_false_container"
+        android:layout_marginTop="12dp"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
         android:id="@+id/linearLayout">
@@ -128,6 +136,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="피부타입별 성분 그래프"
+                android:includeFontPadding="false"
                 android:textSize="14dp"
                 android:id="@+id/text2"/>
         </LinearLayout>
@@ -135,11 +144,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" # 미백 "
+            android:includeFontPadding="false"
             android:textSize="12dp"
             android:gravity="center"
             android:textColor="@color/effect_disable"
             android:id="@+id/effect_tag1"
-            android:layout_marginTop="12.5dp"
+            android:layout_marginTop="6dp"
             android:layout_below="@+id/text_bar2"
             android:layout_alignLeft="@+id/text_bar2"
             />
@@ -149,6 +159,7 @@
             android:layout_height="wrap_content"
             android:textSize="12dp"
             android:text=" # 주름 개선 "
+            android:includeFontPadding="false"
             android:gravity="center"
             android:textColor="@color/effect_disable"
             android:id="@+id/effect_tag2"
@@ -162,6 +173,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" # 자외선 차단 "
+            android:includeFontPadding="false"
             android:textSize="12dp"
             android:textColor="@color/effect_disable"
             android:id="@+id/effect_tag3"
@@ -175,7 +187,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="7dp"
         android:layout_below="@+id/relativeLayout1">
         <LinearLayout
             android:layout_width="wrap_content"
@@ -197,6 +209,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="피부타입별 성분 그래프"
+                android:includeFontPadding="false"
                 android:textSize="14dp"
                 android:id="@+id/text3"/>
         </LinearLayout>
@@ -205,9 +218,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Text"
+            android:includeFontPadding="false"
             android:id="@+id/product_curation"
             android:layout_below="@+id/text_bar3"
-            android:gravity="center"
             android:layout_marginTop="12.5dp"
             android:textSize="12dp"
             android:layout_marginLeft="38dp"/>

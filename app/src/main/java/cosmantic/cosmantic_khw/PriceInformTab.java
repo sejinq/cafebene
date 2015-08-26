@@ -29,7 +29,7 @@ public class PriceInformTab implements ProductActivity.SmallTab {
 //        FontApplyer.setFont(context, ((TextView)mainView.findViewById(R.id.text)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
 //        FontApplyer.setFont(context, ((TextView)mainView.findViewById(R.id.text2)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
 //        FontApplyer.setFont(context, ((TextView)mainView.findViewById(R.id.text3)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
-        FontApplyer.setFont(context, ((TextView)mainView.findViewById(R.id.tv)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(context, ((TextView)mainView.findViewById(R.id.tab_title)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
 
         FontApplyer.setFont(context, ((TextView) mainView.findViewById(R.id.tv_naver)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
         FontApplyer.setFont(context, ((TextView) mainView.findViewById(R.id.tv_gmarket)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);

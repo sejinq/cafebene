@@ -134,7 +134,7 @@ public class RecommendActivity extends Activity{
                         ((TextView) parent.findViewById(R.id.product_center_productname)).setText(name.substring(0, 7) + "...");
                     formatter = new DecimalFormat("#,###,###");
                     ((TextView) parent.findViewById(R.id.product_center_priceandvolume))
-                            .setText(product.getSize() + " / " + formatter.format(product.getPrice()));
+                            .setText(product.getSize() + " / " + formatter.format(product.getPrice())+"원");
                     parent.findViewById(R.id.product_center).setOnClickListener(view -> setProductListener(index));
                     break;
                 default:
@@ -156,11 +156,11 @@ public class RecommendActivity extends Activity{
     }
 
     private void setProductListener(int index){
-        if(flag_info != User.SEASON_SOLDIER) {
+//        if(flag_info != User.SEASON_SOLDIER) {
             ((MyApplication) getApplicationContext()).setProduct(products[index]);
             Intent intent = new Intent(RecommendActivity.this, ProductActivity.class);
             startActivity(intent);
-        }else Toast.makeText(this,"준비중입니다.",Toast.LENGTH_SHORT).show();
+//        }else Toast.makeText(this,"준비중입니다.",Toast.LENGTH_SHORT).show();
     }
 
     // 제품 컨테이너 안에 있는 글씨들 글꼴 적용
@@ -208,13 +208,13 @@ public class RecommendActivity extends Activity{
                     finish();
                     break;
                 case R.id.product_left:
-                    Toast.makeText(RecommendActivity.this, "product_left", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RecommendActivity.this, "로딩중입니다.", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.product_center:
-                    Toast.makeText(RecommendActivity.this, "product_center", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RecommendActivity.this, "로딩중입니다.", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.product_right:
-                    Toast.makeText(RecommendActivity.this, "product_right", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RecommendActivity.this, "로딩중입니다.", Toast.LENGTH_SHORT).show();
                     break;
             }
         }

@@ -40,7 +40,7 @@ public class FontApplyer {
          * Roboto - 'Roboto' 폰트(영문 폰트)
          * <br/>&#9;가능한 스타일: Regular, Italic, Thin, ThinItalic, Light, LightItalic, Medium, MediumItalic, Bold, BoldItalic, Black, BlackItalic
          */
-        public String Roboto = "Roboto";
+        public String Roboto = "RobotoCondensed";
         /**
          * NotoSans - 'NotoSansCJKkr' 폰트(한글 폰트)
          * <br/>&#9;가능한 스타일: Regular, Thin, DemiLight, Light, Medium, Bold, Black
@@ -48,18 +48,10 @@ public class FontApplyer {
         public String NotoSans = "NotoSansCJKkr";
     }
     public static interface Style{
-        public String Italic = "Italic";
-        public String DemiLight = "DemiLight";
         public String Light = "Light";
-        public String LightItalic = "LightItalic";
         public String Medium = "Medium";
-        public String MediumItalic = "MediumItalic";
         public String Regular = "Regular";
         public String Thin = "Thin";
-        public String ThinItalic = "ThinItalic";
-        public String Black = "Black";
-        public String BlackItalic = "BlackItalic";
         public String Bold = "Bold";
-        public String BoldItalic = "BoldItalic";
     }
 }

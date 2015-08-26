@@ -54,6 +54,7 @@ public class WebViewActivity extends Activity {
     {
         ((Button) findViewById(R.id.tab1)).setOnClickListener(ClickTabListener);
         ((Button) findViewById(R.id.tab2)).setOnClickListener(ClickTabListener);
+        ((Button) findViewById(R.id.tab3)).setOnClickListener(ClickTabListener);
         ((Button) findViewById(R.id.tab4)).setOnClickListener(ClickTabListener);
 
         ((Button)findViewById(R.id.tab3)).setBackgroundResource(R.drawable.menu_tap);
@@ -76,6 +77,8 @@ public class WebViewActivity extends Activity {
                 case R.id.tab2
                         :Intent = new Intent(WebViewActivity.this, RecommendIntroActivity.class);
                     startActivity(Intent);break;
+                case R.id.tab3
+                        :finish();break;
                 //마이페이지로넘김
                 case R.id.tab4
                         :Intent = new Intent(WebViewActivity.this, MyPageActivity.class);

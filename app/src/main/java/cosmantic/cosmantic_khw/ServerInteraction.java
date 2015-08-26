@@ -104,7 +104,9 @@ public class ServerInteraction {
     }
     //로그아웃 액션
     public static boolean onLogout(){
-        return false;
+        ParseUser.logOut();
+
+        return true;
     }
     //가입 액션 플래그
     public interface signUpFlag{
@@ -255,6 +257,27 @@ public class ServerInteraction {
 
         return null;
     }
+    public static String[] getRelaventProduct(Product productId){
+        String[] relaventProduct = new String[3];
+        ParseQuery<ParseObject> relaventQuery = ParseQuery.getQuery("cosmeticData");
+        relaventQuery.whereEqualTo("category", productId.getType());
+        try{
+            List<ParseObject> results = relaventQuery.find();
+            long seed = System.nanoTime();
+            Collections.shuffle(results,new Random(seed));
+            for(int loop=0; loop<3;loop++){
+                String pid = results.get(loop).getObjectId();
+                if(pid.equals(productId.getObjectId())&results.size()>=4)
+                    relaventProduct[loop] = results.get(loop).getObjectId();
+                else relaventProduct[loop] = pid;
+            }
+        }catch(ParseException e){
+            e.printStackTrace();
+            return null;
+        }
+
+        return relaventProduct;
+    }
 //    String productName, int price, String brand, String size, double pricePerSize, String description, int[] effects, String skintype, String type, String curatingInfo, float score, int reviewNum
     public static Product getProductInform(String productObjectId){
         Product findProduct = new Product();
@@ -362,7 +385,7 @@ public class ServerInteraction {
                 byte[] thumb = results.get(loop).getParseFile("thumb").getData();
                 String id = results.get(loop).getObjectId();
                 ParseQuery<ParseObject> countQuery = ParseQuery.getQuery("cosmeticData");
-                countQuery.whereEqualTo("brand",results.get(loop).get("name"));
+                countQuery.whereEqualTo("brand", results.get(loop).get("name"));
                 int count = countQuery.count();
                 brands[loop] = new Brand(id, thumb, name, count);
             }
@@ -418,7 +441,7 @@ public class ServerInteraction {
         ParseObject reviewObject = new ParseObject("reviewData");
         Log.d("Review Upload","pid:"+review.getProductObjectId()+", uid:"+review.getUserObjectId()+", rate:"+review.getRate()+", content:"+review.getContent());
         reviewObject.put("productId", review.getProductObjectId());
-        reviewObject.put("usertId",review.getUserObjectId());
+        reviewObject.put("userId",review.getUserObjectId());
         reviewObject.put("content",review.getContent());
         reviewObject.put("rate",review.getRate());
         try {

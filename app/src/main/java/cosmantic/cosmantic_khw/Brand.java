@@ -17,7 +17,9 @@ public class Brand {
     }
 
     Brand(String objectId, byte[] thumb, String name, int productNum){
-
+        this.objectId = objectId;
+        this.brandName = name;
+        this.productNum = productNum;
     }
 
     // getter, setter
@@ -29,6 +31,9 @@ public class Brand {
 
     public void setBrandName(String brandName) {
         this.brandName = brandName;
+    }
+    public byte[] getThumnail() {
+        return thumb;
     }
 
     public int getProductNum() {

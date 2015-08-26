@@ -77,7 +77,8 @@ public class SignInActivity extends Activity {
         public void onClick(View v) {
             switch(v.getId()){
                 case R.id.backButton:
-                    Toast.makeText(SignInActivity.this, "Back Button", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(SignInActivity.this, "Back Button", Toast.LENGTH_SHORT).show();
+                    finish();
                     break;
                 case R.id.signInLoginButton:
                     onSignIn();
@@ -107,6 +108,7 @@ public class SignInActivity extends Activity {
                 if(e == null) {
                     ((MyApplication) getApplicationContext()).setUser(ServerInteraction.onLoginWithParseUser(parseUser));
                     startActivity(new Intent(SignInActivity.this, HomeActivity.class));
+                    finish();
                 }else{
                     e.printStackTrace();
                     Toast.makeText(SignInActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();

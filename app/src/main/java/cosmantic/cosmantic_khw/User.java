@@ -74,7 +74,7 @@ public class User {
     }
     public boolean isLike(String likeProducts)
     {
-        if(likeProducts == null) initLike(ParseUser.getCurrentUser().getList("like"));
+        if(this.likeProducts == null) initLike(ParseUser.getCurrentUser().getList("like"));
         if(this.likeProducts.get(likeProducts)!=null){
             return true;
         }

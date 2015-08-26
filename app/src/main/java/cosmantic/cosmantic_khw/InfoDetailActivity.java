@@ -133,28 +133,33 @@ public class InfoDetailActivity extends Activity {
                 //서버 받아오면 됨. 생성 필요 음슴.
                 int contentsNum = contentslist.size();
                 WebContents[] contentsList = new WebContents[contentsNum];
+                WebContents[] temp = new WebContents[contentsNum];
                 //서버 받아오면 됨. 생성 필요 음슴.
                 try {
                     for (int loop = 0; loop < contentslist.size(); loop++) {
                         ParseObject object = contentslist.get(loop);
-                        contentsList[loop] = new WebContents((object.getParseFile("image") == null) ? null : object.getParseFile("image").getData(),
+                        temp[loop] = new WebContents((object.getParseFile("image") == null) ? null : object.getParseFile("image").getData(),
                                 object.getString("title"),object.getString("subTitle"),null,object.getString("url"));
                     }
                 }catch(ParseException pe){
                     pe.printStackTrace();
                 }
+                contentsList[2] = temp[1];
+                contentsList[1] = temp[2];
+                contentsList[0] = temp[0];
                 runOnUiThread(()->{
                     RelativeLayout[] tab = new RelativeLayout[3];
                     tab[0]=(RelativeLayout) findViewById(R.id.info_detail_ingredient_tab1);
                     tab[1]=(RelativeLayout) findViewById(R.id.info_detail_ingredient_tab2);
                     tab[2]=(RelativeLayout) findViewById(R.id.info_detail_ingredient_tab3);
 
-                    for(int i=0;i<3;++i)
+                    for(int i=2;i>=0;--i)
                     {
 //                        contentsList[i] = new WebContents();
                         final WebContents listenerContent = contentsList[i];
                         ((RelativeLayout)tab[i].findViewById(R.id.info_detail_box_default)).setVisibility(View.VISIBLE);
                         setFont(tab[i]);
+                        ((ImageView) tab[i].findViewById(R.id.detail_image)).setImageBitmap(((MyApplication) context).getImage(listenerContent.getImage()));
                         // ((ImageButton) tab[i].findViewById(R.id.detail_image)).setImageBitmap(((MyApplication) context.getApplicationContext()).getImage(listenerContent.getImage()));
                         ((TextView) tab[i].findViewById(R.id.content_title)).setText(listenerContent.getTitle());
                         ((TextView) tab[i].findViewById(R.id.content_subtitle)).setText(listenerContent.getSubTitle());
@@ -193,7 +198,7 @@ public class InfoDetailActivity extends Activity {
                     for (int loop = 0; loop < contentslist.size(); loop++) {
                         ParseObject object = contentslist.get(loop);
                         contentsList[loop] = new WebContents((object.getParseFile("image") == null) ? null : object.getParseFile("image").getData(),
-                                object.getString("title"),object.getString("subTitle"),object.getString("product_objectId"),object.getString("url"));
+                                object.getString("title"),object.getString("subTitle"),object.getString("productObjectId"),object.getString("url"));
                     }
                 }catch(ParseException pe){
                     pe.printStackTrace();
@@ -204,7 +209,7 @@ public class InfoDetailActivity extends Activity {
                         final WebContents contents = contentsList[i];
                         RelativeLayout layout = (RelativeLayout) View.inflate(context, R.layout.inform_detail_box, null);
                         setReviewFont(layout);
-                        //컨텐츠 이미지, 제품 이미지, 브랜드, 이르 받아와서 보여주기.
+                        //컨텐츠 이미지, 제품 이미지, 브랜드, 이름 받아와서 보여주기.
                         ((RelativeLayout) layout.findViewById(R.id.info_detail_box_review)).setVisibility(View.VISIBLE);
                         //이미지 받아오기
                         if(contentsList[i].getImage() == null) continue;

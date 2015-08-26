@@ -1,18 +1,19 @@
 package cosmantic.cosmantic_khw;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,27 +26,27 @@ public class SignUpActivity extends Activity {
     public static String USER_TYPE = "cosmantic.cosmantic_khw.SignUpActivity.USER_TYPE";
     public static String USER_NAME = "cosmantic.cosmantic_khw.SignUpActivity.USER_NAME";
 
-    EditText etID, etPass, etR_Pass, etNick;
-    Button btNick, btMale, btFemale;
-    Button[] btAge = new Button[5];
-    Button[] btSkinType= new Button[4];
-    Button[] btEffect = new Button[8];
-    CheckBox ckAgree;
-    Button btSignup;
-    TextWatcher nickWatcher;
+    private EditText etID, etPass, etR_Pass, etNick;
+    private Button btNick, btMale, btFemale;
+    private Button[] btAge = new Button[5];
+    private Button[] btSkinType= new Button[4];
+    private Button[] btEffect = new Button[8];
+    private CheckBox ckAgree;
+    private Button btSignup;
+    private EditText focusedEdt;
 
-    String username=null;
-    String displayedName;
-    boolean gender;
-    int age, skinType;
-    boolean[] skinProblem = new boolean[8];
+    private String username=null;
+    private String displayedName;
+    private boolean gender;
+    private int age, skinType;
+    private boolean[] skinProblem = new boolean[8];
 
     User signingUser;
 
     //입력 유무 체크
-    boolean checkNick=false, checkGender = false, checkAge = false;
+    private boolean checkNick=false, checkGender = false, checkAge = false;
     //관심효능 변수
-    int effect=0, userType;
+    private int effect=0, userType;
     String userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,43 +60,21 @@ public class SignUpActivity extends Activity {
 
     }
 
-    private void limitInput(CharSequence repair){
-        etNick.removeTextChangedListener(nickWatcher);
-        etNick.setText(repair);
-        etNick.addTextChangedListener(nickWatcher);
-    }
-
     private void settingView(){
         setContentView(R.layout.activity_sign_up);
+
         ((TextView)findViewById(R.id.titleText)).setText(R.string.signup_title);
+        ((ImageButton)findViewById(R.id.backButton)).setOnClickListener(view->{finish();});
         //회원가입시 유저 정보. 아이디, 닉네임, 비밀번호, 성별, 나이
         etID = (EditText)findViewById(R.id.etID);
+        etID.setOnTouchListener((view,e)->{focusedEdt = etID; return false;});
+        focusedEdt = etID;
         etNick = (EditText)findViewById(R.id.etNick);
-        nickWatcher = new TextWatcher() {
-            CharSequence repair = null;
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                repair = etNick.getText();
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(s.toString().getBytes().length > 14){
-                    limitInput(repair);
-                    etNick.removeTextChangedListener(this);
-                    etNick.setText(repair);
-                    etNick.addTextChangedListener(this);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        };
-        etNick.addTextChangedListener(nickWatcher);
+        etNick.setOnTouchListener((view,e)->{focusedEdt = etNick; return false;});
         etPass = (EditText)findViewById(R.id.etPass);
+        etPass.setOnTouchListener((view,e)->{focusedEdt = etPass; return false;});
         etR_Pass = (EditText)findViewById(R.id.etRePass);
+        etR_Pass.setOnTouchListener((view,e)->{focusedEdt = etR_Pass; return false;});
 
         btNick = (Button)findViewById(R.id.check_button);
         btNick.setOnClickListener(onNick);
@@ -103,7 +82,6 @@ public class SignUpActivity extends Activity {
         btMale = (Button)findViewById(R.id.gender_male);
         btMale.setOnClickListener(listener);
         btFemale = (Button)findViewById(R.id.gender_female);
-
         btFemale.setOnClickListener(listener);
 
         btAge[0] = (Button)findViewById(R.id.age10);
@@ -196,31 +174,32 @@ public class SignUpActivity extends Activity {
             username = id;
         }
     }
-    View.OnClickListener ClickListener = new View.OnClickListener() {
-        public void onClick(View v) {
-            finish();
-            }
-        };
+    private void outFocusing(){
+        if(focusedEdt != null)
+            ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(focusedEdt.getWindowToken(),0);
+    }
+
     //닉네임 중복확인
     View.OnClickListener onNick = new View.OnClickListener() {
         public void onClick(View v) {
+            outFocusing();
             displayedName = etNick.getText().toString();
-            checkNick=ServerInteraction.compareNickName(displayedName);
-            if(checkNick)
-            {
-                //팝업창 띄우기. 사용가능한 어쩌구..
-                Toast.makeText(SignUpActivity.this,"사용가능한 닉네임입니다.",Toast.LENGTH_SHORT).show();
-            }
-            else
-            {
-                //팝업창 띄우기. 사용가능한 어쩌구..
-                Toast.makeText(SignUpActivity.this,"이미 사용중인 닉네임입니다.",Toast.LENGTH_SHORT).show();
-            }
+            if(displayedName.length() != 0) {
+                checkNick = ServerInteraction.compareNickName(displayedName);
+                if (checkNick) {
+                    //팝업창 띄우기. 사용가능한 어쩌구..
+                    Toast.makeText(SignUpActivity.this, "사용가능한 닉네임입니다.", Toast.LENGTH_SHORT).show();
+                } else {
+                    //팝업창 띄우기. 사용가능한 어쩌구..
+                    Toast.makeText(SignUpActivity.this, "이미 사용중인 닉네임입니다.", Toast.LENGTH_SHORT).show();
+                }
+            }else Toast.makeText(SignUpActivity.this, "닉네임을 입력해주세요.", Toast.LENGTH_SHORT).show();
         }
     };
     //성별 선택
     View.OnClickListener listener = new View.OnClickListener() {
         public void onClick(View v) {
+            outFocusing();
             checkGender = true;
             //모든 버튼 해제 이미지로 초기화
             initSelect(btMale);initSelect(btFemale);
@@ -254,6 +233,7 @@ public class SignUpActivity extends Activity {
     //나이 선택 + 50대 추가해야됨.
     View.OnClickListener listener2 = new View.OnClickListener() {
         public void onClick(View v) {
+            outFocusing();
             checkAge = true;
             for(int i=0;i<5;++i)
             {
@@ -290,6 +270,7 @@ public class SignUpActivity extends Activity {
     //피부타입 선택
     View.OnClickListener listener3 = new View.OnClickListener() {
         public void onClick(View v) {
+            outFocusing();
             for(int i=0;i<4;++i)
             {
                 initSelect(btSkinType[i]);
@@ -313,6 +294,7 @@ public class SignUpActivity extends Activity {
     //관심효능 선택
     View.OnClickListener listener4 = new View.OnClickListener() {
         public void onClick(View v) {
+            outFocusing();
             switch (v.getId()) {
                 case R.id.effect_sebum:
                     multiSelect(btEffect[0], 0);break;
@@ -361,6 +343,7 @@ public class SignUpActivity extends Activity {
     //가입완료 버튼
     View.OnClickListener onSignup = new View.OnClickListener() {
         public void onClick(View v) {
+            outFocusing();
             boolean signable = true;
             //아이디 서버와 중복 검사.
             if(userType == User.UserType.EMAIL) {
