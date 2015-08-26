@@ -59,6 +59,7 @@ public class User {
         this.age = age;
         this.skinType = skinType;
         this.skinProblem = skinProblem;
+
     }
 
     // getter, setter

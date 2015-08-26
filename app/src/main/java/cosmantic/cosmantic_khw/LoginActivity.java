@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +20,7 @@ import com.kakao.usermgmt.UserProfile;
 import com.parse.KakaoAuthenticationProvider;
 import com.parse.LogInCallback;
 import com.parse.ParseAnalytics;
+import com.parse.ParseAnonymousUtils;
 import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseUser;
@@ -68,6 +70,13 @@ public class LoginActivity extends Activity {
                 emailJoinAction();
             }
         });
+        ((ImageButton) findViewById(R.id.login_free)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                freeLogin();
+            }
+        });
+
         ((ImageButton)findViewById(R.id.login_kakao_sign_btn)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,6 +93,25 @@ public class LoginActivity extends Activity {
             @Override
             public void onClick(View v) {
                 emailSignAction();
+            }
+        });
+    }
+    private void freeLogin()
+    {
+        String id = "anonymous";
+        String passwd = "anonymous";
+
+        ParseUser.logInInBackground(id, passwd, new LogInCallback() {
+            @Override
+            public void done(ParseUser parseUser, ParseException e) {
+                if (e == null) {
+                    ((MyApplication) getApplicationContext()).setUser(ServerInteraction.onLoginWithParseUser(parseUser));
+                    startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                    finish();
+                } else {
+                    e.printStackTrace();
+                    Toast.makeText(LoginActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -106,6 +134,8 @@ public class LoginActivity extends Activity {
 //            }
 //        });
     }
+    //
+
     private void kakaoSignAction(){
         Session.getCurrentSession().open(AuthType.KAKAO_TALK, this);
         Log.d("LogIn", "Start Kakao Sign");
