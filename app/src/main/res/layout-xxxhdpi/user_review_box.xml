@@ -22,12 +22,14 @@
         android:layout_toRightOf="@+id/userThumnail"
         android:layout_toEndOf="@+id/userThumnail"
         android:layout_alignTop="@+id/userThumnail"
+        android:layout_alignBottom="@+id/userThumnail"
+        android:layout_centerVertical="true"
         android:layout_marginTop = "10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         android:id="@+id/textBox" >
         <TextView
-
+            android:includeFontPadding="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/userNick"
@@ -40,6 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/mystar"
+            android:includeFontPadding="false"
             android:textColor="#ff0c1e36"
             android:textSize="11dp"
             android:visibility="visible"
@@ -104,6 +107,7 @@
             <TextView
                 android:id="@+id/textScore"
                 android:layout_width="wrap_content"
+                android:includeFontPadding="false"
                 android:layout_height="wrap_content"
                 android:textColor="#ff0c1e36"
                 android:textSize="11dp"
@@ -130,6 +134,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/textBox"
         android:layout_width="310dp"
+        android:includeFontPadding="false"
         android:layout_height="60dp"
         android:id="@+id/reviewText"
         android:src="@drawable/review_box"
@@ -139,6 +144,7 @@
         android:layout_height="60dp"
         android:id="@+id/editText"
         android:textSize="15dp"
+        android:includeFontPadding="false"
         android:inputType="textMultiLine"
         android:ems="20"
         android:background="@android:color/transparent"

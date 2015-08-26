@@ -76,7 +76,7 @@ public class HomeActivity extends Activity {
         {
             ((TextView)findViewById(R.id.home_mainbar_txt)).setText(getResources().getText(R.string.recommand_dry));
         }
-        else if(skinType == User.SKIN_TYPE_UNKNOWN)
+        else if(skinType == User.SKIN_TYPE_SENSITIVE)
         {
             ((TextView)findViewById(R.id.home_mainbar_txt)).setText(getResources().getText(R.string.recommand_sensitive));
         }
@@ -113,7 +113,7 @@ public class HomeActivity extends Activity {
                         ((TextView) parent.findViewById(R.id.product_left_productname)).setText(name.substring(0, 7) + "...");
                     DecimalFormat formatter = new DecimalFormat("#,###,###");
                     ((TextView) parent.findViewById(R.id.product_left_priceandvolume))
-                            .setText(product.getSize() + " / " + formatter.format(product.getPrice()));
+                            .setText(product.getSize() + " / " + formatter.format(product.getPrice())+"원");
                     parent.findViewById(R.id.product_left).setOnClickListener(view -> setProductListener(index));
                     break;
                 case 1:
@@ -128,7 +128,7 @@ public class HomeActivity extends Activity {
                         ((TextView) parent.findViewById(R.id.product_center_productname)).setText(name.substring(0, 7) + "...");
                     formatter = new DecimalFormat("#,###,###");
                     ((TextView) parent.findViewById(R.id.product_center_priceandvolume))
-                            .setText(product.getSize() + " / " + formatter.format(product.getPrice()));
+                            .setText(product.getSize() + " / " + formatter.format(product.getPrice())+"원");
                     parent.findViewById(R.id.product_center).setOnClickListener(view -> setProductListener(index));
                     break;
                 default:
@@ -143,7 +143,7 @@ public class HomeActivity extends Activity {
                         ((TextView) parent.findViewById(R.id.product_right_productname)).setText(name.substring(0, 7) + "...");
                     formatter = new DecimalFormat("#,###,###");
                     ((TextView) parent.findViewById(R.id.product_right_priceandvolume))
-                            .setText(product.getSize() + " / " + formatter.format(product.getPrice()));
+                            .setText(product.getSize() + " / " + formatter.format(product.getPrice())+"원");
                     parent.findViewById(R.id.product_right).setOnClickListener(view -> setProductListener(index));
             }
         });
@@ -192,11 +192,11 @@ public class HomeActivity extends Activity {
             //Size & Price
             DecimalFormat formatter = new DecimalFormat("#,###,###");
             ((TextView)container.findViewById(R.id.product_left_priceandvolume))
-                    .setText(recommendProducts[recommendIndex].getSize() + " / " + formatter.format(recommendProducts[recommendIndex].getPrice()));
+                    .setText(recommendProducts[recommendIndex].getSize() + " / " + formatter.format(recommendProducts[recommendIndex].getPrice())+"원");
             ((TextView)container.findViewById(R.id.product_center_priceandvolume))
-                    .setText(recommendProducts[recommendIndex+1].getSize() + " / " + formatter.format(recommendProducts[recommendIndex+1].getPrice()));
+                    .setText(recommendProducts[recommendIndex+1].getSize() + " / " + formatter.format(recommendProducts[recommendIndex+1].getPrice())+"원");
             ((TextView)container.findViewById(R.id.product_right_priceandvolume))
-                    .setText(recommendProducts[recommendIndex+2].getSize()+" / "+formatter.format(recommendProducts[recommendIndex+2].getPrice()));
+                    .setText(recommendProducts[recommendIndex+2].getSize()+" / "+formatter.format(recommendProducts[recommendIndex+2].getPrice())+"원");
         }
     }
 

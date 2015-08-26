@@ -32,11 +32,12 @@ public class InfoDetailActivity extends Activity {
         setContentView(R.layout.activity_info_detail);
         intent = getIntent();
 
+        ((ImageButton)findViewById(R.id.searchButton)).setVisibility(View.GONE);
         title = intent.getExtras().getString(TITLE);
         pageTab = intent.getExtras().getInt(PAGE_TAG);
         TextView tv = (TextView) findViewById(R.id.titleText);
         tv.setText(title);
-        FontApplyer.setFont(this, tv, FontApplyer.Font.NotoSans, FontApplyer.Style.Bold);
+        FontApplyer.setFont(this, tv, FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
         showWeb(pageTab);
 
         ImageButton backButton = (ImageButton)findViewById(R.id.backButton);

@@ -112,7 +112,7 @@ public class WriteReviewActivity extends Activity {
         FontApplyer.setFont(this, (TextView) findViewById(R.id.textScore), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
         FontApplyer.setFont(this, myave, FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
         FontApplyer.setFont(this, product, FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
-        FontApplyer.setFont(this, title, FontApplyer.Font.NotoSans, FontApplyer.Style.Bold);
+        FontApplyer.setFont(this, title, FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
         FontApplyer.setFont(this, brand, FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
         FontApplyer.setFont(this, average, FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
 
