@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/home_background">
+
+    <include
+        layout="@layout/actionbar_home"
+        android:id="@+id/home_action_bar"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- 상단 컨테이너 -->
+        <FrameLayout
+            android:id="@+id/recommend_intro_top_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/oily_button"
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/skintype_oily"
+                    android:background="@null"/>
+
+                <ImageButton
+                    android:id="@+id/dry_button"
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/skintype_dry"
+                    android:background="@null"/>
+
+                <ImageButton
+                    android:id="@+id/sensitive_button"
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/skintype_sensitive"
+                    android:background="@null"/>
+            </LinearLayout>
+
+            <!-- 제품 분류바를 담는 레이아웃 -->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <!-- 분류 배경 이미지 -->
+                <ImageView
+                    android:id="@+id/skintype_subjectbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/home_subjectbar">
+                </ImageView>
+
+                <!-- 분류바 텍스트를 담는 레이아웃 -->
+                <RelativeLayout
+                    android:layout_width="138dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true">
+
+                    <!-- 분류 텍스트 -->
+                    <TextView
+                        android:id="@+id/recommend_intro_skintype_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:includeFontPadding="false"
+                        android:text="피부 타입별 추천"
+                        android:textSize="13.75dp"
+                        android:textColor="@color/recommenddetail_producttitletxt"/>
+                </RelativeLayout>
+            </RelativeLayout>
+        </FrameLayout>
+
+        <!-- 중단 컨테이너 -->
+        <FrameLayout
+            android:id="@+id/recommend_intro_middle_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/recommend_intro_top_container"
+            android:layout_marginTop="15dp">
+
+            <ImageButton
+                android:id="@+id/situation_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@drawable/soldier"
+                android:background="@null"/>
+
+            <!-- 제품 분류바를 담는 레이아웃 -->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11dp">
+
+                <!-- 분류 배경 이미지 -->
+                <ImageView
+                    android:id="@+id/situation_subjectbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/home_subjectbar">
+                </ImageView>
+
+                <!-- 분류바 텍스트를 담는 레이아웃 -->
+                <RelativeLayout
+                    android:layout_width="138dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true">
+
+                    <!-- 분류 텍스트 -->
+                    <TextView
+                        android:id="@+id/recommend_intro_situation_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:includeFontPadding="false"
+                        android:text="상황별 추천"
+                        android:textSize="13.75dp"
+                        android:textColor="@color/recommenddetail_producttitletxt"/>
+                </RelativeLayout>
+            </RelativeLayout>
+        </FrameLayout>
+
+        <!-- 하단 컨테이너 -->
+        <FrameLayout
+            android:id="@+id/recommend_intro_bottom_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/recommend_intro_middle_container"
+            android:layout_marginTop="15dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:id="@+id/season_btn1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/season_ss"
+                    android:background="@null"/>
+
+                <ImageButton
+                    android:id="@+id/season_btn2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/season_fw"
+                    android:background="@null"/>
+            </LinearLayout>
+
+            <!-- 제품 분류바를 담는 레이아웃 -->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11dp">
+
+                <!-- 분류 배경 이미지 -->
+                <ImageView
+                    android:id="@+id/season_subjectbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/home_subjectbar">
+                </ImageView>
+
+                <!-- 분류바 텍스트를 담는 레이아웃 -->
+                <RelativeLayout
+                    android:layout_width="138dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true">
+
+                    <!-- 분류 텍스트 -->
+                    <TextView
+                        android:id="@+id/recommend_intro_season_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:includeFontPadding="false"
+                        android:text="시즌별 추천"
+                        android:textSize="13.75dp"
+                        android:textColor="@color/recommenddetail_producttitletxt"/>
+                </RelativeLayout>
+            </RelativeLayout>
+        </FrameLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

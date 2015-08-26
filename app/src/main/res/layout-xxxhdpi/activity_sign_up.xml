@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent" android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:id="@+id/layout_signup"   >
+
+    <include
+        android:id="@+id/home_action_bar"
+        layout="@layout/actionbar_sub" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/home_action_bar"
+        android:layout_marginTop="22dp"
+        android:id="@+id/rel1">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginLeft="35dp"
+            android:textSize="15dp"
+            android:id="@+id/inform"
+            android:text="@string/must_inform"
+            android:includeFontPadding="false"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/square_dot"
+            android:id="@+id/dot"
+            android:layout_alignBottom="@+id/inform"
+            android:layout_alignTop="@+id/inform"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="22dp"
+            />
+        <View
+            android:layout_toRightOf="@+id/inform"
+            android:layout_toEndOf="@+id/inform"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="18dp"
+            android:layout_width="wrap_content"
+            android:layout_height="0.25dp"
+            android:background="#ff0190c9" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rel1"
+        android:id="@+id/user_inform_box"
+        android:layout_marginTop="23dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginEnd="18dp"
+        >
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/signup_id_row">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:id="@+id/tvId"
+                android:layout_marginRight="13dp"
+                android:layout_marginEnd="13dp"
+                android:text="@string/user_id"
+                android:includeFontPadding="false" />
+
+            <EditText
+                android:id="@+id/etID"
+                android:textSize="12dp"
+                android:hint="@string/id_message"
+                android:background="@android:color/transparent"
+                android:layout_toRightOf="@+id/tvId"
+                android:layout_toEndOf="@+id/tvId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:maxLength="30"
+                android:inputType="textEmailAddress"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:id="@+id/row2"
+            android:layout_below="@+id/signup_id_row">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv2"
+                android:textSize="14dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="13dp"
+                android:layout_marginEnd="13dp"
+                android:text="@string/user_nick"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:maxLength="30"/>
+
+            <EditText
+                android:id="@+id/etNick"
+                android:textSize="12dp"
+                android:layout_toRightOf="@+id/tv2"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/tv2"
+                android:hint="@string/nick_message"
+                android:background="@android:color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:maxLength="9"/>
+            <Button
+                android:layout_width="55dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/check_button"
+                android:layout_toRightOf="@+id/etNick"
+                android:layout_toEndOf="@+id/etNick"
+                android:background="@drawable/check_button"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/passRow"
+            android:layout_marginTop="17dp"
+            android:layout_below="@+id/row2"
+            android:visibility="visible">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv3"
+                android:textSize="14dp"
+                android:layout_centerVertical="true"
+                android:text="@string/user_pass"
+                android:includeFontPadding="false" />
+
+            <EditText
+                android:hint="@string/pass_message"
+                android:id="@+id/etPass"
+                android:inputType="textPassword"
+                android:textSize="12dp"
+                android:layout_centerVertical="true"
+                android:background="@android:color/transparent"
+                android:layout_toRightOf="@+id/tv3"
+                android:layout_toEndOf="@+id/tv3"
+                android:layout_marginLeft="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:maxLength="20"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/repassRow"
+            android:layout_below="@+id/passRow"
+            android:layout_marginTop="17dp"
+            android:visibility="visible">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv4"
+                android:textSize="14dp"
+                android:text="@string/user_repass"
+                android:includeFontPadding="false" />
+
+            <EditText
+                android:hint="@string/repass_message"
+                android:id="@+id/etRePass"
+                android:inputType="textPassword"
+                android:textSize="12dp"
+                android:layout_centerVertical="true"
+                android:background="@android:color/transparent"
+                android:layout_toRightOf="@+id/tv4"
+                android:layout_toEndOf="@+id/tv4"
+                android:layout_marginLeft="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:maxLength="20"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/row3"
+            android:layout_below="@+id/repassRow"
+            android:layout_marginTop="17dp"
+            android:visibility="visible">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv5"
+                android:textSize="14dp"
+                android:text="@string/user_gender"
+                android:includeFontPadding="false"  />
+
+            <Button
+                android:text="@string/male"
+                android:textSize="12dp"
+                android:textColor="@color/signup_btunselect"
+                android:layout_centerVertical="true"
+                android:background="@drawable/unselect_small_box"
+                android:layout_toRightOf="@+id/tv5"
+                android:layout_toEndOf="@+id/tv5"
+                android:layout_marginLeft="26dp"
+                android:id="@+id/gender_male"
+                android:layout_width="35dp"
+                android:layout_height="21.5dp"
+                android:includeFontPadding="false" />
+            <Button
+                android:text="@string/female"
+                android:id="@+id/gender_female"
+                android:textSize="12dp"
+                android:textColor="@color/signup_btunselect"
+                android:layout_centerVertical="true"
+                android:background="@drawable/unselect_small_box"
+                android:layout_toRightOf="@+id/gender_male"
+                android:layout_toEndOf="@+id/gender_male"
+                android:layout_marginLeft="10dp"
+                android:layout_width="35dp"
+                android:layout_height="21.5dp"
+                android:includeFontPadding="false" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/row4"
+            android:layout_below="@+id/row3"
+            android:layout_marginTop="17dp"
+            android:visibility="visible">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv6"
+                android:textSize="14dp"
+                android:text="@string/user_age"
+                android:includeFontPadding="false" />
+
+            <Button
+                android:text="@string/age_10"
+                android:id="@+id/age10"
+                android:textSize="12dp"
+                android:textColor="@color/signup_btunselect"
+                android:layout_centerVertical="true"
+                android:background="@drawable/unselect_small_box"
+                android:layout_toRightOf="@+id/tv6"
+                android:layout_toEndOf="@+id/tv6"
+                android:layout_marginLeft="26dp"
+                android:layout_width="35dp"
+                android:layout_height="21.5dp"
+                android:includeFontPadding="false" />
+            <Button
+                android:text="@string/age_20"
+                android:id="@+id/age20"
+                android:textSize="12dp"
+                android:textColor="@color/signup_btunselect"
+                android:layout_centerVertical="true"
+                android:background="@drawable/unselect_small_box"
+                android:layout_toRightOf="@+id/age10"
+                android:layout_toEndOf="@+id/age10"
+                android:layout_marginLeft="10dp"
+                android:layout_width="35dp"
+                android:layout_height="21.5dp"
+                android:includeFontPadding="false" />
+
+            <Button
+                android:text="@string/age_30"
+                android:id="@+id/age30"
+                android:textSize="12dp"
+                android:textColor="@color/signup_btunselect"
+                android:layout_centerVertical="true"
+                android:background="@drawable/unselect_small_box"
+                android:layout_toRightOf="@+id/age20"
+                android:layout_toEndOf="@+id/age20"
+                android:layout_marginLeft="10dp"
+                android:layout_width="35dp"
+                android:layout_height="21.5dp"
+                android:includeFontPadding="false" />
+
+            <Button
+                android:text="@string/age_40"
+                android:id="@+id/age40"
+                android:textSize="12dp"
+                android:textColor="@color/signup_btunselect"
+                android:layout_centerVertical="true"
+                android:background="@drawable/unselect_small_box"
+                android:layout_toRightOf="@+id/age30"
+                android:layout_toEndOf="@+id/age30"
+                android:layout_marginLeft="10dp"
+                android:layout_width="35dp"
+                android:layout_height="21.5dp"
+                android:includeFontPadding="false" />
+
+            <Button
+                android:text="@string/age_50"
+                android:id="@+id/age50"
+                android:textSize="12dp"
+                android:textColor="@color/signup_btunselect"
+                android:layout_centerVertical="true"
+                android:background="@drawable/unselect_small_box"
+                android:layout_toRightOf="@+id/age40"
+                android:layout_toEndOf="@+id/age40"
+                android:layout_marginLeft="10dp"
+                android:layout_width="35dp"
+                android:layout_height="21.5dp"
+                android:includeFontPadding="false" />
+        </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_inform_box"
+        android:layout_marginTop="25dp"
+        android:id="@+id/rel2">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginLeft="35dp"
+            android:textSize="15dp"
+            android:id="@+id/sel_inform"
+            android:text="@string/select_inform"
+            android:includeFontPadding="false"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/square_dot"
+            android:id="@+id/dot2"
+            android:layout_alignBottom="@+id/sel_inform"
+            android:layout_alignTop="@+id/sel_inform"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="22dp"
+            />
+        <View
+            android:layout_toRightOf="@+id/sel_inform"
+            android:layout_toEndOf="@+id/sel_inform"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="18dp"
+            android:layout_width="wrap_content"
+            android:layout_height="0.25dp"
+            android:background="#ff0190c9" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rel2"
+        android:id="@+id/user_select_box"
+        android:layout_marginTop="23dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginEnd="18dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/row5"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv7"
+                android:textSize="14dp"
+                android:text="@string/skin_type"
+                android:includeFontPadding="false"/>
+
+            <Button
+                android:text="@string/skin_unknown"
+                android:id="@+id/skin_unknown"
+                android:textSize="12dp"
+                android:textColor="@color/signup_btunselect"
+                android:layout_centerVertical="true"
+                android:background="@drawable/unselect_small_box"
+                android:layout_toRightOf="@+id/tv7"
+                android:layout_toEndOf="@+id/tv7"
+                android:layout_marginLeft="10dp"
+                android:layout_width="45dp"
+                android:layout_height="21.5dp"
+                android:includeFontPadding="false" />
+            <Button
+                android:text="@string/skin_dry"
+                android:id="@+id/skin_dry"
+                android:textSize="12dp"
+                android:textColor="@color/signup_btunselect"
+                android:layout_centerVertical="true"
+                android:background="@drawable/unselect_small_box"
+                android:layout_toRightOf="@+id/skin_unknown"
+                android:layout_toEndOf="@+id/skin_unknown"
+                android:layout_marginLeft="10dp"
+                android:layout_width="45dp"
+                android:layout_height="21.5dp"
+                android:includeFontPadding="false" />
+
+            <Button
+                android:text="@string/skin_oily"
+                android:id="@+id/skin_oily"
+                android:textSize="12dp"
+                android:textColor="@color/signup_btunselect"
+                android:layout_centerVertical="true"
+                android:background="@drawable/unselect_small_box"
+                android:layout_toRightOf="@+id/skin_dry"
+                android:layout_toEndOf="@+id/skin_dry"
+                android:layout_marginLeft="10dp"
+                android:layout_width="45dp"
+                android:layout_height="21.5dp"
+                android:includeFontPadding="false" />
+
+            <Button
+                android:text="@string/skin_sensitive"
+                android:id="@+id/skin_sensitive"
+                android:textSize="12dp"
+                android:textColor="@color/signup_btunselect"
+                android:layout_centerVertical="true"
+                android:background="@drawable/unselect_small_box"
+                android:layout_toRightOf="@+id/skin_oily"
+                android:layout_toEndOf="@+id/skin_oily"
+                android:layout_marginLeft="10dp"
+                android:layout_width="45dp"
+                android:layout_height="21.5dp"
+                android:includeFontPadding="false" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/row6"
+            android:layout_below="@+id/row5"
+            android:layout_marginTop="17dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv8"
+                android:textSize="14dp"
+                android:text="@string/interest_effect"
+                android:includeFontPadding="false"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv8_small"
+                android:layout_below="@+id/tv8"
+                android:textSize="12dp"
+                android:text="@string/multi_select"
+                android:includeFontPadding="false"/>
+
+            <Button
+                android:text="@string/effect_sebum"
+                android:id="@+id/effect_sebum"
+                android:textSize="12dp"
+                android:textColor="@color/signup_btunselect"
+                android:background="@drawable/unselect_small_box"
+                android:layout_toRightOf="@+id/tv8"
+                android:layout_toEndOf="@+id/tv8"
+                android:layout_marginLeft="10dp"
+                android:layout_width="45dp"
+                android:layout_height="21.5dp"
+                android:includeFontPadding="false" />
+            <Button
+                android:text="@string/effect_wrinkle"
+                android:id="@+id/effect_wrinkle"
+                android:textSize="12dp"
+                android:textColor="@color/signup_btunselect"
+                android:background="@drawable/unselect_small_box"
+                android:layout_toRightOf="@+id/effect_sebum"
+                android:layout_toEndOf="@+id/effect_sebum"
+                android:layout_marginLeft="10dp"
+                android:layout_width="45dp"
+                android:layout_height="21.5dp"
+                android:includeFontPadding="false" />
+
+            <Button
+                android:text="@string/effect_oil"
+                android:id="@+id/effect_oil"
+                android:textSize="12dp"
+                android:textColor="@color/signup_btunselect"
+                android:background="@drawable/unselect_small_box"
+                android:layout_toRightOf="@+id/effect_wrinkle"
+                android:layout_toEndOf="@+id/effect_wrinkle"
+                android:layout_marginLeft="10dp"
+                android:layout_width="45dp"
+                android:layout_height="21.5dp"
+                android:includeFontPadding="false" />
+
+            <Button
+                android:text="@string/effect_dark"
+                android:id="@+id/effect_dark"
+                android:textSize="12dp"
+                android:textColor="@color/signup_btunselect"
+                android:background="@drawable/unselect_small_box"
+                android:layout_toRightOf="@+id/effect_oil"
+                android:layout_toEndOf="@+id/effect_oil"
+                android:layout_marginLeft="10dp"
+                android:layout_width="45dp"
+                android:layout_height="21.5dp"
+                android:includeFontPadding="false" />
+            <Button
+                android:text="@string/effect_dry"
+                android:id="@+id/effect_dry"
+                android:layout_below="@+id/effect_sebum"
+                android:textSize="12dp"
+                android:textColor="@color/signup_btunselect"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/unselect_small_box"
+                android:layout_alignLeft="@+id/effect_sebum"
+                android:layout_width="45dp"
+                android:layout_height="21.5dp"
+                android:includeFontPadding="false" />
+            <Button
+                android:text="@string/effect_trouble"
+                android:id="@+id/effect_trouble"
+                android:textSize="12dp"
+                android:textColor="@color/signup_btunselect"
+                android:background="@drawable/unselect_small_box"
+                android:layout_toRightOf="@+id/effect_dry"
+                android:layout_alignTop="@+id/effect_dry"
+                android:layout_toEndOf="@+id/effect_dry"
+                android:layout_marginLeft="10dp"
+                android:layout_width="45dp"
+                android:layout_height="21.5dp"
+                android:includeFontPadding="false" />
+
+            <Button
+                android:text="@string/effect_color"
+                android:id="@+id/effect_color"
+                android:textSize="12dp"
+                android:textColor="@color/signup_btunselect"
+                android:background="@drawable/unselect_small_box"
+                android:layout_alignTop="@+id/effect_trouble"
+                android:layout_toRightOf="@+id/effect_trouble"
+                android:layout_toEndOf="@+id/effect_trouble"
+                android:layout_marginLeft="10dp"
+                android:layout_width="45dp"
+                android:layout_height="21.5dp"
+                android:includeFontPadding="false" />
+
+            <Button
+                android:text="@string/effect_sensitive"
+                android:id="@+id/effect_sensitive"
+                android:textSize="12dp"
+                android:textColor="@color/signup_btunselect"
+                android:background="@drawable/unselect_small_box"
+                android:layout_toRightOf="@+id/effect_color"
+                android:layout_toEndOf="@+id/effect_color"
+                android:layout_alignTop="@+id/effect_color"
+                android:layout_marginLeft="10dp"
+                android:layout_width="45dp"
+                android:layout_height="21.5dp"
+                android:includeFontPadding="false" />
+        </RelativeLayout>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textSize="15dp"
+            android:text="@string/agree_message"
+            android:id="@+id/checkBox"
+            android:layout_below="@+id/row6"
+            android:includeFontPadding="false"
+            />
+
+    </RelativeLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:text="@string/signup"
+        android:id="@+id/signup_button"
+        android:textColor="@color/actionbar_titletext"
+        android:background="@drawable/ok_button"
+        android:layout_gravity="center_horizontal"
+        android:includeFontPadding="false" />
+
+</RelativeLayout>

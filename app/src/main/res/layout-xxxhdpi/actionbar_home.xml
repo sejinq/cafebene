@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- 상단 컨테이너 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:id="@+id/parentBar"
+        android:background="@color/actionbar_background">
+
+        <!-- 로고 -->
+        <ImageView
+            android:id="@+id/titleImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/logo"
+            />
+
+        <!-- 검색 버튼 -->
+        <ImageButton
+            android:id="@+id/searchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="18dp"
+            android:background="@null"
+            android:src="@drawable/search_button" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:id="@+id/tabBar"
+        android:background="@color/tab_background"
+        android:layout_below="@+id/parentBar" >
+
+        <!-- 하단 컨테이너 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tabs">
+
+            <!-- 홈 버튼 -->
+            <Button
+                android:id="@+id/tab1"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/home"
+                android:textSize="12dp"
+                android:textColor="@color/actionbar_home_text"
+                android:background="@android:color/transparent"/>
+
+            <!-- 추천 화장품 버튼 -->
+            <Button
+                android:id="@+id/tab2"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/recommend_cosmetic"
+                android:textSize="12dp"
+                android:textColor="@color/actionbar_home_text"
+                android:background="@android:color/transparent"/>
+
+            <!-- 화장품 상식 버튼 -->
+            <Button
+                android:id="@+id/tab3"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/cosmetic_inform"
+                android:textSize="12dp"
+                android:textColor="@color/actionbar_home_text"
+                android:background="@android:color/transparent"/>
+
+            <!-- 마이 페이지 버튼 -->
+            <Button
+                android:id="@+id/tab4"
+                android:layout_width="0px"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/my_page"
+                android:textSize="12dp"
+                android:textColor="@color/actionbar_home_text"
+                android:background="@android:color/transparent"/>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/line"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="0.25dp"
+            android:background="@color/line_color" />
+    </RelativeLayout>
+</RelativeLayout>
+

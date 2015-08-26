@@ -1,0 +1,11 @@
+<shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="line">
+
+    <!-- dash는 점선에 대한 속성 -->
+    <stroke
+        android:width="0.25dp"
+        android:color="@color/white"
+        android:dashWidth="0dp"
+        android:dashGap="0dp" />
+</shape>

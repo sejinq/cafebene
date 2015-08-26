@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/home_action_bar"
+        layout="@layout/actionbar_sub"
+        />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/home_action_bar"
+        android:id="@+id/viewbox">
+
+        <include
+            android:id="@+id/home_action_bar"
+            layout="@layout/activity_product_box"
+            />
+    </RelativeLayout>
+<!--여기까지이이이이ㅣ이이이이이이 글씨빼기-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/viewbox"
+        android:id="@+id/lineLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/myreview"
+            android:id="@+id/myreview"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="33dp"
+            android:textSize="14dp"
+            android:textColor="#ff0190c9" />
+        <View
+            android:layout_marginTop="8.5dp"
+            android:id="@+id/line"
+            android:layout_below="@+id/myreview"
+            android:layout_width="match_parent"
+            android:layout_height="0.25dp"
+            android:background="#ff0190c9" />
+        <View
+            android:layout_marginTop="5.5dp"
+            android:layout_below="@+id/myreview"
+            android:layout_width="55dp"
+            android:layout_height="3dp"
+            android:layout_centerHorizontal="true"
+            android:background="#ff0190c9" />
+      </RelativeLayout>
+
+    <include
+        android:id="@+id/reviewBox"
+        layout="@layout/user_review_box"
+        />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="27dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        >
+    <ImageButton
+        android:layout_width="310dp"
+        android:layout_height="45dp"
+        android:id="@+id/imageButton8"
+        android:background="@android:color/transparent"
+        android:src="@drawable/written_button"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textSize="17dp"
+        android:text="@string/reviewwrite"
+        android:textColor="#ffffff"/>
+    </RelativeLayout>
+</RelativeLayout>

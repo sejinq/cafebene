@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Home 액션바 글씨 -->
+    <color name="actionbar_home_text">#0c1e36</color>
+    <!-- Sub 액션바 배경 -->
+    <color name="actionbar_background">#0066e0</color>
+    <!-- Sub 액션바 제목 글씨 -->
+    <color name="actionbar_titletext">#ffffff</color>
+    <color name="login_logo">#bfffffff</color>
+    <!-- SignInActivity 힌트 글씨 -->
+    <color name="signin_hinttext">#9fa6ad</color>
+    <!-- SignInAcitivity 이메일, 비밀번호 글씨 -->
+    <color name="signin_idandpw">#000000</color>
+    <!-- SignInActivity 로그인 버튼 글씨 -->
+    <color name="signin_loginbtntxt">#ffffff</color>
+    <!-- SignInActivity 로그인 버튼 배경 -->
+    <color name="signin_loginbtbg">#181c4c</color>
+    <!-- RecommendActivity 제품 분류 글씨 -->
+    <color name="recommenddetail_producttitletxt">#ffffff</color>
+    <!-- RecommendActivity 제품 브랜드 글씨 -->
+    <color name="recommenddetail_productbrandtxt">#000000</color>
+    <!-- RecommendActivity 제품 제품명 글씨 -->
+    <color name="recommenddetail_productnametxt">#7a7d7f</color>
+    <!-- RecommendDetailAcitivty 제품 용량, 가격 글씨 -->
+    <color name="recommenddetail_productvolumepricetxt">#0066e0</color>
+    <!-- SearchActivity 액션바 EditText 글씨, 밑줄 -->
+    <color name="search_actionbar_edittext">#e0e0e0</color>
+    <!-- SearchActivity 검색결과 밑줄 -->
+    <color name="search_result_underline">#0c1f36</color>
+    <!-- SearchActivity 검색결과 브랜드명 -->
+    <color name="search_result_brandname">#000000</color>
+    <!-- SearchActivity 검색결과 제품명, 등록 제품수 -->
+    <color name="search_result_productname">#6b6e70</color>
+    <!-- SignUpActivity 버튼 선택 색상 -->
+    <color name="signup_btselect">#f28314</color>
+    <color name="signup_btunselect">#9fa6ad</color>
+    <!-- actionbar_home 액티비티 line 색상-->
+    <color name="actionbar_home_line">#0c1e36</color>
+    <!-- theme color 주요 테마 컬러. 상단바 색과 기타 다른 요소들....통일 색!!-->
+    <color name="theme_color">#0066e0</color>
+    <!-- tab 액션바 배경-->
+    <color name="tab_background">#ffffff</color>
+    <!-- HomeActivity, RecommendIntroActivity 배경 -->
+    <color name="home_background">#f4f4f4</color>
+    <!-- HomeActivity 컨테이너들 배경 -->
+    <color name="home_containerbg">#ffffff</color>
+    <!-- HomeActivity 메인바 글씨 -->
+    <color name="home_mainbar_txt">#ffffff</color>
+    <!-- Sign Up 선택 글씨 -->
+    <color name="effect_disable">#CCD4DB</color>
+    <color name="effect_enable">#000000</color>
+    <!-- actionbar_home 액티비티 , MyPageActivity line 색상-->
+    <color name="line_color">#0c1e36</color>
+    <!-- Colcor name-->
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <!-- MyPageActivity 기본 글씨 -->
+    <color name="mypage_default_txt">#000000</color>
+    <!-- MyPageActivity 선택된 글씨 태그, 하단 컨테이너에 있는 글씨 -->
+    <color name="mypage_selected_tag">#0c1e36</color>
+    <!-- MyPageActivity 선택되지 않은 태그 글씨 -->
+    <color name="mypage_unselected_tag">#9fa6ad</color>
+    <!-- MyPageActivity 상단 컨테이너 배경 -->
+    <color name="mypage_top_container_bg">#d8d8d8</color>
+</resources>

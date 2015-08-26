@@ -4,6 +4,7 @@
     package="cosmantic.cosmantic_khw" >
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <!-- 앱 구성요소에 대한 정보 -->
     <application
@@ -11,33 +12,113 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
 
         <!-- 스플래시 액티비티 -->
         <activity
             android:name = ".SplashActivity"
             android:theme = "@style/SplashTheme"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name = "android.intent.action.MAIN"/>
+                <category android:name = "android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
 
         <!-- 메인 액티비티 -->
         <activity
             android:name=".LoginActivity"
-            android:label="@string/app_name">
-        </activity>
-        <activity android:name=".SignUpActivity"></activity>
-        <activity android:name=".SignInActivity"></activity>
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"/>
+        <!-- Facebook 로그인 외부 액티비티 -->
+        <activity android:name="com.facebook.FacebookActivity"
+                  android:configChanges=
+                      "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+                  android:theme="@android:style/Theme.Translucent.NoTitleBar"
+                  android:label="@string/app_name" />
+        <!-- 가입 페이지 액티비티-->
+        <activity android:name=".SignUpActivity"
+                  android:screenOrientation="portrait"/>
+        <!-- -->
+        <activity android:name=".ProductActivity"
+                  android:screenOrientation="portrait"/>
+        <!-- RecommendDetail 액티비티 -->
+
+        <!-- RecommendIntro 액티비티 -->
         <activity
-            android:name=".RecommendDetailActivity"
-            android:label="@string/app_name">
+            android:name=".RecommendIntroActivity"
+            android:theme="@style/RecommendIntroTheme"
+            android:screenOrientation="portrait"/>
+
+        <!-- Recommend 액티비티 -->
+        <activity
+            android:name=".RecommendActivity"
+            android:theme="@style/RecommendTheme"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".InfoDetailActivity"
+            android:theme="@style/AppTheme">
+
         </activity>
 
+        <!-- SignIn 액티비티 -->
+        <activity
+            android:name=".SignInActivity"
+            android:theme="@style/SignInTheme"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible"/>
+
+        <!-- Search 액티비티 -->
+        <activity
+            android:name=".SearchActivity"
+            android:theme="@style/SearchTheme"
+            android:screenOrientation="portrait"/>
+
+        <!-- WriteReviewActivity-->
+        <activity
+            android:name=".WriteReviewActivity"
+            android:theme="@style/AppTheme">
+        </activity>
+        <!-- ProductActivity-->
+        <activity
+            android:name=".UserInformActivity"
+            android:theme="@style/AppTheme">
+        </activity>
+
+        <!-- Home 액티비티 -->
+        <activity
+            android:name=".HomeActivity"
+            android:theme="@style/HomeTheme"
+            android:screenOrientation="portrait"/>
+
+        <!-- Information 액티비티 -->
+        <activity
+            android:name=".InformationActivity"
+            android:theme="@style/InformationTheme"
+            android:screenOrientation="portrait"/>
+
+        <!-- MyPage 액티비티 -->
+        <activity
+            android:name=".MyPageActivity"
+            android:theme="@style/MyPageTheme"
+            android:screenOrientation="portrait"/>
+        <!-- WebView -->
+        <activity android:name=".WebViewActivity"></activity>
+
+        <!-- 외부 SDK 키-->
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_key"/>
+        <meta-data
+            android:name="com.parse.APPLICATION_ID"
+            android:value="@string/parse_app_id" />
+        <meta-data
+            android:name="com.parse.CLIENT_KEY"
+            android:value="@string/parse_client_key" />
     </application>
 
 </manifest>

@@ -6,20 +6,23 @@ import android.os.Bundle;
 
 /** 스플래시 (로딩화면) 액티비티 */
 public class SplashActivity extends Activity {
-	@Override
-	protected void onCreate(Bundle savedInstanceState){
-		super.onCreate(savedInstanceState);
+    @Override
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
 
-		try{
-			// 2초간 대기하고
-			Thread.sleep(2000);
-		}
-		catch (InterruptedException e){
-			e.printStackTrace();
-		}
+        try{
+            // 2초간 대기하고
+            Thread.sleep(2000);
+        }
+        catch (InterruptedException e){
+            e.printStackTrace();
+        }
 
-		// 메인 액티비티로 넘어간다. -> fragment 액티비티로 넘어가게!!!!
-		startActivity(new Intent(this, LoginActivity.class));
-		finish();
-	}
+        // 메인 액티비티로 넘어간다. -> fragment 액티비티로 넘어가게!!!!
+        startActivity(new Intent(this, LoginActivity.class));
+//		Intent test = new Intent(this, WebViewActivity.class);
+//		test.putExtra(WebViewActivity.URL,"http://m.blog.naver.com/cosmeticforman/220451294230");
+//		startActivity(test);
+        finish();
+    }
 }

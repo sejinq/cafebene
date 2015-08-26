@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/actionBar"
+    android:layout_width="match_parent"
+    android:layout_height="52dp"
+    android:background="@color/actionbar_background">
+
+    <!-- 검색하는 EditText -->
+    <EditText
+        android:id="@+id/actionbar_search_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="61dp"
+        android:layout_marginRight="64dp"
+        android:layout_centerVertical="true"
+        android:background="@null"
+        android:singleLine="true"
+        android:maxLength="20"
+        android:includeFontPadding="false"
+        android:hint="브랜드 및 제품을 입력해주세요."
+        android:textSize="12dp"
+        android:textColor="@color/search_actionbar_edittext"
+        android:textColorHint="@color/search_actionbar_edittext"
+        android:textCursorDrawable="@null"/>
+
+    <!-- EditText 밑줄 -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0.25dp"
+        android:layout_below="@id/actionbar_search_edittext"
+        android:layout_alignLeft="@id/actionbar_search_edittext"
+        android:layout_marginRight="64dp"
+        android:layout_marginTop="5.5dp"
+        android:background="@color/search_actionbar_edittext"/>
+
+    <!-- 뒤로가기 버튼 -->
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="18dp"
+        android:background="@null"
+        android:src="@drawable/back_button"
+        android:onClick="ClickListener"/>
+
+    <!-- 검색하기 버튼 -->
+    <ImageButton
+        android:id="@+id/searchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="18dp"
+        android:background="@null"
+        android:src="@drawable/search_button"
+        />
+    <!--android:onClick="ClickListener"-->
+</RelativeLayout>

@@ -74,7 +74,7 @@ public class IngredientChartView extends View {
         if(values!=null){
             //Circle
             float[] angles = calcAngle();
-            if(angles[0]+angles[1] != 0.0) {
+            if(angles[0] != 0.0 & angles[1] != 0.0) {
                 //positive
                 circlePaint.setColor(c[0]);
                 circlePath.reset();
@@ -87,24 +87,36 @@ public class IngredientChartView extends View {
                 circlePath.arcTo(frame, -90+angles[0], angles[1], false);
                 circlePath.arcTo(inner, 270, -angles[1], false);
                 canvas.drawPath(circlePath, circlePaint);
-            }else {
+            } else if(angles[0] != 0.0){
+                circlePaint.setColor(c[0]);
+                circlePath.reset();
+                circlePath.arcTo(frame, -89.9f, 359.8f, false);
+                circlePath.arcTo(inner, 269.9f, -359.8f, false);
+                canvas.drawPath(circlePath, circlePaint);
+            } else if(angles[1] != 0.0){
+                circlePaint.setColor(c[1]);
+                circlePath.reset();
+                circlePath.arcTo(frame, -89.9f, 359.8f, false);
+                circlePath.arcTo(inner, 269.9f, -359.8f, false);
+                canvas.drawPath(circlePath, circlePaint);
+            } else {
                 //non-draw
                 circlePaint.setColor(non_c[0]);
                 circlePath.reset();
-                circlePath.arcTo(frame, 0, 360, false);
-                circlePath.arcTo(inner, 360, -360, false);
+                circlePath.arcTo(frame, -89.9f, 359.8f, false);
+                circlePath.arcTo(inner, 269.9f, -359.8f, false);
                 canvas.drawPath(circlePath, circlePaint);
             }
             //Text
             float main_height = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,2.86f, getContext().getResources().getDisplayMetrics());
             float sub_height = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,12.14f, getContext().getResources().getDisplayMetrics());
             canvas.drawText(typeText,size/2,(size/2)+main_height,typeTextPaint);
-            ingredientTextPaint.setColor(c[0]);
-            ingredientTextPaint.setTextAlign(Paint.Align.RIGHT);
-            canvas.drawText("+"+values[1],size/2,(size/2)+sub_height,ingredientTextPaint);
             ingredientTextPaint.setColor(c[1]);
-            ingredientTextPaint.setTextAlign(Paint.Align.LEFT);
+            ingredientTextPaint.setTextAlign(Paint.Align.RIGHT);
             canvas.drawText("+"+values[0],size/2,(size/2)+sub_height,ingredientTextPaint);
+            ingredientTextPaint.setColor(c[0]);
+            ingredientTextPaint.setTextAlign(Paint.Align.LEFT);
+            canvas.drawText("-"+values[1],size/2,(size/2)+sub_height,ingredientTextPaint);
         }
     }
 
@@ -120,5 +132,10 @@ public class IngredientChartView extends View {
             angles = new float[]{0.0f,0.0f};
         }
         return angles;
+    }
+
+    public void setIngredientValue(int pos, int neg){
+        this.values = new int[]{pos,neg};
+        this.invalidate();
     }
 }

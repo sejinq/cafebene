@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        layout="@layout/actionbar_search"
+        android:id="@+id/actionbar_search"/>
+    <LinearLayout
+        android:id="@+id/search_result"
+        android:scrollbars="vertical"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/actionbar_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--<include-->
+            <!--layout="@layout/search_result_brand"/>-->
+        <!--<include-->
+            <!--layout="@layout/search_result_brand"/>-->
+        <!--<include-->
+            <!--layout="@layout/search_result_product"/>-->
+
+        <!--<include-->
+            <!--android:id="@+id/search_nosearch"-->
+            <!--layout="@layout/search_no_search"/>-->
+    </LinearLayout>
+
+</RelativeLayout>

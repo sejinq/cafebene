@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/home_background">
+
+    <!-- 홈 화면 액션바 -->
+    <include
+        layout="@layout/actionbar_home"
+        android:id="@+id/home_action_bar"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp">
+        <!-- 상단 컨테이너 -->
+        <RelativeLayout
+            android:id="@+id/home_top_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@color/home_containerbg">
+
+            <!-- 메인 바 컨테이너 -->
+            <RelativeLayout
+                android:id="@+id/home_mainbar_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true">
+
+                <ImageView
+                    android:id="@+id/home_mainbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginBottom="7dp"
+                    android:src="@drawable/mainbar"/>
+
+                <TextView
+                    android:id="@+id/home_mainbar_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/home_mainbar"
+                    android:layout_centerHorizontal="true"
+                    android:includeFontPadding="false"
+                    android:text="추천 지성 화장품"
+                    android:textSize="13.75dp"
+                    android:textColor="@color/home_mainbar_txt"/>
+            </RelativeLayout>
+
+            <ViewFlipper
+                android:id="@+id/home_product_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/home_mainbar_container"
+                android:layout_marginTop="7dp">
+                <include
+                    android:id="@+id/home_productLayer1"
+                    layout="@layout/home_product"/>
+                <include
+                    android:id="@+id/home_productLayer2"
+                    layout="@layout/home_product"/>
+                <include
+                    android:id="@+id/home_productLayer3"
+                    layout="@layout/home_product"/>
+            </ViewFlipper>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/home_product_container"
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="10dp"
+                android:layout_centerHorizontal="true">
+
+                <ImageView
+                    android:id="@+id/home_circle1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/oncircle"/>
+
+                <ImageView
+                    android:id="@+id/home_circle2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:src="@drawable/uncircle"/>
+
+                <ImageView
+                    android:id="@+id/home_circle3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/uncircle"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="7dp">
+
+            </LinearLayout>
+        </RelativeLayout>
+
+        <!-- 중단 컨테이너 -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/home_top_container"
+            android:layout_marginTop="5dp">
+            <ImageButton
+                android:id="@+id/home_skintype_test"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:background="@android:color/transparent"
+                android:src="@drawable/skintype_test"/>
+        </RelativeLayout>
+
+        <!-- 하단 컨테이너 -->
+        <FrameLayout
+            android:id="@+id/home_bottom_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/oily_button"
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/skintype_oily"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"/>
+
+                <ImageButton
+                    android:id="@+id/dry_button"
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/skintype_dry"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"/>
+
+                <ImageButton
+                    android:id="@+id/sensitive_button"
+                    android:layout_width="0px"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/skintype_sensitive"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"/>
+            </LinearLayout>
+
+            <!-- 제품 분류바를 담는 레이아웃 -->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11dp">
+
+                <!-- 분류 배경 이미지 -->
+                <ImageView
+                    android:id="@+id/home_subjectbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/home_subjectbar">
+                </ImageView>
+
+                <!-- 분류바 텍스트를 담는 레이아웃 -->
+                <RelativeLayout
+                    android:layout_width="138dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true">
+
+                    <!-- 분류 텍스트 -->
+                    <TextView
+                        android:id="@+id/home_skintype_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:includeFontPadding="false"
+                        android:text="피부 타입별 추천"
+                        android:textSize="13.75dp"
+                        android:textColor="@color/recommenddetail_producttitletxt"/>
+                </RelativeLayout>
+            </RelativeLayout>
+        </FrameLayout>
+    </RelativeLayout>
+</LinearLayout>
