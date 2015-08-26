@@ -73,6 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:textSize="17dp"
+        android:id="@+id/button_text"
         android:text="@string/reviewwrite"
         android:textColor="#ffffff"/>
     </RelativeLayout>

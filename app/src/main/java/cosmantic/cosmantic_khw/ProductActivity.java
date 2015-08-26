@@ -71,7 +71,9 @@ public class ProductActivity extends Activity {
         ((ImageButton) findViewById(R.id.backButton)).setOnClickListener(ClickListener);
         ((ImageButton) findViewById(R.id.searchButton)).setImageResource(R.drawable.share_button);
         ((ImageButton) findViewById(R.id.searchButton)).setOnClickListener(ClickListener);
-        ((TextView) findViewById(R.id.titleText)).setText("화장품 상세");
+        TextView tv = (TextView) findViewById(R.id.titleText);
+        tv.setText("화장품 상세");
+        FontApplyer.setFont(this, tv, FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
 
     }
     View.OnClickListener ClickListener = new View.OnClickListener() {

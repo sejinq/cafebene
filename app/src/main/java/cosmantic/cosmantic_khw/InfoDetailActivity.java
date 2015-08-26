@@ -34,10 +34,24 @@ public class InfoDetailActivity extends Activity {
 
         title = intent.getExtras().getString(TITLE);
         pageTab = intent.getExtras().getInt(PAGE_TAG);
-        ((TextView) findViewById(R.id.titleText)).setText(title);
+        TextView tv = (TextView) findViewById(R.id.titleText);
+        tv.setText(title);
+        FontApplyer.setFont(this, tv, FontApplyer.Font.NotoSans, FontApplyer.Style.Bold);
         showWeb(pageTab);
 
+        ImageButton backButton = (ImageButton)findViewById(R.id.backButton);
+        backButton.setOnClickListener(ClickListener);
+
     }
+    View.OnClickListener ClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.backButton:
+                    finish();
+                    break;
+            }
+        }
+    };
     private void setFont(RelativeLayout layout)
     {
         FontApplyer.setFont(getApplicationContext(), ((TextView) layout.findViewById(R.id.content_title)), FontApplyer.Font.NotoSans, FontApplyer.Style.Medium);

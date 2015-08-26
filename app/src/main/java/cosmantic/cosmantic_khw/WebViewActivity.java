@@ -7,6 +7,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -41,14 +42,28 @@ public class WebViewActivity extends Activity {
         else
         {
             String title = intent.getExtras().getString(TITLE);
-            ((TextView) findViewById(R.id.titleText)).setText(title);
+            TextView tv = (TextView) findViewById(R.id.titleText);
+            tv.setText(title);
+            FontApplyer.setFont(this, tv, FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+
             ((RelativeLayout)findViewById(R.id.webview_action_bar_sub)).setVisibility(View.VISIBLE);
         }
         setTab();
         // 구글홈페이지 지정
         webview.loadUrl(url);
+        ImageButton backButton = (ImageButton)findViewById(R.id.backButton);
+        backButton.setOnClickListener(ClickListener);
 
     }
+    View.OnClickListener ClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.backButton:
+                    finish();
+                    break;
+            }
+        }
+    };
 
     private void setTab()
     {

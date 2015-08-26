@@ -90,14 +90,48 @@ public class WriteReviewActivity extends Activity {
         {
             star[i].setImageResource(R.drawable.star_inable);
         }
-        average.setText(productObject.getScore() + " ("+productObject.getReviewNum()+"명)");
+        average.setText(productObject.getScore() + " (" + productObject.getReviewNum() + "명)");
         //찜하기를 한건지 안한건지 판별
         likeProducts = ((MyApplication)getApplicationContext()).getProduct().getObjectId();
         if(((MyApplication)getApplicationContext()).getUser().isLike(likeProducts))
            btLike.setImageResource(R.drawable.love_inable);
 
-        ((TextView)findViewById(R.id.userNick)).setText(((MyApplication)getApplicationContext()).getUser().getDisplayedName());
+        setFont();
+        ImageButton backButton = (ImageButton)findViewById(R.id.backButton);
+        backButton.setOnClickListener(ClickListener);
+
     }
+    private void setFont()
+    {
+//폰트 설정
+        TextView nick = (TextView) findViewById(R.id.userNick);
+        nick.setText(((MyApplication) getApplicationContext()).getUser().getDisplayedName());
+        FontApplyer.setFont(this, nick, FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(this, (TextView) findViewById(R.id.userScore), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(this, (TextView) findViewById(R.id.userScore), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(this, (TextView) findViewById(R.id.textScore), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(this, myave, FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(this, product, FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(this, title, FontApplyer.Font.NotoSans, FontApplyer.Style.Bold);
+        FontApplyer.setFont(this, brand, FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(this, average, FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+
+        FontApplyer.setFont(this,  (TextView) findViewById(R.id.editText), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(this,  (TextView) findViewById(R.id.myreview), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+        FontApplyer.setFont(this,  (TextView) findViewById(R.id.button_text), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
+
+
+
+    }
+    View.OnClickListener ClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.backButton:
+                    finish();
+                    break;
+            }
+        }
+    };
     View.OnClickListener listener = new View.OnClickListener() {
         public void onClick(View v)
         {

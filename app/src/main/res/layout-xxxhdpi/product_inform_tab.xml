@@ -24,21 +24,18 @@
             android:textColor="#ff00086b"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:text="정가"
-            android:includeFontPadding="false"
             android:textSize="14dp"
             android:id="@+id/text"/>
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="New Text"
-            android:includeFontPadding="false"
             android:id="@+id/price"
             android:textColor="#ff0066e0"
             android:textSize="12dp"
-            android:layout_marginLeft="24dp"
             android:layout_gravity="center"
+            android:layout_marginLeft="24dp"
             />
 
     </LinearLayout>
@@ -49,6 +46,7 @@
         android:layout_marginLeft="23dp"
         android:layout_marginStart="23dp"
         android:layout_marginTop="23dp"
+        android:orientation="horizontal"
         android:id="@+id/relativeLayout2"
         android:layout_below="@+id/relativeLayout1"
         >
@@ -56,6 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/bar2"
+            android:layout_gravity="center"
             android:src="@drawable/bar"/>
 
         <TextView
@@ -65,19 +64,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="용량"
-            android:includeFontPadding="false"
             android:textSize="14dp"
             android:id="@+id/text2"/>
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="New Text"
-            android:includeFontPadding="false"
+            android:layout_gravity="center"
             android:id="@+id/amount"
             android:textSize="12dp"
             android:textColor="#ff0066e0"
-            android:layout_toRightOf="@+id/text3"
-            android:layout_toEndOf="@+id/text3"
             android:layout_marginLeft="24dp"
             />
 
@@ -104,11 +100,9 @@
             android:layout_marginLeft="7dp"
             android:layout_marginStart="7dp"
             android:textColor="#ff00086b"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="제품 효과"
-            android:includeFontPadding="false"
             android:textSize="14dp"
             android:id="@+id/text3"/>
     </LinearLayout>
@@ -134,6 +128,7 @@
         android:layout_marginLeft="23dp"
         android:layout_marginStart="23dp"
         android:layout_marginTop="23dp"
+        android:orientation="horizontal"
         android:id="@+id/relativeLayout4"
         >
 
@@ -141,21 +136,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/bar4"
+            android:layout_gravity="center"
             android:src="@drawable/bar"/>
 
         <TextView
-            android:layout_toRightOf="@+id/bar4"
-            android:layout_toEndOf="@+id/bar4"
-            android:layout_alignBottom="@+id/bar4"
-            android:layout_alignTop="@+id/bar4"
             android:layout_marginLeft="7dp"
             android:layout_marginStart="7dp"
             android:textColor="#ff00086b"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="비슷한 성분의 제품"
-            android:includeFontPadding="false"
             android:textSize="14dp"
             android:id="@+id/text4"/>
 

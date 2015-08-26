@@ -30,7 +30,6 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:scaleType="centerCrop"
                     android:src="@drawable/skintype_oily"
                     android:background="@null"/>
 
@@ -39,7 +38,6 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:scaleType="centerCrop"
                     android:src="@drawable/skintype_dry"
                     android:background="@null"/>
 
@@ -48,7 +46,6 @@
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:scaleType="centerCrop"
                     android:src="@drawable/skintype_sensitive"
                     android:background="@null"/>
             </LinearLayout>

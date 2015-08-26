@@ -35,11 +35,8 @@ public class ProductCurationTab implements ProductActivity.SmallTab{
         FontApplyer.setFont(context, ((TextView)mainView.findViewById(R.id.product_curation)), FontApplyer.Font.NotoSans, FontApplyer.Style.Thin);
     }
     private void effectSetting(){
-      // int[] effects = ((MyApplication)context.getApplicationContext()).getProduct().getEffects();
-        //임시데이터
-        int[] effects = new int[2];
-        effects[0] = 0;
-        effects[1] = 1;
+
+       int[] effects = ((MyApplication)context.getApplicationContext()).getProduct().getEffects();
 
         for(int loop=0; loop<effects.length; loop++){
             if(effects[loop] == User.INEREST_WHITE){ //0을 플래그 참조로 바꿀것
@@ -49,7 +46,7 @@ public class ProductCurationTab implements ProductActivity.SmallTab{
                 ((TextView)mainView.findViewById(R.id.effect_tag2)).setTextColor(context.getResources().getColor(R.color.effect_enable));
                 ((TextView)mainView.findViewById(R.id.effect_tag2)).setBackgroundResource(R.drawable.select_small_box);
 
-            }else if(effects[loop] == User.INEREST_WRINKLE){
+            }else if(effects[loop] == User.INEREST_SUN){
                 ((TextView)mainView.findViewById(R.id.effect_tag3)).setBackgroundResource(R.drawable.select_small_box);
                 ((TextView)mainView.findViewById(R.id.effect_tag3)).setTextColor(context.getResources().getColor(R.color.effect_enable));
             }
