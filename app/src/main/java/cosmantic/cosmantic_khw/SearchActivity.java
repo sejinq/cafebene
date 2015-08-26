@@ -70,7 +70,7 @@ public class SearchActivity extends Activity {
             RelativeLayout layout = (RelativeLayout) View.inflate(context, R.layout.search_result_brand, null);
             //컨텐츠 이미지, 제목, 부제 받아와서 보여주기.
             setFont(layout);
-              byte[] thumb = ServerInteraction.getUserInform(brand.getObjectId()).getImage();
+              byte[] thumb = ((MyApplication)getApplicationContext()).getUser().getImage();
               if(brand.getThumnail()!=null)
                   ((ImageView)layout.findViewById(R.id.userThumnail)).setImageBitmap(((MyApplication) context.getApplicationContext()).getImage(thumb));
             //브랜드 이미지

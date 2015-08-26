@@ -76,7 +76,7 @@ public class HomeActivity extends Activity {
         {
             ((TextView)findViewById(R.id.home_mainbar_txt)).setText(getResources().getText(R.string.recommand_dry));
         }
-        else if(skinType == User.SKIN_TYPE_UNKNOWN)
+        else if(skinType == User.SKIN_TYPE_SENSITIVE)
         {
             ((TextView)findViewById(R.id.home_mainbar_txt)).setText(getResources().getText(R.string.recommand_sensitive));
         }

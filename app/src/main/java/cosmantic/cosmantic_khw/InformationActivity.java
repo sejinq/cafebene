@@ -110,9 +110,10 @@ public class InformationActivity extends Activity {
         ((Button)findViewById(R.id.tab3)).setBackgroundResource(R.drawable.menu_tap);
     }
     public interface web_pageFlag{
-        public static final int PG_BAGIC_INFORM = 0x0;		 //기초상식
-        public static final int PG_PRODUCT_REVIEW = 0x1; //추천제품리뷰
-        public static final int PG_INGREDIENT = 0x2; //화장품성분
+        int PG_SKIN_TYPE_TEST = 0;// 피부타입 테스트
+        int PG_BAGIC_INFORM = 2;// 화장품 상식
+        int PG_PRODUCT_REVIEW = 1;// 추천 리뷰
+        int PG_INGREDIENT = 3;// 성분
     }
     private void setFont()
     {

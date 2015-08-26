@@ -51,6 +51,7 @@ public class IngredientChartView extends View {
         float gap = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,10, getContext().getResources().getDisplayMetrics());
         circlePaint = new Paint();
         circlePaint.setStyle(Paint.Style.FILL);
+        circlePaint.setAntiAlias(true);
         Typeface typeface = Typeface.createFromAsset(context.getAssets(), "fonts/NotoSansCJKkr-Medium.otf");
         float font_size = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,12.8f, getContext().getResources().getDisplayMetrics());
         typeTextPaint = new Paint();
@@ -59,7 +60,7 @@ public class IngredientChartView extends View {
         typeTextPaint.setTextAlign(Paint.Align.CENTER);
         typeTextPaint.setTextSize(font_size);
         typeTextPaint.setTypeface(typeface);
-        font_size = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,7.2f, getContext().getResources().getDisplayMetrics());
+        font_size = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,9.0f, getContext().getResources().getDisplayMetrics());
         ingredientTextPaint = new Paint();
         ingredientTextPaint.setAntiAlias(true);
         ingredientTextPaint.setTextSize(font_size);

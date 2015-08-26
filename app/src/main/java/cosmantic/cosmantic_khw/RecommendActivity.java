@@ -119,7 +119,7 @@ public class RecommendActivity extends Activity{
                         ((TextView) parent.findViewById(R.id.product_left_productname)).setText(name.substring(0, 7) + "...");
                     DecimalFormat formatter = new DecimalFormat("#,###,###");
                     ((TextView) parent.findViewById(R.id.product_left_priceandvolume))
-                            .setText(product.getSize() + " / " + formatter.format(product.getPrice()));
+                            .setText(product.getSize() + " / " + formatter.format(product.getPrice())+"원");
                     parent.findViewById(R.id.product_left).setOnClickListener(view -> setProductListener(index));
                     break;
                 case 1:
@@ -149,7 +149,7 @@ public class RecommendActivity extends Activity{
                         ((TextView) parent.findViewById(R.id.product_right_productname)).setText(name.substring(0, 7) + "...");
                     formatter = new DecimalFormat("#,###,###");
                     ((TextView) parent.findViewById(R.id.product_right_priceandvolume))
-                            .setText(product.getSize() + " / " + formatter.format(product.getPrice()));
+                            .setText(product.getSize() + " / " + formatter.format(product.getPrice())+"원");
                     parent.findViewById(R.id.product_right).setOnClickListener(view -> setProductListener(index));
             }
         });

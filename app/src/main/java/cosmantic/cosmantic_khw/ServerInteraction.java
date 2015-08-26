@@ -26,12 +26,6 @@ public class ServerInteraction {
     static int[] skinType = new int[3];
     static int[] effects = new int[3];
     private static User instant_user = new User(0, "sejin", "sejin", "sejinq", true, 21, 0, skinType);
-    private static Product instant_product = new Product("제품이름이당", 53000, "미샤이쁘당", "500ml", 220, "룰루" +
-            "랄라" +
-            "뀨뀨" +
-            "꺄꺄", effects, "몰라",  "올인원?", "이것은" +
-            "큐레이팅" +
-            "이다", (float)3.5, 50);
 
     /**
      * 로그인 액션에서 사용되는 플래그들이 속해있는 인터페이스<br/>
@@ -146,9 +140,6 @@ public class ServerInteraction {
         return signUpFlag.SUCCESS;
     }
     //회원 정보 반환 메소드
-    public static User getUserInform(String user_id){
-        return instant_user;
-    }
     public static Review[] getReviewInform(String productId, String userId){
         ParseQuery<ParseObject> reviewQuery = ParseQuery.getQuery("reviewData");
         if(userId != null) reviewQuery.whereEqualTo("userId", userId);
@@ -174,9 +165,6 @@ public class ServerInteraction {
      * 상품 정보 반환 메소드
      * 인자: int product_id - 상품 식별자
      */
-    public static Product getInstantProductInform(String product_id){
-        return instant_product;
-    }
     /**
      *
      */
@@ -357,7 +345,9 @@ public class ServerInteraction {
 
         return findProduct;
     }
-
+    public static User getUserInform(String user_id){
+        return instant_user;
+    }
     public static Product[] searchProduct(String key_word){
         ParseQuery<ParseObject> pQuery = ParseQuery.getQuery("cosmeticData");
         pQuery.whereMatches("productName", ".*" + key_word + ".*", "i");
@@ -397,7 +387,7 @@ public class ServerInteraction {
     }
     public static Product[] searchProductInBrand(String brandName){
         ParseQuery<ParseObject> searchQuery = ParseQuery.getQuery("cosmeticData");
-        searchQuery.whereEqualTo("brand",brandName);
+        searchQuery.whereEqualTo("brand", brandName);
         try{
             List<ParseObject> results = searchQuery.find();
             Product[] products = new Product[results.size()];
@@ -415,7 +405,7 @@ public class ServerInteraction {
         int count;
         try {
             count = countQuery.count();
-            Log.d("Nick Name", "check:"+nickName+","+count);
+            Log.d("Nick Name", "check:" + nickName + "," + count);
         }catch(ParseException e){
             e.printStackTrace();
             return false;
@@ -429,7 +419,7 @@ public class ServerInteraction {
         int count;
         try {
             count = countQuery.count();
-            Log.d("User Name", "check:"+userName+","+count);
+            Log.d("User Name", "check:" + userName + "," + count);
         }catch(ParseException e){
             e.printStackTrace();
             return false;
@@ -442,8 +432,8 @@ public class ServerInteraction {
         Log.d("Review Upload","pid:"+review.getProductObjectId()+", uid:"+review.getUserObjectId()+", rate:"+review.getRate()+", content:"+review.getContent());
         reviewObject.put("productId", review.getProductObjectId());
         reviewObject.put("userId",review.getUserObjectId());
-        reviewObject.put("content",review.getContent());
-        reviewObject.put("rate",review.getRate());
+        reviewObject.put("content", review.getContent());
+        reviewObject.put("rate", review.getRate());
         try {
             reviewObject.save();
             return true;
@@ -453,4 +443,44 @@ public class ServerInteraction {
         return false;
     }
 
+    public static void getWebContentsList(int contentType, InfoDetailActivity activity){
+        //Query Define
+        ParseQuery<ParseObject> contentQuery = ParseQuery.getQuery("webContents");
+        contentQuery.whereEqualTo("type", contentType);
+        if(contentType == InformationActivity.web_pageFlag.PG_PRODUCT_REVIEW) contentQuery.whereExists("image");
+        contentQuery.selectKeys(Arrays.asList("objectId"));
+        Log.d("Information","Get List of data");
+        //Get Data
+        try{
+            List<ParseObject> objectLists = contentQuery.find();
+            String[] idArray = new String[objectLists.size()];
+            for(int loop = 0; loop<objectLists.size(); loop++){
+                idArray[loop] = objectLists.get(loop).getObjectId();
+            }
+            Log.d("Information","Success to get List of data");
+            activity.showWeb(idArray);
+        }catch(ParseException e){
+            Log.d("Information","Fail to get List of data");
+            e.printStackTrace();
+        }
+    }
+
+    public static WebContents getWebContentInform(String contentsObjectId){
+        //Query Define
+        ParseQuery<ParseObject> contentQuery = ParseQuery.getQuery("webContents");
+        contentQuery.whereEqualTo("objectId", contentsObjectId);
+        Log.d("Information", "Get data");
+        //Get Data
+        try {
+            ParseObject contentParseObject = contentQuery.find().get(0);
+            WebContents content = new WebContents((contentParseObject.getParseFile("image") == null) ? null : contentParseObject.getParseFile("image").getData(),
+                    contentParseObject.getString("title"),contentParseObject.getString("subTitle"),contentParseObject.getString("productObjectId"),contentParseObject.getString("url"));
+            Log.d("Information","Success to get data");
+            return content;
+        }catch(ParseException e){
+            Log.d("Information","Fail to get data");
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
