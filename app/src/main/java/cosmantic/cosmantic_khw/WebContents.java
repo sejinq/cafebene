@@ -5,18 +5,12 @@ package cosmantic.cosmantic_khw;
  */
 public class WebContents {
 
-    public interface ContentsType{
-        int SKIN_TYPE_TEST = 0x1;// 피부타입 테스트
-        // 화장품 상식
-        // 추천 리뷰
-        // 성분
-    }
-
     private byte[] image;    //콘텐츠 이미지
     private String title="제목임";   //콘텐츠 제목
     private String subtitle="부제목임";    //콘텐츠 부제목
     private String product_objectId="제품.";
     private String url="http://m.blog.naver.com/cosmeticforman/220456872674";
+    private Product product;
     //default 생성자
     WebContents(){}
     //생성자
@@ -35,13 +29,16 @@ public class WebContents {
     public String getUrl() {  return url;    }
 
     public String getProductName() {
-        return ServerInteraction.getProductInform(product_objectId).getProductName();
+        if(product == null) product = ServerInteraction.getProductInform(product_objectId);
+        return product.getProductName();
     }
     public byte[] getProductImage() {
-        return ServerInteraction.getProductInform(product_objectId).getThumnail();
+        if(product == null) product = ServerInteraction.getProductInform(product_objectId);
+        return product.getThumnail();
     }
     public String getProductBrand() {
-        return ServerInteraction.getProductInform(product_objectId).getBrand();
+        if(product == null) product = ServerInteraction.getProductInform(product_objectId);
+        return product.getBrand();
     }
     public String getProduct_objectId() {
         return product_objectId;

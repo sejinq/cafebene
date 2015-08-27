@@ -147,7 +147,41 @@ public class ServerInteraction {
     }
     //회원 정보 반환 메소드
     public static User getUserInform(String user_id){
-        return instant_user;
+        ParseQuery<ParseUser> userQuery = ParseUser.getQuery();
+        userQuery.whereEqualTo("objectId",user_id);
+        try{
+            ParseUser parseUser = userQuery.find().get(0);
+            User neededUser = new User();
+
+            neededUser.setUsername(parseUser.getUsername());
+            neededUser.setDisplayedName(parseUser.getString("displayedName"));
+            neededUser.setAge(parseUser.getNumber("age").intValue());
+            neededUser.setGender(parseUser.getBoolean("gender"));
+            JSONArray JSONSkinProblems = parseUser.getJSONArray("skinProblem");
+            int[] skinProblems = new int[JSONSkinProblems.length()];
+            try {
+                for (int loop = 0; loop < JSONSkinProblems.length(); loop++)
+                    skinProblems[loop] = JSONSkinProblems.getInt(loop);
+                neededUser.setSkinProblem(skinProblems);
+            } catch (Exception e) {
+                Log.e("Sign In", "Error in get skin problem:" + e.getMessage());
+                return null;
+            }
+            neededUser.setSkinType(parseUser.getNumber("skinType").intValue());
+            if(parseUser.getParseFile("profilePicture")!=null)
+                neededUser.setImage(parseUser.getParseFile("profilePicture").getDataInBackground().getResult());
+            else neededUser.setImage(null);
+
+            List<String> likeList = parseUser.getList("like");
+            neededUser.initLike(likeList);
+
+            return neededUser;
+
+        }catch(ParseException e){
+            e.printStackTrace();
+            return null;
+//            return instant_user;
+        }
     }
     public static Review[] getReviewInform(String productId, String userId){
         ParseQuery<ParseObject> reviewQuery = ParseQuery.getQuery("reviewData");
@@ -169,13 +203,6 @@ public class ServerInteraction {
             e.printStackTrace();
         }
         return null;
-    }
-    /**
-     * 상품 정보 반환 메소드
-     * 인자: int product_id - 상품 식별자
-     */
-    public static Product getInstantProductInform(String product_id){
-        return instant_product;
     }
     /**
      *
@@ -247,7 +274,7 @@ public class ServerInteraction {
 
             String[] productIds = new String[recommendedID.size()];
             for(int loop=0; loop<recommendedID.size();loop++) {
-                Log.d("Main Recommend","Get Recommend Activity:"+skin_type+"("+loop+")"+recommendedID.get(loop));
+                Log.d("Main Recommend", "Get Recommend Activity:" + skin_type + "(" + loop + ")" + recommendedID.get(loop));
                 productIds[loop] = recommendedID.get(loop);
             }
             return productIds;
@@ -397,7 +424,7 @@ public class ServerInteraction {
     }
     public static Product[] searchProductInBrand(String brandName){
         ParseQuery<ParseObject> searchQuery = ParseQuery.getQuery("cosmeticData");
-        searchQuery.whereEqualTo("brand",brandName);
+        searchQuery.whereEqualTo("brand", brandName);
         try{
             List<ParseObject> results = searchQuery.find();
             Product[] products = new Product[results.size()];
@@ -415,7 +442,7 @@ public class ServerInteraction {
         int count;
         try {
             count = countQuery.count();
-            Log.d("Nick Name", "check:"+nickName+","+count);
+            Log.d("Nick Name", "check:" + nickName + "," + count);
         }catch(ParseException e){
             e.printStackTrace();
             return false;
@@ -443,7 +470,7 @@ public class ServerInteraction {
         reviewObject.put("productId", review.getProductObjectId());
         reviewObject.put("userId",review.getUserObjectId());
         reviewObject.put("content",review.getContent());
-        reviewObject.put("rate",review.getRate());
+        reviewObject.put("rate", review.getRate());
         try {
             reviewObject.save();
             return true;
@@ -453,4 +480,44 @@ public class ServerInteraction {
         return false;
     }
 
+    public static void getWebContentsList(int contentType, InfoDetailActivity activity){
+        //Query Define
+        ParseQuery<ParseObject> contentQuery = ParseQuery.getQuery("webContents");
+        contentQuery.whereEqualTo("type", contentType);
+        if(contentType == InformationActivity.web_pageFlag.PG_PRODUCT_REVIEW) contentQuery.whereExists("image");
+        contentQuery.selectKeys(Arrays.asList("objectId"));
+        Log.d("Information","Get List of data");
+        //Get Data
+        try{
+            List<ParseObject> objectLists = contentQuery.find();
+            String[] idArray = new String[objectLists.size()];
+            for(int loop = 0; loop<objectLists.size(); loop++){
+                idArray[loop] = objectLists.get(loop).getObjectId();
+            }
+            Log.d("Information","Success to get List of data");
+            activity.showWeb(idArray);
+        }catch(ParseException e){
+            Log.d("Information","Fail to get List of data");
+            e.printStackTrace();
+        }
+    }
+
+    public static WebContents getWebContentInform(String contentsObjectId){
+        //Query Define
+        ParseQuery<ParseObject> contentQuery = ParseQuery.getQuery("webContents");
+        contentQuery.whereEqualTo("objectId", contentsObjectId);
+        Log.d("Information", "Get data");
+        //Get Data
+        try {
+            ParseObject contentParseObject = contentQuery.find().get(0);
+            WebContents content = new WebContents((contentParseObject.getParseFile("image") == null) ? null : contentParseObject.getParseFile("image").getData(),
+                    contentParseObject.getString("title"),contentParseObject.getString("subTitle"),contentParseObject.getString("productObjectId"),contentParseObject.getString("url"));
+            Log.d("Information", "Success to get data");
+            return content;
+        }catch(ParseException e){
+            Log.d("Information","Fail to get data");
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

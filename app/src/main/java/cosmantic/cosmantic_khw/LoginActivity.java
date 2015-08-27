@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,7 +20,6 @@ import com.kakao.usermgmt.UserProfile;
 import com.parse.KakaoAuthenticationProvider;
 import com.parse.LogInCallback;
 import com.parse.ParseAnalytics;
-import com.parse.ParseAnonymousUtils;
 import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
 import com.parse.ParseUser;
@@ -120,20 +118,6 @@ public class LoginActivity extends Activity {
     //Button Action
     private void emailJoinAction(){
         startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
-//        ParseUser user = new ParseUser();
-//        user.setUsername("email@example.com");
-//        user.setPassword("my pass");
-//
-//        user.signUpInBackground(new SignUpCallback() {
-//            public void done(ParseException e) {
-//                if (e == null) {
-//                    // Hooray! Let them use the app now.
-//                } else {
-//                    // Sign up didn't succeed. Look at the ParseException
-//                    // to figure out what went wrong
-//                }
-//            }
-//        });
     }
     //
 

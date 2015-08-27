@@ -156,11 +156,9 @@ public class RecommendActivity extends Activity{
     }
 
     private void setProductListener(int index){
-//        if(flag_info != User.SEASON_SOLDIER) {
-            ((MyApplication) getApplicationContext()).setProduct(products[index]);
-            Intent intent = new Intent(RecommendActivity.this, ProductActivity.class);
-            startActivity(intent);
-//        }else Toast.makeText(this,"준비중입니다.",Toast.LENGTH_SHORT).show();
+        ((MyApplication) getApplicationContext()).setProduct(products[index]);
+        Intent intent = new Intent(RecommendActivity.this, ProductActivity.class);
+        startActivity(intent);
     }
 
     // 제품 컨테이너 안에 있는 글씨들 글꼴 적용

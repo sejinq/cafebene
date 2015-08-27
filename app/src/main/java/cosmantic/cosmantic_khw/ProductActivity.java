@@ -2,7 +2,9 @@ package cosmantic.cosmantic_khw;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -10,10 +12,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-/**
- * Created by jsw on 2015. 7. 16..
- */
-/*손!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111세~~~~~~~~~~~~~~~~~~~~~~진@@@@@@@@@@@@@@@@@@@@@@@@@ 내가다함*/
 public class ProductActivity extends Activity {
 
     //new, hot 태그 , 제품이미지
@@ -23,92 +21,88 @@ public class ProductActivity extends Activity {
     TextView brand, name, average, title;
     ImageButton btShare;
     ImageButton review_write;
-    ImageView[] star = new ImageView[5];
+    ImageView[] star;
     Button[] smallTab = new Button[4];
     ImageButton btLike;
-    String likeProducts;
+    String productId;
     //하위 탭 4개 생성 클래스
     SmallTab tabClass;
 
     @Override
     protected void onCreate(Bundle savedInstance){
         super.onCreate(savedInstance);
+        setView();
+        //기본 정보들 설정
+        new Thread(()->settingProduct()).start();
+        //기본 탭으로 제품분석 탭 설정
+        RelativeLayout view =  (RelativeLayout)findViewById(R.id.tablayout1);
+        setting(view, findViewById(R.id.tab1));
+        FontApplyer.setFont(getApplicationContext(), ((TextView) findViewById(R.id.tab1)), FontApplyer.Font.NotoSans, FontApplyer.Style.Medium);
+        tabClass = new ProductCurationTab(getApplicationContext(),view);
+    }
+    @Override
+    protected void onResume(){
+        super.onResume();
+        //별 평균 적용
+        ((MyApplication)getApplicationContext()).settingStar(star, average);
+        //하트 눌려있으면 이미지도 on해주기.
+        if(((MyApplication)getApplicationContext()).getUser().isLike(productId))
+            btLike.setImageResource(R.drawable.love_inable);
+    }
+    private void setView(){
         setContentView(R.layout.activity_product);
-
-        review_write = (ImageButton) findViewById(R.id.review_pen_button);
-        review_write.setOnClickListener(onReview);
-
+        settingActionBar();
+        // 제품박스 요소
         btLike = (ImageButton) findViewById(R.id.likebutton);
         btLike.setOnClickListener(onLike);
-
         product = (ImageView) findViewById(R.id.product_image);
         average = (TextView)findViewById(R.id.average);
-        //탭 이외의 기본 정보들 받아와서 보여주기.
-        settingProduct();
-        setting((RelativeLayout) findViewById(R.id.tablayout1), findViewById(R.id.tab1));
-        tabClass = new ProductCurationTab(ProductActivity.this,(RelativeLayout) findViewById(R.id.tablayout1));
-
-        settingActionBar();
-        settingSmallTab();
+        setFont();
+        star = new ImageView[5];
         star[0] = (ImageView)findViewById(R.id.star1);
         star[1] = (ImageView)findViewById(R.id.star2);
         star[2] = (ImageView)findViewById(R.id.star3);
         star[3] = (ImageView)findViewById(R.id.star4);
         star[4] = (ImageView)findViewById(R.id.star5);
-        ((MyApplication)getApplicationContext()).settingStar(star, average);
-        setFont();
 
+        settingSmallTab();
+
+        review_write = (ImageButton) findViewById(R.id.review_pen_button);
+        review_write.setOnClickListener(onReview);
     }
-    private void setFont()
-    {
+    private void setFont(){
         FontApplyer.setFont(this, ((TextView) findViewById(R.id.brand_text)), FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
         FontApplyer.setFont(this, ((TextView) findViewById(R.id.product_text)), FontApplyer.Font.NotoSans, FontApplyer.Style.Light);
         FontApplyer.setFont(this, ((TextView) findViewById(R.id.average)), FontApplyer.Font.NotoSans, FontApplyer.Style.Light);
     }
-    private void settingActionBar()
-    {
+    private void settingActionBar(){
         // 액션바 뒤로가기 버튼, 검색 버튼 리스너 달아주는 코드
-        ((ImageButton) findViewById(R.id.backButton)).setOnClickListener(ClickListener);
+        ((ImageButton) findViewById(R.id.backButton)).setOnClickListener(view->finish());
         ((ImageButton) findViewById(R.id.searchButton)).setImageResource(R.drawable.share_button);
-        ((ImageButton) findViewById(R.id.searchButton)).setOnClickListener(ClickListener);
+        ((ImageButton) findViewById(R.id.searchButton)).setOnClickListener(view-> Log.d("PA","Click search button!"));
         TextView tv = (TextView) findViewById(R.id.titleText);
         tv.setText("화장품 상세");
         FontApplyer.setFont(this, tv, FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
-
     }
-    View.OnClickListener ClickListener = new View.OnClickListener() {
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.backButton:
-                    finish();
-                    break;
-                case R.id.searchButton:
-                   break;
-            }
-        }
-    };
 
 /*별점 평균을 받아 평균에 맞는 별 이미지를 보여준다,*/
-
-    private void settingProduct()
-    {
-        /*myImage.setImageResource(); byte로 저장되어있음*/
+    private void settingProduct(){
+        //정보 로드
         Product productObject = ((MyApplication) getApplicationContext()).getProduct();
-        if (productObject.getThumnail() != null)
-            ((ImageView) findViewById(R.id.product_image))
-                    .setImageBitmap(((MyApplication) getApplicationContext()).getImage(productObject.getThumnail()));
-        // product.setImageBitmap(((MyApplication) getApplicationContext()).getImage(((MyApplication) getApplicationContext()).getProduct().getThumnail()));
-        /*brand 이름과 제품 이름을 받아 보여준다.*/
-        String text = productObject.getBrand();
-        ((TextView) findViewById(R.id.brand_text)).setText(text);
-        text = productObject.getProductName();
-        ((TextView) findViewById(R.id.product_text)).setText(text);
-        likeProducts = ((MyApplication)getApplicationContext()).getProduct().getObjectId();
-        //하트 눌려있으면 이미지도 on해주기.
+        Bitmap image;
+        if (productObject.getThumnail() != null) image = ((MyApplication) getApplicationContext()).getImage(productObject.getThumnail());
+        else image = null;
+        String brandText = productObject.getBrand();
+        String nameText = productObject.getProductName();
+        productId = ((MyApplication)getApplicationContext()).getProduct().getObjectId();
 
-        if(((MyApplication)getApplicationContext()).getUser().isLike(likeProducts))
-             btLike.setImageResource(R.drawable.love_inable);
-
+        //뷰 적용
+        runOnUiThread(() -> {
+            if (image != null)
+                ((ImageView) findViewById(R.id.product_image)).setImageBitmap(image);
+            ((TextView) findViewById(R.id.brand_text)).setText(brandText);
+            ((TextView) findViewById(R.id.product_text)).setText(nameText);
+        });
     }
     private void settingSmallTab()
     {
@@ -168,7 +162,7 @@ public class ProductActivity extends Activity {
     View.OnClickListener onLike = new View.OnClickListener() {
         public void onClick(View v) {
             //해당 제품을 찜 목록으로 등록, 이미 등록되어있으면 해제.
-            if(!((MyApplication)getApplicationContext()).getUser().setLikeProducts(likeProducts))
+            if(!((MyApplication)getApplicationContext()).getUser().setLikeProducts(productId))
             {
                 btLike.setImageResource(R.drawable.love_disable);
             }

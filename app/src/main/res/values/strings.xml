@@ -86,6 +86,7 @@
     <string name="recommend_soldier_0">추천 마스크/팩</string>
     <string name="recommend_soldier_1">추천 위장크림</string>
     <string name="recommend_soldier_2">추천 썬크림</string>
+    <string name="loading_message">로딩중...</string>
 
 
     <!-- product-->

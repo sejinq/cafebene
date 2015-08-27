@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -32,17 +33,15 @@ public class InfoDetailActivity extends Activity {
         setContentView(R.layout.activity_info_detail);
         intent = getIntent();
 
-        ((ImageButton)findViewById(R.id.searchButton)).setVisibility(View.GONE);
         title = intent.getExtras().getString(TITLE);
         pageTab = intent.getExtras().getInt(PAGE_TAG);
         TextView tv = (TextView) findViewById(R.id.titleText);
         tv.setText(title);
         FontApplyer.setFont(this, tv, FontApplyer.Font.NotoSans, FontApplyer.Style.Regular);
-        showWeb(pageTab);
 
         ImageButton backButton = (ImageButton)findViewById(R.id.backButton);
         backButton.setOnClickListener(ClickListener);
-
+        new Thread(() -> ServerInteraction.getWebContentsList(pageTab, this)).start();
     }
     View.OnClickListener ClickListener = new View.OnClickListener() {
         public void onClick(View v) {
@@ -67,28 +66,79 @@ public class InfoDetailActivity extends Activity {
         //  FontApplyer.setFont(getApplicationContext(), ((TextView) layout.findViewById(R.id.review_brand)), FontApplyer.Font.NotoSans, FontApplyer.Style.Light);
         //review_name
     }
-    private void showWeb(int tab)
+    public void showWeb(String[] list)
     {
-
-        switch (tab)
+        switch (pageTab)
         {
-            case InformationActivity.web_pageFlag.PG_BAGIC_INFORM
-                    :((LinearLayout) findViewById(R.id.info_detail_basic)).setVisibility(View.VISIBLE);
-                settingBasic(getApplicationContext(), (LinearLayout) findViewById(R.id.info_detail_basic), tab);
+            case InformationActivity.web_pageFlag.PG_BAGIC_INFORM:
+                runOnUiThread(() -> {
+                    ((LinearLayout) findViewById(R.id.info_detail_basic)).setVisibility(View.VISIBLE);
+                });
+                for(int loop = 0; loop < list.length; loop++) {
+                    final int index = loop;
+                    RelativeLayout layout = (RelativeLayout) View.inflate(getApplicationContext(), R.layout.inform_detail_box, null);
+                    new Thread(() -> loadBasic(list[index],layout)).start();
+                }
+//                settingBasic(getApplicationContext(), (LinearLayout) findViewById(R.id.info_detail_basic), pageTab);
                 break;
-            case InformationActivity.web_pageFlag.PG_PRODUCT_REVIEW
-                    : ((LinearLayout) findViewById(R.id.info_detail_review)).setVisibility(View.VISIBLE);
-                settingReview(getApplicationContext(), (LinearLayout) findViewById(R.id.info_detail_review), tab);
+            case InformationActivity.web_pageFlag.PG_PRODUCT_REVIEW:
+                Log.d("Information", "Draw Review");
+                runOnUiThread(() -> {
+                    ((LinearLayout) findViewById(R.id.info_detail_review)).setVisibility(View.VISIBLE);
+                });
+                for(int loop = 0; loop < list.length; loop++) {
+                    final String id = list[loop];
+                    if(id == null | id.equals("")) continue;
+                    RelativeLayout layout = (RelativeLayout) View.inflate(getApplicationContext(), R.layout.inform_detail_box, null);
+                    new Thread(() -> loadReview(id,layout)).start();
+                }
+//                settingReview(getApplicationContext(), (LinearLayout) findViewById(R.id.info_detail_review), pageTab);
                 break;
-            case InformationActivity.web_pageFlag.PG_INGREDIENT
-                    :settingIngredient(getApplicationContext(), tab);
-                ((RelativeLayout) findViewById(R.id.info_detail_ingredient)).setVisibility(View.VISIBLE);
+            case InformationActivity.web_pageFlag.PG_INGREDIENT:
+                runOnUiThread(() -> {
+                    ((RelativeLayout) findViewById(R.id.info_detail_ingredient)).setVisibility(View.VISIBLE);
+                });
+
+                RelativeLayout[] tab = new RelativeLayout[3];
+                tab[0]=(RelativeLayout) findViewById(R.id.info_detail_ingredient_tab1);
+                tab[1]=(RelativeLayout) findViewById(R.id.info_detail_ingredient_tab2);
+                tab[2]=(RelativeLayout) findViewById(R.id.info_detail_ingredient_tab3);
+                for(int loop = 0; loop < list.length; loop++) {
+                    final int index = loop;
+                    new Thread(() -> loadIngredient(list[index], tab[index])).start();
+                }
+//                settingIngredient(getApplicationContext(), pageTab);
                 break;
         }
     }
+    private void loadBasic(String id, RelativeLayout layout){
+        WebContents contents = ServerInteraction.getWebContentInform(id);
+        runOnUiThread(()->{
+            //컨텐츠 이미지, 제목, 부제 받아와서 보여주기.
+            setFont(layout);
+            ((RelativeLayout)layout.findViewById(R.id.info_detail_box_default)).setVisibility(View.VISIBLE);
+            ((ImageView) layout.findViewById(R.id.detail_image)).setImageBitmap(((MyApplication) getApplicationContext()).getImage(contents.getImage()));
+            ((TextView) layout.findViewById(R.id.content_title)).setText(contents.getTitle());
+            ((TextView) layout.findViewById(R.id.content_subtitle)).setText(contents.getSubTitle());
+            FontApplyer.setFont(InfoDetailActivity.this, ((TextView) findViewById(R.id.content_title)), FontApplyer.Font.NotoSans, FontApplyer.Style.Medium);
+            FontApplyer.setFont(InfoDetailActivity.this, ((TextView) findViewById(R.id.content_subtitle)), FontApplyer.Font.NotoSans, FontApplyer.Style.Light);
+            //유저의 사진 클릭시 유저 정보창으로 넘어간다.
+            layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent nextIntent = new Intent(getApplicationContext(), WebViewActivity.class);
+                    nextIntent.putExtra(WebViewActivity.TITLE, "화장품 기초 상식");
+                    nextIntent.putExtra(WebViewActivity.ACTIONBAR, MyApplication.action_bar_tag.AC_SUB);
+                    nextIntent.putExtra(WebViewActivity.URL, contents.getUrl());
+                    callIntent(nextIntent);
+                }
+            });
+            ((LinearLayout)findViewById(R.id.info_detail_basic)).addView(layout); // 부모에 부착
+        });
+    }
     private void settingBasic(Context context, LinearLayout list, int pageTab) {
         ParseQuery<ParseObject> basicQuery = ParseQuery.getQuery("webContents");
-        basicQuery.whereEqualTo("type",2);
+        basicQuery.whereEqualTo("type", 2);
         basicQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> contentslist, ParseException e) {
@@ -100,20 +150,20 @@ public class InfoDetailActivity extends Activity {
                     for (int loop = 0; loop < contentslist.size(); loop++) {
                         ParseObject object = contentslist.get(loop);
                         contentsList[loop] = new WebContents((object.getParseFile("image") == null) ? null : object.getParseFile("image").getData(),
-                                object.getString("title"),object.getString("subTitle"),null,object.getString("url"));
+                                object.getString("title"), object.getString("subTitle"), null, object.getString("url"));
                     }
-                }catch(ParseException pe){
+                } catch (ParseException pe) {
                     pe.printStackTrace();
                 }
                 //contentsList =
                 //contentsList[] 서버 메소드 return 값 받아오기, int pageTab값 넘겨주기.!!!!!!!!!!!!!!!!!!!!!!!!!!
-                runOnUiThread(()->{
+                runOnUiThread(() -> {
                     for (int i = 0; i < contentsNum; ++i) {
                         final WebContents contents = contentsList[i];
                         RelativeLayout layout = (RelativeLayout) View.inflate(context, R.layout.inform_detail_box, null);
                         //컨텐츠 이미지, 제목, 부제 받아와서 보여주기.
                         setFont(layout);
-                        ((RelativeLayout)layout.findViewById(R.id.info_detail_box_default)).setVisibility(View.VISIBLE);
+                        ((RelativeLayout) layout.findViewById(R.id.info_detail_box_default)).setVisibility(View.VISIBLE);
                         ((ImageView) layout.findViewById(R.id.detail_image)).setImageBitmap(((MyApplication) context).getImage(contents.getImage()));
                         ((TextView) layout.findViewById(R.id.content_title)).setText(contents.getTitle());
                         ((TextView) layout.findViewById(R.id.content_subtitle)).setText(contents.getSubTitle());
@@ -137,7 +187,32 @@ public class InfoDetailActivity extends Activity {
 
         });
     }
-                //화장품 성분
+    //화장품 성분
+    private void loadIngredient(String id, RelativeLayout layout){
+        WebContents contents = ServerInteraction.getWebContentInform(id);
+        runOnUiThread(()->{
+            ((RelativeLayout)layout.findViewById(R.id.info_detail_box_default)).setVisibility(View.VISIBLE);
+            setFont(layout);
+            ((ImageView) layout.findViewById(R.id.detail_image)).setImageBitmap(((MyApplication) getApplicationContext()).getImage(contents.getImage()));
+            // ((ImageButton) tab[i].findViewById(R.id.detail_image)).setImageBitmap(((MyApplication) context.getApplicationContext()).getImage(listenerContent.getImage()));
+            ((TextView) layout.findViewById(R.id.content_title)).setText(contents.getTitle());
+            ((TextView) layout.findViewById(R.id.content_subtitle)).setText(contents.getSubTitle());
+            FontApplyer.setFont(InfoDetailActivity.this, ((TextView) findViewById(R.id.content_title)), FontApplyer.Font.NotoSans, FontApplyer.Style.Medium);
+            FontApplyer.setFont(InfoDetailActivity.this, ((TextView) findViewById(R.id.content_subtitle)), FontApplyer.Font.NotoSans, FontApplyer.Style.Light);
+
+            layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent nextIntent = new Intent(getApplicationContext(), WebViewActivity.class);
+                    nextIntent.putExtra(WebViewActivity.TITLE, "화장품 성분");
+                    nextIntent.putExtra(WebViewActivity.URL, contents.getUrl());
+                    nextIntent.putExtra(WebViewActivity.ACTIONBAR, MyApplication.action_bar_tag.AC_SUB);
+                    callIntent(nextIntent);
+                }
+            });
+            layout.setVisibility(View.VISIBLE);
+        });
+    }
     private void settingIngredient(Context context, int pageTab)
     {
         ParseQuery<ParseObject> ingreQuery = ParseQuery.getQuery("webContents");
@@ -196,6 +271,51 @@ public class InfoDetailActivity extends Activity {
             }
         });
 
+    }
+    private void loadReview(String id, RelativeLayout layout){
+        Log.d("Information", "Draw Review " + id);
+        WebContents contents = ServerInteraction.getWebContentInform(id);
+        runOnUiThread(() -> {
+            setReviewFont(layout);
+            //컨텐츠 이미지, 제품 이미지, 브랜드, 이름 받아와서 보여주기.
+            ((RelativeLayout) layout.findViewById(R.id.info_detail_box_review)).setVisibility(View.VISIBLE);
+            //이미지 받아오기
+            Log.d("RECReview", "load image");
+            ((ImageView) layout.findViewById(R.id.detail_image)).
+                    setImageBitmap(((MyApplication) getApplicationContext()).getImage(contents.getImage()));
+            Log.d("RECReview", "load product image");
+            ((ImageView) layout.findViewById(R.id.info_detail_product_image)).
+                    setImageBitmap(((MyApplication) getApplicationContext()).getImage(contents.getProductImage()));
+            Log.d("RECReview", "load brand");
+            ((TextView) layout.findViewById(R.id.review_brand)).setText(contents.getProductBrand());
+            Log.d("RECReview", "load name");
+            ((TextView) layout.findViewById(R.id.review_name)).setText(contents.getProductName());
+            Log.d("RECReview", "set font");
+            FontApplyer.setFont(InfoDetailActivity.this, ((TextView) findViewById(R.id.review_brand)), FontApplyer.Font.NotoSans, FontApplyer.Style.Medium);
+            FontApplyer.setFont(InfoDetailActivity.this, ((TextView) findViewById(R.id.review_name)), FontApplyer.Font.NotoSans, FontApplyer.Style.Light);
+            Log.d("RECReview", "listener for product");
+            ((ImageButton) layout.findViewById(R.id.inform_detail_product_button)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((MyApplication) getApplicationContext()).setProduct(ServerInteraction.getProductInform(contents.getProduct_objectId()));
+                    Intent nextIntent = new Intent(getApplicationContext(), ProductActivity.class);
+                    callIntent(nextIntent);
+                }
+            });
+            Log.d("RECReview", "listener for webView");
+            layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent nextIntent = new Intent(getApplicationContext(), WebViewActivity.class);
+                    nextIntent.putExtra(WebViewActivity.TITLE, "추천 제품 리뷰");
+                    nextIntent.putExtra(WebViewActivity.URL, contents.getUrl());
+                    nextIntent.putExtra(WebViewActivity.ACTIONBAR, MyApplication.action_bar_tag.AC_SUB);
+                    callIntent(nextIntent);
+                }
+            });
+            Log.d("RECReview", "add to parents");
+            ((LinearLayout)findViewById(R.id.info_detail_review)).addView(layout); // 부모에 부착
+        });
     }
     private void settingReview(Context context, LinearLayout list, int pageTab)
     {

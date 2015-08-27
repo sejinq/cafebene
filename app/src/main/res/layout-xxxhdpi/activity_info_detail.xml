@@ -47,6 +47,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/info_detail_ingredient_tab1"
+                    android:visibility="gone"
                     >
                     <include
                         layout="@layout/inform_detail_box"
@@ -56,6 +57,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/info_detail_ingredient_tab2"
+                    android:visibility="gone"
                     android:layout_below="@+id/info_detail_ingredient_tab1"
                     >
                     <include
@@ -67,6 +69,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/info_detail_ingredient_tab3"
+                    android:visibility="gone"
                     android:layout_below="@+id/info_detail_ingredient_tab2"
                     >
                     <include
